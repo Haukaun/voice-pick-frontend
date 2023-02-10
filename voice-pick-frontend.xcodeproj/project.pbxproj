@@ -48,6 +48,7 @@
 		E8603B592996584100E09361 /* voice_pick_frontendUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voice_pick_frontendUITests.swift; sourceTree = "<group>"; };
 		E8603B5B2996584100E09361 /* voice_pick_frontendUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voice_pick_frontendUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E8B8179729967D8400962940 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		F6E9BE382996860E00DFD5EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 		E8603B322996584000E09361 = {
 			isa = PBXGroup;
 			children = (
+				F6E9BE382996860E00DFD5EF /* README.md */,
 				E8603B3D2996584000E09361 /* voice-pick-frontend */,
 				E8603B4E2996584100E09361 /* voice-pick-frontendTests */,
 				E8603B582996584100E09361 /* voice-pick-frontendUITests */,
@@ -107,6 +109,14 @@
 		E8603B3D2996584000E09361 /* voice-pick-frontend */ = {
 			isa = PBXGroup;
 			children = (
+				F6E9BE432996871600DFD5EF /* library */,
+				F6E9BE40299686D000DFD5EF /* model */,
+				F6E9BE42299686E500DFD5EF /* component */,
+				F6E9BE3B299686A200DFD5EF /* layout */,
+				F6E9BE41299686D500DFD5EF /* service */,
+				F6E9BE3F299686CA00DFD5EF /* page */,
+				F6E9BE3C299686B200DFD5EF /* feature */,
+				F6E9BE3D299686B900DFD5EF /* util */,
 				8D1A2DE029966A1F007062CE /* Extensions */,
 				E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */,
 				E8603B402996584000E09361 /* ContentView.swift */,
@@ -139,6 +149,126 @@
 				E8603B5B2996584100E09361 /* voice_pick_frontendUITestsLaunchTests.swift */,
 			);
 			path = "voice-pick-frontendUITests";
+			sourceTree = "<group>";
+		};
+		F6E9BE3B299686A200DFD5EF /* layout */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = layout;
+			sourceTree = "<group>";
+		};
+		F6E9BE3C299686B200DFD5EF /* feature */ = {
+			isa = PBXGroup;
+			children = (
+				F6E9BE442996873A00DFD5EF /* authentication */,
+				F6E9BE482996875E00DFD5EF /* pluck */,
+			);
+			path = feature;
+			sourceTree = "<group>";
+		};
+		F6E9BE3D299686B900DFD5EF /* util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		F6E9BE3F299686CA00DFD5EF /* page */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = page;
+			sourceTree = "<group>";
+		};
+		F6E9BE40299686D000DFD5EF /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F6E9BE41299686D500DFD5EF /* service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		F6E9BE42299686E500DFD5EF /* component */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = component;
+			sourceTree = "<group>";
+		};
+		F6E9BE432996871600DFD5EF /* library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
+		F6E9BE442996873A00DFD5EF /* authentication */ = {
+			isa = PBXGroup;
+			children = (
+				F6E9BE452996874200DFD5EF /* components */,
+				F6E9BE462996874800DFD5EF /* models */,
+				F6E9BE472996874C00DFD5EF /* services */,
+			);
+			path = authentication;
+			sourceTree = "<group>";
+		};
+		F6E9BE452996874200DFD5EF /* components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		F6E9BE462996874800DFD5EF /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		F6E9BE472996874C00DFD5EF /* services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		F6E9BE482996875E00DFD5EF /* pluck */ = {
+			isa = PBXGroup;
+			children = (
+				F6E9BE4C2996879500DFD5EF /* components */,
+				F6E9BE4B2996879100DFD5EF /* models */,
+				F6E9BE492996878400DFD5EF /* services */,
+			);
+			path = pluck;
+			sourceTree = "<group>";
+		};
+		F6E9BE492996878400DFD5EF /* services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		F6E9BE4B2996879100DFD5EF /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		F6E9BE4C2996879500DFD5EF /* components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

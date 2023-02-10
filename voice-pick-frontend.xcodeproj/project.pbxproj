@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A2DE129966A42007062CE /* Font+Extension.swift */; };
 		E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */; };
 		E8603B412996584000E09361 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B402996584000E09361 /* ContentView.swift */; };
 		E8603B432996584100E09361 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8603B422996584100E09361 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D1A2DE129966A42007062CE /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		E8603B3B2996584000E09361 /* voice-pick-frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voice-pick-frontend.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voice_pick_frontendApp.swift; sourceTree = "<group>"; };
 		E8603B402996584000E09361 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D1A2DE029966A1F007062CE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D1A2DE129966A42007062CE /* Font+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E8603B322996584000E09361 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +104,7 @@
 		E8603B3D2996584000E09361 /* voice-pick-frontend */ = {
 			isa = PBXGroup;
 			children = (
+				8D1A2DE029966A1F007062CE /* Extensions */,
 				E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */,
 				E8603B402996584000E09361 /* ContentView.swift */,
 				E8603B422996584100E09361 /* Assets.xcassets */,
@@ -257,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */,
 				E8603B412996584000E09361 /* ContentView.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
 			);

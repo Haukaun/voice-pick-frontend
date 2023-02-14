@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var emailInput = "Email"
+    @State var passowrdInput = "Password"
     @State var buttonText = "Sign in"
     var body: some View {
         VStack {
@@ -16,6 +18,8 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
 						.font(.header1)
+            DefaultInput(inputText: $emailInput, isPassword: false)
+            DefaultInput(inputText: $passowrdInput, isPassword: true)
             DefaultButton(buttonText: $buttonText)
         }
         .padding()

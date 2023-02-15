@@ -24,7 +24,7 @@ struct DefaultButton: View {
             .padding()
             .foregroundColor(.night)
             .background(Color.traceLightYellow)
-            .cornerRadius(5)
+						.cornerRadius(UIView.standardCornerRadius)
             
         }
     }

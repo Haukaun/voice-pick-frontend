@@ -14,10 +14,10 @@ struct Footer: View {
 				Image("SOLWR")
 					.resizable()
 					.frame(width: 100, height: 80)
-					.opacity(0.2)
+					.opacity(0.5)
 				Text("Copyright @2022 \n Version 0.0.1")
 					.multilineTextAlignment(.center)
-					.opacity(0.2)
+					.opacity(0.5)
 			}
     }
 }

@@ -21,6 +21,7 @@
 		E8603B502996584100E09361 /* voice_pick_frontendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B4F2996584100E09361 /* voice_pick_frontendTests.swift */; };
 		E8603B5A2996584100E09361 /* voice_pick_frontendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B592996584100E09361 /* voice_pick_frontendUITests.swift */; };
 		E8603B5C2996584100E09361 /* voice_pick_frontendUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B5B2996584100E09361 /* voice_pick_frontendUITestsLaunchTests.swift */; };
+		E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E3C8D299D09C0007D77AD /* AuthPage.swift */; };
 		E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8179729967D8400962940 /* Color+Extensions.swift */; };
 		F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD47F299CF683008A30F5 /* PluckLobby.swift */; };
 		F60AD482299CF70B008A30F5 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD481299CF70A008A30F5 /* Card.swift */; };
@@ -66,6 +67,7 @@
 		E8603B552996584100E09361 /* voice-pick-frontendUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voice-pick-frontendUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8603B592996584100E09361 /* voice_pick_frontendUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voice_pick_frontendUITests.swift; sourceTree = "<group>"; };
 		E8603B5B2996584100E09361 /* voice_pick_frontendUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voice_pick_frontendUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E89E3C8D299D09C0007D77AD /* AuthPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPage.swift; sourceTree = "<group>"; };
 		E8B8179729967D8400962940 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		F60AD47F299CF683008A30F5 /* PluckLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckLobby.swift; sourceTree = "<group>"; };
 		F60AD481299CF70A008A30F5 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				F60AD47F299CF683008A30F5 /* PluckLobby.swift */,
 				8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */,
+				E89E3C8D299D09C0007D77AD /* AuthPage.swift */,
 			);
 			path = page;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 			files = (
 				F60AD489299D1329008A30F5 /* Paragraph.swift in Sources */,
 				F60AD485299D0AD1008A30F5 /* Title.swift in Sources */,
+				E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,

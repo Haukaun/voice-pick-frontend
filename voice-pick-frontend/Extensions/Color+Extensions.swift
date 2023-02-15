@@ -10,7 +10,9 @@ import SwiftUI
 extension Color {
 		static let foregroundColor = Color("foregroundColor")
 		static let backgroundColor = Color("backgroundColor")
-        static let shadowColor = Color("shadowColor")
+		static let componentColor = Color("componentColor")
+		static let borderColor = Color("borderColor")
+		static let shadowColor = Color("shadowColor")
 		static let traceLightYellow = Color("trace-light-yellow")
 		static let traceMediYellow = Color("trace-medi-yellow")
 		static let traceDarkYellow = Color("trace-dark-yellow")
@@ -22,6 +24,7 @@ extension Color {
 		static let mountain = Color("mountain")
 		static let stone = Color("stone")
 		static let dusk = Color("dusk")
+		static let dark = Color("dark")
 		static let night = Color("night")
 		static let success = Color("success")
 		static let error = Color("error")

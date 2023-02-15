@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VerificaitonPage: View {
-	@State var buttonText = "Resend Email"
+	var buttonText = "Resend Email"
 	
 	var body: some View {
 		VStack{
@@ -28,7 +28,7 @@ struct VerificaitonPage: View {
 					.font(.header2)
 					.foregroundColor(.foregroundColor)
 					.multilineTextAlignment(.center)
-				DefaultButton(buttonText: $buttonText)
+				DefaultButton(buttonText: buttonText)
 			}
 			.padding(40)
 			Spacer()

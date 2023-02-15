@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DefaultButton: View {
-    @Binding var buttonText: String
+    var buttonText: String
+    
     var body: some View {
         Button(action: {
             print("Login tapped!")
@@ -31,6 +32,6 @@ struct DefaultButton: View {
 
 struct DefaultButton_Previews: PreviewProvider {
     static var previews: some View {
-        DefaultButton(buttonText: .constant("click"))
+        DefaultButton(buttonText: "click")
     }
 }

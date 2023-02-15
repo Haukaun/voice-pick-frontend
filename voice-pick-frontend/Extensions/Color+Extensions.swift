@@ -10,6 +10,7 @@ import SwiftUI
 extension Color {
 		static let foregroundColor = Color("foregroundColor")
 		static let backgroundColor = Color("backgroundColor")
+        static let shadowColor = Color("shadowColor")
 		static let traceLightYellow = Color("trace-light-yellow")
 		static let traceMediYellow = Color("trace-medi-yellow")
 		static let traceDarkYellow = Color("trace-dark-yellow")

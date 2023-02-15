@@ -20,7 +20,7 @@ struct ContentView: View {
 						.font(.header1)
             DefaultInput(inputText: $emailInput, isPassword: false)
             DefaultInput(inputText: $passowrdInput, isPassword: true)
-            DefaultButton(buttonText: $buttonText)
+            DefaultButton(buttonText: buttonText)
         }
         .padding()
     }

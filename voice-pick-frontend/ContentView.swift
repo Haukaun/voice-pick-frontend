@@ -16,7 +16,7 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("SOLWR")
 						.font(.header1)
             DefaultInput(inputText: $emailInput, isPassword: false)
             DefaultInput(inputText: $passowrdInput, isPassword: true)

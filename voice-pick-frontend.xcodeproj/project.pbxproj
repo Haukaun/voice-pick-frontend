@@ -11,6 +11,7 @@
 		23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */; };
 		8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A2DE129966A42007062CE /* Font+Extension.swift */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
+		E85FF604299D125A000CB6A4 /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = E85FF603299D125A000CB6A4 /* Roboto */; };
 		E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */; };
 		E8603B412996584000E09361 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B402996584000E09361 /* ContentView.swift */; };
 		E8603B432996584100E09361 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8603B422996584100E09361 /* Assets.xcassets */; };
@@ -43,6 +44,8 @@
 		23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultButton.swift; path = "voice-pick-frontend/component/DefaultButton.swift"; sourceTree = SOURCE_ROOT; };
 		8D1A2DE129966A42007062CE /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		8DAB093329968296005A61C0 /* Styles+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Styles+Extensions.swift"; sourceTree = "<group>"; };
+		E85FF603299D125A000CB6A4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
+		E85FF605299D134A000CB6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E8603B3B2996584000E09361 /* voice-pick-frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voice-pick-frontend.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voice_pick_frontendApp.swift; sourceTree = "<group>"; };
 		E8603B402996584000E09361 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +95,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E85FF602299D121B000CB6A4 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E85FF603299D125A000CB6A4 /* Roboto */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		E8603B322996584000E09361 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +127,8 @@
 		E8603B3D2996584000E09361 /* voice-pick-frontend */ = {
 			isa = PBXGroup;
 			children = (
+				E85FF605299D134A000CB6A4 /* Info.plist */,
+				E85FF602299D121B000CB6A4 /* fonts */,
 				F6E9BE432996871600DFD5EF /* library */,
 				F6E9BE40299686D000DFD5EF /* model */,
 				F6E9BE42299686E500DFD5EF /* component */,
@@ -386,6 +399,7 @@
 			files = (
 				E8603B462996584100E09361 /* Preview Assets.xcassets in Resources */,
 				E8603B432996584100E09361 /* Assets.xcassets in Resources */,
+				E85FF604299D125A000CB6A4 /* Roboto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +592,7 @@
 				DEVELOPMENT_TEAM = 3SR89T93YC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -607,6 +622,7 @@
 				DEVELOPMENT_TEAM = 3SR89T93YC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -1,0 +1,7 @@
+stages:          # List of stages for jobs, and their order of execution
+  - build
+
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  script:
+    - xcodebuild clean -project voice-pick-frontend.xcodeproj/ -scheme voice-pick-frontend

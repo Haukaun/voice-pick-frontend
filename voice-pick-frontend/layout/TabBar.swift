@@ -10,7 +10,7 @@ import SwiftUI
 struct TabBar: View {
 	var body: some View {
 		TabView {
-			PluckLobby()
+			PluckPage()
 				.tabItem {
 					Label("Menu", systemImage: "house")
 				}

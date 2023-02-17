@@ -29,7 +29,9 @@ struct AuthPage: View {
 			Spacer()
 			DefaultInput(inputText: $email, isPassword: false)
 			DefaultInput(inputText: $password, isPassword: true)
-			DefaultButton(buttonText: buttonText)
+            DefaultButton(buttonText) {
+                print("pressed")
+            }
 			Text("Forgot password?").font(.label).frame(maxWidth: .infinity, alignment: .trailing)
 			HStack {
 				Text("Dont have an account?")

@@ -10,6 +10,8 @@
 		2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386BC1D299BE80F00916B5C /* DefaultInput.swift */; };
 		23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */; };
 		8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A2DE129966A42007062CE /* Font+Extension.swift */; };
+		8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */; };
+		8D203A2F299E46AD00D768BA /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D203A2E299E46AD00D768BA /* ProductCard.swift */; };
 		8D4A8153299CE43A00B9A715 /* VerificaitonPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */; };
 		8D4A8155299D18B300B9A715 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8154299D18B300B9A715 /* Footer.swift */; };
 		8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F8EB299E240A001DB87C /* TabBar.swift */; };
@@ -53,6 +55,8 @@
 		2386BC1D299BE80F00916B5C /* DefaultInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInput.swift; sourceTree = "<group>"; };
 		23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultButton.swift; path = "voice-pick-frontend/component/DefaultButton.swift"; sourceTree = SOURCE_ROOT; };
 		8D1A2DE129966A42007062CE /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckListDisplay.swift; sourceTree = "<group>"; };
+		8D203A2E299E46AD00D768BA /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
 		8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VerificaitonPage.swift; path = "voice-pick-frontend/Extensions/VerificaitonPage.swift"; sourceTree = SOURCE_ROOT; };
 		8D4A8154299D18B300B9A715 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		8D67F8EB299E240A001DB87C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -115,6 +119,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8D203A28299E2E6600D768BA /* pluck */ = {
+			isa = PBXGroup;
+			children = (
+				F60AD47F299CF683008A30F5 /* PluckLobby.swift */,
+				8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */,
+			);
+			path = pluck;
+			sourceTree = "<group>";
+		};
+		8D203A30299E476400D768BA /* util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		8D67F8EA299E23D0001DB87C /* layout */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +175,7 @@
 		E8603B3D2996584000E09361 /* voice-pick-frontend */ = {
 			isa = PBXGroup;
 			children = (
+				8D203A30299E476400D768BA /* util */,
 				8D67F8EA299E23D0001DB87C /* layout */,
 				E85FF605299D134A000CB6A4 /* Info.plist */,
 				E85FF602299D121B000CB6A4 /* fonts */,
@@ -164,7 +185,6 @@
 				F6E9BE41299686D500DFD5EF /* service */,
 				F6E9BE3F299686CA00DFD5EF /* page */,
 				F6E9BE3C299686B200DFD5EF /* feature */,
-				F6E9BE3D299686B900DFD5EF /* util */,
 				8D1A2DE029966A1F007062CE /* Extensions */,
 				E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */,
 				E8603B402996584000E09361 /* ContentView.swift */,
@@ -218,17 +238,10 @@
 			path = feature;
 			sourceTree = "<group>";
 		};
-		F6E9BE3D299686B900DFD5EF /* util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = util;
-			sourceTree = "<group>";
-		};
 		F6E9BE3F299686CA00DFD5EF /* page */ = {
 			isa = PBXGroup;
 			children = (
-				F60AD47F299CF683008A30F5 /* PluckLobby.swift */,
+				8D203A28299E2E6600D768BA /* pluck */,
 				8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */,
 				E89E3C8D299D09C0007D77AD /* AuthPage.swift */,
 			);
@@ -257,6 +270,7 @@
 				2386BC1D299BE80F00916B5C /* DefaultInput.swift */,
 				F60AD481299CF70A008A30F5 /* Card.swift */,
 				8D4A8154299D18B300B9A715 /* Footer.swift */,
+				8D203A2E299E46AD00D768BA /* ProductCard.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -465,6 +479,8 @@
 				F60AD489299D1329008A30F5 /* Paragraph.swift in Sources */,
 				F60AD485299D0AD1008A30F5 /* Title.swift in Sources */,
 				E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */,
+				8D203A2F299E46AD00D768BA /* ProductCard.swift in Sources */,
+				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,

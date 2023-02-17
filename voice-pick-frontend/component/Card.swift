@@ -15,10 +15,9 @@ struct Card<Content: View>: View {
     
     var body: some View {
         content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(20)
             // TODO: Change to component color
-            .background(Color.backgroundColor)
+            .background(Color.componentColor)
             .cornerRadius(UIView.standardCornerRadius)
             .shadow(
                 color: Color.shadowColor,

@@ -28,7 +28,10 @@ struct VerificaitonPage: View {
 					.font(.header2)
 					.foregroundColor(.foregroundColor)
 					.multilineTextAlignment(.center)
-				DefaultButton(buttonText: buttonText)
+                DefaultButton(buttonText) {
+                    // TODO: Update button action
+                    print("Verification button pressed")
+                }
 			}
 			.padding(40)
 			Spacer()

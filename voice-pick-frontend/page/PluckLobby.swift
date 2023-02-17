@@ -10,6 +10,7 @@ import SwiftUI
 struct PluckLobby: View {
     let pageTitle = "Aktive plukkere"
     let buttonLabel = "Start plukk"
+    let headerLabel = "Plukk liste"
     
     @State var activeEmployees = [
         "Joakim Edvardsen",
@@ -19,13 +20,17 @@ struct PluckLobby: View {
     
     var body: some View {
         VStack {
-            Card {
-                ActivePickers(activePickers: activeEmployees)
+            Header(headerText: headerLabel)
+            VStack {
+                Card {
+                    ActivePickers(activePickers: activeEmployees)
+                }
             }
-            DefaultButton(buttonText: buttonLabel)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(10)
+        
+            DefaultButton(buttonText: buttonLabel)            .padding(10)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(10)
         .background(Color.backgroundColor)
     }
 }

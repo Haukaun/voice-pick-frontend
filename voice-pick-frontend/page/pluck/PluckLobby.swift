@@ -29,7 +29,7 @@ struct PluckLobby: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(10)
         
-            DefaultButton(buttonText: buttonLabel)            .padding(10)
+            DefaultButton(buttonText: buttonLabel).padding(10)
         }
         .background(Color.backgroundColor)
     }

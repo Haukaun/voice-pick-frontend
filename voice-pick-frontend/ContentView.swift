@@ -12,7 +12,6 @@ struct ContentView: View {
     var body: some View {
 			AuthPage()
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

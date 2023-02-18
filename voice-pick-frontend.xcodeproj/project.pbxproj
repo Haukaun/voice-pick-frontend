@@ -19,6 +19,7 @@
 		8D4A8155299D18B300B9A715 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8154299D18B300B9A715 /* Footer.swift */; };
 		8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F8EB299E240A001DB87C /* TabBar.swift */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
+		E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B0AC429A0221400A5F1E2 /* Validator.swift */; };
 		E85FF604299D125A000CB6A4 /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = E85FF603299D125A000CB6A4 /* Roboto */; };
 		E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */; };
 		E8603B412996584000E09361 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B402996584000E09361 /* ContentView.swift */; };
@@ -70,6 +71,7 @@
 		8D4A8154299D18B300B9A715 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		8D67F8EB299E240A001DB87C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		8DAB093329968296005A61C0 /* Styles+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Styles+Extensions.swift"; sourceTree = "<group>"; };
+		E82B0AC429A0221400A5F1E2 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E85FF603299D125A000CB6A4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
 		E85FF605299D134A000CB6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E8603B3B2996584000E09361 /* voice-pick-frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voice-pick-frontend.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +158,14 @@
 			path = layout;
 			sourceTree = "<group>";
 		};
+		E82B0AC329A021FB00A5F1E2 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				E82B0AC429A0221400A5F1E2 /* Validator.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		E85FF602299D121B000CB6A4 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +200,7 @@
 			children = (
 				8D203A30299E476400D768BA /* util */,
 				8D67F8EA299E23D0001DB87C /* layout */,
+				E82B0AC329A021FB00A5F1E2 /* util */,
 				E85FF605299D134A000CB6A4 /* Info.plist */,
 				E85FF602299D121B000CB6A4 /* fonts */,
 				F6E9BE432996871600DFD5EF /* library */,
@@ -508,6 +519,7 @@
 				8D4A8155299D18B300B9A715 /* Footer.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */,
+				E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */,
 				8D4A8153299CE43A00B9A715 /* VerificaitonPage.swift in Sources */,
 				8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */,
 				8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */,

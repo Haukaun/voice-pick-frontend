@@ -8,21 +8,19 @@
 import SwiftUI
 
 struct DefaultInput: View {
-	@Binding var inputText: String
-	@State var isPassword: Bool
-	@State private var text = ""
+	let inputLabel: String
+	var isPassword: Bool
+	@Binding public var text: String
+	var validator: Bool
 	
 	var body: some View {
-		
 		let view = isPassword ? AnyView(SecureField(
-			inputText,
+			inputLabel,
 			text: $text
 		)):
 		AnyView(TextField(
-			inputText,
-			text: $text,
-			onEditingChanged: { _ in print("changed") },
-			onCommit: { print("commit") }
+			inputLabel,
+			text: $text
 		))
 		
 		return view
@@ -31,11 +29,21 @@ struct DefaultInput: View {
 			.padding()
 			.overlay(
 				RoundedRectangle(cornerRadius: 5)
-					.stroke(Color.borderColor, lineWidth: 2)
+					.stroke(validator ? Color.borderColor : Color.error, lineWidth: 2)
 			)
 			.foregroundColor(Color.mountain)
 			.background(Color.componentColor)
 			.cornerRadius(5)
 			.shadow(color: Color.black.opacity(0.25) ,radius: 3, y: 4)
+	}
+}
+
+struct DefaultInput_Previews: PreviewProvider {
+	static var previews: some View {
+		VStack {
+			DefaultInput(inputLabel: "Email", isPassword: false, text: .constant("hello"), validator: true)
+			DefaultInput(inputLabel: "Email", isPassword: false, text: .constant(""), validator: false)
+		}
+		.padding()
 	}
 }

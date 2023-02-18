@@ -39,6 +39,9 @@
 		F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD490299E4D8C008A30F5 /* PluckPage.swift */; };
 		F6754BF6299FAA91007CEDB5 /* AnyTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BF5299FAA91007CEDB5 /* AnyTransition.swift */; };
 		F6754BF8299FABF3007CEDB5 /* Pluck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BF7299FABF3007CEDB5 /* Pluck.swift */; };
+		F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BFB299FBC0E007CEDB5 /* Product.swift */; };
+		F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BFD299FBD08007CEDB5 /* PluckList.swift */; };
+		F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,9 @@
 		F60AD490299E4D8C008A30F5 /* PluckPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPage.swift; sourceTree = "<group>"; };
 		F6754BF5299FAA91007CEDB5 /* AnyTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyTransition.swift; sourceTree = "<group>"; };
 		F6754BF7299FABF3007CEDB5 /* Pluck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pluck.swift; sourceTree = "<group>"; };
+		F6754BFB299FBC0E007CEDB5 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		F6754BFD299FBD08007CEDB5 /* PluckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckList.swift; sourceTree = "<group>"; };
+		F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLabel.swift; sourceTree = "<group>"; };
 		F6E9BE382996860E00DFD5EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,7 +143,6 @@
 		8D203A28299E2E6600D768BA /* pluck */ = {
 			isa = PBXGroup;
 			children = (
-				F60AD47F299CF683008A30F5 /* PluckLobby.swift */,
 				8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */,
 			);
 			path = pluck;
@@ -249,6 +254,7 @@
 				F60AD484299D0AD1008A30F5 /* Title.swift */,
 				F60AD486299D0BDA008A30F5 /* SubTitle.swift */,
 				F60AD488299D1329008A30F5 /* Paragraph.swift */,
+				F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */,
 			);
 			path = typography;
 			sourceTree = "<group>";
@@ -277,6 +283,7 @@
 		F6E9BE40299686D000DFD5EF /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F6754BFB299FBC0E007CEDB5 /* Product.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -362,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				F6754BF7299FABF3007CEDB5 /* Pluck.swift */,
+				F6754BFD299FBD08007CEDB5 /* PluckList.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -514,6 +522,7 @@
 				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
 				23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
+				F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,
 				8D4A8155299D18B300B9A715 /* Footer.swift in Sources */,
@@ -526,12 +535,14 @@
 				F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */,
 				F6754BF8299FABF3007CEDB5 /* Pluck.swift in Sources */,
 				F6754BF6299FAA91007CEDB5 /* AnyTransition.swift in Sources */,
+				F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */,
 				F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */,
 				E8603B412996584000E09361 /* ContentView.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
 				8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */,
 				2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */,
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,
+				F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */,
 				E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

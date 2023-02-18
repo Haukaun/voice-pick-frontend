@@ -14,17 +14,19 @@ struct Card<Content: View>: View {
     var content: Content
     
     var body: some View {
-        content
-            .padding(20)
-            // TODO: Change to component color
-            .background(Color.componentColor)
-            .cornerRadius(UIView.standardCornerRadius)
-            .shadow(
-                color: Color.shadowColor,
-                radius: UIView.shadowRadius,
-                x: UIView.shadowX,
-                y: UIView.shadowY
-            )
+        VStack {
+            content
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(20)
+        .background(Color.componentColor)
+        .cornerRadius(UIView.standardCornerRadius)
+        .shadow(
+            color: Color.shadowColor,
+            radius: UIView.shadowRadius,
+            x: UIView.shadowX,
+            y: UIView.shadowY
+        )
     }
     
     init(@ViewBuilder content: () -> Content) {
@@ -37,6 +39,7 @@ struct Card_Previews: PreviewProvider {
         VStack {
             Card {
                 Text("hello there")
+                Text("Another text")
             }
         }
         .padding(20)

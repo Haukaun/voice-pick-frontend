@@ -21,14 +21,14 @@ struct PluckPage: View {
     }
     
     @State var activePage: PluckPages = .LOBBY
-    @State var plucks: [Pluck] = []
+    @State var pluckList: PluckList?
     
-    /// Updates the list with plucks
+    /// Initialized the pluck list
     ///
     /// - Parameters:
-    ///     - plucks: A list with updated values for the plucks
-    func updatePlucks(plucks: [Pluck]) {
-        self.plucks = plucks
+    ///     - pluckList: A pluckList object containing information about the pluck list
+    func initializePluckList(pluckList: PluckList) {
+        self.pluckList = pluckList
     }
     
     /// Updates the active page
@@ -44,12 +44,14 @@ struct PluckPage: View {
             case .LOBBY:
                 PluckLobby(next: {
                     updateActivePage(page: .INFO)
-                }, addPlucks: 
-                    updatePlucks
+                }, initPluckList:
+                    initializePluckList
                 )
                 .transition(.backslide)
             case .INFO:
-                PluckInfo(plucks: plucks)
+            PluckInfo(pluckList: pluckList ?? .init(id: 0, route: "N/A", destination: "N/A", plucks: []), next: {
+                updateActivePage(page: .LIST_VIEW)
+            })
                 .transition(.backslide)
             case .LIST_VIEW:
                 Text("List view")

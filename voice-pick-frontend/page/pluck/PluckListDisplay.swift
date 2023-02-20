@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PluckListDisplay: View {
-	let products: [ProductCard] = [
+	@State private var products: [ProductCard] = [
 		ProductCard(varer: "Cola", lokasjon: "H-23", antall: 34, vekt: 45, pakkeType: "F-pack", status: "Klar"),
 		ProductCard(varer: "Cola", lokasjon: "H-23", antall: 34, vekt: 45, pakkeType: "F-pack", status: "Klar"),
 		ProductCard(varer: "Cola", lokasjon: "H-23", antall: 34, vekt: 45, pakkeType: "F-pack", status: "Klar"),
@@ -16,23 +16,31 @@ struct PluckListDisplay: View {
 	]
 	
 	var body: some View {
-		List {
-			ForEach(products, id: \.self) { product in
-				product
-					.swipeActions(edge: .trailing, content:{
-						Button{
-							print("Ankara")
-						} label: {
-							Label("Svipe venstre for å fullføre" , systemImage: "checkmark.circle.fill")
-						}
-						.tint(.success)
-					})
-			}.listRowInsets(EdgeInsets())
+		NavigationView {
+			List {
+				ForEach(products, id: \.self) { product in
+					product
+						.swipeActions(edge: .trailing, content:{
+							Button{
+								print("Ankara")
+							} label: {
+								Label("Svipe venstre for å fullføre" , systemImage: "checkmark.circle.fill")
+							}
+							.tint(.success)
+						})
+				}
+				.onMove(perform: onMove)
+				.listRowInsets(EdgeInsets())
 				.frame(width: .infinity)
 				.padding(5)
 				.listRowSeparator(.hidden)
-		}.listStyle(PlainListStyle())
-			.frame(maxWidth: .infinity)
+			}.listStyle(PlainListStyle())
+				.frame(maxWidth: .infinity)
+				.navigationBarItems(leading: EditButton())
+		}
+	}
+	private func onMove(source: IndexSet, destination: Int){
+		products.move(fromOffsets: source, toOffset: destination)
 	}
 }
 

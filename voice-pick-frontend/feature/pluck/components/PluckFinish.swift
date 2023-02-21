@@ -17,8 +17,6 @@ struct PluckFinish: View {
 	
 	@State private var isAnswerSelected = false
 	
-	@State private var shouldHideDividerAndButtons = false
-	
 	var body: some View {
 		VStack {
 			Card(){

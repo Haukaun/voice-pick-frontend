@@ -17,7 +17,6 @@ struct Card<Content: View>: View {
         VStack {
             content
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(20)
         .background(Color.componentColor)
         .cornerRadius(UIView.standardCornerRadius)

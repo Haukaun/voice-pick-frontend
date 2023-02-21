@@ -15,6 +15,7 @@
 		8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A2DE129966A42007062CE /* Font+Extension.swift */; };
 		8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */; };
 		8D203A2F299E46AD00D768BA /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D203A2E299E46AD00D768BA /* ProductCard.swift */; };
+		8D203A3629A39DE300D768BA /* PluckFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D203A3529A39DE300D768BA /* PluckFinish.swift */; };
 		8D4A8153299CE43A00B9A715 /* VerificaitonPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */; };
 		8D4A8155299D18B300B9A715 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8154299D18B300B9A715 /* Footer.swift */; };
 		8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F8EB299E240A001DB87C /* TabBar.swift */; };
@@ -70,6 +71,7 @@
 		8D1A2DE129966A42007062CE /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckListDisplay.swift; sourceTree = "<group>"; };
 		8D203A2E299E46AD00D768BA /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
+		8D203A3529A39DE300D768BA /* PluckFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckFinish.swift; sourceTree = "<group>"; };
 		8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VerificaitonPage.swift; path = "voice-pick-frontend/Extensions/VerificaitonPage.swift"; sourceTree = SOURCE_ROOT; };
 		8D4A8154299D18B300B9A715 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		8D67F8EB299E240A001DB87C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -143,7 +145,6 @@
 		8D203A28299E2E6600D768BA /* pluck */ = {
 			isa = PBXGroup;
 			children = (
-				8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */,
 			);
 			path = pluck;
 			sourceTree = "<group>";
@@ -378,7 +379,9 @@
 			isa = PBXGroup;
 			children = (
 				F60AD47F299CF683008A30F5 /* PluckLobby.swift */,
+				8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */,
 				F60AD48E299E4752008A30F5 /* PluckInfo.swift */,
+				8D203A3529A39DE300D768BA /* PluckFinish.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
 				23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
+				8D203A3629A39DE300D768BA /* PluckFinish.swift in Sources */,
 				F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,

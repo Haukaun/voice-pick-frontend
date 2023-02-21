@@ -31,7 +31,7 @@ struct PalleType: View {
             Spacer()
         }
         .background(Color.night)
-        .cornerRadius(5)
+				.cornerRadius(UIView.standardCornerRadius)
     }
 }
 

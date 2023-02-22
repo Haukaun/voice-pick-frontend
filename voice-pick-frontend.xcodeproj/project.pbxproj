@@ -19,6 +19,8 @@
 		8D4A8153299CE43A00B9A715 /* VerificaitonPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */; };
 		8D4A8155299D18B300B9A715 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8154299D18B300B9A715 /* Footer.swift */; };
 		8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F8EB299E240A001DB87C /* TabBar.swift */; };
+		8D921C5929A672140015800D /* ControlNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5829A672140015800D /* ControlNumberButton.swift */; };
+		8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5A29A673610015800D /* ButtonRandomizer.swift */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
 		E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B0AC429A0221400A5F1E2 /* Validator.swift */; };
 		E85FF604299D125A000CB6A4 /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = E85FF603299D125A000CB6A4 /* Roboto */; };
@@ -75,6 +77,8 @@
 		8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VerificaitonPage.swift; path = "voice-pick-frontend/Extensions/VerificaitonPage.swift"; sourceTree = SOURCE_ROOT; };
 		8D4A8154299D18B300B9A715 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		8D67F8EB299E240A001DB87C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		8D921C5829A672140015800D /* ControlNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlNumberButton.swift; sourceTree = "<group>"; };
+		8D921C5A29A673610015800D /* ButtonRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRandomizer.swift; sourceTree = "<group>"; };
 		8DAB093329968296005A61C0 /* Styles+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Styles+Extensions.swift"; sourceTree = "<group>"; };
 		E82B0AC429A0221400A5F1E2 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E85FF603299D125A000CB6A4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
@@ -382,6 +386,8 @@
 				8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */,
 				F60AD48E299E4752008A30F5 /* PluckInfo.swift */,
 				8D203A3529A39DE300D768BA /* PluckFinish.swift */,
+				8D921C5829A672140015800D /* ControlNumberButton.swift */,
+				8D921C5A29A673610015800D /* ButtonRandomizer.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				8D4A8155299D18B300B9A715 /* Footer.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */,
+				8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */,
 				E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */,
 				8D4A8153299CE43A00B9A715 /* VerificaitonPage.swift in Sources */,
 				8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */,
@@ -543,6 +550,7 @@
 				F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */,
 				E8603B412996584000E09361 /* ContentView.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
+				8D921C5929A672140015800D /* ControlNumberButton.swift in Sources */,
 				8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */,
 				2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */,
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,

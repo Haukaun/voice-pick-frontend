@@ -29,6 +29,7 @@ struct ProductCard: View, Hashable {
 						.lineLimit(1)
 						.truncationMode(.tail)
 						.bold()
+						.padding(.bottom)
 				}
 				HStack(spacing: 25) {
 					VStack (alignment: .leading){

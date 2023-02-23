@@ -17,9 +17,23 @@ struct ProductCard: View, Hashable {
 	let vekt: Double
 	let pakkeType: String
 	let status: String
+	let showArrowsAndCounter: Bool
 	
 	var body: some View {
 		Card() {
+			if (showArrowsAndCounter) {
+				HStack{
+					Image(systemName: "arrowshape.left.fill")
+					Spacer()
+					Paragraph("1/7")
+					Spacer()
+					Image(systemName: "arrowshape.right.fill")
+					
+				}
+				Image("Tracefavicon")
+					.frame(width: 100, height: 100)
+			}
+			
 			VStack(alignment: .leading) {
 				VStack(alignment: .leading){
 					Paragraph("Vare")
@@ -85,6 +99,6 @@ struct ProductCard: View, Hashable {
 
 struct ProductCard_Previews: PreviewProvider {
 	static var previews: some View {
-		ProductCard(varer: "Cola", lokasjon: "H-23", antall: 34, vekt: 45, pakkeType: "F-pack", status: "Klar")
+		ProductCard(varer: "Cola", lokasjon: "H-23", antall: 34, vekt: 45, pakkeType: "F-pack", status: "Klar", showArrowsAndCounter: false)
 	}
 }

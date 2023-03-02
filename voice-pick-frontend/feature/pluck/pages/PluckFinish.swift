@@ -12,10 +12,16 @@ struct PluckFinish: View {
 	
 	@State private var selectedNumber: Int?
 	
+    let next: () -> Void
 	//TODO: This value should not be hardcoded, only for testing.
 	@State private var correctAnswer: Int? = 243
 	
 	@State private var isAnswerSelected = false
+    
+    private func completePluck() {
+        // Send API request to complete pluck
+        next()
+    }
 	
 	var body: some View {
 		VStack {
@@ -64,7 +70,7 @@ struct PluckFinish: View {
 				Paragraph("Sett på lapper på alle sider")
 				Spacer()
 				DefaultButton("Fullfør", disabled: selectedNumber != correctAnswer){
-					
+					completePluck()
 				}
 			}
 		}
@@ -74,6 +80,8 @@ struct PluckFinish: View {
 
 struct PluckFinish_Previews: PreviewProvider {
 	static var previews: some View {
-		PluckFinish()
+        PluckFinish(next: {
+            print("next")
+        })
 	}
 }

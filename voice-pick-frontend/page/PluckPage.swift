@@ -36,35 +36,43 @@ struct PluckPage: View {
     /// - Parameters:
     ///     - page: The page to update to
     func updateActivePage(page: PluckPages) {
-        self.activePage = page
+        withAnimation {
+            self.activePage = page
+        }
     }
     
     var body: some View {
         switch activePage {
-            case .LOBBY:
-                PluckLobby(next: {
-                    updateActivePage(page: .INFO)
-                }, initPluckList:
-                    initializePluckList
-                )
-                .transition(.backslide)
-            case .INFO:
+        case .LOBBY:
+            PluckLobby(next: {
+                updateActivePage(page: .INFO)
+            }, initPluckList:
+                initializePluckList
+            )
+            .transition(.backslide)
+        case .INFO:
             PluckInfo(pluckList: pluckList ?? .init(id: 0, route: "N/A", destination: "N/A", plucks: []), next: {
                 updateActivePage(page: .LIST_VIEW)
             })
-                .transition(.backslide)
-            case .LIST_VIEW:
-                Text("List view")
-                .transition(.slide)
-            case .SINGLE_VIEW:
-                Text("Single view")
-                .transition(.slide)
-            case .COMPLETE:
-                Text("Complete")
-                .transition(.slide)
-            case .DELIVERY:
-                Text("Delivery")
-                .transition(.slide)
+            .transition(.backslide)
+        case .LIST_VIEW:
+            PluckListDisplay(pluckList?.plucks ?? [], next: {
+                updateActivePage(page: .COMPLETE)
+            })
+            .transition(.backslide)
+        case .SINGLE_VIEW:
+            Text("Single view")
+            .transition(.backslide)
+        case .COMPLETE:
+            PluckComplete(next: {
+                updateActivePage(page: .DELIVERY)
+            })
+            .transition(.backslide)
+        case .DELIVERY:
+            PluckFinish(next: {
+                updateActivePage(page: .LOBBY)
+            })
+            .transition(.backslide)
         }
     }
 }

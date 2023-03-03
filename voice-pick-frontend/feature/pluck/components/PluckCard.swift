@@ -19,6 +19,10 @@ struct PluckCard: View, Hashable {
     let type: ProductType
     let status: ProductStatus
     
+    private func getTotalWeight() -> Float {
+        return weight * Float(amount)
+    }
+    
     var body: some View {
         Card() {
             VStack(alignment: .leading) {
@@ -55,7 +59,7 @@ struct PluckCard: View, Hashable {
                         Paragraph("Vekt")
                             .lineLimit(1)
                             .truncationMode(.tail)
-                        Paragraph("\(weight)")
+                        Paragraph("\(getTotalWeight())")
                             .lineLimit(1)
                             .truncationMode(.tail)
                             .bold()

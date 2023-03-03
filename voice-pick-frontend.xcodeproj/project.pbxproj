@@ -46,6 +46,8 @@
 		F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BFB299FBC0E007CEDB5 /* Product.swift */; };
 		F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BFD299FBD08007CEDB5 /* PluckList.swift */; };
 		F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */; };
+		F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70929B090EC004AC10B /* RequestService.swift */; };
+		F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70B29B0AA47004AC10B /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		F6754BFB299FBC0E007CEDB5 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F6754BFD299FBD08007CEDB5 /* PluckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckList.swift; sourceTree = "<group>"; };
 		F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLabel.swift; sourceTree = "<group>"; };
+		F6ACE70929B090EC004AC10B /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		F6ACE70B29B0AA47004AC10B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F6E9BE382996860E00DFD5EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -295,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				F6754BFB299FBC0E007CEDB5 /* Product.swift */,
+				F6ACE70B29B0AA47004AC10B /* Location.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 		F6E9BE41299686D500DFD5EF /* service */ = {
 			isa = PBXGroup;
 			children = (
+				F6ACE70929B090EC004AC10B /* RequestService.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -548,12 +554,14 @@
 				8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */,
 				8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */,
 				F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */,
+				F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */,
 				F6754BF8299FABF3007CEDB5 /* Pluck.swift in Sources */,
 				F6754BF6299FAA91007CEDB5 /* AnyTransition.swift in Sources */,
 				F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */,
 				F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */,
 				E8603B412996584000E09361 /* ContentView.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
+				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
 				8D921C5929A672140015800D /* ControlNumberButton.swift in Sources */,
 				8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */,
 				2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */,

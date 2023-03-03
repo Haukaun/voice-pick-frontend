@@ -16,7 +16,20 @@ enum RequestError: Error {
 ///
 /// Created by Joakim Edvardsen on 02/03/2023
 class RequestService: ObservableObject {
-	let API_BASE_URL = "https://api.bachelor.seq.re"
+	
+	private var apiBaseUrl: String
+	
+	init() {
+		let activeDev = Bundle.main.object(forInfoDictionaryKey: "DEV") as! String
+		
+		print(activeDev)
+		
+		if (activeDev == "true") {
+			apiBaseUrl = "http://localhost:8080"
+		} else {
+			apiBaseUrl = "https://api.bachelor.seq.re"
+		}
+	}
 	
 	/// Makes a request to the base api
 	///
@@ -26,7 +39,7 @@ class RequestService: ObservableObject {
 	///     - body: The body of the response. This is optional and is not used in case of a get request
 	///     - responseType: The type of the expected response
 	private func request<T, U: Codable>(_ method: String, _ path: String, _ body: T?, _ responseType: U.Type, _ completion: @escaping (Result<U, Error>) -> Void) {
-		guard let url = URL(string: API_BASE_URL + path) else {
+		guard let url = URL(string: apiBaseUrl + path) else {
 			return
 		}
 		

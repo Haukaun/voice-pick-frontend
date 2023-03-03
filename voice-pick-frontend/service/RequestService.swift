@@ -25,7 +25,7 @@ class RequestService: ObservableObject {
 	///     - path: The relative path to the api endpoint
 	///     - body: The body of the response. This is optional and is not used in case of a get request
 	///     - responseType: The type of the expected response
-	private func request<T, U: Codable>(_ method: String, _ path: String, _ body: T?, _ responseType: U.Type, _ completion: @escaping (Result<U?, Error>) -> Void) {
+	private func request<T, U: Codable>(_ method: String, _ path: String, _ body: T?, _ responseType: U.Type, _ completion: @escaping (Result<U, Error>) -> Void) {
 		guard let url = URL(string: API_BASE_URL + path) else {
 			return
 		}
@@ -52,13 +52,12 @@ class RequestService: ObservableObject {
 				return
 			}
 			
-			do {
-				let response = try JSONDecoder().decode(responseType, from: data)
-				completion(.success(response))
-			} catch {
+			let response = try? JSONDecoder().decode(responseType, from: data)
+			guard let response = response else {
 				completion(.failure(RequestError.dataError))
 				return
 			}
+			completion(.success(response))
 		}
 		
 		task.resume()
@@ -70,7 +69,7 @@ class RequestService: ObservableObject {
 	///     - path: The relative path to the endpoint
 	///     - responseType: The type of the response you expect to get
 	///     - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
-	func get<U: Codable>(path: String, responseType: U.Type, completion: @escaping (Result<U?, Error>) -> Void) {
+	func get<U: Codable>(path: String, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
 		request(
 			"GET",
 			path,
@@ -84,12 +83,12 @@ class RequestService: ObservableObject {
 	 Returns an object of type U. The object has to conform to `Codable` so it can be mapped to and from JSON
 	 
 	 - Parameters:
-			- path: The relative path to the endpoint
-			- body: The additional information as type T to attach the requets body
-			- responseType: The type of the response you expect to get
-			- completion: A function that is called whenever the request is completed. Should handle both success and error conditions
+	 - path: The relative path to the endpoint
+	 - body: The additional information as type T to attach the requets body
+	 - responseType: The type of the response you expect to get
+	 - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
 	 */
-	func post<U: Codable, T>(path: String, body: T, responseType: U.Type, completion: @escaping (Result<U?, Error>) -> Void) {
+	func post<U: Codable, T>(path: String, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
 		request(
 			"POST",
 			path,

@@ -5,20 +5,20 @@
 //  Created by Joakim Edvardsen on 17/02/2023.
 //
 
-enum ProductType {
-    case D_PACK
-    case F_PACK
+enum ProductType: String, Codable {
+    case D_PACK = "D_PAK"
+    case F_PACK = "F_PAK"
 }
 
-enum ProductStatus {
-    case READY
-    case EMPTY
+enum ProductStatus: String, Codable {
+    case READY = "READY"
+    case EMPTY = "EMPTY"
 }
 
-struct Product: Hashable {
+struct Product: Hashable, Codable {
     let id: Int
     let name: String
-    let location: String
+    let location: Location
     let weight: Float // weight of one product
     let volume: Float // volume of one product
     let quantity: Int // numbers of product in stock

@@ -70,7 +70,7 @@ struct Grid: View {
                 }
                 
                 ForEach(plucks) { pluck in
-                    Paragraph(pluck.product.location)
+                    Paragraph(pluck.product.location.location)
                     Paragraph(pluck.product.name)
                         .lineLimit(1)
                         .truncationMode(.tail)
@@ -127,41 +127,44 @@ struct PluckInfo_Previews: PreviewProvider {
                                         .init(
                                             id: 0,
                                             name: "6-pack Coca Cola",
-                                            location: "HB-219",
+                                            location: .init(id: 0, location: "HB-209", controlDigit: "123"),
                                             weight: 9,
                                             volume: 9,
                                             quantity: 20,
                                             type: .D_PACK,
                                             status: .READY),
                                 amount: 2,
-                                isPlucked: false),
+                                createdAt: "02-03-2023",
+                                pluckedAt: nil),
                             .init(
                                 id: 1,
                                 product:
                                         .init(
                                             id: 1,
                                             name: "Kiwi Bæreposer",
-                                            location: "I-227",
+                                            location: .init(id: 1, location: "I-207", controlDigit: "123"),
                                             weight: 15,
                                             volume: 5,
                                             quantity: 50,
                                             type: .D_PACK,
                                             status: .READY),
                                 amount: 8,
-                                isPlucked: false),
+                                createdAt: "02-03-2023",
+                                pluckedAt: nil),
                             .init(
                                 id: 2,
                                 product: .init(
                                     id: 2,
                                     name: "Idun Hambuger Dressing",
-                                    location: "O-201",
+                                    location: .init(id: 2, location: "O-456", controlDigit: "314"),
                                     weight: 1,
                                     volume: 1,
                                     quantity: 145,
                                     type: .F_PACK,
                                     status: .READY),
                                 amount: 12,
-                                isPlucked: false)
+                                createdAt: "02-03-2023",
+                                pluckedAt: nil)
                         ]), next: {
                             print("Next page")
                         })

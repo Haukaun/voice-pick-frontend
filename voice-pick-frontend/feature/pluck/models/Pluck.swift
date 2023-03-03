@@ -5,11 +5,14 @@
 //  Created by Joakim Edvardsen on 17/02/2023.
 //
 
-struct Pluck: Hashable, Identifiable {
+import Foundation
+
+struct Pluck: Hashable, Identifiable, Codable {
     let id: Int
     let product: Product
     let amount: Int // how many should be picked
-    let isPlucked: Bool
+    let createdAt: String
+    let pluckedAt: String?
     
     func has(into hasher: inout Hasher) {
         hasher.combine(id)

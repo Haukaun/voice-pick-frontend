@@ -23,6 +23,9 @@
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
 		8DBE5F3529B9C89F00349630 /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE5F3429B9C89F00349630 /* VoiceView.swift */; };
 		E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B0AC429A0221400A5F1E2 /* Validator.swift */; };
+		E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BC729B220BA000063E9 /* UserInfo.swift */; };
+		E83C9BCF29B2267E000063E9 /* AuthMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BCE29B2267E000063E9 /* AuthMode.swift */; };
+		E83C9BD329B22716000063E9 /* AuthForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BD229B22716000063E9 /* AuthForm.swift */; };
 		E85FF604299D125A000CB6A4 /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = E85FF603299D125A000CB6A4 /* Roboto */; };
 		E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */; };
 		E8603B412996584000E09361 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8603B402996584000E09361 /* ContentView.swift */; };
@@ -86,6 +89,9 @@
 		8DAB093329968296005A61C0 /* Styles+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Styles+Extensions.swift"; sourceTree = "<group>"; };
 		8DBE5F3429B9C89F00349630 /* VoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
 		E82B0AC429A0221400A5F1E2 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		E83C9BC729B220BA000063E9 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		E83C9BCE29B2267E000063E9 /* AuthMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMode.swift; sourceTree = "<group>"; };
+		E83C9BD229B22716000063E9 /* AuthForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthForm.swift; sourceTree = "<group>"; };
 		E85FF603299D125A000CB6A4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
 		E85FF605299D134A000CB6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E8603B3B2996584000E09361 /* voice-pick-frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voice-pick-frontend.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +191,30 @@
 				E82B0AC429A0221400A5F1E2 /* Validator.swift */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		E83C9BC429B20525000063E9 /* dto */ = {
+			isa = PBXGroup;
+			children = (
+				E83C9BC729B220BA000063E9 /* UserInfo.swift */,
+			);
+			path = dto;
+			sourceTree = "<group>";
+		};
+		E83C9BCD29B22672000063E9 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				E83C9BCE29B2267E000063E9 /* AuthMode.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		E83C9BD129B226CE000063E9 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				E83C9BD229B22716000063E9 /* AuthForm.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		E85FF602299D121B000CB6A4 /* fonts */ = {
@@ -349,25 +379,12 @@
 		F6E9BE442996873A00DFD5EF /* authentication */ = {
 			isa = PBXGroup;
 			children = (
-				F6E9BE452996874200DFD5EF /* components */,
-				F6E9BE462996874800DFD5EF /* models */,
+				E83C9BD129B226CE000063E9 /* components */,
+				E83C9BCD29B22672000063E9 /* models */,
+				E83C9BC429B20525000063E9 /* dto */,
 				F6E9BE472996874C00DFD5EF /* services */,
 			);
 			path = authentication;
-			sourceTree = "<group>";
-		};
-		F6E9BE452996874200DFD5EF /* components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = components;
-			sourceTree = "<group>";
-		};
-		F6E9BE462996874800DFD5EF /* models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 		F6E9BE472996874C00DFD5EF /* services */ = {
@@ -570,11 +587,14 @@
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
 				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
 				8D921C5929A672140015800D /* ControlNumberButton.swift in Sources */,
+				E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */,
 				8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */,
 				8DBE5F3529B9C89F00349630 /* VoiceView.swift in Sources */,
 				2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */,
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,
+				E83C9BCF29B2267E000063E9 /* AuthMode.swift in Sources */,
 				F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */,
+				E83C9BD329B22716000063E9 /* AuthForm.swift in Sources */,
 				E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,6 +666,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEV = true;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -706,6 +727,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEV = true;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

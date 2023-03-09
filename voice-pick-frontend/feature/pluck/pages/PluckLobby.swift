@@ -20,6 +20,20 @@ struct PluckLobby: View {
 	@StateObject var requestService = RequestService()
 	@State var pluckList: PluckList?
 	
+	/// Initializes a pluck list
+	func startPluck() {
+		requestService.get(path: "/plucks", responseType: PluckList.self, completion: { result in
+			switch result {
+			case .success(let fetchedPluckList):
+				initPluckList(fetchedPluckList)
+				next()
+				
+			case .failure(let error):
+				print("Error fetching pluck list: \(error.localizedDescription)")
+			}
+		})
+	}
+	
 	var body: some View {
 		VStack {
 			Card {

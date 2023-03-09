@@ -48,13 +48,12 @@ struct PluckListDisplay: View {
                             .tint(.success)
                         })
 				}
-                .onMove(perform: onMove)
+				.onMove(perform: onMove)
 				.listRowInsets(EdgeInsets())
 				.padding(5)
 				.listRowSeparator(.hidden)
-			}.listStyle(PlainListStyle())
 				.frame(maxWidth: .infinity)
-				.navigationBarItems(leading: EditButton())
+			}.listStyle(PlainListStyle())
 		}
 	}
     
@@ -83,7 +82,7 @@ struct PluckListDisplay_Previews: PreviewProvider {
                             id: 0,
                             name: "6-pack Coca Cola",
                             location: .init(id: 0, location: "HB-209", controlDigit: "123"),
-                            weight: 9,
+                            weight: 100.0,
                             volume: 9,
                             quantity: 20,
                             type: .D_PACK,
@@ -98,7 +97,7 @@ struct PluckListDisplay_Previews: PreviewProvider {
                             id: 1,
                             name: "Kiwi Bæreposer",
                             location: .init(id: 1, location: "I-207", controlDigit: "123"),
-                            weight: 15,
+														weight: 100.0,
                             volume: 5,
                             quantity: 50,
                             type: .D_PACK,
@@ -112,7 +111,7 @@ struct PluckListDisplay_Previews: PreviewProvider {
                     id: 2,
                     name: "Idun Hambuger Dressing",
                     location: .init(id: 2, location: "O-456", controlDigit: "314"),
-                    weight: 1,
+										weight: 50.0,
                     volume: 1,
                     quantity: 145,
                     type: .F_PACK,

@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import Speech
 
 struct ContentView: View {
 	
-    var body: some View {
-        PluckPage()
-    }
+	
+	func tempString(change: String){
+		print(change)
+	}
+
+	var body: some View {
+		VoiceView(onChange: tempString){
+			PluckPage()
+		}
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -19,3 +27,4 @@ struct ContentView_Previews: PreviewProvider {
 		ContentView()
 	}
 }
+

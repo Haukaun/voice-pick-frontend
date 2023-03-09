@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DefaultInput: View {
 	let inputLabel: String
-	var isPassword: Bool
+	var isPassword: Bool = false
 	@Binding public var text: String
 	var validator: Bool
 	

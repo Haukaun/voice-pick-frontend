@@ -10,14 +10,9 @@ import Speech
 
 struct ContentView: View {
 	
-	
-	func tempString(change: String){
-		print(change)
-	}
-
-	var body: some View {
-		PluckPage()
-	}
+    var body: some View {
+        AuthPage()
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

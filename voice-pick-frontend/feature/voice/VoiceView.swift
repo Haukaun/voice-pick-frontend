@@ -58,7 +58,7 @@ struct VoiceView<Content: View>: View {
 		//On-device recognition, check if device supports it.
 		if #available(iOS 13, *) {
 			if speechRecognizer.supportsOnDeviceRecognition {
-				recognitionRequest?.requiresOnDeviceRecognition = false
+				recognitionRequest?.requiresOnDeviceRecognition = true
 			}
 		}
 		

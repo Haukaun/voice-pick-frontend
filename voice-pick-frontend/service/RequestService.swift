@@ -22,8 +22,6 @@ class RequestService: ObservableObject {
 	init() {
 		let activeDev = Bundle.main.object(forInfoDictionaryKey: "DEV") as! String
 		
-		print(activeDev)
-		
 		if (activeDev == "true") {
 			apiBaseUrl = "http://localhost:8080"
 		} else {

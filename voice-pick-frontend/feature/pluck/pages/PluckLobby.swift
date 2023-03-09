@@ -10,28 +10,15 @@ import Foundation
 
 struct PluckLobby: View {
 	let next: () -> Void
-	let initPluckList: (PluckList) -> Void
 	
 	@State var activeEmployees = [
 		"Joakim Edvardsen",
 		"Petter Molnes",
-		"Håkon Sætre"
+		"Håkon Sætre",
+		"Mati"
 	]
 	@StateObject var requestService = RequestService()
 	@State var pluckList: PluckList?
-	
-	/// Initializes a pluck list
-	func startPluck() {
-		requestService.get(path: "/plucks", responseType: PluckList.self, completion: { result in
-			switch result {
-			case .success(let fetchedPluckList):
-				initPluckList(fetchedPluckList)
-				next()
-			case .failure(let error):
-				print("Error fetching pluck list: \(error.localizedDescription)")
-			}
-		})
-	}
 	
 	var body: some View {
 		VStack {
@@ -39,7 +26,7 @@ struct PluckLobby: View {
 				ActivePickers(activePickers: activeEmployees)
 			}
 			DefaultButton("Start plukk") {
-				startPluck()
+				next()
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -68,5 +55,13 @@ struct ActivePickers: View {
 			Spacer()
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
+	}
+}
+
+struct PluckLobby_Previews: PreviewProvider {
+	static var previews: some View {
+		PluckLobby(next: {
+			print("next")
+		})
 	}
 }

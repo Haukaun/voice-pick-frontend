@@ -16,9 +16,7 @@ struct ContentView: View {
 	}
 
 	var body: some View {
-		VoiceView(onChange: tempString){
-			PluckPage()
-		}
+		PluckPage()
 	}
 }
 

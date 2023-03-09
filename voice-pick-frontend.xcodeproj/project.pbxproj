@@ -49,6 +49,7 @@
 		F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */; };
 		F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70929B090EC004AC10B /* RequestService.swift */; };
 		F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70B29B0AA47004AC10B /* Location.swift */; };
+		F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE71929B1FFCF004AC10B /* PluckPages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +73,7 @@
 		2386BC1D299BE80F00916B5C /* DefaultInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInput.swift; sourceTree = "<group>"; };
 		23BCAE2F299F70D70038C0D7 /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
 		23BCAE31299F75A70038C0D7 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
-		23BCAE35299FA4D00038C0D7 /* PalleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalleType.swift; sourceTree = "<group>"; };
+		23BCAE35299FA4D00038C0D7 /* PalleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PalleType.swift; path = "voice-pick-frontend/component/PalleType.swift"; sourceTree = SOURCE_ROOT; };
 		23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultButton.swift; path = "voice-pick-frontend/component/DefaultButton.swift"; sourceTree = SOURCE_ROOT; };
 		8D1A2DE129966A42007062CE /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckListDisplay.swift; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 		F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLabel.swift; sourceTree = "<group>"; };
 		F6ACE70929B090EC004AC10B /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		F6ACE70B29B0AA47004AC10B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		F6ACE71929B1FFCF004AC10B /* PluckPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPages.swift; sourceTree = "<group>"; };
 		F6E9BE382996860E00DFD5EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -381,16 +383,8 @@
 				F67354A729AF504A00D7E601 /* pages */,
 				F6E9BE4C2996879500DFD5EF /* components */,
 				F6E9BE4B2996879100DFD5EF /* models */,
-				F6E9BE492996878400DFD5EF /* services */,
 			);
 			path = pluck;
-			sourceTree = "<group>";
-		};
-		F6E9BE492996878400DFD5EF /* services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = services;
 			sourceTree = "<group>";
 		};
 		F6E9BE4B2996879100DFD5EF /* models */ = {
@@ -398,6 +392,7 @@
 			children = (
 				F6754BF7299FABF3007CEDB5 /* Pluck.swift */,
 				F6754BFD299FBD08007CEDB5 /* PluckList.swift */,
+				F6ACE71929B1FFCF004AC10B /* PluckPages.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -550,6 +545,7 @@
 				E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */,
 				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
 				23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */,
+				F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				8D203A3629A39DE300D768BA /* PluckFinish.swift in Sources */,
 				F67354A929AF57C700D7E601 /* PluckCard.swift in Sources */,
@@ -740,7 +736,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEV = true;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = VQFNF9YL3F;
+				DEVELOPMENT_TEAM = 45723U7VDN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -775,7 +771,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEV = true;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = VQFNF9YL3F;
+				DEVELOPMENT_TEAM = 45723U7VDN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";

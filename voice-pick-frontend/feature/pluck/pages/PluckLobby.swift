@@ -24,8 +24,7 @@ struct PluckLobby: View {
 	func startPluck() {
 		requestService.get(path: "/plucks", responseType: PluckList.self, completion: { result in
 			switch result {
-			case .success(let fetchedPluckList):
-				initPluckList(fetchedPluckList)
+			case .success:
 				next()
 				
 			case .failure(let error):

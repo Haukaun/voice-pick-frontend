@@ -95,8 +95,8 @@ struct AuthForm: View {
 		submitted = true;
 		if validateForm() {
 			let userInfo = UserInfo(
-				firstname: firstnameValue,
-				lastname: lastnameValue,
+				firstName: firstnameValue,
+				lastName: lastnameValue,
 				email: emailValue,
 				password: passwordValue
 			)

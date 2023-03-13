@@ -17,6 +17,9 @@ struct AuthForm: View {
 	@State var userIsAuthenticated = false;
 	@State var submitted = false;
 	
+	@State var showAlert = false;
+	@State var errorMessage = "";
+	
 	@Binding var authMode: AuthMode
 	
 	let requestService = RequestService()
@@ -75,11 +78,22 @@ struct AuthForm: View {
 		}
 	}
 	
+	func handleError(errorCode: Int) {
+		switch errorCode {
+		case 409:
+			showAlert = true;
+			errorMessage = "User with this email already exists"
+			break
+		default:
+			showAlert = true;
+			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
+			break
+		}
+	}
+	
 	func register() {
-		//TODO: validate input
 		submitted = true;
 		if validateForm() {
-			//TODO: send request to register
 			let userInfo = UserInfo(
 				firstname: firstnameValue,
 				lastname: lastnameValue,
@@ -88,21 +102,18 @@ struct AuthForm: View {
 			)
 			requestService.post(path: "/auth/signup", body: userInfo, responseType: String.self, completion: { result in
 				switch result {
-				case .success(let response):
-					print(response.description)
+				case .success(_):
+					withAnimation {
+						userIsAuthenticated = true
+					}
 					break
-				case .failure(let error):
-					print(error.localizedDescription)
+				case .failure(let error as RequestError):
+					handleError(errorCode: error.errorCode)
+					break
+				case .failure(_):
 					break
 				}
 			})
-			withAnimation {
-				// if successful: display verify email page
-				userIsAuthenticated = true
-			}
-		} else {
-			// disable button
-			//TODO: display error message on failing field
 		}
 	}
 	
@@ -122,12 +133,13 @@ struct AuthForm: View {
 					if validateForm() {
 						submitted = false
 					}
-			}
+				}
 			authMode == AuthMode.login ?
 			DefaultButton("Sign in", disabled: !validateForm() && submitted, onPress: signIn)
 			:
 			DefaultButton("Sign up", disabled: !validateForm() && submitted, onPress: register)
 		}
+		.alert("Sign up error", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
 	}
 }
 

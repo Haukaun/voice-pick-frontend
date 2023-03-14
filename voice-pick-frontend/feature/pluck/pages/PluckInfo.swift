@@ -127,7 +127,7 @@ struct PluckInfo_Previews: PreviewProvider {
                                         .init(
                                             id: 0,
                                             name: "6-pack Coca Cola",
-                                            location: .init(id: 0, location: "HB-209", controlDigit: "123"),
+                                            location: .init(id: 0, location: "HB-209", controlDigit: 124),
                                             weight: 9,
                                             volume: 9,
                                             quantity: 20,
@@ -135,14 +135,15 @@ struct PluckInfo_Previews: PreviewProvider {
                                             status: .READY),
                                 amount: 2,
                                 createdAt: "02-03-2023",
-                                pluckedAt: nil),
+                                pluckedAt: nil,
+                                show: true),
                             .init(
                                 id: 1,
                                 product:
                                         .init(
                                             id: 1,
                                             name: "Kiwi Bæreposer",
-                                            location: .init(id: 1, location: "I-207", controlDigit: "123"),
+                                            location: .init(id: 1, location: "I-207", controlDigit: 124),
                                             weight: 15,
                                             volume: 5,
                                             quantity: 50,
@@ -150,13 +151,14 @@ struct PluckInfo_Previews: PreviewProvider {
                                             status: .READY),
                                 amount: 8,
                                 createdAt: "02-03-2023",
-                                pluckedAt: nil),
+                                pluckedAt: nil,
+                                show: true),
                             .init(
                                 id: 2,
                                 product: .init(
                                     id: 2,
                                     name: "Idun Hambuger Dressing",
-                                    location: .init(id: 2, location: "O-456", controlDigit: "314"),
+                                    location: .init(id: 2, location: "O-456", controlDigit: 124),
                                     weight: 1,
                                     volume: 1,
                                     quantity: 145,
@@ -164,7 +166,8 @@ struct PluckInfo_Previews: PreviewProvider {
                                     status: .READY),
                                 amount: 12,
                                 createdAt: "02-03-2023",
-                                pluckedAt: nil)
+                                pluckedAt: nil,
+                                show: true)
                         ]), next: {
                             print("Next page")
                         })

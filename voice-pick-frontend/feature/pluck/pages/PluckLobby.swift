@@ -17,6 +17,7 @@ struct PluckLobby: View {
 		"Håkon Sætre",
 		"Mati"
 	]
+	
 	@StateObject var requestService = RequestService()
 	@State var pluckList: PluckList?
 	

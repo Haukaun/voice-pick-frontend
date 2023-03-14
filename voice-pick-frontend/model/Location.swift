@@ -8,5 +8,5 @@
 struct Location: Codable, Hashable {
     let id: Int
     let location: String
-    let controlDigit: String
+    let controlDigit: Int
 }

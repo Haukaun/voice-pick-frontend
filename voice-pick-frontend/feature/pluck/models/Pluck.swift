@@ -13,6 +13,7 @@ struct Pluck: Hashable, Identifiable, Codable {
     let amount: Int // how many should be picked
     let createdAt: String
     let pluckedAt: String?
+    let show: Bool
     
     func has(into hasher: inout Hasher) {
         hasher.combine(id)

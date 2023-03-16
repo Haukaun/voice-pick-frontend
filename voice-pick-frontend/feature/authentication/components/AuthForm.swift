@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KeychainSwift
 
 struct AuthForm: View {
 	
@@ -14,7 +15,6 @@ struct AuthForm: View {
 	@State var emailValue = ""
 	@State var passwordValue = ""
 	
-	@State var userIsAuthenticated = false;
 	@State var submitted = false;
 	
 	@State var showAlert = false;
@@ -24,16 +24,25 @@ struct AuthForm: View {
 	
 	let requestService = RequestService()
 	
+	@EnvironmentObject var authenticationService: AuthenticationService
+	
 	/**
-	 Checks if the current input in the form is valid or not.
+	 Validates the form based on which mode it is in.
 	 
 	 - Returns: True if the form is valid, false if it is invalid.
 	 */
 	func validateForm() -> Bool {
-		if !validateEmail() || !validatePassword() || !validateFirstname() || !validateLastname() {
-			return false
+		if authMode == AuthMode.signup {
+			if !validateEmail() || !validatePassword() || !validateFirstname() || !validateLastname() {
+				return false
+			}
+			return true
+		} else {
+			if !validateEmail() || !validatePassword() {
+				return false
+			}
+			return true
 		}
-		return true
 	}
 	
 	/**
@@ -67,19 +76,27 @@ struct AuthForm: View {
 	func signIn() {
 		submitted = true;
 		if validateForm() {
-			//TODO: send request to backend to sign in with credentials
-			// if successful redirect to home page
-			withAnimation {
-				userIsAuthenticated = true
-			}
-		} else {
-			//TODO: disable button
-			//TODO: display error message
+			let userInfo = UserInfo(email: emailValue, password: passwordValue)
+			requestService.post(path: "/auth/login", body: userInfo, responseType: LoginResponse.self, completion: { result in
+				switch result {
+				case .success(let response):
+					authenticationService.saveToken(token: response)
+					break
+				case .failure(let error as RequestError):
+					handleError(errorCode: error.errorCode)
+					break
+				default:
+					break
+				}
+			})
 		}
 	}
 	
 	func handleError(errorCode: Int) {
 		switch errorCode {
+		case 401:
+			showAlert = true
+			errorMessage = "The credentials entered are invalid."
 		case 409:
 			showAlert = true;
 			errorMessage = "User with this email already exists"
@@ -103,9 +120,7 @@ struct AuthForm: View {
 			requestService.post(path: "/auth/signup", body: userInfo, responseType: String.self, completion: { result in
 				switch result {
 				case .success(_):
-					withAnimation {
-						userIsAuthenticated = true
-					}
+					authMode = AuthMode.login
 					break
 				case .failure(let error as RequestError):
 					handleError(errorCode: error.errorCode)
@@ -139,7 +154,7 @@ struct AuthForm: View {
 			:
 			DefaultButton("Sign up", disabled: !validateForm() && submitted, onPress: register)
 		}
-		.alert("Sign up error", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
+		.alert(authMode == AuthMode.signup ? "Sign up" : "Sign in", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
 	}
 }
 

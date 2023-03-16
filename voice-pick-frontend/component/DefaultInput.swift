@@ -17,11 +17,11 @@ struct DefaultInput: View {
 		let view = isPassword ? AnyView(SecureField(
 			inputLabel,
 			text: $text
-		)):
+		).autocorrectionDisabled(true)):
 		AnyView(TextField(
 			inputLabel,
 			text: $text
-		))
+		).autocorrectionDisabled(true))
 		
 		return view
 			.fontWeight(.bold)

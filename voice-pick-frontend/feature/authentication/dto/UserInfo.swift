@@ -8,8 +8,8 @@
 import Foundation
 
 struct UserInfo : Codable {
-	var firstname: String? = nil
-	var lastname: String? = nil
+	var firstName: String? = nil
+	var lastName: String? = nil
 	let email: String
 	let password: String
 }

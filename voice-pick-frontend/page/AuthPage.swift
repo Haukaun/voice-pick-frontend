@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct AuthPage: View {
+	
 	init() {
 		self.authMode = AuthMode.login
 	}
 	
 	@State var authMode: AuthMode;
-	
-	@State var userIsAuthenticated = false;
-	@State var submitted = false;
-	
-	let requestService = RequestService()
 	
 	/**
 	 Swaps between sign up and log in mode for the form.
@@ -35,19 +31,6 @@ struct AuthPage: View {
 	}
 	
 	var body: some View {
-		if userIsAuthenticated && authMode == AuthMode.login {
-			PluckPage()
-				.transition(.slide)
-		} else if (authMode == AuthMode.signup && userIsAuthenticated) {
-			VerificaitonPage()
-				.transition(.slide)
-		} else {
-			content
-				.transition(.slide)
-		}
-	}
-	
-	var content: some View {
 		VStack {
 			VStack() {
 				Text("TRACE").font(.guidelineHeading).foregroundColor(.traceLightYellow)
@@ -58,7 +41,7 @@ struct AuthPage: View {
 			Text("Forgot password?").font(.label).frame(maxWidth: .infinity, alignment: .trailing)
 			HStack {
 				Text("Dont have an account?")
-				Button("Sign up here", action: switchAuthMode)
+				Button(authMode == AuthMode.signup ? "Sign in here" : "Sign up here", action: switchAuthMode)
 					.buttonStyle(.plain)
 					.underline()
 			}

@@ -135,15 +135,15 @@ struct AuthForm: View {
 	var body: some View {
 		VStack(spacing: 20) {
 			if authMode == AuthMode.signup {
-				DefaultInput(inputLabel: "Firstname", text: $firstnameValue, validator: validateFirstname())
-				DefaultInput(inputLabel: "Lastname", text: $lastnameValue, validator: validateLastname())
+				DefaultInput(inputLabel: "Firstname", text: $firstnameValue, valid: validateFirstname())
+				DefaultInput(inputLabel: "Lastname", text: $lastnameValue, valid: validateLastname())
 			}
-			DefaultInput(inputLabel: "Email", text: $emailValue, validator: validateEmail()).onChange(of: emailValue) { _ in
+			DefaultInput(inputLabel: "Email", text: $emailValue, valid: validateEmail()).onChange(of: emailValue) { _ in
 				if validateForm() {
 					submitted = false
 				}
 			}
-			DefaultInput(inputLabel: "Password", isPassword: true, text: $passwordValue, validator: validatePassword())
+			PasswordInput(value: $passwordValue, valid: validatePassword())
 				.onChange(of: passwordValue) { _ in
 					if validateForm() {
 						submitted = false

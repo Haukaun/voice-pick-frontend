@@ -11,7 +11,6 @@ enum PluckPages {
 	case LOBBY
 	case INFO
 	case LIST_VIEW
-	case SINGLE_VIEW
 	case COMPLETE
 	case DELIVERY
 }

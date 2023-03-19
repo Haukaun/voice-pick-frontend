@@ -14,8 +14,8 @@ struct ContentView: View {
 	@ObservedObject var authenticationService = AuthenticationService()
 	
 	var body: some View {
-		if authenticationService.authToken != nil {
-			PluckPage()
+		if authenticationService.authToken != nil || true {
+			TabBar()
 		} else {
 			AuthPage()
 				.environmentObject(authenticationService)

@@ -28,6 +28,9 @@ struct ButtonRandomizer: View {
 		}
 	}
 	
+	/**
+	 Selects numbers and check if it is the correct one
+	 */
 	private func onNumberSelected(_ number: Int) {
 		selectedAnswer = number
 		if number == correctAnswer {
@@ -35,6 +38,9 @@ struct ButtonRandomizer: View {
 		}
 	}
 	
+	/**
+	 Checks if the answer selected is wrong
+	 */
 	private func isWrongAnswer(_ possibleNumber: Int) -> Bool {
 		if let selectedAnswer = selectedAnswer, selectedAnswer != correctAnswer && possibleNumber == selectedAnswer {
 			return true

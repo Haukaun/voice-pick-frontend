@@ -7,6 +7,6 @@
 
 struct Location: Codable, Hashable {
     let id: Int
-    let location: String
+    let name: String
     let controlDigit: Int
 }

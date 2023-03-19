@@ -44,8 +44,8 @@ struct PluckLobby: View {
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.padding(10)
 		.background(Color.backgroundColor)
+		.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
 	}
 }
 

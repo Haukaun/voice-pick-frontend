@@ -29,13 +29,11 @@ struct Header: View {
         )
         .offset(y: 0)
         }
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
-        
     }
 }
 
 struct Header_Previews: PreviewProvider {
     static var previews: some View {
-        Header(headerText:"")
+        Header(headerText:"Ankara")
     }
 }

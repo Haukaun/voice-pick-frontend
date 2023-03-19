@@ -58,7 +58,7 @@ struct PluckCard: View {
 						Paragraph("Lokasjon")
 							.lineLimit(1)
 							.truncationMode(.tail)
-						Paragraph("\(location.location)")
+						Paragraph("\(location.name)")
 							.lineLimit(1)
 							.truncationMode(.tail)
 							.bold()
@@ -132,7 +132,7 @@ struct PluckCard: View {
 				print(isAnswerSelected)
 			} label: {
 				Label("Velg siffer først" , systemImage: "xmark.app.fill")
-			}.tint(.none)
+			}.tint(.error)
 			
 		})
 		
@@ -144,7 +144,7 @@ struct PluckCard_Previews: PreviewProvider {
 		PluckCard(
 			id: 1,
 			name: "Cola",
-			location: Location.init(id: 1, location: "L-342", controlDigit: 124),
+			location: Location.init(id: 1, name: "L-342", controlDigit: 124),
 			amount: 34,
 			weight: 45,
 			type: ProductType.F_PACK,

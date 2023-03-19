@@ -63,7 +63,7 @@ struct VoiceView<Content: View>: View {
 		}
 		
 		guard let recognitionRequest = recognitionRequest else { return }
-		recognitionRequest.contextualStrings = ["start" , "repeat", "next", "help", "plukk"]
+		recognitionRequest.contextualStrings = ["start" , "repeat", "next", "help", "one", "two", "three"]
 		
 		let inputNode = audioEngine.inputNode
 		let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -97,6 +97,18 @@ struct VoiceView<Content: View>: View {
 		}
 	}
 	
+	/**
+	 Stops recording and ends recognition task.
+	 **/
+	func stopRecording() {
+		
+		recognitionTask?.finish()
+		recognitionTask = nil
+		recognitionRequest?.endAudio()
+		recognitionRequest = nil
+		audioEngine.stop()
+		audioEngine.inputNode.removeTap(onBus: 0)
+	}
 	
 	var body: some View {
 		VStack{
@@ -108,6 +120,9 @@ struct VoiceView<Content: View>: View {
 		.onAppear{
 			requestSpeechAuthorization()
 			startRecording()
+		}
+		.onDisappear{
+			stopRecording()
 		}
 	}
 	

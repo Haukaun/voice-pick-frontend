@@ -17,8 +17,8 @@ struct VerificaitonPage: View {
 					.resizable()
 					.frame(width: 120, height: 120)
 					.opacity(0.05)
-				VStack (spacing: -15){
-					Text("TRACE").font(.guidelineHeading).foregroundColor(.traceMediYellow)
+				VStack (spacing: -20){
+					Text("TRACE").font(.guidelineHeading).foregroundColor(.traceLightYellow)
 					Text("Voice pick").font(.header1).foregroundColor(.foregroundColor)
 				}
 			}
@@ -35,6 +35,7 @@ struct VerificaitonPage: View {
 			Footer()
 		}
 		.padding(20)
+		.background(Color.backgroundColor)
 	}
 	
 }

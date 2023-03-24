@@ -73,6 +73,7 @@ struct PluckPage: View {
 				}
 			}
 		}
+		.background(Color.backgroundColor)
 	}
 }
 

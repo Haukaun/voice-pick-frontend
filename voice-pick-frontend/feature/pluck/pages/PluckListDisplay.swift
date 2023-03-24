@@ -50,16 +50,17 @@ struct PluckListDisplay: View {
 					},
 					showControlDigits: pluck.id == plucks.first?.id ? true : false
 				)
+				.listRowBackground(Color.backgroundColor)
 			}
 			.onMove(perform: onMove)
-			.listRowInsets(EdgeInsets())
+			.listRowInsets(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
 			.listRowSeparator(.hidden)
 			.frame(maxWidth: .infinity)
-			.background(Color.backgroundColor)
 		}
+		.scrollContentBackground(.hidden)
 		.padding(.init(top: 0, leading: 5, bottom: 5, trailing: 5))
-		.background(Color.backgroundColor)
 		.listStyle(PlainListStyle())
+		.background(Color.backgroundColor)
 	}
 	
 	init (_ plucks: [Pluck], next: @escaping () -> Void) {
@@ -116,7 +117,53 @@ struct PluckListDisplay_Previews: PreviewProvider {
 							status: .READY),
 				amount: 12,
 				createdAt: "02-03-2023",
+				pluckedAt: nil),
+			.init(
+				id: 2,
+				product:
+						.init(
+							id: 2,
+							name: "Idun Hambuger Dressing",
+							location: .init(id: 2, name: "O-456", controlDigit: 333),
+							weight: 50.0,
+							volume: 1,
+							quantity: 145,
+							type: .F_PACK,
+							status: .READY),
+				amount: 12,
+				createdAt: "02-03-2023",
+				pluckedAt: nil),
+			.init(
+				id: 2,
+				product:
+						.init(
+							id: 2,
+							name: "Idun Hambuger Dressing",
+							location: .init(id: 2, name: "O-456", controlDigit: 333),
+							weight: 50.0,
+							volume: 1,
+							quantity: 145,
+							type: .F_PACK,
+							status: .READY),
+				amount: 12,
+				createdAt: "02-03-2023",
+				pluckedAt: nil),
+			.init(
+				id: 2,
+				product:
+						.init(
+							id: 2,
+							name: "Idun Hambuger Dressing",
+							location: .init(id: 2, name: "O-456", controlDigit: 333),
+							weight: 50.0,
+							volume: 1,
+							quantity: 145,
+							type: .F_PACK,
+							status: .READY),
+				amount: 12,
+				createdAt: "02-03-2023",
 				pluckedAt: nil)
+			
 		], next: { print("next") })
 	}
 }

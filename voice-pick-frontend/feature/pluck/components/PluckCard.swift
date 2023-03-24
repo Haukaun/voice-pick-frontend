@@ -101,21 +101,9 @@ struct PluckCard: View {
 					}
 				}
 				if(!isAnswerSelected && showControlDigits){
-					Group{
-						Divider()
-							.padding(.bottom)
-						Paragraph("Velg kontrollsiffer")
-							.bold()
-						HStack (spacing: 10){
-							ButtonRandomizer(correctAnswer: location.controlDigit) { number in
-								withAnimation{
-									isAnswerSelected = true
-								}
-							}
-						}
-					}
-					.buttonStyle(BorderlessButtonStyle())
-					
+					Divider()
+						.padding(.bottom)
+					ButtonRandomizer(correctAnswer: location.controlDigit, onCorrectAnswerSelected: { number in print(number) })
 				}
 			}
 			

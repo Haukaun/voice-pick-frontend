@@ -21,8 +21,6 @@ struct PluckPage: View {
 	
 	@ObservedObject private var pluckService = PluckPageService()
 
-	
-	
 	var body: some View {
 		VStack {
 			if pluckService.activePage != .COMPLETE {
@@ -53,7 +51,6 @@ struct PluckPage: View {
 							}
 						})
 					}
-					.environmentObject(pluckService)
 				case .LIST_VIEW:
 					PluckListDisplay(pluckService.pluckList?.plucks ?? [], next: {
 						pluckService.updateActivePage(.COMPLETE)
@@ -73,6 +70,7 @@ struct PluckPage: View {
 				}
 			}
 		}
+		.environmentObject(pluckService)
 		.background(Color.backgroundColor)
 	}
 }

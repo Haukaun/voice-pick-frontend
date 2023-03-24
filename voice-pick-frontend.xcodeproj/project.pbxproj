@@ -21,6 +21,8 @@
 		8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F8EB299E240A001DB87C /* TabBar.swift */; };
 		8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5A29A673610015800D /* ButtonRandomizer.swift */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
+		8DB727AC29CDA78F009CA150 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB727AB29CDA78F009CA150 /* User.swift */; };
+		8DBAB8FB29CB01DC0073B134 /* PluckListLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBAB8FA29CB01DC0073B134 /* PluckListLocation.swift */; };
 		8DBE5F3529B9C89F00349630 /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE5F3429B9C89F00349630 /* VoiceView.swift */; };
 		E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B0AC429A0221400A5F1E2 /* Validator.swift */; };
 		E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BC729B220BA000063E9 /* UserInfo.swift */; };
@@ -93,6 +95,8 @@
 		8D67F8EB299E240A001DB87C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		8D921C5A29A673610015800D /* ButtonRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRandomizer.swift; sourceTree = "<group>"; };
 		8DAB093329968296005A61C0 /* Styles+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Styles+Extensions.swift"; sourceTree = "<group>"; };
+		8DB727AB29CDA78F009CA150 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8DBAB8FA29CB01DC0073B134 /* PluckListLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckListLocation.swift; sourceTree = "<group>"; };
 		8DBE5F3429B9C89F00349630 /* VoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
 		E82B0AC429A0221400A5F1E2 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E83C9BC729B220BA000063E9 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 			children = (
 				F6754BFB299FBC0E007CEDB5 /* Product.swift */,
 				F6ACE70B29B0AA47004AC10B /* Location.swift */,
+				8DB727AB29CDA78F009CA150 /* User.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				F6754BFD299FBD08007CEDB5 /* PluckList.swift */,
 				F6ACE71929B1FFCF004AC10B /* PluckPages.swift */,
 				8D46B25D29C340A000F3E9EB /* CargoCarrier.swift */,
+				8DBAB8FA29CB01DC0073B134 /* PluckListLocation.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -592,6 +598,7 @@
 				23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */,
 				F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
+				8DBAB8FB29CB01DC0073B134 /* PluckListLocation.swift in Sources */,
 				E8A2432B29C35B54007D0F60 /* PasswordInput.swift in Sources */,
 				8D203A3629A39DE300D768BA /* PluckFinish.swift in Sources */,
 				F67354A929AF57C700D7E601 /* PluckCard.swift in Sources */,
@@ -602,6 +609,7 @@
 				8D4A8155299D18B300B9A715 /* Footer.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */,
+				8DB727AC29CDA78F009CA150 /* User.swift in Sources */,
 				8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */,
 				E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */,
 				8D4A8153299CE43A00B9A715 /* VerificaitonPage.swift in Sources */,

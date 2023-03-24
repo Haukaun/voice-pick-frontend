@@ -11,4 +11,6 @@ struct PluckList: Codable {
     let destination: String
     var plucks: [Pluck]
 		var cargoCarrier: CargoCarrier?
+		let location: PluckListLocation
+		let user: User
 }

@@ -14,7 +14,10 @@ class PluckPageService: ObservableObject {
 	@Published var activePage: PluckPages = .LOBBY
 	@Published var pluckList: PluckList?
 	@Published var cargoCarriers: [CargoCarrier] = []
-	@Published var requestService = RequestService ()
+	@Published var requestService = RequestService()
+	
+	
+	
 	
 	/**
 	 A function that handles action made either through the UI or through voice
@@ -95,6 +98,9 @@ class PluckPageService: ObservableObject {
 			}
 		}
 	}
+	
+
+	
 	/**
 	 Initializes a new plucklist
 	 */
@@ -132,6 +138,7 @@ class PluckPageService: ObservableObject {
 			self?.currentStep = currentStep
 		}
 	}
+
 	
 	/**
 	 Sets plucklist, fixes published in child

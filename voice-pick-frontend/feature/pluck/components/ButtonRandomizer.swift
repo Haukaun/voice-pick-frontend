@@ -8,7 +8,7 @@
 import SwiftUI
 
 /**
-	Randomizes 3 buttons where one of the buttons is correct. If the answer is wrong the button will display red.
+ Randomizes 3 buttons where one of the buttons is correct. If the answer is wrong the button will display red.
  */
 struct ButtonRandomizer: View {
 	let possibleNumbers: [Int]
@@ -20,12 +20,30 @@ struct ButtonRandomizer: View {
 	@State private var isAnswerSelected = false
 	
 	var body: some View {
-		HStack (spacing: 5) {
-			ControlNumberButton(possibleNumber: "\(possibleNumbers[0])", onPress: {
-				onNumberSelected(possibleNumbers[0])}, wrongAnswer: isWrongAnswer(possibleNumbers[0]))
-			ControlNumberButton(possibleNumber: "\(possibleNumbers[1])", onPress: { onNumberSelected(possibleNumbers[1])}, wrongAnswer: isWrongAnswer(possibleNumbers[1]))
-			ControlNumberButton(possibleNumber: "\(possibleNumbers[2])", onPress: { onNumberSelected(possibleNumbers[2])}, wrongAnswer: isWrongAnswer(possibleNumbers[2]))
+		VStack(alignment: .leading) {
+			Paragraph("Velg kontrollsiffer")
+				.bold()
+			HStack (spacing: 5) {
+				ForEach(possibleNumbers, id: \.self) { number in
+					Button(action: { onNumberSelected(number) }) {
+						Spacer()
+						Text("\(number)")
+							.padding(15)
+							.fontWeight(.bold)
+							.font(.button)
+							.foregroundColor(.snow)
+						Spacer()
+					}
+					.background(
+						isWrongAnswer(number)
+						? Color.error
+						: Color.night
+					)
+					.cornerRadius(UIView.standardCornerRadius)
+				}
+			}
 		}
+		.buttonStyle(BorderlessButtonStyle())
 	}
 	
 	/**
@@ -60,5 +78,14 @@ struct ButtonRandomizer: View {
 		self.possibleNumbers = randomNumbers.shuffled()
 		
 		self.onCorrectAnswerSelected = onCorrectAnswerSelected
+	}
+}
+
+struct ButtonRandomizer_Previews: PreviewProvider {
+	static var previews: some View {
+			ButtonRandomizer(correctAnswer: 293, onCorrectAnswerSelected: {number in
+				print(number)
+			})
+			.padding(10)
 	}
 }

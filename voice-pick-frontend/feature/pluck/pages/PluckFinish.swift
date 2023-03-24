@@ -43,21 +43,9 @@ struct PluckFinish: View {
 						.bold()
 						.padding(.bottom)
 					if(!isAnswerSelected){
-						Group{
-							Divider()
-								.padding(.bottom)
-							Paragraph("Velg kontrollsiffer")
-								.bold()
-							HStack (spacing: 10){
-								//TODO: Fix correctAnswer backend variable
-								ButtonRandomizer(correctAnswer: correctAnswer!){ number in
-									selectedNumber = number
-									withAnimation(){
-										isAnswerSelected = true
-									}
-								}
-							}
-						}
+						Divider()
+							.padding(.bottom)
+						ButtonRandomizer(correctAnswer: correctAnswer!, onCorrectAnswerSelected: { number in print(number)})
 					}
 				}
 			}

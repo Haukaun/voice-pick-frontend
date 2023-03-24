@@ -19,7 +19,6 @@
 		8D4A8153299CE43A00B9A715 /* VerificaitonPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8152299CE43A00B9A715 /* VerificaitonPage.swift */; };
 		8D4A8155299D18B300B9A715 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8154299D18B300B9A715 /* Footer.swift */; };
 		8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F8EB299E240A001DB87C /* TabBar.swift */; };
-		8D921C5929A672140015800D /* ControlNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5829A672140015800D /* ControlNumberButton.swift */; };
 		8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5A29A673610015800D /* ButtonRandomizer.swift */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
 		8DBE5F3529B9C89F00349630 /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE5F3429B9C89F00349630 /* VoiceView.swift */; };
@@ -92,7 +91,6 @@
 		8D4A8154299D18B300B9A715 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		8D5AEBF629C46D5E0030FAF5 /* PluckPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPageService.swift; sourceTree = "<group>"; };
 		8D67F8EB299E240A001DB87C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
-		8D921C5829A672140015800D /* ControlNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlNumberButton.swift; sourceTree = "<group>"; };
 		8D921C5A29A673610015800D /* ButtonRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRandomizer.swift; sourceTree = "<group>"; };
 		8DAB093329968296005A61C0 /* Styles+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Styles+Extensions.swift"; sourceTree = "<group>"; };
 		8DBE5F3429B9C89F00349630 /* VoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
@@ -442,7 +440,6 @@
 			isa = PBXGroup;
 			children = (
 				23BCAE35299FA4D00038C0D7 /* PalleType.swift */,
-				8D921C5829A672140015800D /* ControlNumberButton.swift */,
 				8D921C5A29A673610015800D /* ButtonRandomizer.swift */,
 				F67354A829AF57C700D7E601 /* PluckCard.swift */,
 			);
@@ -621,7 +618,6 @@
 				E8A2432529C30EC1007D0F60 /* LoginResponse.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
 				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
-				8D921C5929A672140015800D /* ControlNumberButton.swift in Sources */,
 				E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */,
 				8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */,
 				8DBE5F3529B9C89F00349630 /* VoiceView.swift in Sources */,
@@ -792,9 +788,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEV = true;
+				DEV = false;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = VQFNF9YL3F;
+				DEVELOPMENT_TEAM = 3SR89T93YC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -810,7 +806,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ntnu.bachelor.voice-pick-frontend";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -827,9 +823,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEV = true;
+				DEV = false;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = VQFNF9YL3F;
+				DEVELOPMENT_TEAM = 3SR89T93YC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -845,7 +841,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ntnu.bachelor.voice-pick-frontend";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

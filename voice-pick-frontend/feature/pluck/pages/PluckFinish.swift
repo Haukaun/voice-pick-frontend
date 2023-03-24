@@ -13,8 +13,8 @@ struct PluckFinish: View {
 	@State private var selectedNumber: Int?
 	
     let next: () -> Void
-	//TODO: This value should not be hardcoded, only for testing.
-	@State private var correctAnswer: Int? = 243
+	
+	@EnvironmentObject var pluckService: PluckPageService
 	
 	@State private var isAnswerSelected = false
     
@@ -34,12 +34,11 @@ struct PluckFinish: View {
 					.padding(.bottom)
 					Paragraph("Plukker")
 					
-					//TODO: Fix username varibale
-					Paragraph("Username")
+					Paragraph(pluckService.pluckList?.user.firstName ?? "Username")
 						.bold()
 						.padding(.bottom)
 					Paragraph("Leverings lokasjon")
-					Paragraph("ML-123")
+					Paragraph(pluckService.pluckList!.location.name)
 						.bold()
 						.padding(.bottom)
 					if(!isAnswerSelected){
@@ -57,7 +56,7 @@ struct PluckFinish: View {
 				Paragraph("Pakk pallen inn i plast")
 				Paragraph("Sett på lapper på alle sider")
 				Spacer()
-				DefaultButton("Fullfør", disabled: selectedNumber != correctAnswer){
+				DefaultButton("Fullfør", disabled: selectedNumber != pluckService.pluckList?.location.controlDigit){
 					completePluck()
 				}
 			}
@@ -71,5 +70,6 @@ struct PluckFinish_Previews: PreviewProvider {
         PluckFinish(next: {
             print("next")
         })
+				.environmentObject(PluckPageService())
 	}
 }

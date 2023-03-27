@@ -9,8 +9,6 @@ import SwiftUI
 import Foundation
 
 struct PluckLobby: View {
-	let next: () -> Void
-	
 	@State var activeEmployees = [
 		"Joakim Edvardsen",
 		"Petter Molnes",
@@ -18,21 +16,7 @@ struct PluckLobby: View {
 		"Mati"
 	]
 	
-	@StateObject var requestService = RequestService()
-	@State var pluckList: PluckList?
-	
-	/// Initializes a pluck list
-	func startPluck() {
-		requestService.get(path: "/plucks", responseType: PluckList.self, completion: { result in
-			switch result {
-			case .success:
-				next()
-				
-			case .failure(let error):
-				print("Error fetching pluck list: \(error.localizedDescription)")
-			}
-		})
-	}
+	@EnvironmentObject private var pluckService: PluckService
 	
 	var body: some View {
 		VStack {
@@ -40,12 +24,12 @@ struct PluckLobby: View {
 				ActivePickers(activePickers: activeEmployees)
 			}
 			DefaultButton("Start plukk") {
-				next()
+				pluckService.doAction(keyword: "start", fromVoice: false)
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
+		.padding(5)
 		.background(Color.backgroundColor)
-		.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
 	}
 }
 
@@ -74,8 +58,6 @@ struct ActivePickers: View {
 
 struct PluckLobby_Previews: PreviewProvider {
 	static var previews: some View {
-		PluckLobby(next: {
-			print("next")
-		})
+		PluckLobby()
 	}
 }

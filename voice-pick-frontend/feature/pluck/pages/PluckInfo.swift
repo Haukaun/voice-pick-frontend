@@ -9,12 +9,9 @@ import SwiftUI
 
 struct PluckInfo: View {
 	
-	var cargoCarriers: [CargoCarrier]
+	let requestService = RequestService()
 	
-	@EnvironmentObject var pluckService: PluckPageService
-	
-	let next: () -> Void
-	
+	@EnvironmentObject var pluckService: PluckService
 	
 	var body: some View {
 		VStack() {
@@ -45,16 +42,26 @@ struct PluckInfo: View {
 				}
 			}
 			VStack{
-				PalleType(cargoCarriers: cargoCarriers)
-					.environmentObject(pluckService)
+				PalleType(cargoCarriers: pluckService.cargoCarriers)
 				DefaultButton("Fortsett") {
-					next()
+					pluckService.doAction(keyword: "next", fromVoice: false)
 				}
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.padding(.init(top: 0, leading: 10, bottom: 10, trailing: 10))
+		.padding(5)
 		.background(Color.backgroundColor)
+		.onAppear{
+			requestService.get(path: "/cargo-carriers", responseType: [CargoCarrier].self, completion: {result in
+				switch result {
+				case .success(let cargoCarriers):
+					pluckService.setCargoCarriers(cargoCarriers)
+					break
+				case .failure(let error):
+					print(error)
+				}
+			})
+		}
 	}
 }
 
@@ -78,7 +85,7 @@ struct Grid: View {
 				}
 				
 				ForEach(plucks) { pluck in
-					Paragraph(pluck.product.location.name)
+					Paragraph(pluck.product.location.code)
 					Paragraph(pluck.product.name)
 						.lineLimit(1)
 						.truncationMode(.tail)
@@ -123,10 +130,24 @@ struct Grid: View {
 }
 
 struct PluckInfo_Previews: PreviewProvider {
+	static func initPluckService() -> PluckService {
+		let pluckService = PluckService()
+		
+		pluckService.setPluckList(.init(
+			id: 0,
+			route: "234",
+			destination: "Kiwi Nedre Strandgate 2",
+			plucks: [],
+			location: .init(
+				id: 0,
+				code: "P345",
+				controlDigits: 123)))
+		
+		return pluckService
+	}
+	
 	static var previews: some View {
-			PluckInfo(cargoCarriers: [], next: {
-				print("next page")
-			})
-		.environmentObject(PluckPageService())
+			PluckInfo()
+		.environmentObject(initPluckService())
 	}
 }

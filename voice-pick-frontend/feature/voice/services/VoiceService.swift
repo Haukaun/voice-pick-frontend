@@ -1,48 +1,53 @@
 //
-//  VoiceView.swift
+//  VoiceService.swift
 //  voice-pick-frontend
 //
-//  Created by Håkon Sætre on 09/03/2023.
+//  Created by Joakim Edvardsen on 24/03/2023.
 //
 
-import SwiftUI
+import Foundation
 import Speech
 
-struct VoiceView<Content: View>: View {
+enum VoiceAuthorization {
+	case AUTHORIZED
+	case DENIED
+	case RESTRICTED
+	case NOT_DETERMINED
+	case NOT_AUTHORIZED
+}
+
+class VoiceService: ObservableObject {
 	
-	//hold the transcripted message
-	@State var transcription = ""
+	@Published var isVoiceActive = false
+	@Published var isVoiceAuthorized = VoiceAuthorization.NOT_AUTHORIZED
+	@Published var transcription = ""
 	
-	let onChange: (String) -> Void
-	var content: Content
-	
-	//Variables for speech initilizing
 	let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
-	@State var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-	@State var recognitionTask: SFSpeechRecognitionTask?
+	var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+	var recognitionTask: SFSpeechRecognitionTask?
 	let audioEngine = AVAudioEngine()
-	
-	init(onChange: @escaping (String) -> Void, @ViewBuilder content: () -> Content) {
-		self.onChange = onChange
-		self.content = content()
-	}
 	
 	/**
 	 Requests authorization for speech recognition and handles the different possible authorization statuses.
-	 **/
+	 */
 	func requestSpeechAuthorization() {
 		SFSpeechRecognizer.requestAuthorization { status in
 			DispatchQueue.main.async {
 				switch status {
 				case .authorized:
+					self.isVoiceAuthorized = VoiceAuthorization.AUTHORIZED
 					print("Speech recognition authorized")
 				case .denied:
+					self.isVoiceAuthorized = VoiceAuthorization.DENIED
 					print("User denied access to speech recognition")
 				case .restricted:
+					self.isVoiceAuthorized = VoiceAuthorization.RESTRICTED
 					print("Speech recognition restricted on this device")
 				case .notDetermined:
+					self.isVoiceAuthorized = VoiceAuthorization.NOT_DETERMINED
 					print("Speech recognition not yet authorized")
 				default:
+					self.isVoiceAuthorized = VoiceAuthorization.NOT_AUTHORIZED
 					print("Speech recognition not authorized")
 				}
 			}
@@ -50,8 +55,8 @@ struct VoiceView<Content: View>: View {
 	}
 	
 	/**
-	 Starts listing to user inputs.
-	 **/
+	 Starts listing to user inputs
+	 */
 	func startRecording() {
 		recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
 		
@@ -63,8 +68,13 @@ struct VoiceView<Content: View>: View {
 		}
 		
 		guard let recognitionRequest = recognitionRequest else { return }
-		recognitionRequest.contextualStrings = ["start" , "repeat", "next", "help", "one", "two", "three"]
 		
+		let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+		recognitionRequest.contextualStrings = ["start" , "repeat", "next", "help", "complete", "back", "one", "two", "three"]
+		numbers.forEach { number in
+			recognitionRequest.contextualStrings.append(number)
+		}
+				
 		let inputNode = audioEngine.inputNode
 		let recordingFormat = inputNode.outputFormat(forBus: 0)
 		inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
@@ -74,6 +84,7 @@ struct VoiceView<Content: View>: View {
 		audioEngine.prepare()
 		do {
 			try audioEngine.start()
+			isVoiceActive = true
 		} catch {
 			print("Error starting audio engine: \(error.localizedDescription)")
 			return
@@ -83,15 +94,32 @@ struct VoiceView<Content: View>: View {
 			
 			if let result = result {
 				let bestTranscription = result.bestTranscription
-				let words = bestTranscription.segments.map { $0.substring }
+				var words = bestTranscription.segments.map { $0.substring }
+				if (words.count > 0) {
+					words[0] = words[0].lowercased()
+				}
 				let filteredWords = words.filter { recognitionRequest.contextualStrings.contains($0) == true }
-				let transcription = filteredWords.last // Only include the last spoken word in the transcription
+				
+				var result = ""
+				if (filteredWords.contains{ numbers.contains($0) }) {
+					// If a number was spoken, include the tree last spoken digits
+					if (filteredWords.count == 3) {
+						let lastThreeDigits = Array(filteredWords.suffix(3))
+						result = lastThreeDigits.joined(separator: "")
+					} else {
+						result = filteredWords.last ?? ""
+					}
+				} else {
+					// If not, only include the last spoken word in the transcription
+					result = filteredWords.last ?? ""
+				}
 				
 				DispatchQueue.main.async {
 					// Set the transcription to the new word, or an empty string if no new word was recognized
-					self.transcription = transcription ?? ""
+					self.transcription = result
 				}
 			} else if let error = error {
+				// TODO: handle error correctly
 				print("Error recognizing speech: \(error.localizedDescription)")
 			}
 		}
@@ -99,43 +127,15 @@ struct VoiceView<Content: View>: View {
 	
 	/**
 	 Stops recording and ends recognition task.
-	 **/
+	 */
 	func stopRecording() {
-		
 		recognitionTask?.finish()
 		recognitionTask = nil
 		recognitionRequest?.endAudio()
 		recognitionRequest = nil
 		audioEngine.stop()
 		audioEngine.inputNode.removeTap(onBus: 0)
+		isVoiceActive = false
 	}
 	
-	var body: some View {
-		VStack{
-			content
-		}
-		.onChange(of: transcription){ newValue in
-			self.onChange(newValue)
-		}
-		.onAppear{
-			requestSpeechAuthorization()
-			startRecording()
-		}
-		.onDisappear{
-			stopRecording()
-		}
-	}
-	
-}
-
-struct VoiceView_Previews: PreviewProvider {
-	static func whatever(_ newvalue: String) -> Void {
-		print(newvalue)
-	}
-	
-	static var previews: some View {
-		VoiceView(onChange: whatever) {
-			PluckPage()
-		}
-	}
 }

@@ -2,7 +2,7 @@ import SwiftUI
 struct PalleType: View {
 	var cargoCarriers: [CargoCarrier]
 	
-	@EnvironmentObject var pluckService: PluckPageService
+	@EnvironmentObject private var pluckService: PluckService
 	
 	var body: some View {
 		VStack {
@@ -25,7 +25,7 @@ struct PalleType: View {
 			.accentColor(.mountain)
 			.padding(15)
 		}
-		.background(Color.snow)
+		.background(Color.componentColor)
 		.cornerRadius(5)
 		
 	}
@@ -58,6 +58,5 @@ struct PalleType: View {
 struct PalleType_Previews: PreviewProvider {
 	static var previews: some View {
 		PalleType(cargoCarriers: [])
-			.environmentObject(PluckPageService())
 	}
 }

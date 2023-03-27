@@ -11,33 +11,23 @@ import SwiftUI
 
 struct PluckCard: View {
 	
-	@State private var isAnswerSelected = false
+	@State var pluck: Pluck
 	
-	let id: Int
-	let name: String
-	let location: Location
-	let amount: Int
-	let weight: Float
-	let type: ProductType
-	let status: ProductStatus
+	let onSelectedControlDigit: (Int) -> Void
 	let onComplete: (Int) -> Void
 	let showControlDigits: Bool
+	let disableControlDigits: Bool
 	
-	init(id: Int, name: String, location: Location, amount: Int, weight: Float, type: ProductType, status: ProductStatus, onComplete: @escaping (Int) -> Void, showControlDigits: Bool) {
-		self.isAnswerSelected = false
-		self.id = id
-		self.name = name
-		self.location = location
-		self.amount = amount
-		self.weight = weight
-		self.type = type
-		self.status = status
+	init(pluck: Pluck, onSelectedControlDigit: @escaping (Int) -> Void, onComplete: @escaping (Int) -> Void, showControlDigits: Bool, disableControlDigits: Bool) {
+		self.pluck = pluck
+		self.onSelectedControlDigit = onSelectedControlDigit
 		self.onComplete = onComplete
 		self.showControlDigits = showControlDigits
+		self.disableControlDigits = disableControlDigits
 	}
 	
 	private func getTotalWeight() -> Float {
-		return weight * Float(amount)
+		return pluck.product.weight * Float(pluck.amount)
 	}
 	
 	var body: some View {
@@ -47,7 +37,7 @@ struct PluckCard: View {
 					Paragraph("Vare")
 						.lineLimit(1)
 						.truncationMode(.tail)
-					Paragraph("\(name)")
+					Paragraph("\(pluck.product.name)")
 						.lineLimit(1)
 						.truncationMode(.tail)
 						.bold()
@@ -58,7 +48,7 @@ struct PluckCard: View {
 						Paragraph("Lokasjon")
 							.lineLimit(1)
 							.truncationMode(.tail)
-						Paragraph("\(location.name)")
+						Paragraph("\(pluck.product.location.code)")
 							.lineLimit(1)
 							.truncationMode(.tail)
 							.bold()
@@ -67,7 +57,7 @@ struct PluckCard: View {
 						Paragraph("Antall")
 							.lineLimit(1)
 							.truncationMode(.tail)
-						Paragraph("\(amount)")
+						Paragraph("\(pluck.amount)")
 							.lineLimit(1)
 							.truncationMode(.tail)
 							.bold()
@@ -85,7 +75,7 @@ struct PluckCard: View {
 						Paragraph("Type")
 							.lineLimit(1)
 							.truncationMode(.tail)
-						Paragraph("\(type)")
+						Paragraph("\(pluck.product.type)")
 							.lineLimit(1)
 							.truncationMode(.tail)
 							.bold()
@@ -94,30 +84,34 @@ struct PluckCard: View {
 						Paragraph("Status")
 							.lineLimit(1)
 							.truncationMode(.tail)
-						Paragraph("\(status)")
+						Paragraph("\(pluck.product.status)")
 							.lineLimit(1)
 							.truncationMode(.tail)
 							.bold()
 					}
 				}
-				if(!isAnswerSelected && showControlDigits){
+				if (showControlDigits) {
 					Divider()
 						.padding(.bottom)
-					ButtonRandomizer(correctAnswer: location.controlDigit, onCorrectAnswerSelected: { number in print(number) })
+					ButtonRandomizer(
+						correctAnswer: pluck.product.location.controlDigits,
+						onCorrectAnswerSelected: { number in
+							onSelectedControlDigit(number)
+						},
+						disableButtons: disableControlDigits)
 				}
 			}
 			
 		}
 		.swipeActions(edge: .trailing, content:{
-			isAnswerSelected ?
+			!showControlDigits ?
 			Button(role: .destructive) {
-				onComplete(id)
+				onComplete(pluck.id)
 			} label: {
 				Label("Svipe venstre for å fullføre" , systemImage: "checkmark.circle.fill")
 			}.tint(.success)
 			:
 			Button(role: .none) {
-				print(isAnswerSelected)
 			} label: {
 				Label("Velg siffer først" , systemImage: "xmark.app.fill")
 			}.tint(.error)
@@ -129,18 +123,30 @@ struct PluckCard: View {
 
 struct PluckCard_Previews: PreviewProvider {
 	static var previews: some View {
-		PluckCard(
-			id: 1,
-			name: "Cola",
-			location: Location.init(id: 1, name: "L-342", controlDigit: 124),
-			amount: 34,
-			weight: 45,
-			type: ProductType.F_PACK,
-			status: ProductStatus.READY,
-			onComplete: { id in
-				print(id)
-			},
-			showControlDigits: true
+		PluckCard(pluck: .init(
+			id: 0,
+			product:
+					.init(
+						id: 0,
+						name: "6-pack Coca Cola",
+						location: .init(id: 0, code: "HB-209", controlDigits: 123),
+						weight: 100.0,
+						volume: 9,
+						quantity: 20,
+						type: .D_PACK,
+						status: .READY),
+			amount: 2,
+			createdAt: "02-03-2023",
+			confirmedAt: nil,
+			pluckedAt: nil),
+							onSelectedControlDigit: { number in
+			print(number)
+		},
+							onComplete: { id in
+			print(id)
+		},
+							showControlDigits: true,
+							disableControlDigits: false
 		)
 	}
 }

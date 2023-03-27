@@ -14,10 +14,26 @@ struct ButtonRandomizer: View {
 	let possibleNumbers: [Int]
 	let correctAnswer: Int
 	let onCorrectAnswerSelected: (Int) -> Void
+	let disableButtons: Bool
 	@State private var selectedAnswer: Int?
 	
 	
 	@State private var isAnswerSelected = false
+	
+	init(correctAnswer: Int, onCorrectAnswerSelected: @escaping (Int) -> Void, disableButtons: Bool) {
+		self.correctAnswer = correctAnswer
+		
+		// Generate two random numbers between 0 and 9, excluding the correct answer
+		let random1 = Int.random(in: 100..<999)
+		let random2 = Int.random(in: 100..<999)
+		let randomNumbers = [random1, random2, correctAnswer]
+		
+		// Shuffle the array of random numbers
+		self.possibleNumbers = randomNumbers.shuffled()
+		
+		self.onCorrectAnswerSelected = onCorrectAnswerSelected
+		self.disableButtons = disableButtons
+	}
 	
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -40,6 +56,8 @@ struct ButtonRandomizer: View {
 						: Color.night
 					)
 					.cornerRadius(UIView.standardCornerRadius)
+					.disabled(disableButtons)
+					.opacity(disableButtons ? 0.5 : 1)
 				}
 			}
 		}
@@ -65,27 +83,13 @@ struct ButtonRandomizer: View {
 		}
 		return false
 	}
-	
-	init(correctAnswer: Int, onCorrectAnswerSelected: @escaping (Int) -> Void) {
-		self.correctAnswer = correctAnswer
-		
-		// Generate two random numbers between 0 and 9, excluding the correct answer
-		let random1 = Int.random(in: 100..<999)
-		let random2 = Int.random(in: 100..<999)
-		let randomNumbers = [random1, random2, correctAnswer]
-		
-		// Shuffle the array of random numbers
-		self.possibleNumbers = randomNumbers.shuffled()
-		
-		self.onCorrectAnswerSelected = onCorrectAnswerSelected
-	}
 }
 
 struct ButtonRandomizer_Previews: PreviewProvider {
 	static var previews: some View {
-			ButtonRandomizer(correctAnswer: 293, onCorrectAnswerSelected: {number in
-				print(number)
-			})
-			.padding(10)
+		ButtonRandomizer(correctAnswer: 293, onCorrectAnswerSelected: { number in
+			print(number)
+		}, disableButtons: false)
+		.padding(10)
 	}
 }

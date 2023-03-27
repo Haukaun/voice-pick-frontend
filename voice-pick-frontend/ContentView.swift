@@ -8,7 +8,6 @@
 import SwiftUI
 import Speech
 import KeychainSwift
-
 struct ContentView: View {
 	
 	@ObservedObject var authenticationService = AuthenticationService()

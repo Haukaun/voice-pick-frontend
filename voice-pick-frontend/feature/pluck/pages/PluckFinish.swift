@@ -9,19 +9,11 @@ import SwiftUI
 
 struct PluckFinish: View {
 	
+	@EnvironmentObject var pluckService: PluckService
 	
-	@State private var selectedNumber: Int?
-	
-    let next: () -> Void
-	
-	@EnvironmentObject var pluckService: PluckPageService
-	
-	@State private var isAnswerSelected = false
-    
-    private func completePluck() {
-        // Send API request to complete pluck
-        next()
-    }
+	private func completePluck() {
+		pluckService.doAction(keyword: "complete", fromVoice: false)
+	}
 	
 	var body: some View {
 		VStack {
@@ -34,17 +26,23 @@ struct PluckFinish: View {
 					.padding(.bottom)
 					Paragraph("Plukker")
 					
-					Paragraph(pluckService.pluckList?.user.firstName ?? "Username")
+					// TODO: Display username from pluckService.plucklist.user.username when backend is complete
+					Paragraph("Username")
 						.bold()
 						.padding(.bottom)
 					Paragraph("Leverings lokasjon")
-					Paragraph(pluckService.pluckList!.location.name)
+					Paragraph(pluckService.pluckList!.location.code)
 						.bold()
 						.padding(.bottom)
-					if(!isAnswerSelected){
+					if (pluckService.pluckList?.confirmedAt == nil) {
 						Divider()
 							.padding(.bottom)
-						ButtonRandomizer(correctAnswer: correctAnswer!, onCorrectAnswerSelected: { number in print(number)})
+						ButtonRandomizer(
+							correctAnswer: pluckService.pluckList?.location.controlDigits ?? 0,
+							onCorrectAnswerSelected: { number in
+								pluckService.doAction(keyword: String(number), fromVoice: false)
+						},
+							disableButtons: false)
 					}
 				}
 			}
@@ -56,7 +54,7 @@ struct PluckFinish: View {
 				Paragraph("Pakk pallen inn i plast")
 				Paragraph("Sett på lapper på alle sider")
 				Spacer()
-				DefaultButton("Fullfør", disabled: selectedNumber != pluckService.pluckList?.location.controlDigit){
+				DefaultButton("Fullfør", disabled: pluckService.pluckList?.confirmedAt == nil) {
 					completePluck()
 				}
 			}
@@ -67,9 +65,7 @@ struct PluckFinish: View {
 
 struct PluckFinish_Previews: PreviewProvider {
 	static var previews: some View {
-        PluckFinish(next: {
-            print("next")
-        })
-				.environmentObject(PluckPageService())
+		PluckFinish()
+		.environmentObject(PluckService())
 	}
 }

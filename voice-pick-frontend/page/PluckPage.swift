@@ -9,66 +9,43 @@
 
 import SwiftUI
 
-enum Steps {
-	case START
-	case SELECT_CARGO
-	case INFO
-}
-
 struct PluckPage: View {
-	
-	let requestService = RequestService()
-	
-	@ObservedObject private var pluckService = PluckPageService()
 
+	@ObservedObject private var pluckService = PluckService()
+	@ObservedObject private var voiceService = VoiceService()
+	
 	var body: some View {
-		VStack {
+		VStack(spacing: 0) {
 			if pluckService.activePage != .COMPLETE {
 				Header(headerText: "Plukkliste")
 			}
-			VoiceView(onChange: { newValue in
-				pluckService.doAction(keyword: newValue, fromVoice: true)
-			}){
-				switch pluckService.activePage {
-				case .LOBBY:
-					PluckLobby(next: {
-						pluckService.doAction(keyword: "start", fromVoice: false)
-					})
-					.transition(.backslide)
-				case .INFO:
-					PluckInfo(cargoCarriers: pluckService.cargoCarriers, next: {
-						pluckService.doAction(keyword: "next", fromVoice: false)
-					})
-					.transition(.backslide)
-					.onAppear{
-						requestService.get(path: "/cargo-carriers", responseType: [CargoCarrier].self, completion: {result in
-							switch result {
-							case .success(let cargoCarriers):
-								pluckService.setCargoCarriers(cargoCarriers)
-								break
-							case .failure(let error):
-								print(error)
-							}
-						})
-					}
-				case .LIST_VIEW:
-					PluckListDisplay(pluckService.pluckList?.plucks ?? [], next: {
-						pluckService.updateActivePage(.COMPLETE)
-					})
-					.transition(.backslide)
-				case .COMPLETE:
-					PluckComplete(next: {
-						pluckService.updateActivePage(.DELIVERY)
-					})
-					.transition(.backslide)
-				case .DELIVERY:
-					PluckFinish(next: {
-						pluckService.updateActivePage(.LOBBY)
-						pluckService.setCurrentStep(.START)
-					})
-					.transition(.backslide)
-				}
+			switch pluckService.activePage {
+			case .LOBBY:
+				PluckLobby()
+				.transition(.backslide)
+			case .INFO:
+				PluckInfo()
+				.transition(.backslide)
+			case .LIST_VIEW:
+				PluckListDisplay()
+				.transition(.backslide)
+			case .COMPLETE:
+				PluckComplete()
+				.transition(.backslide)
+			case .DELIVERY:
+				PluckFinish()
+				.transition(.backslide)
 			}
+		}
+		.onAppear {
+			voiceService.requestSpeechAuthorization()
+			voiceService.startRecording()
+		}
+		.onDisappear {
+			voiceService.stopRecording()
+		}
+		.onChange(of: voiceService.transcription) { newValue in
+			pluckService.doAction(keyword: newValue, fromVoice: true)
 		}
 		.environmentObject(pluckService)
 		.background(Color.backgroundColor)

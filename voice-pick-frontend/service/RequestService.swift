@@ -24,6 +24,8 @@ struct RequestError: Error {
 /// Created by Joakim Edvardsen on 02/03/2023
 class RequestService: ObservableObject {
 	
+	@Published var isLoading = false;
+	
 	private var apiBaseUrl: String
 	
 	init() {
@@ -44,7 +46,10 @@ class RequestService: ObservableObject {
 	///     - body: The body of the response. This is optional and is not used in case of a get request
 	///     - responseType: The type of the expected response
 	private func request<T: Codable, U: Codable>(_ method: String, _ path: String, _ body: T?, _ responseType: U.Type, _ completion: @escaping (Result<U, Error>) -> Void) {
+		self.isLoading = true;
+		
 		guard let url = URL(string: apiBaseUrl + path) else {
+			self.isLoading = false;
 			return
 		}
 		
@@ -58,6 +63,7 @@ class RequestService: ObservableObject {
 				let data = try encoder.encode(body)
 				urlRequest.httpBody = data
 			} catch {
+				self.isLoading = false
 				completion(.failure(RequestError(errorMessage: "Error encoding body, make sure it is in correct format.", errorType: .decodeError)))
 			}
 		}
@@ -69,11 +75,13 @@ class RequestService: ObservableObject {
 		let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
 			// handles errors where the request could not be sent, (ex: api is down)
 			if let error = error {
+				self.isLoading = false
 				completion(.failure(error))
 				return
 			}
 			
 			guard let data = data else {
+				self.isLoading = false
 				completion(.failure(RequestError(errorType: .dataError)))
 				return
 			}
@@ -89,13 +97,16 @@ class RequestService: ObservableObject {
 						result = try? JSONDecoder().decode(responseType, from: data)
 					}
 					guard let result = result else {
+						self.isLoading = false
 						completion(.failure(RequestError(errorType: .decodeError)))
 						return
 					}
+					self.isLoading = false
 					completion(.success(result))
 				} else {
 					// Here we did not have a status code of success.
 					if let errorMsg = String(data: data, encoding: .utf8) {
+						self.isLoading = false
 						completion(.failure(RequestError(errorCode: httpResponse.statusCode, errorMessage: errorMsg, errorType: .responseError)))
 					}
 				}

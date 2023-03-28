@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>DEV</key>
-	<string>$(DEV)</string>
+	<key>API_URL</key>
+	<string>$(API_URL)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto/Roboto-Bold.ttf</string>

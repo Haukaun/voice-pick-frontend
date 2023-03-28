@@ -29,13 +29,7 @@ class RequestService: ObservableObject {
 	private var apiBaseUrl: String
 	
 	init() {
-		let activeDev = Bundle.main.object(forInfoDictionaryKey: "DEV") as! String
-		
-		if (activeDev == "true") {
-			apiBaseUrl = "http://localhost:8080"
-		} else {
-			apiBaseUrl = "https://api.bachelor.seq.re"
-		}
+		apiBaseUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as! String
 	}
 	
 	/// Makes a request to the base api

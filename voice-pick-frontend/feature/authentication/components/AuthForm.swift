@@ -85,15 +85,13 @@ struct AuthForm: View {
 					authenticationService.isEmailVerified = isVerified
 					authenticationService.userEmail = userInfo.email
 				}
-				print(isVerified)
 			case .failure(let error as RequestError):
-				handleError(errorCode: error.errorCode)
+				print(error)
 			default:
 				break
 			}
 		})
 	}
-	
 	
 	/**
 	 Sign the user in to the system.

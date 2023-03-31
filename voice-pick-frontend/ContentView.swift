@@ -17,7 +17,7 @@ struct ContentView: View {
 				if authenticationService.isEmailVerified != false {
 							TabBar()
 					} else {
-							VerificaitonPage()
+							VerificationPage()
 									.environmentObject(authenticationService)
 					}
 			} else {

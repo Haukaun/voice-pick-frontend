@@ -19,13 +19,14 @@ struct ContentView: View {
 					} else {
 							VerificationPage()
 									.environmentObject(authenticationService)
+									.transition(.backslide)
 					}
 			} else {
-					AuthPage()
+				AuthPage()
 							.environmentObject(authenticationService)
+							.transition(.backslide)
 			}
 	}
-
 }
 
 struct ContentView_Previews: PreviewProvider {

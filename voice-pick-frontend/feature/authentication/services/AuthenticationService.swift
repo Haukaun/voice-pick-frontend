@@ -12,6 +12,8 @@ class AuthenticationService: ObservableObject {
 	
 	private let keychain = KeychainSwift()
 	@Published var authToken: LoginResponse?
+	@Published var isEmailVerified: Bool?
+	@Published var userEmail: String?
 	
 	func saveToken(token: LoginResponse) {
 		if let data = try? JSONEncoder().encode(token) {
@@ -30,4 +32,5 @@ class AuthenticationService: ObservableObject {
 			self?.authToken = nil
 		}
 	}
+	
 }

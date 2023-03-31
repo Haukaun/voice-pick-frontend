@@ -10,10 +10,32 @@ import SwiftUI
 struct VerificaitonPage: View {
 	var buttonText = "Resend Email"
 	
+	@State var verificationCode = ""
+	
 	@EnvironmentObject var authenticationService: AuthenticationService
 	
 	let requestService = RequestService()
 	
+
+	/*
+	 Check if the given Verification code exists in backend
+	 */
+	func checkVerificationCode() {
+		let emailVerificationCode = EmailVerificationCode(verificationCode: verificationCode, email: authenticationService.userEmail!)
+		requestService.post(path: "/auth/check-verification-code", body: emailVerificationCode, responseType: Bool.self, completion: { result in
+				switch result {
+				case .success(let response):
+					print(response)
+					DispatchQueue.main.async {
+						authenticationService.isEmailVerified = response
+					}
+					break
+				case .failure(let error):
+					print(error)
+					break
+				}
+			})
+	}
 	
 	
 	var body: some View {
@@ -30,17 +52,20 @@ struct VerificaitonPage: View {
 			}
 			Spacer()
 			Group {
-				Text("An email verification code has been sent to your email")
+				Text("Email verification code sent to submitted email address. Please check your spam folder.")
 					.font(.header2)
 					.foregroundColor(.foregroundColor)
 					.multilineTextAlignment(.center)
-				DefaultInput(inputLabel: "Verify Email", isPassword: false, text: .constant(""), valid: true)
+				DefaultInput(inputLabel: "Verify Email", isPassword: false, text: $verificationCode, valid: true)
+				DefaultButton("Submit", onPress: {
+					checkVerificationCode()
+				})
 			}
-			.padding(40)
+			.padding(10)
 			Spacer()
 			Footer()
 		}
-		.padding(20)
+		.padding(50)
 		.background(Color.backgroundColor)
 		.onAppear{
 			requestService.post(path: "/auth/verify-email", body: authenticationService.userEmail, responseType: String.self, completion: { result in
@@ -48,7 +73,6 @@ struct VerificaitonPage: View {
 			})
 		}
 	}
-	
 }
 
 struct VerificaitonPage_Previews: PreviewProvider {

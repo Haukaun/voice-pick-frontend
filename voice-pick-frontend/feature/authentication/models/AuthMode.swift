@@ -8,5 +8,5 @@
 import Foundation
 
 enum AuthMode {
-	case login, signup
+	case login, signup, verification
 }

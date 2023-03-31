@@ -13,13 +13,19 @@ struct ContentView: View {
 	@ObservedObject var authenticationService = AuthenticationService()
 	
 	var body: some View {
-		if authenticationService.authToken != nil || true {
-			TabBar()
-		} else {
-			AuthPage()
-				.environmentObject(authenticationService)
-		}
+			if authenticationService.authToken != nil {
+				if authenticationService.isEmailVerified != false {
+							TabBar()
+					} else {
+							VerificaitonPage()
+									.environmentObject(authenticationService)
+					}
+			} else {
+					AuthPage()
+							.environmentObject(authenticationService)
+			}
 	}
+
 }
 
 struct ContentView_Previews: PreviewProvider {

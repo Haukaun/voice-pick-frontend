@@ -15,7 +15,7 @@ struct TabBar: View {
 				.tabItem {
 					Label("Menu", systemImage: "house")
 				}
-			VerificaitonPage()
+			AccountPage()
 				.tabItem {
 					Label("Search", systemImage: "magnifyingglass")
 				}

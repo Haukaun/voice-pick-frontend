@@ -73,6 +73,31 @@ struct AuthForm: View {
 		return Validator.shared.isValidLastname(lastnameValue) || !submitted
 	}
 	
+	
+	/**
+	 Check if the users Email is verified
+	 */
+	func checkEmailVerification(_ response: LoginResponse, userInfo: UserInfo) {
+		requestService.post(path: "/auth/email-verified", body: response.access_token, responseType: Bool.self, completion: { result in
+			switch result {
+			case .success(let isVerified):
+				DispatchQueue.main.async {
+					authenticationService.isEmailVerified = isVerified
+					authenticationService.userEmail = userInfo.email
+				}
+				print(isVerified)
+			case .failure(let error as RequestError):
+				handleError(errorCode: error.errorCode)
+			default:
+				break
+			}
+		})
+	}
+	
+	
+	/**
+	 Sign the user in to the system.
+	 */
 	func signIn() {
 		submitted = true;
 		if validateForm() {
@@ -80,7 +105,11 @@ struct AuthForm: View {
 			requestService.post(path: "/auth/login", body: userInfo, responseType: LoginResponse.self, completion: { result in
 				switch result {
 				case .success(let response):
+					
+					checkEmailVerification(response, userInfo: userInfo)
+					
 					authenticationService.saveToken(token: response)
+					
 					break
 				case .failure(let error as RequestError):
 					handleError(errorCode: error.errorCode)
@@ -92,6 +121,10 @@ struct AuthForm: View {
 		}
 	}
 	
+	
+	/*
+	 Error handling
+	 */
 	func handleError(errorCode: Int) {
 		switch errorCode {
 		case 401:
@@ -102,12 +135,17 @@ struct AuthForm: View {
 			errorMessage = "User with this email already exists"
 			break
 		default:
+			print(errorCode)
 			showAlert = true;
 			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
 			break
 		}
 	}
 	
+	
+	/*
+	 Register a new user.
+	 */
 	func register() {
 		submitted = true;
 		if validateForm() {

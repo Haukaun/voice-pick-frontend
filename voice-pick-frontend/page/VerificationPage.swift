@@ -13,31 +13,33 @@ struct VerificationPage: View {
 	@State var verificationCode = ""
 	@State var timeRemaining = 0
 	
+	@State var showAlert = false;
+	@State var errorMessage = "";
+	
 	@EnvironmentObject var authenticationService: AuthenticationService
 	
 	let requestService = RequestService()
 	
-
+	
 	/*
 	 Check if the given Verification code exists in backend
 	 */
 	func checkVerificationCode() {
 		let emailVerificationCode = EmailVerificationCode(verificationCode: verificationCode, email: authenticationService.userEmail!)
 		requestService.post(path: "/auth/check-verification-code", body: emailVerificationCode, responseType: Bool.self, completion: { result in
-				switch result {
-				case .success(let response):
-					DispatchQueue.main.async {
-						authenticationService.isEmailVerified = response
-					}
-					break
-				case .failure(let error as RequestError):
-					//TODO: Handle Better:
-					print(error)
-					break
-				default:
-					break
+			switch result {
+			case .success(let response):
+				DispatchQueue.main.async {
+					authenticationService.isEmailVerified = response
 				}
-			})
+				break
+			case .failure(let error as RequestError):
+				handleError(errorCode: error.errorCode)
+				break
+			default:
+				break
+			}
+		})
 	}
 	
 	/*
@@ -65,14 +67,34 @@ struct VerificationPage: View {
 			case .success(_):
 				break
 			case .failure(let error as RequestError):
-				//TODO: Handle Better:
-				print(error)
+				handleError(errorCode: error.errorCode)
 				break
 			default:
 				break
 			}
 		})
 	}
+	
+	/*
+	 Error handling
+	 */
+	func handleError(errorCode: Int) {
+		switch errorCode {
+		case 404:
+			showAlert = true
+			errorMessage = "Verificaiton code was not found. Please press resend button and try again."
+			break
+		case 500:
+			showAlert = true
+			errorMessage = "Something went wrong, with verifying the user."
+			break
+		default:
+			showAlert = true;
+			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
+			break
+		}
+	}
+	
 	
 	
 	var body: some View {
@@ -114,8 +136,9 @@ struct VerificationPage: View {
 			.onAppear {
 				sendVerificationCode()
 				starTimer(duration: 20)
+			}
 		}
-		}
+		.alert("Verification", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
 	}
 }
 

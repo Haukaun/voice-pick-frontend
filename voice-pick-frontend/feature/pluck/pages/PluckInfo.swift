@@ -10,8 +10,26 @@ import SwiftUI
 struct PluckInfo: View {
 	
 	let requestService = RequestService()
+	@State var showAlert = false;
+	@State var errorMessage = "";
 	
 	@EnvironmentObject var pluckService: PluckService
+	
+	/*
+	 Error handling for cargo carriers
+	 */
+	func handleError(errorCode: Int) {
+		switch errorCode {
+		case 404:
+			showAlert = true;
+			errorMessage = "No cargo carriers were found. Exit and report this issue."
+			break
+		default:
+			showAlert = true;
+			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
+			break
+		}
+	}
 	
 	var body: some View {
 		VStack() {
@@ -57,11 +75,15 @@ struct PluckInfo: View {
 				case .success(let cargoCarriers):
 					pluckService.setCargoCarriers(cargoCarriers)
 					break
-				case .failure(let error):
-					print(error)
+				case .failure(let error as RequestError):
+					handleError(errorCode: error.errorCode)
+					break
+				default:
+					break
 				}
 			})
 		}
+		.alert("Cargo", isPresented: $showAlert, actions: {}, message: {Text(errorMessage)})
 	}
 }
 

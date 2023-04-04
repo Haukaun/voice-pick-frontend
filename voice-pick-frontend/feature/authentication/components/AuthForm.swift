@@ -133,7 +133,6 @@ struct AuthForm: View {
 			errorMessage = "User with this email already exists"
 			break
 		default:
-			print(errorCode)
 			showAlert = true;
 			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
 			break

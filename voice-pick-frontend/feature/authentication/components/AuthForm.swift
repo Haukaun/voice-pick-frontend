@@ -103,11 +103,8 @@ struct AuthForm: View {
 			requestService.post(path: "/auth/login", body: userInfo, responseType: LoginResponse.self, completion: { result in
 				switch result {
 				case .success(let response):
-					
 					checkEmailVerification(response, userInfo: userInfo)
-					
 					authenticationService.saveToken(token: response)
-					
 					break
 				case .failure(let error as RequestError):
 					handleError(errorCode: error.errorCode)

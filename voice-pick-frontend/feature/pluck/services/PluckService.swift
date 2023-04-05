@@ -46,7 +46,7 @@ class PluckService: ObservableObject {
 	 - keyword: a keyword describing the action that was made
 	 - fromVoice: a boolean describing if the action was made via coide. `true` if yes, `false` otherwise
 	 */
-	func doAction(keyword: String, fromVoice: Bool) {
+	func doAction(keyword: String, fromVoice: Bool, token: String? = nil) {
 		// TODO: Remove prints when error handling is complete
 		print("Active page: \(self.activePage)")
 		print("Current step: \(self.currentStep)")
@@ -54,7 +54,7 @@ class PluckService: ObservableObject {
 		
 		switch currentStep {
 		case .START:
-			handleStartActions(keyword, fromVoice)
+			handleStartActions(keyword, fromVoice, token)
 			break
 		case .SELECT_CARGO:
 			handleCargoAction(keyword, fromVoice)
@@ -75,10 +75,10 @@ class PluckService: ObservableObject {
 	 - keyword: the keyword of the action to make
 	 - fromVoice: a boolean describing if the action was made via voice. `true` if yes, `false` otherwise
 	 */
-	private func handleStartActions(_ keyword: String, _ fromVoice: Bool) {
+	private func handleStartActions(_ keyword: String, _ fromVoice: Bool, _ token: String?) {
 		switch keyword {
 		case "start":
-			initializePlucklist(fromVoice)
+			initializePlucklist(fromVoice, token!)
 			break
 		case "repeat":
 			speak("Say 'start' to start a new pluck order", fromVoice)
@@ -92,8 +92,8 @@ class PluckService: ObservableObject {
 	/**
 	 Initializes a new plucklist
 	 */
-	private func initializePlucklist(_ fromVoice: Bool) {
-		requestService.get(path: "/plucks", responseType: PluckList.self, completion: { [self] result in
+	private func initializePlucklist(_ fromVoice: Bool, _ token: String) {
+		requestService.get(path: "/plucks", header: token, responseType: PluckList.self, completion: { [self] result in
 			switch result {
 			case .success(let pluckList):
 				setPluckList(pluckList)
@@ -164,7 +164,7 @@ class PluckService: ObservableObject {
 			if (keywordInt == pluckList?.plucks[index].product.location.controlDigits) {
 				// Updated confirmed at for the pluck
 				
-				pluckList?.plucks[index].confirmedAt = getFormatter().string(from: Date())
+				pluckList?.plucks[index].confirmedAt = Date()
 			} else {
 				// Wrong control digits
 				speak("Wrong control digits. Try again", fromVoice)
@@ -192,7 +192,7 @@ class PluckService: ObservableObject {
 				
 				if (pluckList?.plucks[index].confirmedAt != nil) {
 					
-					pluckList?.plucks[index].pluckedAt = getFormatter().string(from: Date())
+					pluckList?.plucks[index].pluckedAt = Date()
 					
 					// If every pluck is completed
 					if (pluckList?.plucks.filter{ $0.pluckedAt == nil }.count == 0) {
@@ -221,7 +221,7 @@ class PluckService: ObservableObject {
 	private func handleDeliveryAction(_ keyword: String, _ fromVoice: Bool) {
 		if let keywordInt = isControlDigits(keyword) {
 			if (keywordInt == pluckList?.location.controlDigits) {
-				pluckList?.confirmedAt = getFormatter().string(from: Date())
+				pluckList?.confirmedAt = Date()
 				speak("Say 'complete' to finish pluck", fromVoice)
 			} else {
 				speak("Wrong control digits. Try again", fromVoice)
@@ -236,7 +236,7 @@ class PluckService: ObservableObject {
 				if (pluckList?.confirmedAt == nil) {
 					speak("Need to confirm with control digits first...", fromVoice)
 				} else {
-					pluckList?.finishedAt = getFormatter().string(from: Date())
+					pluckList?.finishedAt = Date()
 					
 					setCurrentStep(.START)
 					updateActivePage(.LOBBY)

@@ -18,17 +18,9 @@ struct PluckCard: View {
 	let showControlDigits: Bool
 	let disableControlDigits: Bool
 	
-	init(pluck: Pluck, onSelectedControlDigit: @escaping (Int) -> Void, onComplete: @escaping (Int) -> Void, showControlDigits: Bool, disableControlDigits: Bool) {
-		self.pluck = pluck
-		self.onSelectedControlDigit = onSelectedControlDigit
-		self.onComplete = onComplete
-		self.showControlDigits = showControlDigits
-		self.disableControlDigits = disableControlDigits
-	}
-	
-	private func getTotalWeight() -> Float {
-		return pluck.product.weight * Float(pluck.amount)
-	}
+	private var totalWeight: Float {
+			return pluck.product.weight * Float(pluck.amount)
+		}
 	
 	var body: some View {
 		Card() {
@@ -66,7 +58,7 @@ struct PluckCard: View {
 						Paragraph("Vekt")
 							.lineLimit(1)
 							.truncationMode(.tail)
-						Paragraph("\(getTotalWeight())")
+						Paragraph("\(totalWeight)")
 							.lineLimit(1)
 							.truncationMode(.tail)
 							.bold()
@@ -129,14 +121,14 @@ struct PluckCard_Previews: PreviewProvider {
 					.init(
 						id: 0,
 						name: "6-pack Coca Cola",
-						location: .init(id: 0, code: "HB-209", controlDigits: 123),
 						weight: 100.0,
 						volume: 9,
 						quantity: 20,
 						type: .D_PACK,
-						status: .READY),
+						status: .READY,
+						location: .init(id: 0, code: "HB-209", controlDigits: 123)),
 			amount: 2,
-			createdAt: "02-03-2023",
+			createdAt: DateFormatter().string(from: Date()),
 			confirmedAt: nil,
 			pluckedAt: nil),
 							onSelectedControlDigit: { number in

@@ -18,9 +18,9 @@ class AuthenticationService: ObservableObject {
 	func saveToken(token: LoginResponse) {
 		if let data = try? JSONEncoder().encode(token) {
 			keychain.set(data, forKey: "authToken")
-			if let data = keychain.getData("authToken") {
+			if let token = keychain.getData("authToken") {
 				DispatchQueue.main.async { [weak self] in
-					self?.authToken = try? JSONDecoder().decode(LoginResponse.self, from: data)
+					self?.authToken = try? JSONDecoder().decode(LoginResponse.self, from: token)
 				}
 			}
 		}

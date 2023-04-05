@@ -13,19 +13,20 @@ struct ContentView: View {
 	@ObservedObject var authenticationService = AuthenticationService()
 	
 	var body: some View {
-			if authenticationService.authToken != nil {
-				if authenticationService.isEmailVerified != false {
-							TabBar()
-					} else {
-							VerificationPage()
-									.environmentObject(authenticationService)
-									.transition(.backslide)
-					}
+		if authenticationService.authToken != nil {
+			if authenticationService.isEmailVerified != false {
+				TabBar()
+					.environmentObject(authenticationService)
 			} else {
-				AuthPage()
-							.environmentObject(authenticationService)
-							.transition(.backslide)
+				VerificationPage()
+					.environmentObject(authenticationService)
+					.transition(.backslide)
 			}
+		} else {
+			AuthPage()
+				.environmentObject(authenticationService)
+				.transition(.backslide)
+		}
 	}
 }
 

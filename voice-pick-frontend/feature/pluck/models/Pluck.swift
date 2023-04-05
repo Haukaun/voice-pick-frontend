@@ -11,9 +11,9 @@ struct Pluck: Hashable, Identifiable, Codable {
     let id: Int
     let product: Product
     let amount: Int // how many should be picked
-    let createdAt: String
-		var confirmedAt: String?
-    var pluckedAt: String?
+    var createdAt: String
+		var confirmedAt: Date?
+    var pluckedAt: Date?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

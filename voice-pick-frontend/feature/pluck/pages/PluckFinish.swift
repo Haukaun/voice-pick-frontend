@@ -25,9 +25,7 @@ struct PluckFinish: View {
 					}
 					.padding(.bottom)
 					Paragraph("Plukker")
-					
-					// TODO: Display username from pluckService.plucklist.user.username when backend is complete
-					Paragraph("Username")
+					Paragraph(pluckService.pluckList?.user.firstName ?? "N/A")
 						.bold()
 						.padding(.bottom)
 					Paragraph("Leverings lokasjon")

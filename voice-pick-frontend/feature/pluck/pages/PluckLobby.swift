@@ -18,13 +18,15 @@ struct PluckLobby: View {
 	
 	@EnvironmentObject private var pluckService: PluckService
 	
+	var token: String?
+	
 	var body: some View {
 		VStack {
 			Card {
 				ActivePickers(activePickers: activeEmployees)
 			}
 			DefaultButton("Start plukk") {
-				pluckService.doAction(keyword: "start", fromVoice: false)
+				pluckService.doAction(keyword: "start", fromVoice: false, token: token)
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -58,6 +60,6 @@ struct ActivePickers: View {
 
 struct PluckLobby_Previews: PreviewProvider {
 	static var previews: some View {
-		PluckLobby()
+		PluckLobby(token: "foo")
 	}
 }

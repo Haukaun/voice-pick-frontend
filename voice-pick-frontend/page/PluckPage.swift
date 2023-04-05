@@ -11,6 +11,7 @@ import SwiftUI
 
 struct PluckPage: View {
 
+	@EnvironmentObject var authenticationService: AuthenticationService
 	@ObservedObject private var pluckService = PluckService()
 	@ObservedObject private var voiceService = VoiceService()
 	
@@ -21,7 +22,7 @@ struct PluckPage: View {
 			}
 			switch pluckService.activePage {
 			case .LOBBY:
-				PluckLobby()
+				PluckLobby(token: authenticationService.authToken?.access_token)
 				.transition(.backslide)
 			case .INFO:
 				PluckInfo()

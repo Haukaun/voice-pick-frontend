@@ -4,16 +4,16 @@
 //
 //  Created by Joakim Edvardsen on 17/02/2023.
 //
+import Foundation
 
 struct PluckList: Codable {
 	let id: Int
 	let route: String
 	let destination: String
-	var confirmedAt: String?
-	var finishedAt: String?
+	var confirmedAt: Date?
+	var finishedAt: Date?
+	let user: User
 	var plucks: [Pluck]
-	let location: Location
 	var cargoCarrier: CargoCarrier?
-	// TODO: Add user field when back-end is complete
-	// let user: User
+	let location: PluckListLocation
 }

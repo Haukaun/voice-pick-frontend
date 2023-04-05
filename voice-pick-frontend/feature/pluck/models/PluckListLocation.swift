@@ -9,6 +9,6 @@ import Foundation
 
 struct PluckListLocation: Codable, Hashable {
 	let id: Int
-	let name: String
-	let controlDigit: Int
+	let code: String
+	let controlDigits: Int
 }

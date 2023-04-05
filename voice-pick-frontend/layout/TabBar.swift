@@ -9,12 +9,14 @@ import SwiftUI
 
 struct TabBar: View {
 	
+	@EnvironmentObject var authenticationService: AuthenticationService
 	var body: some View {
 		TabView {
 			PluckPage()
 				.tabItem {
 					Label("Menu", systemImage: "house")
 				}
+				.environmentObject(authenticationService)
 			AccountPage()
 				.tabItem {
 					Label("Search", systemImage: "magnifyingglass")

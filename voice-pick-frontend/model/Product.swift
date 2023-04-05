@@ -18,12 +18,12 @@ enum ProductStatus: String, Codable {
 struct Product: Hashable, Codable {
     let id: Int
     let name: String
-    let location: Location
     let weight: Float // weight of one product
     let volume: Float // volume of one product
     let quantity: Int // numbers of product in stock
     let type: ProductType
     let status: ProductStatus
+		let location: Location
     
     func has(into hasher: inout Hasher) {
         hasher.combine(id)

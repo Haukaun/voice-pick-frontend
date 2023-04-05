@@ -12,7 +12,7 @@ struct AuthForm: View {
 	
 	@State var firstnameValue = ""
 	@State var lastnameValue = ""
-	@State var emailValue = ""
+    @Binding var emailValue: String
 	@State var passwordValue = ""
 	
 	@State var submitted = false;
@@ -195,7 +195,7 @@ struct AuthForm: View {
 
 struct AuthForm_Previews: PreviewProvider {
 	static var previews: some View {
-		AuthForm(authMode: .constant(AuthMode.signup))
+        AuthForm(emailValue: .constant(""), authMode: .constant(AuthMode.signup))
 			.padding(50)
 	}
 }

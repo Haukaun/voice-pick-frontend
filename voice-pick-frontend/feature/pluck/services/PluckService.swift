@@ -24,6 +24,9 @@ class PluckService: ObservableObject {
 	@Published var cargoCarriers: [CargoCarrier] = []
 	@Published var requestService = RequestService()
 	
+	@State var showAlert = false;
+	@State var errorMessage = "";
+	
 	
 	let audioSession: AVAudioSession
 	let speechSynthesizer = AVSpeechSynthesizer()
@@ -89,6 +92,25 @@ class PluckService: ObservableObject {
 		}
 	}
 	
+	/*
+	 Error handling for plucklist
+	 */
+	func handleError(errorCode: Int) {
+		switch errorCode {
+		case 204:
+			showAlert = true
+			errorMessage = "No plucklist found at this moment. Please wait for new plucks."
+			break
+		case 422:
+			showAlert = true
+			errorMessage = "Something went wrong, with processing the data."
+			break
+		default:
+			showAlert = true;
+			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
+			break
+		}
+	}
 	/**
 	 Initializes a new plucklist
 	 */
@@ -100,8 +122,10 @@ class PluckService: ObservableObject {
 				setCurrentStep(.SELECT_CARGO)
 				updateActivePage(.INFO)
 				speak("Select cargo carrier before continuing", fromVoice)
-			case .failure(let error):
-				print(error)
+			case .failure(let error as RequestError):
+				handleError(errorCode: error.errorCode)
+			default:
+				break
 			}
 		})
 	}

@@ -51,6 +51,7 @@
 		F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD48E299E4752008A30F5 /* PluckInfo.swift */; };
 		F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD490299E4D8C008A30F5 /* PluckPage.swift */; };
 		F640285129CD85B70023AE34 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F640285029CD85B70023AE34 /* VoiceService.swift */; };
+		F662F78129E1852800C7FAC0 /* TokenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662F78029E1852800C7FAC0 /* TokenDto.swift */; };
 		F67354A929AF57C700D7E601 /* PluckCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67354A829AF57C700D7E601 /* PluckCard.swift */; };
 		F67354AB29AF73E200D7E601 /* PluckComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67354AA29AF73E200D7E601 /* PluckComplete.swift */; };
 		F6754BF6299FAA91007CEDB5 /* AnyTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BF5299FAA91007CEDB5 /* AnyTransition.swift */; };
@@ -129,6 +130,7 @@
 		F60AD48E299E4752008A30F5 /* PluckInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckInfo.swift; sourceTree = "<group>"; };
 		F60AD490299E4D8C008A30F5 /* PluckPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPage.swift; sourceTree = "<group>"; };
 		F640285029CD85B70023AE34 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceService.swift; sourceTree = "<group>"; };
+		F662F78029E1852800C7FAC0 /* TokenDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDto.swift; sourceTree = "<group>"; };
 		F67354A829AF57C700D7E601 /* PluckCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckCard.swift; sourceTree = "<group>"; };
 		F67354AA29AF73E200D7E601 /* PluckComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckComplete.swift; sourceTree = "<group>"; };
 		F6754BF5299FAA91007CEDB5 /* AnyTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyTransition.swift; sourceTree = "<group>"; };
@@ -179,13 +181,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8D203A30299E476400D768BA /* util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = util;
-			sourceTree = "<group>";
-		};
 		8D5AEBF529C46D430030FAF5 /* services */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				E83C9BC729B220BA000063E9 /* UserInfo.swift */,
+				F662F78029E1852800C7FAC0 /* TokenDto.swift */,
 			);
 			path = dto;
 			sourceTree = "<group>";
@@ -285,7 +281,6 @@
 		E8603B3D2996584000E09361 /* voice-pick-frontend */ = {
 			isa = PBXGroup;
 			children = (
-				8D203A30299E476400D768BA /* util */,
 				8D67F8EA299E23D0001DB87C /* layout */,
 				E82B0AC329A021FB00A5F1E2 /* util */,
 				E85FF605299D134A000CB6A4 /* Info.plist */,
@@ -611,6 +606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23BCAE32299F75A70038C0D7 /* Header.swift in Sources */,
+				F662F78129E1852800C7FAC0 /* TokenDto.swift in Sources */,
 				F60AD489299D1329008A30F5 /* Paragraph.swift in Sources */,
 				F67354AB29AF73E200D7E601 /* PluckComplete.swift in Sources */,
 				F60AD485299D0AD1008A30F5 /* Title.swift in Sources */,

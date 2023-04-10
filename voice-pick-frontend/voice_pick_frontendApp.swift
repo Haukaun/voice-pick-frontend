@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct voice_pick_frontendApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+	var body: some Scene {
+		WindowGroup {
+			ContentView()
+		}
+	}
 }

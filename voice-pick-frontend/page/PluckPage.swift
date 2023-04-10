@@ -10,8 +10,9 @@
 import SwiftUI
 
 struct PluckPage: View {
-
+	
 	@EnvironmentObject var authenticationService: AuthenticationService
+	
 	@ObservedObject private var pluckService = PluckService()
 	@ObservedObject private var voiceService = VoiceService()
 	
@@ -22,20 +23,20 @@ struct PluckPage: View {
 			}
 			switch pluckService.activePage {
 			case .LOBBY:
-				PluckLobby(token: authenticationService.authToken?.access_token)
-				.transition(.backslide)
+				PluckLobby(token: authenticationService.accessToken)
+					.transition(.backslide)
 			case .INFO:
 				PluckInfo()
-				.transition(.backslide)
+					.transition(.backslide)
 			case .LIST_VIEW:
 				PluckListDisplay()
-				.transition(.backslide)
+					.transition(.backslide)
 			case .COMPLETE:
 				PluckComplete()
-				.transition(.backslide)
+					.transition(.backslide)
 			case .DELIVERY:
 				PluckFinish()
-				.transition(.backslide)
+					.transition(.backslide)
 			}
 		}
 		.onAppear {
@@ -46,7 +47,11 @@ struct PluckPage: View {
 			voiceService.stopRecording()
 		}
 		.onChange(of: voiceService.transcription) { newValue in
-			pluckService.doAction(keyword: newValue, fromVoice: true)
+			pluckService.doAction(
+				keyword: newValue,
+				fromVoice: true,
+				token: authenticationService.accessToken
+			)
 		}
 		.environmentObject(pluckService)
 		.background(Color.backgroundColor)

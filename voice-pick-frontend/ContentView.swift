@@ -10,11 +10,11 @@ import Speech
 import KeychainSwift
 struct ContentView: View {
 	
-	@ObservedObject var authenticationService = AuthenticationService()
+	@StateObject var authenticationService = AuthenticationService()
 	
 	var body: some View {
-		if authenticationService.authToken != nil {
-			if authenticationService.isEmailVerified != false {
+		if !authenticationService.accessToken.isEmpty {
+			if authenticationService.emailVerified != false {
 				TabBar()
 					.environmentObject(authenticationService)
 			} else {

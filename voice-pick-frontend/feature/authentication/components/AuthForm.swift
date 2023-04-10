@@ -12,7 +12,7 @@ struct AuthForm: View {
 	
 	@State var firstnameValue = ""
 	@State var lastnameValue = ""
-    @Binding var emailValue: String
+	@Binding var emailValue: String
 	@State var passwordValue = ""
 	
 	@State var submitted = false;
@@ -82,8 +82,8 @@ struct AuthForm: View {
 			switch result {
 			case .success(let isVerified):
 				DispatchQueue.main.async {
-					authenticationService.isEmailVerified = isVerified
-					authenticationService.userEmail = userInfo.email
+					authenticationService.emailVerified = isVerified
+					authenticationService.email = userInfo.email.lowercased()
 				}
 			case .failure(let error as RequestError):
 				print(error)
@@ -104,7 +104,10 @@ struct AuthForm: View {
 				switch result {
 				case .success(let response):
 					checkEmailVerification(response, userInfo: userInfo)
-					authenticationService.saveToken(token: response)
+					DispatchQueue.main.async {
+						authenticationService.accessToken = response.access_token
+						authenticationService.refreshToken = response.refresh_token
+					}
 					break
 				case .failure(let error as RequestError):
 					handleError(errorCode: error.errorCode)
@@ -192,7 +195,7 @@ struct AuthForm: View {
 
 struct AuthForm_Previews: PreviewProvider {
 	static var previews: some View {
-        AuthForm(emailValue: .constant(""), authMode: .constant(AuthMode.signup))
+		AuthForm(emailValue: .constant(""), authMode: .constant(AuthMode.signup))
 			.padding(50)
 	}
 }

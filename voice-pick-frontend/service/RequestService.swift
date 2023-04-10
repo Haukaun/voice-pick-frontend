@@ -39,9 +39,9 @@ class RequestService: ObservableObject {
 	///     - path: The relative path to the api endpoint
 	///     - body: The body of the response. This is optional and is not used in case of a get request
 	///     - responseType: The type of the expected response
-	private func request<T: Codable, U: Codable>(_ method: String, _ path: String, _ header: String? = nil, _ body: T?, _ responseType: U.Type, _ completion: @escaping (Result<U, Error>) -> Void) {
+	private func request<T: Codable, U: Codable>(_ method: String, _ path: String, _ token: String? = nil, _ body: T?, _ responseType: U.Type, _ completion: @escaping (Result<U, Error>) -> Void) {
 		self.isLoading = true;
-	
+		
 		guard let url = URL(string: apiBaseUrl + path) else {
 			self.isLoading = false;
 			return
@@ -66,8 +66,8 @@ class RequestService: ObservableObject {
 		urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
 		urlRequest.setValue("IOS", forHTTPHeaderField: "CHANNEL")
 		
-		if header != nil {
-			urlRequest.setValue("Bearer \(header!)", forHTTPHeaderField: "Authorization")
+		if token != nil {
+			urlRequest.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
 		}
 		
 		let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
@@ -110,46 +110,50 @@ class RequestService: ObservableObject {
 				}
 			}
 		}
-			task.resume()
-		}
-		
-		/// Returns an object of type U. The object has to conform `Codable` so it can be mapped to from json
-		///
-		/// - Parameters:
-		///     - path: The relative path to the endpoint
-		///     - responseType: The type of the response you expect to get
-		///     - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
-	func get<U: Codable>(path: String, header: String? = nil, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
-			request(
-				"GET",
-				path,
-				header,
-				nil as String?,
-				responseType,
-				completion
-			)
-		}
-		
-		/**
-		 Returns an object of type U. The object has to conform to `Codable` so it can be mapped to and from JSON
-		 
-		 - Parameters:
-		 - path: The relative path to the endpoint
-		 - body: The additional information as type T to attach the requets body
-		 - responseType: The type of the response you expect to get
-		 - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
-		 */
-	func post<U: Codable, T: Codable>(path: String, header: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
-			request(
-				"POST",
-				path,
-				header,
-				body,
-				responseType,
-				completion
-			)
-		}
-		
-		// TODO: Make functions for post, put and delete
-		
+		task.resume()
 	}
+	
+	/**
+	 Returns an object of type U. The object has to conform `Codable` so it can be mapped to from json
+	 
+	 - Parameters:
+	   - path: The raltive path to the endpoint
+	   - token: A jwt token that should be added to the headers
+	   - responseType: The type of the response you expect to get
+	   - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
+	 */
+	func get<U: Codable>(path: String, token: String? = nil, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+		request(
+			"GET",
+			path,
+			token,
+			nil as String?,
+			responseType,
+			completion
+		)
+	}
+	
+	/**
+	 Returns an object of type U. The object has to conform to `Codable` so it can be mapped to and from JSON
+	 
+	 - Parameters:
+	   - path: The relative path to the endpoint
+	   - token: A jwt token that should be added to the headers
+	   - body: The additional information as type T to attach the requets body
+	   - responseType: The type of the response you expect to get
+	   - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
+	 */
+	func post<U: Codable, T: Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+		request(
+			"POST",
+			path,
+			token,
+			body,
+			responseType,
+			completion
+		)
+	}
+	
+	// TODO: Make functions for post, put and delete
+	
+}

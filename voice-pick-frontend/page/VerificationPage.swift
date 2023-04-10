@@ -25,21 +25,26 @@ struct VerificationPage: View {
 	 Check if the given Verification code exists in backend
 	 */
 	func checkVerificationCode() {
-		let emailVerificationCode = EmailVerificationCode(verificationCode: verificationCode, email: authenticationService.userEmail!)
-		requestService.post(path: "/auth/check-verification-code", body: emailVerificationCode, responseType: Bool.self, completion: { result in
-			switch result {
-			case .success(let response):
-				DispatchQueue.main.async {
-					authenticationService.isEmailVerified = response
+		let emailVerificationCode = EmailVerificationCode(verificationCode: verificationCode, email: authenticationService.email)
+		requestService.post(
+			path: "/auth/check-verification-code",
+			token: authenticationService.accessToken,
+			body: emailVerificationCode,
+			responseType: Bool.self,
+			completion: { result in
+				switch result {
+				case .success(let response):
+					DispatchQueue.main.async {
+						authenticationService.emailVerified = response
+					}
+					break
+				case .failure(let error as RequestError):
+					handleError(errorCode: error.errorCode)
+					break
+				default:
+					break
 				}
-				break
-			case .failure(let error as RequestError):
-				handleError(errorCode: error.errorCode)
-				break
-			default:
-				break
-			}
-		})
+			})
 	}
 	
 	/*
@@ -62,7 +67,7 @@ struct VerificationPage: View {
 	 */
 	
 	func sendVerificationCode(){
-		requestService.post(path: "/auth/verify-email", body: authenticationService.userEmail, responseType: String.self, completion: { result in
+		requestService.post(path: "/auth/verify-email", body: authenticationService.email, responseType: String.self, completion: { result in
 			switch result {
 			case .success(_):
 				break
@@ -75,7 +80,7 @@ struct VerificationPage: View {
 		})
 	}
 	
-	/*
+	/**
 	 Error handling
 	 */
 	func handleError(errorCode: Int) {
@@ -95,7 +100,42 @@ struct VerificationPage: View {
 		}
 	}
 	
+	/**
+	 Logs out the user from the application
+	 */
+	func logout() {
+		requestService.post(
+			path: "/auth/signout",
+			token: authenticationService.accessToken,
+			body: TokenDto(token: authenticationService.refreshToken),
+			responseType: String.self,
+			completion: { result in
+				switch result {
+				case .failure(let error as RequestError):
+					// TODO: Handle error correctly
+					if (error.errorCode == 401) {
+						clearAuthTokens()
+					}
+					print(error)
+				case .success(_):
+					clearAuthTokens()
+				case .failure(let error):
+					print(error)
+				}
+			})
+	}
 	
+	/**
+	 Clears all stored tokens
+	 */
+	func clearAuthTokens() {
+		DispatchQueue.main.async {
+			authenticationService.accessToken = ""
+			authenticationService.refreshToken = ""
+			authenticationService.email = ""
+			authenticationService.emailVerified = false
+		}
+	}
 	
 	var body: some View {
 		NavigationView {
@@ -113,19 +153,25 @@ struct VerificationPage: View {
 				Spacer()
 				Group {
 					Text("Email verification code sent to submitted email address. Please check your spam folder.")
-						.font(.header2)
 						.foregroundColor(.foregroundColor)
 						.multilineTextAlignment(.center)
-					DefaultInput(inputLabel: "Verify Email", isPassword: false, text: $verificationCode, valid: true)
-					DefaultButton("Submit", onPress: {
-						checkVerificationCode()
-					})
-					DefaultButton(timeRemaining == 0 ? "Resend Email" : "\(timeRemaining)", disabled: timeRemaining > 0 , onPress:{
-						if timeRemaining == 0 {
-							sendVerificationCode()
-							starTimer(duration: 20)
-						}
-					})
+					VStack(spacing: 10) {
+						DefaultInput(inputLabel: "Verify Email", isPassword: false, text: $verificationCode, valid: true)
+						DefaultButton("Submit", onPress: {
+							checkVerificationCode()
+						})
+						DefaultButton(timeRemaining == 0 ? "Resend Email" : "\(timeRemaining)", disabled: timeRemaining > 0 , onPress:{
+							if timeRemaining == 0 {
+								sendVerificationCode()
+								starTimer(duration: 20)
+							}
+						})
+						Button("Log out", action: {
+							logout()
+						})
+						.buttonStyle(.plain)
+						.underline()
+					}
 				}
 				.padding(10)
 				Spacer()

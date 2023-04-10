@@ -21,7 +21,7 @@ struct TabBar: View {
 				.tabItem {
 					Label("Search", systemImage: "magnifyingglass")
 				}
-			AuthPage()
+			AccountPage()
 				.tabItem {
 					Label("Profile", systemImage: "person")
 				}

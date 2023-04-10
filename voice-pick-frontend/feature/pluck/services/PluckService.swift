@@ -27,9 +27,9 @@ class PluckService: ObservableObject {
 	@State var showAlert = false;
 	@State var errorMessage = "";
 	
-	
 	let audioSession: AVAudioSession
 	let speechSynthesizer = AVSpeechSynthesizer()
+	
 	init() {
 		audioSession = AVAudioSession.sharedInstance()
 		do {
@@ -79,16 +79,20 @@ class PluckService: ObservableObject {
 	 - fromVoice: a boolean describing if the action was made via voice. `true` if yes, `false` otherwise
 	 */
 	private func handleStartActions(_ keyword: String, _ fromVoice: Bool, _ token: String?) {
-		switch keyword {
-		case "start":
-			initializePlucklist(fromVoice, token!)
-			break
-		case "repeat":
-			speak("Say 'start' to start a new pluck order", fromVoice)
-		case "help":
-			speak("You only have one option: 'start' to start a new pluck order", fromVoice)
-		default:
-			return
+		if let token = token {
+			switch keyword {
+			case "start":
+				initializePlucklist(fromVoice, token)
+				break
+			case "repeat":
+				speak("Say 'start' to start a new pluck order", fromVoice)
+			case "help":
+				speak("You only have one option: 'start' to start a new pluck order", fromVoice)
+			default:
+				return
+			}
+		} else {
+			speak("Unauthorized. Try to log back in", fromVoice)
 		}
 	}
 	
@@ -115,7 +119,7 @@ class PluckService: ObservableObject {
 	 Initializes a new plucklist
 	 */
 	private func initializePlucklist(_ fromVoice: Bool, _ token: String) {
-		requestService.get(path: "/plucks", header: token, responseType: PluckList.self, completion: { [self] result in
+		requestService.get(path: "/plucks", token: token, responseType: PluckList.self, completion: { [self] result in
 			switch result {
 			case .success(let pluckList):
 				setPluckList(pluckList)
@@ -155,13 +159,12 @@ class PluckService: ObservableObject {
 				updateActivePage(.LIST_VIEW)
 				if let index = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil }) {
 					speak("\(pluckList?.plucks[index].product.location.code ?? "")", fromVoice)
-					
 				}
-				
 			}
 		default:
 			let found = cargoCarriers.first(where: {$0.phoneticIdentifier == keyword})
 			if (found != nil) {
+				// TODO: Send request to api to update cargo carrier for plucklist
 				pluckList?.cargoCarrier = found
 				speak("\(found!.name) selected", fromVoice)
 			} else {

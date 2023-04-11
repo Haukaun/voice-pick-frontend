@@ -153,7 +153,18 @@ class RequestService: ObservableObject {
 			completion
 		)
 	}
+
+	func delete<U: Codable, T:Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+		request(
+			"DELETE",
+			path,
+			token,
+			body,
+			responseType,
+			completion
+		)
+	}
 	
-	// TODO: Make functions for post, put and delete
+	// TODO: Make functions put
 	
 }

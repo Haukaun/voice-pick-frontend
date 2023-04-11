@@ -50,6 +50,11 @@
 		F60AD489299D1329008A30F5 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD488299D1329008A30F5 /* Paragraph.swift */; };
 		F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD48E299E4752008A30F5 /* PluckInfo.swift */; };
 		F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD490299E4D8C008A30F5 /* PluckPage.swift */; };
+		F60FFA3A29E54B8600DB4879 /* AddProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA3929E54B8600DB4879 /* AddProductPage.swift */; };
+		F60FFA3D29E54C2F00DB4879 /* PalletInfoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA3C29E54C2F00DB4879 /* PalletInfoDto.swift */; };
+		F60FFA4029E54C7900DB4879 /* AddProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA3F29E54C7900DB4879 /* AddProductField.swift */; };
+		F60FFA4329E54DB900DB4879 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = F60FFA4229E54DB900DB4879 /* CodeScanner */; };
+		F60FFA4529E5559800DB4879 /* AddProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA4429E5559800DB4879 /* AddProductDto.swift */; };
 		F619709729C35F0E00927BDB /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709629C35F0E00927BDB /* SettingsPage.swift */; };
 		F619709929C35F1D00927BDB /* DangerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709829C35F1D00927BDB /* DangerButton.swift */; };
 		F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709A29C4981D00927BDB /* JustifiedContainer.swift */; };
@@ -62,6 +67,7 @@
 		F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BFB299FBC0E007CEDB5 /* Product.swift */; };
 		F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BFD299FBD08007CEDB5 /* PluckList.swift */; };
 		F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */; };
+		F69765B229E59B7100C697B8 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69765B129E59B7100C697B8 /* BannerModifier.swift */; };
 		F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70929B090EC004AC10B /* RequestService.swift */; };
 		F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70B29B0AA47004AC10B /* Location.swift */; };
 		F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE71929B1FFCF004AC10B /* PluckPages.swift */; };
@@ -133,6 +139,10 @@
 		F60AD488299D1329008A30F5 /* Paragraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paragraph.swift; sourceTree = "<group>"; };
 		F60AD48E299E4752008A30F5 /* PluckInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckInfo.swift; sourceTree = "<group>"; };
 		F60AD490299E4D8C008A30F5 /* PluckPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPage.swift; sourceTree = "<group>"; };
+		F60FFA3929E54B8600DB4879 /* AddProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductPage.swift; sourceTree = "<group>"; };
+		F60FFA3C29E54C2F00DB4879 /* PalletInfoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletInfoDto.swift; sourceTree = "<group>"; };
+		F60FFA3F29E54C7900DB4879 /* AddProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductField.swift; sourceTree = "<group>"; };
+		F60FFA4429E5559800DB4879 /* AddProductDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductDto.swift; sourceTree = "<group>"; };
 		F619709629C35F0E00927BDB /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		F619709829C35F1D00927BDB /* DangerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerButton.swift; sourceTree = "<group>"; };
 		F619709A29C4981D00927BDB /* JustifiedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedContainer.swift; sourceTree = "<group>"; };
@@ -145,6 +155,7 @@
 		F6754BFB299FBC0E007CEDB5 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F6754BFD299FBD08007CEDB5 /* PluckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckList.swift; sourceTree = "<group>"; };
 		F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLabel.swift; sourceTree = "<group>"; };
+		F69765B129E59B7100C697B8 /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		F6ACE70929B090EC004AC10B /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		F6ACE70B29B0AA47004AC10B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F6ACE71929B1FFCF004AC10B /* PluckPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPages.swift; sourceTree = "<group>"; };
@@ -157,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60FFA4329E54DB900DB4879 /* CodeScanner in Frameworks */,
 				E8F8886729C30C8D007B77E4 /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +358,32 @@
 			path = typography;
 			sourceTree = "<group>";
 		};
+		F60FFA3829E54B7100DB4879 /* product */ = {
+			isa = PBXGroup;
+			children = (
+				F60FFA3E29E54C6500DB4879 /* components */,
+				F60FFA3B29E54C1A00DB4879 /* dtos */,
+			);
+			path = product;
+			sourceTree = "<group>";
+		};
+		F60FFA3B29E54C1A00DB4879 /* dtos */ = {
+			isa = PBXGroup;
+			children = (
+				F60FFA3C29E54C2F00DB4879 /* PalletInfoDto.swift */,
+				F60FFA4429E5559800DB4879 /* AddProductDto.swift */,
+			);
+			path = dtos;
+			sourceTree = "<group>";
+		};
+		F60FFA3E29E54C6500DB4879 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F60FFA3F29E54C7900DB4879 /* AddProductField.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
 		F640285229CD88A80023AE34 /* services */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +407,7 @@
 		F6E9BE3C299686B200DFD5EF /* feature */ = {
 			isa = PBXGroup;
 			children = (
+				F60FFA3829E54B7100DB4879 /* product */,
 				8DBE5F3129B9C3DC00349630 /* voice */,
 				F6E9BE442996873A00DFD5EF /* authentication */,
 				F6E9BE482996875E00DFD5EF /* pluck */,
@@ -384,6 +423,7 @@
 				F60AD490299E4D8C008A30F5 /* PluckPage.swift */,
 				23BCAE2F299F70D70038C0D7 /* AccountPage.swift */,
 				F619709629C35F0E00927BDB /* SettingsPage.swift */,
+				F60FFA3929E54B8600DB4879 /* AddProductPage.swift */,
 			);
 			path = page;
 			sourceTree = "<group>";
@@ -415,9 +455,9 @@
 				F60AD481299CF70A008A30F5 /* Card.swift */,
 				8D4A8154299D18B300B9A715 /* Footer.swift */,
 				23BCAE31299F75A70038C0D7 /* Header.swift */,
-				23BCAE35299FA4D00038C0D7 /* PalleType.swift */,
 				F619709829C35F1D00927BDB /* DangerButton.swift */,
 				F619709A29C4981D00927BDB /* JustifiedContainer.swift */,
+				F69765B129E59B7100C697B8 /* BannerModifier.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -499,6 +539,7 @@
 			name = "voice-pick-frontend";
 			packageProductDependencies = (
 				E8F8886629C30C8D007B77E4 /* KeychainSwift */,
+				F60FFA4229E54DB900DB4879 /* CodeScanner */,
 			);
 			productName = "voice-pick-frontend";
 			productReference = E8603B3B2996584000E09361 /* voice-pick-frontend.app */;
@@ -574,6 +615,7 @@
 			mainGroup = E8603B322996584000E09361;
 			packageReferences = (
 				E8F8886529C30C8D007B77E4 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				F60FFA4129E54DB900DB4879 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = E8603B3C2996584000E09361 /* Products */;
 			projectDirPath = "";
@@ -622,11 +664,13 @@
 				F662F78129E1852800C7FAC0 /* TokenDto.swift in Sources */,
 				F60AD489299D1329008A30F5 /* Paragraph.swift in Sources */,
 				F67354AB29AF73E200D7E601 /* PluckComplete.swift in Sources */,
+				F60FFA3A29E54B8600DB4879 /* AddProductPage.swift in Sources */,
 				F60AD485299D0AD1008A30F5 /* Title.swift in Sources */,
 				E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */,
 				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
 				23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */,
 				F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */,
+				F60FFA3D29E54C2F00DB4879 /* PalletInfoDto.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				8DBAB8FB29CB01DC0073B134 /* PluckListLocation.swift in Sources */,
 				E8A2432B29C35B54007D0F60 /* PasswordInput.swift in Sources */,
@@ -636,12 +680,14 @@
 				F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,
+				F69765B229E59B7100C697B8 /* BannerModifier.swift in Sources */,
 				8DB45FF729D6D32D0057BCDB /* VerificationPage.swift in Sources */,
 				8D4A8155299D18B300B9A715 /* Footer.swift in Sources */,
 				F619709929C35F1D00927BDB /* DangerButton.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */,
 				8DB727AC29CDA78F009CA150 /* User.swift in Sources */,
+				F60FFA4529E5559800DB4879 /* AddProductDto.swift in Sources */,
 				8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */,
 				E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */,
 				8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */,
@@ -662,6 +708,7 @@
 				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
 				E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */,
 				F640285129CD85B70023AE34 /* VoiceService.swift in Sources */,
+				F60FFA4029E54C7900DB4879 /* AddProductField.swift in Sources */,
 				8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */,
 				2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */,
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,
@@ -1023,6 +1070,14 @@
 				kind = branch;
 			};
 		};
+		F60FFA4129E54DB900DB4879 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1030,6 +1085,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E8F8886529C30C8D007B77E4 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		F60FFA4229E54DB900DB4879 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F60FFA4129E54DB900DB4879 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

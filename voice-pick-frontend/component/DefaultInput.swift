@@ -9,21 +9,16 @@ import SwiftUI
 
 struct DefaultInput: View {
 	let inputLabel: String
-	var isPassword: Bool = false
 	@Binding public var text: String
 	var valid: Bool
+	var keyboardType: UIKeyboardType = .asciiCapable
 	
 	var body: some View {
-		let view = isPassword ? AnyView(SecureField(
+		TextField(
 			inputLabel,
 			text: $text
-		).autocorrectionDisabled(true)):
-		AnyView(TextField(
-			inputLabel,
-			text: $text
-		).autocorrectionDisabled(true))
-		
-		return view
+		).autocorrectionDisabled(true)
+			.keyboardType(keyboardType)
 			.fontWeight(.bold)
 			.font(.button)
 			.padding()
@@ -41,9 +36,11 @@ struct DefaultInput: View {
 struct DefaultInput_Previews: PreviewProvider {
 	static var previews: some View {
 		VStack {
-			DefaultInput(inputLabel: "Email", isPassword: false, text: .constant("hello"), valid: true)
-			DefaultInput(inputLabel: "Email", isPassword: false, text: .constant(""), valid: false)
+			DefaultInput(inputLabel: "Email", text: .constant("hello"), valid: true)
+			DefaultInput(inputLabel: "Email", text: .constant(""), valid: false)
+			DefaultInput(inputLabel: "Phonenumber", text: .constant("123"), valid: true, keyboardType: .numberPad)
 		}
 		.padding()
 	}
 }
+

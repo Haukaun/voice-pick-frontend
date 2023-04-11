@@ -156,7 +156,7 @@ struct VerificationPage: View {
 						.foregroundColor(.foregroundColor)
 						.multilineTextAlignment(.center)
 					VStack(spacing: 10) {
-						DefaultInput(inputLabel: "Verify Email", isPassword: false, text: $verificationCode, valid: true)
+						DefaultInput(inputLabel: "Verify Email", text: $verificationCode, valid: true)
 						DefaultButton("Submit", onPress: {
 							checkVerificationCode()
 						})

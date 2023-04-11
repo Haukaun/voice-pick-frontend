@@ -17,9 +17,9 @@ struct TabBar: View {
 					Label("Menu", systemImage: "house")
 				}
 				.environmentObject(authenticationService)
-			AccountPage()
+			AddProductPage()
 				.tabItem {
-					Label("Search", systemImage: "magnifyingglass")
+					Label("Add product", systemImage: "plus.app.fill")
 				}
 			AccountPage()
 				.tabItem {

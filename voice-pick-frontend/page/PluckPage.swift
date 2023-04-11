@@ -61,5 +61,6 @@ struct PluckPage: View {
 struct PluckPage_Previews: PreviewProvider {
 	static var previews: some View {
 		PluckPage()
+			.environmentObject(AuthenticationService())
 	}
 }

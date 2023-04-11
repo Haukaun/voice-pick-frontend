@@ -10,6 +10,7 @@ import SwiftUI
 struct TabBar: View {
 	
 	@EnvironmentObject var authenticationService: AuthenticationService
+	@EnvironmentObject var ttsService: TTSService
 	var body: some View {
 		TabView {
 			PluckPage()

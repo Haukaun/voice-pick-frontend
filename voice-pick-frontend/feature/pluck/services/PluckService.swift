@@ -27,6 +27,8 @@ class PluckService: ObservableObject {
 	@State var showAlert = false;
 	@State var errorMessage = "";
 	
+	private var ttsService = TTSService()
+	
 	let audioSession: AVAudioSession
 	let speechSynthesizer = AVSpeechSynthesizer()
 	
@@ -85,14 +87,14 @@ class PluckService: ObservableObject {
 				initializePlucklist(fromVoice, token)
 				break
 			case "repeat":
-				speak("Say 'start' to start a new pluck order", fromVoice)
+				ttsService.speak("Say 'start' to start a new pluck order", fromVoice)
 			case "help":
-				speak("You only have one option: 'start' to start a new pluck order", fromVoice)
+				ttsService.speak("You only have one option: 'start' to start a new pluck order", fromVoice)
 			default:
 				return
 			}
 		} else {
-			speak("Unauthorized. Try to log back in", fromVoice)
+			ttsService.speak("Unauthorized. Try to log back in", fromVoice)
 		}
 	}
 	
@@ -125,7 +127,7 @@ class PluckService: ObservableObject {
 				setPluckList(pluckList)
 				setCurrentStep(.SELECT_CARGO)
 				updateActivePage(.INFO)
-				speak("Select cargo carrier before continuing", fromVoice)
+				ttsService.speak("Select cargo carrier before continuing", fromVoice)
 			case .failure(let error as RequestError):
 				handleError(errorCode: error.errorCode)
 			default:
@@ -145,20 +147,20 @@ class PluckService: ObservableObject {
 		switch keyword {
 		case "help":
 			for cargoCarrier in cargoCarriers {
-				speak("Say \(cargoCarrier.phoneticIdentifier) for \(cargoCarrier.name)", fromVoice )
+				ttsService.speak("Say \(cargoCarrier.phoneticIdentifier) for \(cargoCarrier.name)", fromVoice )
 			}
-			speak("Say 'next' after selecting cargo carrier to continue", fromVoice)
+			ttsService.speak("Say 'next' after selecting cargo carrier to continue", fromVoice)
 			break
 		case "repeat":
-			speak("Select a cargo carrier to continue.", fromVoice)
+			ttsService.speak("Select a cargo carrier to continue.", fromVoice)
 		case "next":
 			if (pluckList?.cargoCarrier == nil) {
-				speak("Need to select a cargo carrier", fromVoice)
+				ttsService.speak("Need to select a cargo carrier", fromVoice)
 			} else {
 				setCurrentStep(.PLUCK)
 				updateActivePage(.LIST_VIEW)
 				if let index = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil }) {
-					speak("\(pluckList?.plucks[index].product.location.code ?? "")", fromVoice)
+					ttsService.speak("\(pluckList?.plucks[index].product.location.code ?? "")", fromVoice)
 				}
 			}
 		default:
@@ -166,12 +168,12 @@ class PluckService: ObservableObject {
 			if (found != nil) {
 				// TODO: Send request to api to update cargo carrier for plucklist
 				pluckList?.cargoCarrier = found
-				speak("\(found!.name) selected", fromVoice)
+				ttsService.speak("\(found!.name) selected", fromVoice)
 			} else {
 				if (pluckList?.cargoCarrier != nil) {
-					speak("Say 'next' to continue", fromVoice)
+					ttsService.speak("Say 'next' to continue", fromVoice)
 				} else {
-					speak("Need to select a cargo carrier.", fromVoice)
+					ttsService.speak("Need to select a cargo carrier.", fromVoice)
 				}
 			}
 		}
@@ -194,13 +196,13 @@ class PluckService: ObservableObject {
 				pluckList?.plucks[index].confirmedAt = Date()
 			} else {
 				// Wrong control digits
-				speak("Wrong control digits. Try again", fromVoice)
+				ttsService.speak("Wrong control digits. Try again", fromVoice)
 			}
 		} else {
 			// No control digits entered
 			switch keyword {
 			case "help":
-				speak("Confirm control digit, then say 'complete' to complete the pluck", fromVoice)
+				ttsService.speak("Confirm control digit, then say 'complete' to complete the pluck", fromVoice)
 			case "repeat":
 				let index = pluckList?.plucks.firstIndex(where: { $0.confirmedAt == nil })
 				
@@ -209,7 +211,7 @@ class PluckService: ObservableObject {
 				}
 				
 				// Repeat location
-				speak("\(pluckList?.plucks[index].product.location.code ?? "")", fromVoice)
+				ttsService.speak("\(pluckList?.plucks[index].product.location.code ?? "")", fromVoice)
 			case "complete":
 				let index = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil })
 				
@@ -224,7 +226,7 @@ class PluckService: ObservableObject {
 					// If every pluck is completed
 					if (pluckList?.plucks.filter{ $0.pluckedAt == nil }.count == 0) {
 						updateActivePage(.COMPLETE)
-						speak("All plucks completed", fromVoice)
+						ttsService.speak("All plucks completed", fromVoice)
 						DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 							DispatchQueue.main.async { [self] in
 								self.updateActivePage(.DELIVERY)
@@ -233,12 +235,12 @@ class PluckService: ObservableObject {
 						}
 					}
 				} else {
-					speak("Need to confirm pluck first", fromVoice)
+					ttsService.speak("Need to confirm pluck first", fromVoice)
 				}
 			case "back":
 				setCurrentStep(.SELECT_CARGO)
 				updateActivePage(.INFO)
-				speak("Select cargo", fromVoice)
+				ttsService.speak("Select cargo", fromVoice)
 			default:
 				return
 			}
@@ -249,25 +251,25 @@ class PluckService: ObservableObject {
 		if let keywordInt = isControlDigits(keyword) {
 			if (keywordInt == pluckList?.location.controlDigits) {
 				pluckList?.confirmedAt = Date()
-				speak("Say 'complete' to finish pluck", fromVoice)
+				ttsService.speak("Say 'complete' to finish pluck", fromVoice)
 			} else {
-				speak("Wrong control digits. Try again", fromVoice)
+				ttsService.speak("Wrong control digits. Try again", fromVoice)
 			}
 		} else {
 			switch keyword {
 			case "repeat":
-				speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
+				ttsService.speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
 			case "help":
-				speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
+				ttsService.speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
 			case "complete":
 				if (pluckList?.confirmedAt == nil) {
-					speak("Need to confirm with control digits first...", fromVoice)
+					ttsService.speak("Need to confirm with control digits first...", fromVoice)
 				} else {
 					pluckList?.finishedAt = Date()
 					
 					setCurrentStep(.START)
 					updateActivePage(.LOBBY)
-					speak("Say 'start' to start a new pluck order", fromVoice)
+					ttsService.speak("Say 'start' to start a new pluck order", fromVoice)
 				}
 			default:
 				return
@@ -314,27 +316,7 @@ class PluckService: ObservableObject {
 			}
 		}
 	}
-	
-	/**
-	 Plays a string to the device audio output
-	 
-	 - Parameters:
-	 - utterance: the string to be played to the speaker
-	 - fromVoice: a boolean discribing if commands where given via voice or touch.
-	 If they were given through voice, the utterance is played on the speakers.
-	 If the commands are given through touch, the utterance is not played on the speakers
-	 */
-	private func speak(_ utterance: String, _ fromVoice: Bool) {
-		if (fromVoice) {
-			let speechUtterance = AVSpeechUtterance(string: utterance)
-			speechUtterance.rate = AVSpeechUtteranceMaximumSpeechRate / 2
-			speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-			speechUtterance.volume = 1.0
-			speechUtterance.pitchMultiplier = 1.0
-			
-			speechSynthesizer.speak(speechUtterance)
-		}
-	}
+
 	
 	/**
 	 Sets the currect step in a page.

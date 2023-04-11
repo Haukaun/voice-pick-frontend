@@ -19,6 +19,8 @@
 		8D46B25E29C340A000F3E9EB /* CargoCarrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D46B25D29C340A000F3E9EB /* CargoCarrier.swift */; };
 		8D4A8155299D18B300B9A715 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A8154299D18B300B9A715 /* Footer.swift */; };
 		8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F8EB299E240A001DB87C /* TabBar.swift */; };
+		8D77C3B829E5386300C36D11 /* Voice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3B729E5386300C36D11 /* Voice.swift */; };
+		8D77C3BA29E5390000C36D11 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3B929E5390000C36D11 /* TTSService.swift */; };
 		8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5A29A673610015800D /* ButtonRandomizer.swift */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
 		8DB45FF729D6D32D0057BCDB /* VerificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */; };
@@ -105,6 +107,8 @@
 		8D4A8154299D18B300B9A715 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		8D5AEBF629C46D5E0030FAF5 /* PluckService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckService.swift; sourceTree = "<group>"; };
 		8D67F8EB299E240A001DB87C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		8D77C3B729E5386300C36D11 /* Voice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Voice.swift; path = "voice-pick-frontend/feature/voice/Voice.swift"; sourceTree = SOURCE_ROOT; };
+		8D77C3B929E5390000C36D11 /* TTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSService.swift; sourceTree = "<group>"; };
 		8D921C5A29A673610015800D /* ButtonRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRandomizer.swift; sourceTree = "<group>"; };
 		8DAB093329968296005A61C0 /* Styles+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Styles+Extensions.swift"; sourceTree = "<group>"; };
 		8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationPage.swift; sourceTree = "<group>"; };
@@ -217,9 +221,18 @@
 			path = layout;
 			sourceTree = "<group>";
 		};
+		8D77C3B629E5381D00C36D11 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				8D77C3B729E5386300C36D11 /* Voice.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
 		8DBE5F3129B9C3DC00349630 /* voice */ = {
 			isa = PBXGroup;
 			children = (
+				8D77C3B629E5381D00C36D11 /* components */,
 				F640285229CD88A80023AE34 /* services */,
 			);
 			path = voice;
@@ -388,6 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				F640285029CD85B70023AE34 /* VoiceService.swift */,
+				8D77C3B929E5390000C36D11 /* TTSService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -680,12 +694,14 @@
 				F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,
+				8D77C3B829E5386300C36D11 /* Voice.swift in Sources */,
 				F69765B229E59B7100C697B8 /* BannerModifier.swift in Sources */,
 				8DB45FF729D6D32D0057BCDB /* VerificationPage.swift in Sources */,
 				8D4A8155299D18B300B9A715 /* Footer.swift in Sources */,
 				F619709929C35F1D00927BDB /* DangerButton.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */,
+				8D77C3BA29E5390000C36D11 /* TTSService.swift in Sources */,
 				8DB727AC29CDA78F009CA150 /* User.swift in Sources */,
 				F60FFA4529E5559800DB4879 /* AddProductDto.swift in Sources */,
 				8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */,
@@ -880,7 +896,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = 45723U7VDN;
+				DEVELOPMENT_TEAM = VQFNF9YL3F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -915,7 +931,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = 45723U7VDN;
+				DEVELOPMENT_TEAM = VQFNF9YL3F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";

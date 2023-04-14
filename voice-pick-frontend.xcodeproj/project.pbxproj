@@ -21,6 +21,7 @@
 		8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D67F8EB299E240A001DB87C /* TabBar.swift */; };
 		8D77C3B829E5386300C36D11 /* Voice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3B729E5386300C36D11 /* Voice.swift */; };
 		8D77C3BA29E5390000C36D11 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3B929E5390000C36D11 /* TTSService.swift */; };
+		8D77C3BC29E6984B00C36D11 /* PluckCardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3BB29E6984B00C36D11 /* PluckCardDetail.swift */; };
 		8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5A29A673610015800D /* ButtonRandomizer.swift */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
 		8DB45FF729D6D32D0057BCDB /* VerificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */; };
@@ -109,6 +110,7 @@
 		8D67F8EB299E240A001DB87C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		8D77C3B729E5386300C36D11 /* Voice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Voice.swift; path = "voice-pick-frontend/feature/voice/Voice.swift"; sourceTree = SOURCE_ROOT; };
 		8D77C3B929E5390000C36D11 /* TTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSService.swift; sourceTree = "<group>"; };
+		8D77C3BB29E6984B00C36D11 /* PluckCardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckCardDetail.swift; sourceTree = "<group>"; };
 		8D921C5A29A673610015800D /* ButtonRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRandomizer.swift; sourceTree = "<group>"; };
 		8DAB093329968296005A61C0 /* Styles+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Styles+Extensions.swift"; sourceTree = "<group>"; };
 		8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationPage.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				23BCAE35299FA4D00038C0D7 /* PalleType.swift */,
 				8D921C5A29A673610015800D /* ButtonRandomizer.swift */,
 				F67354A829AF57C700D7E601 /* PluckCard.swift */,
+				8D77C3BB29E6984B00C36D11 /* PluckCardDetail.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				F67354AB29AF73E200D7E601 /* PluckComplete.swift in Sources */,
 				F60FFA3A29E54B8600DB4879 /* AddProductPage.swift in Sources */,
 				F60AD485299D0AD1008A30F5 /* Title.swift in Sources */,
+				8D77C3BC29E6984B00C36D11 /* PluckCardDetail.swift in Sources */,
 				E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */,
 				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
 				23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */,

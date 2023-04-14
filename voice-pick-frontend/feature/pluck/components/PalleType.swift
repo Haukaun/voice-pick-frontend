@@ -58,5 +58,6 @@ struct PalleType: View {
 struct PalleType_Previews: PreviewProvider {
 	static var previews: some View {
 		PalleType(cargoCarriers: [])
+			.environmentObject(PluckService())
 	}
 }

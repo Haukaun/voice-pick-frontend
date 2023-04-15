@@ -13,6 +13,8 @@ struct PluckCard: View {
 	
 	@State var pluck: Pluck
 	@State var showDetailPluck: Bool = false
+	@State var amountPlucked: Int?
+	@State var showPopUp: Bool = false
 	
 	let onSelectedControlDigit: (Int) -> Void
 	let onComplete: (Int) -> Void
@@ -21,6 +23,26 @@ struct PluckCard: View {
 	
 	private var totalWeight: Float {
 		return pluck.product.weight * Float(pluck.amount)
+	}
+	
+	/**
+	 Change color on Progressview widget.
+	 */
+	private func progressColor() -> Color {
+			let progress = Float(amountPlucked ?? 0) / Float(pluck.amount)
+		
+			switch progress {
+			case 0..<0.33:
+					return Color.traceLightYellow
+			case 0.33..<0.66:
+					return Color.traceMediYellow
+			case 0.66..<0.99:
+					return Color.traceDarkYellow
+			case 1:
+					return Color.success
+			default:
+					return Color.error
+			}
 	}
 	
 	var body: some View {
@@ -39,7 +61,7 @@ struct PluckCard: View {
 					}
 					Spacer()
 					Button {
-							showDetailPluck = true
+						showDetailPluck = true
 					} label: {
 						Image(systemName: "info.circle.fill")
 							.font(Font.infoButton)
@@ -49,10 +71,10 @@ struct PluckCard: View {
 					.foregroundColor(.traceMediYellow)
 					.clipShape(Capsule())
 					.sheet(isPresented: $showDetailPluck) {
-							PluckCardDetail(pluck: pluck)
+						PluckCardDetail(pluck: pluck)
 					}
 				}
-				HStack(spacing: 25) {
+				HStack(spacing: 30) {
 					VStack (alignment: .leading) {
 						Paragraph("Lokasjon")
 							.lineLimit(1)
@@ -99,20 +121,28 @@ struct PluckCard: View {
 							.bold()
 					}
 				}
+				ProgressView(value: Float(amountPlucked ?? 0), total: Float(pluck.amount))
+					.tint(progressColor())
 				if (showControlDigits) {
-					Divider()
-						.padding(.bottom)
 					ButtonRandomizer(
 						correctAnswer: pluck.product.location.controlDigits,
 						onCorrectAnswerSelected: { number in
 							onSelectedControlDigit(number)
 						},
-						disableButtons: disableControlDigits)
+						disableButtons: disableControlDigits && amountPlucked != pluck.amount)
 				}
 			}
 		}
+		.onTapGesture {
+			showPopUp = true
+		}
+		.alert("Oppgi antall plukket",isPresented: $showPopUp, actions: {
+			TextField("Antall", value: $amountPlucked, format: .number)
+				.keyboardType(.numberPad)
+			Button("OK", action: {})
+		})
 		.swipeActions(edge: .trailing, content:{
-			!showControlDigits ?
+			!showControlDigits && amountPlucked == pluck.amount ?
 			Button(role: .destructive) {
 				onComplete(pluck.id)
 			} label: {
@@ -121,9 +151,8 @@ struct PluckCard: View {
 			:
 			Button(role: .none) {
 			} label: {
-				Label("Velg siffer først" , systemImage: "xmark.app.fill")
+				Label("Velg kontrollsiffer og skriv antall plukk" , systemImage: "xmark.app.fill")
 			}.tint(.error)
-			
 		})
 	}
 }
@@ -141,8 +170,8 @@ struct PluckCard_Previews: PreviewProvider {
 						quantity: 20,
 						type: .D_PACK,
 						status: .READY,
-						location: .init(id: 0, code: "HB-209", controlDigits: 123)),
-			amount: 2, amountPlucked: 0,
+						location: .init(code: "HB-209", controlDigits: 123, locationType: "PRODUCT")),
+			amount: 5, amountPlucked: 1,
 			createdAt: DateFormatter().string(from: Date()),
 			confirmedAt: nil,
 			pluckedAt: nil),

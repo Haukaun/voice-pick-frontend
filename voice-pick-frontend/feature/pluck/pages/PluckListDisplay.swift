@@ -34,7 +34,7 @@ struct PluckListDisplay: View {
 							pluckService.doAction(keyword: "complete", fromVoice: false)
 						},
 											showControlDigits: pluck.confirmedAt == nil,
-											disableControlDigits: pluck.id != pluckService.pluckList?.plucks.filter{ $0.pluckedAt == nil }.first?.id
+											disableControlDigits: pluck.id != pluckService.pluckList?.plucks.filter{ $0.pluckedAt == nil }.first?.id 
 						)
 					}
 				}
@@ -58,7 +58,7 @@ struct PluckListDisplay_Previews: PreviewProvider {
 	static func initPluckService() -> PluckService {
 		let pluckService = PluckService()
 		
-		let location = Location(id: 0, code: "P345", controlDigits: 123)
+		let location = Location(code: "P345", controlDigits: 123, locationType: "PRODUCT")
 		
 		let product1 = Product(id: 1, name: "Coca-Cola", weight: 0.5, volume: 0.8, quantity: 10, type: .D_PACK, status: .READY, location: location)
 		let product2 = Product(id: 2, name: "Pepsi Brus", weight: 1.0, volume: 1.5, quantity: 5, type: .F_PACK, status: .EMPTY, location: location)
@@ -70,12 +70,11 @@ struct PluckListDisplay_Previews: PreviewProvider {
 			id: 0,
 			route: "234",
 			destination: "Kiwi Nedre Strandgate 2",
-			user: User(id: "1", firstName: "Ola", lastName: "Nordmann", email: "olanordmann@icloud.com"),
+			user: User(uuid: "1", firstName: "Ola", lastName: "Nordmann", email: "olanordmann@icloud.com"),
 			plucks: [pluck1, pluck2],
 			location: .init(
-				id: 0,
 				code: "P345",
-				controlDigits: 123)))
+				controlDigits: 123, locationType: "PLUCK_LIST")))
 		
 		return pluckService
 	}

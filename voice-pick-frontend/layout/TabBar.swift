@@ -22,7 +22,7 @@ struct TabBar: View {
 				.tabItem {
 					Label("Add product", systemImage: "plus.app.fill")
 				}
-			AccountPage()
+			SettingsPage()
 				.tabItem {
 					Label("Profile", systemImage: "person")
 				}

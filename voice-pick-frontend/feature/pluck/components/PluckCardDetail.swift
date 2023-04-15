@@ -51,7 +51,7 @@ struct PluckCardDetail: View {
 					}
 					VStack (alignment: .leading) {
 						Paragraph("Volum:")
-						Text("\(pluck.product.volume) kg")
+						Text("\(pluck.product.volume) m³")
 							.font(.header2)
 					}
 					VStack (alignment: .leading) {
@@ -80,7 +80,7 @@ struct PluckCardDetail: View {
 
 struct PluckCardDetail_Previews: PreviewProvider {
 	
-	static let location1 = Location(id: 0, code: "P345", controlDigits: 123)
+	static let location1 = Location(code: "P345", controlDigits: 123, locationType: "PRODUCT")
 	
 	static let product2 = Product(id: 2, name: "Coca-Cola", weight: 1.0, volume: 1.5, quantity: 5, type: .F_PACK, status: .EMPTY, location: location1)
 	

@@ -192,8 +192,9 @@ class PluckService: ObservableObject {
 			// Check if control digits is correct
 			if (keywordInt == pluckList?.plucks[index].product.location.controlDigits) {
 				// Updated confirmed at for the pluck
-				
-				pluckList?.plucks[index].confirmedAt = Date()
+				withAnimation {
+					pluckList?.plucks[index].confirmedAt = Date()
+				}
 			} else {
 				// Wrong control digits
 				ttsService.speak("Wrong control digits. Try again", fromVoice)
@@ -221,7 +222,7 @@ class PluckService: ObservableObject {
 				
 				if (pluckList?.plucks[index].confirmedAt != nil) {
 					
-					pluckList?.plucks[index].pluckedAt = Date()
+						pluckList?.plucks[index].pluckedAt = Date()
 					
 					// If every pluck is completed
 					if (pluckList?.plucks.filter{ $0.pluckedAt == nil }.count == 0) {
@@ -250,7 +251,9 @@ class PluckService: ObservableObject {
 	private func handleDeliveryAction(_ keyword: String, _ fromVoice: Bool) {
 		if let keywordInt = isControlDigits(keyword) {
 			if (keywordInt == pluckList?.location.controlDigits) {
-				pluckList?.confirmedAt = Date()
+				withAnimation {
+					pluckList?.confirmedAt = Date()
+				}
 				ttsService.speak("Say 'complete' to finish pluck", fromVoice)
 			} else {
 				ttsService.speak("Wrong control digits. Try again", fromVoice)

@@ -90,6 +90,8 @@ class PluckService: ObservableObject {
 				ttsService.speak("Say 'start' to start a new pluck order", fromVoice)
 			case "help":
 				ttsService.speak("You only have one option: 'start' to start a new pluck order", fromVoice)
+            case "cancel":
+                ttsService.stopSpeak()
 			default:
 				return
 			}
@@ -153,6 +155,8 @@ class PluckService: ObservableObject {
 			break
 		case "repeat":
 			ttsService.speak("Select a cargo carrier to continue.", fromVoice)
+        case "cancel":
+            ttsService.stopSpeak()
 		case "next":
 			if (pluckList?.cargoCarrier == nil) {
 				ttsService.speak("Need to select a cargo carrier", fromVoice)
@@ -204,6 +208,8 @@ class PluckService: ObservableObject {
 			switch keyword {
 			case "help":
 				ttsService.speak("Confirm control digit, then say 'complete' to complete the pluck", fromVoice)
+            case "cancel":
+                ttsService.stopSpeak()
 			case "repeat":
 				let index = pluckList?.plucks.firstIndex(where: { $0.confirmedAt == nil })
 				
@@ -264,6 +270,8 @@ class PluckService: ObservableObject {
 				ttsService.speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
 			case "help":
 				ttsService.speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
+            case "cancel":
+                ttsService.stopSpeak()
 			case "complete":
 				if (pluckList?.confirmedAt == nil) {
 					ttsService.speak("Need to confirm with control digits first...", fromVoice)

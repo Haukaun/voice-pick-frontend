@@ -900,7 +900,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = VQFNF9YL3F;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -935,7 +935,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = VQFNF9YL3F;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";

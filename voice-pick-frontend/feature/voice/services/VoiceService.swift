@@ -70,7 +70,7 @@ class VoiceService: ObservableObject {
 		guard let recognitionRequest = recognitionRequest else { return }
 		
 		let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-		recognitionRequest.contextualStrings = ["start" , "repeat", "next", "help", "complete", "back", "one", "two", "three"]
+        recognitionRequest.contextualStrings = ["start" , "repeat", "cancel", "next", "help", "complete", "back", "one", "two", "three"]
 		numbers.forEach { number in
 			recognitionRequest.contextualStrings.append(number)
 		}

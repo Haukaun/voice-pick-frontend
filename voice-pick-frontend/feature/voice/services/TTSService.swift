@@ -44,6 +44,13 @@ class TTSService: ObservableObject {
 			speechSynthesizer.speak(speechUtterance)
 		}
 	}
+    
+    /*
+     Stop the speaking midsentence
+     */
+    func stopSpeak() {
+        speechSynthesizer.stopSpeaking(at: .immediate)
+    }
 	
 	/*
 	 Set Voice

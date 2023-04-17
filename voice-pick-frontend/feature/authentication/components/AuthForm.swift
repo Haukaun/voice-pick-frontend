@@ -75,25 +75,6 @@ struct AuthForm: View {
 	
 	
 	/**
-	 Check if the users Email is verified
-	 */
-	func checkEmailVerification(_ response: LoginResponse, userInfo: UserInfo) {
-		requestService.post(path: "/auth/email-verified", body: response.access_token, responseType: Bool.self, completion: { result in
-			switch result {
-			case .success(let isVerified):
-				DispatchQueue.main.async {
-					authenticationService.emailVerified = isVerified
-					authenticationService.email = userInfo.email.lowercased()
-				}
-			case .failure(let error as RequestError):
-				print(error)
-			default:
-				break
-			}
-		})
-	}
-	
-	/**
 	 Sign the user in to the system.
 	 */
 	func signIn() {
@@ -103,10 +84,12 @@ struct AuthForm: View {
 			requestService.post(path: "/auth/login", body: userInfo, responseType: LoginResponse.self, completion: { result in
 				switch result {
 				case .success(let response):
-					checkEmailVerification(response, userInfo: userInfo)
 					DispatchQueue.main.async {
-						authenticationService.accessToken = response.access_token
-						authenticationService.refreshToken = response.refresh_token
+						authenticationService.userName = response.username
+						authenticationService.email = response.email
+						authenticationService.accessToken = response.accessToken
+						authenticationService.refreshToken = response.refreshToken
+						authenticationService.emailVerified = response.emailVerified
 					}
 					break
 				case .failure(let error as RequestError):

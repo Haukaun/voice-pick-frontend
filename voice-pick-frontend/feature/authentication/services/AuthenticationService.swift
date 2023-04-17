@@ -10,6 +10,8 @@ import KeychainSwift
 
 class AuthenticationService: ObservableObject {
 	let keychain = KeychainSwift()
+	let encoder = JSONEncoder()
+	let decoder = JSONDecoder()
 	
 	private var storedAccessToken: String {
 		get {
@@ -59,6 +61,24 @@ class AuthenticationService: ObservableObject {
 		}
 	}
 	
+	private var storedUserName: String {
+		get {
+			return keychain.get("name") ?? ""
+		}
+		set {
+			keychain.set(newValue, forKey: "name")
+			DispatchQueue.main.async {
+				self.objectWillChange.send()
+			}
+		}
+	}
+	
+	@Published var userName: String = "" {
+		didSet {
+			storedUserName = userName
+		}
+	}
+	
 	@Published var accessToken: String = "" {
 		didSet {
 			storedAccessToken = accessToken
@@ -84,6 +104,7 @@ class AuthenticationService: ObservableObject {
 	}
 	
 	init() {
+		self.userName = storedUserName
 		self.accessToken = storedAccessToken
 		self.refreshToken = storedRefreshToken
 		self.emailVerified = storedEmailVerified

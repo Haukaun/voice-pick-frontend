@@ -27,6 +27,7 @@
 		8DB45FF729D6D32D0057BCDB /* VerificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */; };
 		8DB727AC29CDA78F009CA150 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB727AB29CDA78F009CA150 /* User.swift */; };
 		8DBAB8FB29CB01DC0073B134 /* PluckListLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBAB8FA29CB01DC0073B134 /* PluckListLocation.swift */; };
+		8DF87C9F29EC0D71007152C7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF87C9E29EC0D71007152C7 /* ImagePicker.swift */; };
 		E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B0AC429A0221400A5F1E2 /* Validator.swift */; };
 		E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BC729B220BA000063E9 /* UserInfo.swift */; };
 		E83C9BCF29B2267E000063E9 /* AuthMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BCE29B2267E000063E9 /* AuthMode.swift */; };
@@ -58,7 +59,6 @@
 		F60FFA4029E54C7900DB4879 /* AddProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA3F29E54C7900DB4879 /* AddProductField.swift */; };
 		F60FFA4329E54DB900DB4879 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = F60FFA4229E54DB900DB4879 /* CodeScanner */; };
 		F60FFA4529E5559800DB4879 /* AddProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA4429E5559800DB4879 /* AddProductDto.swift */; };
-		F619709729C35F0E00927BDB /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709629C35F0E00927BDB /* SettingsPage.swift */; };
 		F619709929C35F1D00927BDB /* DangerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709829C35F1D00927BDB /* DangerButton.swift */; };
 		F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709A29C4981D00927BDB /* JustifiedContainer.swift */; };
 		F640285129CD85B70023AE34 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F640285029CD85B70023AE34 /* VoiceService.swift */; };
@@ -117,6 +117,7 @@
 		8DB727AB29CDA78F009CA150 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DBAB8FA29CB01DC0073B134 /* PluckListLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckListLocation.swift; sourceTree = "<group>"; };
 		8DE0979529D3211300F3FC5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8DF87C9E29EC0D71007152C7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E82B0AC429A0221400A5F1E2 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E83C9BC729B220BA000063E9 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		E83C9BCE29B2267E000063E9 /* AuthMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMode.swift; sourceTree = "<group>"; };
@@ -149,7 +150,6 @@
 		F60FFA3C29E54C2F00DB4879 /* PalletInfoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletInfoDto.swift; sourceTree = "<group>"; };
 		F60FFA3F29E54C7900DB4879 /* AddProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductField.swift; sourceTree = "<group>"; };
 		F60FFA4429E5559800DB4879 /* AddProductDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductDto.swift; sourceTree = "<group>"; };
-		F619709629C35F0E00927BDB /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		F619709829C35F1D00927BDB /* DangerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerButton.swift; sourceTree = "<group>"; };
 		F619709A29C4981D00927BDB /* JustifiedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedContainer.swift; sourceTree = "<group>"; };
 		F640285029CD85B70023AE34 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceService.swift; sourceTree = "<group>"; };
@@ -438,7 +438,6 @@
 				8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */,
 				F60AD490299E4D8C008A30F5 /* PluckPage.swift */,
 				23BCAE2F299F70D70038C0D7 /* AccountPage.swift */,
-				F619709629C35F0E00927BDB /* SettingsPage.swift */,
 				F60FFA3929E54B8600DB4879 /* AddProductPage.swift */,
 			);
 			path = page;
@@ -474,6 +473,7 @@
 				F619709829C35F1D00927BDB /* DangerButton.swift */,
 				F619709A29C4981D00927BDB /* JustifiedContainer.swift */,
 				F69765B129E59B7100C697B8 /* BannerModifier.swift */,
+				8DF87C9E29EC0D71007152C7 /* ImagePicker.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -719,12 +719,12 @@
 				F6754BF6299FAA91007CEDB5 /* AnyTransition.swift in Sources */,
 				F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */,
 				F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */,
-				F619709729C35F0E00927BDB /* SettingsPage.swift in Sources */,
 				F6F2E78129D1970E00E56A11 /* TokenRequest.swift in Sources */,
 				F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */,
 				E8603B412996584000E09361 /* ContentView.swift in Sources */,
 				E8A2432529C30EC1007D0F60 /* LoginResponse.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
+				8DF87C9F29EC0D71007152C7 /* ImagePicker.swift in Sources */,
 				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
 				E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */,
 				F640285129CD85B70023AE34 /* VoiceService.swift in Sources */,

@@ -22,7 +22,7 @@ struct TabBar: View {
 				.tabItem {
 					Label("Add product", systemImage: "plus.app.fill")
 				}
-			SettingsPage()
+			AccountPage()
 				.tabItem {
 					Label("Profile", systemImage: "person")
 				}
@@ -33,5 +33,7 @@ struct TabBar: View {
 struct TabBar_Previews: PreviewProvider {
 	static var previews: some View {
 		TabBar()
+			.environmentObject(AuthenticationService())
+			.environmentObject(TTSService())
 	}
 }

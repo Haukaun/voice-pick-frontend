@@ -8,9 +8,12 @@
 import Foundation
 
 struct LoginResponse: Codable {
-	let access_token: String
-	let refresh_token: String
-	let expires_in: String
-	let refresh_expires_in: String
-	let token_type: String
+	let accessToken: String
+	let refreshToken: String
+	let expiresIn: String
+	let refreshExpiresIn: String
+	let tokenType: String
+	let username: String
+	let email: String
+	let emailVerified: Bool
 }

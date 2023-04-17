@@ -34,6 +34,7 @@ struct VerificationPage: View {
 			completion: { result in
 				switch result {
 				case .success(let response):
+			
 					DispatchQueue.main.async {
 						authenticationService.emailVerified = response
 					}
@@ -139,13 +140,13 @@ struct VerificationPage: View {
 	
 	var body: some View {
 		NavigationView {
-			VStack {
+			VStack(spacing: 20) {
 				ZStack {
 					Image("Tracefavicon")
 						.resizable()
 						.frame(width: 120, height: 120)
 						.opacity(0.05)
-					VStack (spacing: -20){
+					VStack (){
 						Text("TRACE").font(.guidelineHeading).foregroundColor(.traceLightYellow)
 						Text("Voice pick").font(.header1).foregroundColor(.foregroundColor)
 					}
@@ -155,7 +156,7 @@ struct VerificationPage: View {
 					Text("Email verification code sent to submitted email address. Please check your spam folder.")
 						.foregroundColor(.foregroundColor)
 						.multilineTextAlignment(.center)
-					VStack(spacing: 10) {
+					VStack(spacing: 20) {
 						DefaultInput(inputLabel: "Verify Email", text: $verificationCode, valid: true)
 						DefaultButton("Submit", onPress: {
 							checkVerificationCode()
@@ -191,5 +192,6 @@ struct VerificationPage: View {
 struct VerificaitonPage_Previews: PreviewProvider {
 	static var previews: some View {
 		VerificationPage()
+			.environmentObject(AuthenticationService())
 	}
 }

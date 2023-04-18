@@ -54,11 +54,9 @@
 		F60AD489299D1329008A30F5 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD488299D1329008A30F5 /* Paragraph.swift */; };
 		F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD48E299E4752008A30F5 /* PluckInfo.swift */; };
 		F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD490299E4D8C008A30F5 /* PluckPage.swift */; };
-		F60FFA3A29E54B8600DB4879 /* AddProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA3929E54B8600DB4879 /* AddProductPage.swift */; };
-		F60FFA3D29E54C2F00DB4879 /* PalletInfoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA3C29E54C2F00DB4879 /* PalletInfoDto.swift */; };
-		F60FFA4029E54C7900DB4879 /* AddProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA3F29E54C7900DB4879 /* AddProductField.swift */; };
 		F60FFA4329E54DB900DB4879 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = F60FFA4229E54DB900DB4879 /* CodeScanner */; };
 		F60FFA4529E5559800DB4879 /* AddProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA4429E5559800DB4879 /* AddProductDto.swift */; };
+		F619709729C35F0E00927BDB /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709629C35F0E00927BDB /* SettingsPage.swift */; };
 		F619709929C35F1D00927BDB /* DangerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709829C35F1D00927BDB /* DangerButton.swift */; };
 		F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709A29C4981D00927BDB /* JustifiedContainer.swift */; };
 		F640285129CD85B70023AE34 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F640285029CD85B70023AE34 /* VoiceService.swift */; };
@@ -70,7 +68,15 @@
 		F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BFB299FBC0E007CEDB5 /* Product.swift */; };
 		F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754BFD299FBD08007CEDB5 /* PluckList.swift */; };
 		F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */; };
+		F68A5B0829E6FD97004E4E9B /* AddProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B0729E6FD97004E4E9B /* AddProductPage.swift */; };
+		F68A5B0A29E955CC004E4E9B /* ProductDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B0929E955CC004E4E9B /* ProductDetailsPage.swift */; };
+		F68A5B0D29E976EB004E4E9B /* AddProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B0C29E976EB004E4E9B /* AddProductField.swift */; };
+		F68A5B1229E9773A004E4E9B /* PalletInfoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1129E9773A004E4E9B /* PalletInfoDto.swift */; };
+		F68A5B1429E97751004E4E9B /* AddProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1329E97751004E4E9B /* AddProductDto.swift */; };
+		F68A5B1629E977FB004E4E9B /* EditableLabelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1529E977FB004E4E9B /* EditableLabelInput.swift */; };
 		F69765B229E59B7100C697B8 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69765B129E59B7100C697B8 /* BannerModifier.swift */; };
+		F69765BE29E6D7E700C697B8 /* WarehouseConfigurationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69765BD29E6D7E700C697B8 /* WarehouseConfigurationPage.swift */; };
+		F69765C129E6E97800C697B8 /* ProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69765C029E6E97800C697B8 /* ProductPage.swift */; };
 		F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70929B090EC004AC10B /* RequestService.swift */; };
 		F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70B29B0AA47004AC10B /* Location.swift */; };
 		F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE71929B1FFCF004AC10B /* PluckPages.swift */; };
@@ -150,6 +156,7 @@
 		F60FFA3C29E54C2F00DB4879 /* PalletInfoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletInfoDto.swift; sourceTree = "<group>"; };
 		F60FFA3F29E54C7900DB4879 /* AddProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductField.swift; sourceTree = "<group>"; };
 		F60FFA4429E5559800DB4879 /* AddProductDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductDto.swift; sourceTree = "<group>"; };
+		F619709629C35F0E00927BDB /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		F619709829C35F1D00927BDB /* DangerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerButton.swift; sourceTree = "<group>"; };
 		F619709A29C4981D00927BDB /* JustifiedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedContainer.swift; sourceTree = "<group>"; };
 		F640285029CD85B70023AE34 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceService.swift; sourceTree = "<group>"; };
@@ -161,7 +168,15 @@
 		F6754BFB299FBC0E007CEDB5 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F6754BFD299FBD08007CEDB5 /* PluckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckList.swift; sourceTree = "<group>"; };
 		F6754C01299FCDF1007CEDB5 /* DefaultLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLabel.swift; sourceTree = "<group>"; };
+		F68A5B0729E6FD97004E4E9B /* AddProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductPage.swift; sourceTree = "<group>"; };
+		F68A5B0929E955CC004E4E9B /* ProductDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsPage.swift; sourceTree = "<group>"; };
+		F68A5B0C29E976EB004E4E9B /* AddProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductField.swift; sourceTree = "<group>"; };
+		F68A5B1129E9773A004E4E9B /* PalletInfoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletInfoDto.swift; sourceTree = "<group>"; };
+		F68A5B1329E97751004E4E9B /* AddProductDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductDto.swift; sourceTree = "<group>"; };
+		F68A5B1529E977FB004E4E9B /* EditableLabelInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableLabelInput.swift; sourceTree = "<group>"; };
 		F69765B129E59B7100C697B8 /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
+		F69765BD29E6D7E700C697B8 /* WarehouseConfigurationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseConfigurationPage.swift; sourceTree = "<group>"; };
+		F69765C029E6E97800C697B8 /* ProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPage.swift; sourceTree = "<group>"; };
 		F6ACE70929B090EC004AC10B /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		F6ACE70B29B0AA47004AC10B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F6ACE71929B1FFCF004AC10B /* PluckPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPages.swift; sourceTree = "<group>"; };
@@ -373,32 +388,6 @@
 			path = typography;
 			sourceTree = "<group>";
 		};
-		F60FFA3829E54B7100DB4879 /* product */ = {
-			isa = PBXGroup;
-			children = (
-				F60FFA3E29E54C6500DB4879 /* components */,
-				F60FFA3B29E54C1A00DB4879 /* dtos */,
-			);
-			path = product;
-			sourceTree = "<group>";
-		};
-		F60FFA3B29E54C1A00DB4879 /* dtos */ = {
-			isa = PBXGroup;
-			children = (
-				F60FFA3C29E54C2F00DB4879 /* PalletInfoDto.swift */,
-				F60FFA4429E5559800DB4879 /* AddProductDto.swift */,
-			);
-			path = dtos;
-			sourceTree = "<group>";
-		};
-		F60FFA3E29E54C6500DB4879 /* components */ = {
-			isa = PBXGroup;
-			children = (
-				F60FFA3F29E54C7900DB4879 /* AddProductField.swift */,
-			);
-			path = components;
-			sourceTree = "<group>";
-		};
 		F640285229CD88A80023AE34 /* services */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,10 +409,57 @@
 			path = pages;
 			sourceTree = "<group>";
 		};
+		F68A5B0B29E976CD004E4E9B /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F68A5B0C29E976EB004E4E9B /* AddProductField.swift */,
+				F68A5B1529E977FB004E4E9B /* EditableLabelInput.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		F68A5B0E29E97718004E4E9B /* dtos */ = {
+			isa = PBXGroup;
+			children = (
+				F68A5B1129E9773A004E4E9B /* PalletInfoDto.swift */,
+				F68A5B1329E97751004E4E9B /* AddProductDto.swift */,
+			);
+			path = dtos;
+			sourceTree = "<group>";
+		};
+		F69765BB29E6D7D000C697B8 /* warehouseConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				F68A5B0E29E97718004E4E9B /* dtos */,
+				F68A5B0B29E976CD004E4E9B /* components */,
+				F69765BF29E6DAFD00C697B8 /* models */,
+				F69765BC29E6D7D800C697B8 /* pages */,
+			);
+			path = warehouseConfiguration;
+			sourceTree = "<group>";
+		};
+		F69765BC29E6D7D800C697B8 /* pages */ = {
+			isa = PBXGroup;
+			children = (
+				F69765BD29E6D7E700C697B8 /* WarehouseConfigurationPage.swift */,
+				F69765C029E6E97800C697B8 /* ProductPage.swift */,
+				F68A5B0729E6FD97004E4E9B /* AddProductPage.swift */,
+				F68A5B0929E955CC004E4E9B /* ProductDetailsPage.swift */,
+			);
+			path = pages;
+			sourceTree = "<group>";
+		};
+		F69765BF29E6DAFD00C697B8 /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		F6E9BE3C299686B200DFD5EF /* feature */ = {
 			isa = PBXGroup;
 			children = (
-				F60FFA3829E54B7100DB4879 /* product */,
+				F69765BB29E6D7D000C697B8 /* warehouseConfiguration */,
 				8DBE5F3129B9C3DC00349630 /* voice */,
 				F6E9BE442996873A00DFD5EF /* authentication */,
 				F6E9BE482996875E00DFD5EF /* pluck */,
@@ -439,6 +475,7 @@
 				F60AD490299E4D8C008A30F5 /* PluckPage.swift */,
 				23BCAE2F299F70D70038C0D7 /* AccountPage.swift */,
 				F60FFA3929E54B8600DB4879 /* AddProductPage.swift */,
+				F619709629C35F0E00927BDB /* SettingsPage.swift */,
 			);
 			path = page;
 			sourceTree = "<group>";
@@ -680,16 +717,17 @@
 				23BCAE32299F75A70038C0D7 /* Header.swift in Sources */,
 				F662F78129E1852800C7FAC0 /* TokenDto.swift in Sources */,
 				F60AD489299D1329008A30F5 /* Paragraph.swift in Sources */,
+				F68A5B1229E9773A004E4E9B /* PalletInfoDto.swift in Sources */,
 				F67354AB29AF73E200D7E601 /* PluckComplete.swift in Sources */,
-				F60FFA3A29E54B8600DB4879 /* AddProductPage.swift in Sources */,
 				F60AD485299D0AD1008A30F5 /* Title.swift in Sources */,
 				8D77C3BC29E6984B00C36D11 /* PluckCardDetail.swift in Sources */,
 				E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */,
 				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
 				23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */,
 				F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */,
-				F60FFA3D29E54C2F00DB4879 /* PalletInfoDto.swift in Sources */,
+				F69765BE29E6D7E700C697B8 /* WarehouseConfigurationPage.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
+				F68A5B0829E6FD97004E4E9B /* AddProductPage.swift in Sources */,
 				8DBAB8FB29CB01DC0073B134 /* PluckListLocation.swift in Sources */,
 				E8A2432B29C35B54007D0F60 /* PasswordInput.swift in Sources */,
 				8D203A3629A39DE300D768BA /* PluckFinish.swift in Sources */,
@@ -697,6 +735,7 @@
 				E8880CA629C4E7EC00FE91C8 /* PluckService.swift in Sources */,
 				F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
+				F68A5B0A29E955CC004E4E9B /* ProductDetailsPage.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,
 				8D77C3B829E5386300C36D11 /* Voice.swift in Sources */,
 				F69765B229E59B7100C697B8 /* BannerModifier.swift in Sources */,
@@ -707,10 +746,10 @@
 				F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */,
 				8D77C3BA29E5390000C36D11 /* TTSService.swift in Sources */,
 				8DB727AC29CDA78F009CA150 /* User.swift in Sources */,
-				F60FFA4529E5559800DB4879 /* AddProductDto.swift in Sources */,
 				8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */,
 				E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */,
 				8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */,
+				F69765C129E6E97800C697B8 /* ProductPage.swift in Sources */,
 				8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */,
 				F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */,
 				F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */,
@@ -728,7 +767,6 @@
 				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
 				E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */,
 				F640285129CD85B70023AE34 /* VoiceService.swift in Sources */,
-				F60FFA4029E54C7900DB4879 /* AddProductField.swift in Sources */,
 				8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */,
 				2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */,
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,
@@ -737,7 +775,10 @@
 				8D12529C29D5AE72000DFE26 /* EmailVerificationCode.swift in Sources */,
 				E83C9BD329B22716000063E9 /* AuthForm.swift in Sources */,
 				E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */,
+				F68A5B0D29E976EB004E4E9B /* AddProductField.swift in Sources */,
+				F68A5B1629E977FB004E4E9B /* EditableLabelInput.swift in Sources */,
 				E8A2432929C32CCF007D0F60 /* AuthenticationService.swift in Sources */,
+				F68A5B1429E97751004E4E9B /* AddProductDto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,7 +934,7 @@
 		E8603B602996584100E09361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "http://localhost:8080";
+				API_URL = "https://devapi.bacehlor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -901,11 +942,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 45723U7VDN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We require the camera to read barcodes";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We require the microphone to transcribe your voice";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We require speech recognition to transcribe your voice.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -916,7 +960,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend-jkm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -928,7 +972,7 @@
 		E8603B612996584100E09361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "http://localhost:8080";
+				API_URL = "https://devapi.bacehlor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -936,11 +980,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 45723U7VDN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We require the camera to read barcodes";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We require the microphone to transcribe your voice";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We require speech recognition to transcribe your voice.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -951,7 +998,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend-jkm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -18,9 +18,9 @@ struct TabBar: View {
 					Label("Menu", systemImage: "house")
 				}
 				.environmentObject(authenticationService)
-			AddProductPage()
+			WarehouseConfigurationPage()
 				.tabItem {
-					Label("Add product", systemImage: "plus.app.fill")
+					Label("Konfigurer varehus", systemImage: "slider.horizontal.3")
 				}
 			AccountPage()
 				.tabItem {

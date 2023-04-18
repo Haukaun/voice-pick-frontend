@@ -157,16 +157,7 @@ struct AddProductPage: View {
 	}
 	
 	var body: some View {
-		VStack(spacing: 0) {
-			Header(
-				headerText: "Add product",
-				actionButtons: [
-					Button(action: {isShowingScanner = true}, label: {
-						Image(systemName: "barcode.viewfinder")
-					})
-				]
-			)
-			
+		NavigationView {
 			VStack(alignment: .leading, spacing: 20) {
 				AddProductField(
 					label: "Product name",
@@ -205,6 +196,19 @@ struct AddProductPage: View {
 			.padding(10)
 			.background(Color.backgroundColor)
 		}
+		.toolbar {
+			ToolbarItem(placement: .principal) {
+					Text("Produkter")
+			}
+			ToolbarItem(placement: .navigationBarTrailing) {
+				Button(action: { isShowingScanner = true }) {
+					Image(systemName: "barcode.viewfinder")
+				}
+			}
+		}
+		.navigationBarTitleDisplayMode(.inline)
+		.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
+		.toolbarBackground(.visible, for: .navigationBar)
 		.sheet(isPresented: $isShowingScanner) {
 			CodeScannerView(codeTypes: [.upce, .ean8, .ean13], showViewfinder: true, simulatedData: "7021110120818", completion: handleScan)
 		}

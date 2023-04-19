@@ -19,9 +19,7 @@ struct ProductPage: View {
 			type: ProductType.D_PACK,
 			status: ProductStatus.READY,
 			location: .init(
-				id: 1,
-				code: "H209",
-				controlDigits: 476)),
+				code: "H209", controlDigits: 476, locationType: "")),
 		.init(
 			id: 1,
 			name: "Pepsi max",
@@ -31,9 +29,8 @@ struct ProductPage: View {
 			type: ProductType.D_PACK,
 			status: ProductStatus.READY,
 			location: .init(
-				id: 1,
 				code: "H215",
-				controlDigits: 479))]
+				controlDigits: 479, locationType: ""))]
 	
 	@State var searchField: String = ""
 	

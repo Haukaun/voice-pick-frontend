@@ -169,11 +169,11 @@ struct AccountPage: View {
 				.cornerRadius(UIView.standardCornerRadius)
 				.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
 				Spacer()
-				DefaultButton("Logout") {
+				DefaultButton("Logg ut") {
 					logout()
 				}
 				Divider()
-				DangerButton(label: "Delete account", onPress: {
+				DangerButton(label: "Slett bruker", onPress: {
 					deleteAccount()
 				})
 			}

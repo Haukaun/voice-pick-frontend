@@ -88,15 +88,15 @@ struct VerificationPage: View {
 		switch errorCode {
 		case 404:
 			showAlert = true
-			errorMessage = "Verificaiton code was not found. Please press resend button and try again."
+			errorMessage = "Verifiseringskoden ble ikke funnet. Vennligst send en ny e-post og prøv på nytt."
 			break
 		case 500:
 			showAlert = true
-			errorMessage = "Something went wrong, with verifying the user."
+			errorMessage = "Noe gikk galt med verifiseringen av en bruker."
 			break
 		default:
 			showAlert = true;
-			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
+			errorMessage = "Noe gikk galt, vennligst lukk applikasjonen og prøv på nytt, eller rapporter hendelsen."
 			break
 		}
 	}
@@ -146,28 +146,28 @@ struct VerificationPage: View {
 						.resizable()
 						.frame(width: 120, height: 120)
 						.opacity(0.05)
-					VStack (){
+					VStack () {
 						Text("TRACE").font(.guidelineHeading).foregroundColor(.traceLightYellow)
-						Text("Voice pick").font(.header1).foregroundColor(.foregroundColor)
+						Text("Voicepick").font(.header1).foregroundColor(.foregroundColor)
 					}
 				}
 				Spacer()
 				Group {
-					Text("Email verification code sent to submitted email address. Please check your spam folder.")
+					Text("E-post verifikasjonskode sendt til angitt e-post. Vennligst sjekk søppelpost.")
 						.foregroundColor(.foregroundColor)
 						.multilineTextAlignment(.center)
 					VStack(spacing: 20) {
-						DefaultInput(inputLabel: "Verify Email", text: $verificationCode, valid: true)
-						DefaultButton("Submit", onPress: {
+						DefaultInput(inputLabel: "Verifikasjonskode", text: $verificationCode, valid: true)
+						DefaultButton("Send", onPress: {
 							checkVerificationCode()
 						})
-						DefaultButton(timeRemaining == 0 ? "Resend Email" : "\(timeRemaining)", disabled: timeRemaining > 0 , onPress:{
+						DefaultButton(timeRemaining == 0 ? "Send ny e-post" : "\(timeRemaining)", disabled: timeRemaining > 0 , onPress: {
 							if timeRemaining == 0 {
 								sendVerificationCode()
 								starTimer(duration: 20)
 							}
 						})
-						Button("Log out", action: {
+						Button("Logg ut", action: {
 							logout()
 						})
 						.buttonStyle(.plain)
@@ -185,7 +185,7 @@ struct VerificationPage: View {
 				starTimer(duration: 20)
 			}
 		}
-		.alert("Verification", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
+		.alert("Verifisering", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
 	}
 }
 

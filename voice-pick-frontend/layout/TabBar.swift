@@ -15,16 +15,17 @@ struct TabBar: View {
 		TabView {
 			PluckPage()
 				.tabItem {
-					Label("Menu", systemImage: "house")
+					Label("Meny", systemImage: "house")
 				}
 				.environmentObject(authenticationService)
 			WarehouseConfigurationPage()
 				.tabItem {
 					Label("Konfigurer varehus", systemImage: "slider.horizontal.3")
+					Label("Legg til produkt", systemImage: "plus.app.fill")
 				}
 			AccountPage()
 				.tabItem {
-					Label("Profile", systemImage: "person")
+					Label("Profil", systemImage: "person")
 				}
 		}
 	}

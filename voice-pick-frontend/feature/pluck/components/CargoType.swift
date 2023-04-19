@@ -1,5 +1,5 @@
 import SwiftUI
-struct PalleType: View {
+struct CargoType: View {
 	var cargoCarriers: [CargoCarrier]
 	
 	@EnvironmentObject private var pluckService: PluckService
@@ -17,7 +17,7 @@ struct PalleType: View {
 			}, label: {
 				HStack {
 					Text("Valgt palletype:")
-					Text(pluckService.pluckList?.cargoCarrier?.name ?? "Not selected")
+					Text(pluckService.pluckList?.cargoCarrier?.name ?? "Ingen valgt")
 						.bold()
 						.foregroundColor(.traceLightYellow)
 				}
@@ -57,7 +57,7 @@ struct PalleType: View {
 
 struct PalleType_Previews: PreviewProvider {
 	static var previews: some View {
-		PalleType(cargoCarriers: [])
+		CargoType(cargoCarriers: [])
 			.environmentObject(PluckService())
 	}
 }

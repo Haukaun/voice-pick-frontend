@@ -29,8 +29,7 @@ struct ProductPage: View {
 			type: ProductType.D_PACK,
 			status: ProductStatus.READY,
 			location: .init(
-				code: "H215",
-				controlDigits: 479, locationType: ""))]
+				code: "H215", controlDigits: 479, locationType: ""))]
 	
 	@State var searchField: String = ""
 	

@@ -7,6 +7,7 @@
 
 import Foundation
 import Speech
+import OSLog
 
 enum VoiceAuthorization {
 	case AUTHORIZED
@@ -86,7 +87,7 @@ class VoiceService: ObservableObject {
 			try audioEngine.start()
 			isVoiceActive = true
 		} catch {
-			print("Error starting audio engine: \(error.localizedDescription)")
+			os_log("Error with starting audio engine", type: .error)
 			return
 		}
 		
@@ -118,8 +119,8 @@ class VoiceService: ObservableObject {
 					// Set the transcription to the new word, or an empty string if no new word was recognized
 					self.transcription = result
 				}
-			} else if let error = error {
-				print("Error recognizing speech: \(error.localizedDescription)")
+			} else if error != nil {
+				os_log("Error recognizing speech", type: .error)
 			}
 		}
 	}
@@ -136,5 +137,4 @@ class VoiceService: ObservableObject {
 		audioEngine.inputNode.removeTap(onBus: 0)
 		isVoiceActive = false
 	}
-	
 }

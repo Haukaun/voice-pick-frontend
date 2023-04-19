@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import AVFAudio
+import OSLog
 
 enum Steps {
 	case START
@@ -34,14 +35,29 @@ class PluckService: ObservableObject {
 	
 	init() {
 		audioSession = AVAudioSession.sharedInstance()
+		configureAudioSession()
+	}
+	
+	func configureAudioSession() {
 		do {
-			// TODO: Check if bluetooth. If yes set category to this:
-			try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth, .allowBluetoothA2DP])
-			// if not, set category to this:
-			//try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
-		} catch let error as NSError {
-			print("Error: \(error.localizedDescription)")
+			if isBluetoothConnected() {
+				try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth, .allowBluetoothA2DP, .mixWithOthers])
+			} else {
+				try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .mixWithOthers])
+			}
+		} catch {
+			os_log("Error with configuring audio device", type: .error)
 		}
+	}
+
+	func isBluetoothConnected() -> Bool {
+		let routes = audioSession.currentRoute
+		for output in routes.outputs {
+			if output.portType == .bluetoothA2DP || output.portType == .bluetoothLE || output.portType == .bluetoothHFP {
+				return true
+			}
+		}
+		return false
 	}
 	
 	/**
@@ -90,8 +106,8 @@ class PluckService: ObservableObject {
 				ttsService.speak("Say 'start' to start a new pluck order", fromVoice)
 			case "help":
 				ttsService.speak("You only have one option: 'start' to start a new pluck order", fromVoice)
-            case "cancel":
-                ttsService.stopSpeak()
+			case "cancel":
+				ttsService.stopSpeak()
 			default:
 				return
 			}
@@ -156,8 +172,8 @@ class PluckService: ObservableObject {
 			break
 		case "repeat":
 			ttsService.speak("Select a cargo carrier to continue.", fromVoice)
-        case "cancel":
-            ttsService.stopSpeak()
+		case "cancel":
+			ttsService.stopSpeak()
 		case "next":
 			if (pluckList?.cargoCarrier == nil) {
 				ttsService.speak("Need to select a cargo carrier", fromVoice)
@@ -209,8 +225,8 @@ class PluckService: ObservableObject {
 			switch keyword {
 			case "help":
 				ttsService.speak("Confirm control digit, then say 'complete' to complete the pluck", fromVoice)
-            case "cancel":
-                ttsService.stopSpeak()
+			case "cancel":
+				ttsService.stopSpeak()
 			case "repeat":
 				let index = pluckList?.plucks.firstIndex(where: { $0.confirmedAt == nil })
 				
@@ -229,7 +245,7 @@ class PluckService: ObservableObject {
 				
 				if (pluckList?.plucks[index].confirmedAt != nil) {
 					
-						pluckList?.plucks[index].pluckedAt = Date()
+					pluckList?.plucks[index].pluckedAt = Date()
 					
 					// If every pluck is completed
 					if (pluckList?.plucks.filter{ $0.pluckedAt == nil }.count == 0) {
@@ -271,8 +287,8 @@ class PluckService: ObservableObject {
 				ttsService.speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
 			case "help":
 				ttsService.speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
-            case "cancel":
-                ttsService.stopSpeak()
+			case "cancel":
+				ttsService.stopSpeak()
 			case "complete":
 				if (pluckList?.confirmedAt == nil) {
 					ttsService.speak("Need to confirm with control digits first...", fromVoice)
@@ -328,7 +344,7 @@ class PluckService: ObservableObject {
 			}
 		}
 	}
-
+	
 	
 	/**
 	 Sets the currect step in a page.

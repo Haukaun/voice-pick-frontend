@@ -12,7 +12,6 @@
 		23BCAE32299F75A70038C0D7 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BCAE31299F75A70038C0D7 /* Header.swift */; };
 		23BCAE36299FA4D00038C0D7 /* CargoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BCAE35299FA4D00038C0D7 /* CargoType.swift */; };
 		23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */; };
-		8D12529C29D5AE72000DFE26 /* EmailVerificationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12529B29D5AE72000DFE26 /* EmailVerificationCode.swift */; };
 		8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A2DE129966A42007062CE /* Font+Extension.swift */; };
 		8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */; };
 		8D203A3629A39DE300D768BA /* PluckFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D203A3529A39DE300D768BA /* PluckFinish.swift */; };
@@ -57,6 +56,7 @@
 		F60FFA4329E54DB900DB4879 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = F60FFA4229E54DB900DB4879 /* CodeScanner */; };
 		F619709929C35F1D00927BDB /* DangerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709829C35F1D00927BDB /* DangerButton.swift */; };
 		F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709A29C4981D00927BDB /* JustifiedContainer.swift */; };
+		F62D1AFC29EEBD95005ED754 /* VerifyRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62D1AFB29EEBD95005ED754 /* VerifyRequestDto.swift */; };
 		F640285129CD85B70023AE34 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F640285029CD85B70023AE34 /* VoiceService.swift */; };
 		F662F78129E1852800C7FAC0 /* TokenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662F78029E1852800C7FAC0 /* TokenDto.swift */; };
 		F67354A929AF57C700D7E601 /* PluckCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67354A829AF57C700D7E601 /* PluckCard.swift */; };
@@ -104,7 +104,6 @@
 		23BCAE31299F75A70038C0D7 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		23BCAE35299FA4D00038C0D7 /* CargoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CargoType.swift; path = "voice-pick-frontend/feature/pluck/components/CargoType.swift"; sourceTree = SOURCE_ROOT; };
 		23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultButton.swift; path = "voice-pick-frontend/component/DefaultButton.swift"; sourceTree = SOURCE_ROOT; };
-		8D12529B29D5AE72000DFE26 /* EmailVerificationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationCode.swift; sourceTree = "<group>"; };
 		8D1A2DE129966A42007062CE /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckListDisplay.swift; sourceTree = "<group>"; };
 		8D203A3529A39DE300D768BA /* PluckFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckFinish.swift; sourceTree = "<group>"; };
@@ -152,6 +151,7 @@
 		F60AD490299E4D8C008A30F5 /* PluckPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPage.swift; sourceTree = "<group>"; };
 		F619709829C35F1D00927BDB /* DangerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerButton.swift; sourceTree = "<group>"; };
 		F619709A29C4981D00927BDB /* JustifiedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedContainer.swift; sourceTree = "<group>"; };
+		F62D1AFB29EEBD95005ED754 /* VerifyRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyRequestDto.swift; sourceTree = "<group>"; };
 		F640285029CD85B70023AE34 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceService.swift; sourceTree = "<group>"; };
 		F662F78029E1852800C7FAC0 /* TokenDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDto.swift; sourceTree = "<group>"; };
 		F67354A829AF57C700D7E601 /* PluckCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckCard.swift; sourceTree = "<group>"; };
@@ -266,8 +266,11 @@
 		E83C9BC429B20525000063E9 /* dto */ = {
 			isa = PBXGroup;
 			children = (
+				F6F2E78029D1970E00E56A11 /* TokenRequest.swift */,
+				E8A2432429C30EC1007D0F60 /* LoginResponse.swift */,
 				E83C9BC729B220BA000063E9 /* UserInfo.swift */,
 				F662F78029E1852800C7FAC0 /* TokenDto.swift */,
+				F62D1AFB29EEBD95005ED754 /* VerifyRequestDto.swift */,
 			);
 			path = dto;
 			sourceTree = "<group>";
@@ -276,9 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				E83C9BCE29B2267E000063E9 /* AuthMode.swift */,
-				E8A2432429C30EC1007D0F60 /* LoginResponse.swift */,
-				F6F2E78029D1970E00E56A11 /* TokenRequest.swift */,
-				8D12529B29D5AE72000DFE26 /* EmailVerificationCode.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -740,6 +740,7 @@
 				8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */,
 				E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */,
 				8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */,
+				F62D1AFC29EEBD95005ED754 /* VerifyRequestDto.swift in Sources */,
 				F69765C129E6E97800C697B8 /* ProductPage.swift in Sources */,
 				8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */,
 				F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */,
@@ -763,7 +764,6 @@
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,
 				E83C9BCF29B2267E000063E9 /* AuthMode.swift in Sources */,
 				F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */,
-				8D12529C29D5AE72000DFE26 /* EmailVerificationCode.swift in Sources */,
 				E83C9BD329B22716000063E9 /* AuthForm.swift in Sources */,
 				E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */,
 				F68A5B0D29E976EB004E4E9B /* AddProductField.swift in Sources */,
@@ -923,7 +923,6 @@
 		E8603B602996584100E09361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "http://localhost:8080";
 				API_URL = "https://devapi.bachelor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -932,7 +931,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
 				DEVELOPMENT_TEAM = 45723U7VDN;
-				DEVELOPMENT_TEAM = VQFNF9YL3F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -962,7 +960,6 @@
 		E8603B612996584100E09361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "http://localhost:8080";
 				API_URL = "https://devapi.bachelor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -971,7 +968,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
 				DEVELOPMENT_TEAM = 45723U7VDN;
-				DEVELOPMENT_TEAM = VQFNF9YL3F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";

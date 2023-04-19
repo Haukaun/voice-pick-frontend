@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct EmailVerificationCode: Codable {
-	let verificationCode: String
-	let email: String
+struct VerifyRequestDto: Codable {
+    let verificationCode: String
+    let email: String
 }

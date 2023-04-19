@@ -17,7 +17,10 @@ struct PluckLobby: View {
 	]
 	
 	@EnvironmentObject private var pluckService: PluckService
-	
+    
+    @State var showAlert = false
+	@State var errorMessage = ""
+    
 	var token: String?
 	
 	var body: some View {
@@ -32,6 +35,13 @@ struct PluckLobby: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.padding(5)
 		.background(Color.backgroundColor)
+        .alert("Error", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) } )
+        .onReceive(pluckService.$showAlert) { showAlert in
+            self.showAlert = showAlert
+        }
+        .onReceive(pluckService.$errorMessage) { errorMsg in
+            self.errorMessage = errorMsg
+        }
 	}
 }
 

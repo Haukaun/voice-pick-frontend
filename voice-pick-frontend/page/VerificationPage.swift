@@ -25,7 +25,7 @@ struct VerificationPage: View {
 	 Check if the given Verification code exists in backend
 	 */
 	func checkVerificationCode() {
-		let emailVerificationCode = EmailVerificationCode(verificationCode: verificationCode, email: authenticationService.email)
+		let emailVerificationCode = VerifyRequestDto(verificationCode: verificationCode, email: authenticationService.email)
 		requestService.post(
 			path: "/auth/check-verification-code",
 			token: authenticationService.accessToken,

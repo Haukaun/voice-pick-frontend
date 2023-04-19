@@ -53,7 +53,7 @@ struct AddProductField_Previews: PreviewProvider {
 	static var previews: some View {
 		VStack {
 			AddProductField(
-				label: "Product name",
+				label: "Produkt navn",
 				value: .constant("Coca Cola"),
 				errorMsg: .constant(nil)
 			)

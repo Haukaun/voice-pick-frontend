@@ -29,7 +29,8 @@ struct AddProductPage: View {
 	@State var errorMessage = ""
 	
 	@State var showBanner = false
-	@State var bannerData = BannerModifier.BannerData(title: "Success", detail: "Product was successfully added", type: .Success)
+	@State var bannerData = BannerModifier.BannerData(title: "Suksess", detail: "Produktet ble lagt til", type: .Success)
+	
 	
 	@EnvironmentObject var authService: AuthenticationService
 	
@@ -85,35 +86,35 @@ struct AddProductPage: View {
 		
 		if (productName.isEmpty || productName == "N/A") {
 			validForm = false
-			productNameErrorMsg = "No empty fields"
+			productNameErrorMsg = "Ingen tomme felter tillatt"
 		}
 		
 		let weightNum = Double(weight.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 		if (weightNum <= 0) {
 			validForm = false
-			weightErrorMsg = "Must be a positive number"
+			weightErrorMsg = "Må være et positivt tall"
 		}
 		
 		let volumeNum = Double(volume.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
 		if (volumeNum <= 0) {
 			validForm = false
-			volumeErrorMsg = "Must be a positive number"
+			volumeErrorMsg = "Må være et positivt tall"
 		}
 		
 		let quantityInt = Int(quantity.trimmingCharacters(in: .whitespacesAndNewlines)) ?? -1
 		if (quantityInt < 0) {
 			validForm = false
-			quantityErrorMsg = "Must be a number"
+			quantityErrorMsg = "Må være et tall"
 		}
 		
 		if (type.isEmpty || type == "N/A") {
 			validForm = false
-			typeErrorMsg = "No empty fields"
+			typeErrorMsg = "Ingen tomme felter tillatt"
 		}
 		
 		if (location.isEmpty || location == "N/A") {
 			validForm = false
-			locationErrorMsg = "No empty fields"
+			locationErrorMsg = "Ingen tomme felter tillatt"
 		}
 		
 		if (validForm) {
@@ -131,12 +132,12 @@ struct AddProductPage: View {
 				completion: { result in
 					switch result {
 					case .success(_):
-						bannerData.title = "Vellykket"
+						bannerData.title = "Suksess"
 						bannerData.detail = "Produktet ble lagt til"
 						bannerData.type = .Success
 						showBanner = true
 					case .failure(let error):
-						bannerData.title = "Error"
+						bannerData.title = "Feil"
 						bannerData.detail = error.localizedDescription
 						bannerData.type = .Error
 						showBanner = true
@@ -146,6 +147,7 @@ struct AddProductPage: View {
 		}
 		
 	}
+	
 	
 	func resetErrorMessages() {
 		productNameErrorMsg = nil
@@ -158,67 +160,78 @@ struct AddProductPage: View {
 	
 	var body: some View {
 		NavigationView {
-			VStack(alignment: .leading, spacing: 20) {
-				AddProductField(
-					label: "Product name",
-					value: $productName,
-					errorMsg: $productNameErrorMsg)
-				AddProductField(
-					label: "Weight",
-					value: $weight,
-					errorMsg: $weightErrorMsg,
-					type: .asciiCapableNumberPad)
-				AddProductField(
-					label: "Volume",
-					value: $volume,
-					errorMsg: $volumeErrorMsg,
-					type: .decimalPad)
-				AddProductField(
-					label: "Quantity",
-					value: $quantity,
-					errorMsg: $quantityErrorMsg,
-					type: .decimalPad)
-				AddProductField(
-					label: "Type",
-					value: $type,
-					errorMsg: $typeErrorMsg)
-				AddProductField(
-					label: "Location",
-					value: $location,
-					errorMsg: $locationErrorMsg)
-				Spacer()
-				DefaultButton("Add product", disabled: false, onPress: {
-					handleSubmit()
-				})
+			VStack(spacing: 0) {
+				Header(
+					headerText: "Legg til produkt",
+					actionButtons: [
+						Button(action: {isShowingScanner = true}, label: {
+							Image(systemName: "barcode.viewfinder")
+						})
+					]
+				)
+				VStack(alignment: .leading, spacing: 20) {
+					AddProductField(
+						label: "Produktnavn",
+						value: $productName,
+						errorMsg: $productNameErrorMsg)
+					AddProductField(
+						label: "Vekt",
+						value: $weight,
+						errorMsg: $weightErrorMsg,
+						type: .asciiCapableNumberPad)
+					AddProductField(
+						label: "Volum",
+						value: $volume,
+						errorMsg: $volumeErrorMsg,
+						type: .decimalPad)
+					AddProductField(
+						label: "Antall",
+						value: $quantity,
+						errorMsg: $quantityErrorMsg,
+						type: .decimalPad)
+					AddProductField(
+						label: "Type",
+						value: $type,
+						errorMsg: $typeErrorMsg)
+					AddProductField(
+						label: "Plassering",
+						value: $location,
+						errorMsg: $locationErrorMsg)
+					Spacer()
+					DefaultButton("Legg til produkt", disabled: false, onPress: {
+						handleSubmit()
+					})
+				}
+				
+				.banner(data: $bannerData, show: $showBanner)
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.padding(10)
+				.background(Color.backgroundColor)
 			}
-			.banner(data: $bannerData, show: $showBanner)
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.padding(10)
-			.background(Color.backgroundColor)
-		}
-		.toolbar {
-			ToolbarItem(placement: .principal) {
+			.toolbar {
+				ToolbarItem(placement: .principal) {
 					Text("Produkter")
-			}
-			ToolbarItem(placement: .navigationBarTrailing) {
-				Button(action: { isShowingScanner = true }) {
-					Image(systemName: "barcode.viewfinder")
+				}
+				ToolbarItem(placement: .navigationBarTrailing) {
+					Button(action: { isShowingScanner = true }) {
+						Image(systemName: "barcode.viewfinder")
+					}
 				}
 			}
+			.navigationBarTitleDisplayMode(.inline)
+			.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
+			.toolbarBackground(.visible, for: .navigationBar)
+			.sheet(isPresented: $isShowingScanner) {
+				CodeScannerView(codeTypes: [.upce, .ean8, .ean13], showViewfinder: true, simulatedData: "7021110120818", completion: handleScan)
+			}
+			.alert("Feil", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) })
 		}
-		.navigationBarTitleDisplayMode(.inline)
-		.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
-		.toolbarBackground(.visible, for: .navigationBar)
-		.sheet(isPresented: $isShowingScanner) {
-			CodeScannerView(codeTypes: [.upce, .ean8, .ean13], showViewfinder: true, simulatedData: "7021110120818", completion: handleScan)
-		}
-		.alert("Error", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) })
 	}
 }
-
-struct AddProductPage_Previews: PreviewProvider {
-	static var previews: some View {
-		AddProductPage()
-			.environmentObject(AuthenticationService())
+	
+	struct AddProductPage_Previews: PreviewProvider {
+		static var previews: some View {
+			AddProductPage()
+				.environmentObject(AuthenticationService())
+		}
 	}
-}

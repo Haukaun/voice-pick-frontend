@@ -104,23 +104,24 @@ struct AuthForm: View {
 	
 	
 	/*
-	 Error handling
+	 Error handling for user
 	 */
 	func handleError(errorCode: Int) {
 		switch errorCode {
 		case 401:
 			showAlert = true
-			errorMessage = "The credentials entered are invalid."
+			errorMessage = "Feil brukernavn eller passord"
 		case 409:
 			showAlert = true;
-			errorMessage = "User with this email already exists"
+			errorMessage = "En bruker med denne e-postadressen finnes allerede"
 			break
 		default:
 			showAlert = true;
-			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
+			errorMessage = "Noe gikk galt. Vennligst prøv igjen eller rapporter en feil."
 			break
 		}
 	}
+	
 	
 	
 	/*
@@ -153,10 +154,10 @@ struct AuthForm: View {
 	var body: some View {
 		VStack(spacing: 20) {
 			if authMode == AuthMode.signup {
-				DefaultInput(inputLabel: "Firstname", text: $firstnameValue, valid: validateFirstname())
-				DefaultInput(inputLabel: "Lastname", text: $lastnameValue, valid: validateLastname())
+				DefaultInput(inputLabel: "Fornavn", text: $firstnameValue, valid: validateFirstname())
+				DefaultInput(inputLabel: "Etternavn", text: $lastnameValue, valid: validateLastname())
 			}
-			DefaultInput(inputLabel: "Email", text: $emailValue, valid: validateEmail()).onChange(of: emailValue) { _ in
+			DefaultInput(inputLabel: "E-post", text: $emailValue, valid: validateEmail()).onChange(of: emailValue) { _ in
 				if validateForm() {
 					submitted = false
 				}
@@ -168,11 +169,12 @@ struct AuthForm: View {
 					}
 				}
 			authMode == AuthMode.login ?
-			DefaultButton("Sign in", disabled: !validateForm() && submitted, onPress: signIn)
+			DefaultButton("Logg inn", disabled: !validateForm() && submitted, onPress: signIn)
 			:
-			DefaultButton("Sign up", disabled: !validateForm() && submitted, onPress: register)
+			DefaultButton("Registrer", disabled: !validateForm() && submitted, onPress: register)
 		}
-		.alert(authMode == AuthMode.signup ? "Sign up" : "Sign in", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
+		.alert(authMode == AuthMode.signup ? "Registrer" : "Logg inn", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
+		
 	}
 }
 

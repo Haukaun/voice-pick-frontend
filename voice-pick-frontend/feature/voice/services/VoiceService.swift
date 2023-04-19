@@ -119,7 +119,6 @@ class VoiceService: ObservableObject {
 					self.transcription = result
 				}
 			} else if let error = error {
-				// TODO: handle error correctly
 				print("Error recognizing speech: \(error.localizedDescription)")
 			}
 		}

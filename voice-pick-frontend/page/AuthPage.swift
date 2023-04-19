@@ -53,7 +53,7 @@ struct AuthPage: View {
                 }
             })
         } else {
-            errorMessage = "Invalid Email";
+            errorMessage = "Ugyldig e-post";
             showAlert = true;
         }
     }
@@ -65,19 +65,19 @@ struct AuthPage: View {
         switch errorCode {
         case 400:
             showAlert = true
-            errorMessage = "Something went wrong, are you sure this is the correct email?"
+            errorMessage = "Noe gikk galt, er du sikker på at dette er riktig e-postadresse?"
             break
         case 500:
             showAlert = true
-            errorMessage = "Something went wrong while sending the email"
+            errorMessage = "Noe gikk galt under sending av e-posten"
             break
         case 404:
             showAlert = true
-            errorMessage = "Something went wrong, user not found"
+            errorMessage = "Noe gikk galt, brukeren ble ikke funnet"
             break
         default:
             showAlert = true;
-            errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
+            errorMessage = "Noe gikk galt, vennligst avslutt applikasjonen og prøv igjen, eller rapporter en feil."
             break
         }
     }
@@ -90,12 +90,12 @@ struct AuthPage: View {
 			}
 			Spacer()
             AuthForm(emailValue: $emailValue, authMode: $authMode)
-            Button("Forgot password?") {
+            Button("Glemt passord?") {
                 sendResetPasswordMail()
             }.font(.label).frame(maxWidth: .infinity, alignment: .trailing).foregroundColor(.black)
 			HStack {
-				Text("Dont have an account?")
-				Button(authMode == AuthMode.signup ? "Sign in here" : "Sign up here", action: switchAuthMode)
+				Text("Har du ikke en konto?")
+				Button(authMode == AuthMode.signup ? "Logg inn her" : "Registrer deg her", action: switchAuthMode)
 					.buttonStyle(.plain)
 					.underline()
 			}
@@ -106,7 +106,7 @@ struct AuthPage: View {
 		}
 		.padding(50)
 		.background(Color.backgroundColor)
-        .alert("Reset Password", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
+        .alert("Tilbakestill passord", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
 	}
 }
 

@@ -16,8 +16,8 @@ struct PasswordInput: View {
 	var body: some View {
 		HStack {
 			showPassword
-				? AnyView(TextField("Password", text: $value))
-				: AnyView(SecureField("Password", text: $value))
+				? AnyView(TextField("Passord", text: $value))
+				: AnyView(SecureField("Passord", text: $value))
 			Button(action: {
 				showPassword = !showPassword
 			}) {

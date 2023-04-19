@@ -22,14 +22,15 @@ struct PluckInfo: View {
 		switch errorCode {
 		case 404:
 			showAlert = true;
-			errorMessage = "No cargo carriers were found. Exit and report this issue."
+			errorMessage = "Ingen lastebærere ble funnet. Lukk appen og rapporter dette problemet."
 			break
 		default:
 			showAlert = true;
-			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
+			errorMessage = "Noe gikk galt. Vennligst lukk applikasjonen og prøv på nytt, eller rapporter feilen."
 			break
 		}
 	}
+	
 	
 	var body: some View {
 		VStack() {
@@ -38,8 +39,8 @@ struct PluckInfo: View {
 					HStack(alignment: .top) {
 						VStack(alignment: .leading) {
 							DefaultLabel("Rute")
-							Title(pluckService.pluckList!.route)
-							Title(pluckService.pluckList!.destination)
+							Title(pluckService.pluckList?.route ?? "")
+							Title(pluckService.pluckList?.destination ?? "")
 						}
 						Spacer()
 						VStack(alignment: .leading) {
@@ -60,7 +61,7 @@ struct PluckInfo: View {
 				}
 			}
 			VStack{
-				PalleType(cargoCarriers: pluckService.cargoCarriers)
+				CargoType(cargoCarriers: pluckService.cargoCarriers)
 				DefaultButton("Fortsett") {
 					pluckService.doAction(keyword: "next", fromVoice: false)
 				}
@@ -83,7 +84,7 @@ struct PluckInfo: View {
 				}
 			})
 		}
-		.alert("Cargo", isPresented: $showAlert, actions: {}, message: {Text(errorMessage)})
+		.alert("Palle", isPresented: $showAlert, actions: {}, message: {Text(errorMessage)})
 	}
 }
 
@@ -169,7 +170,8 @@ struct PluckInfo_Previews: PreviewProvider {
 	}
 	
 	static var previews: some View {
-			PluckInfo()
-		.environmentObject(initPluckService())
+		PluckInfo()
+			.environmentObject(initPluckService())
+			.environmentObject(PluckService())
 	}
 }

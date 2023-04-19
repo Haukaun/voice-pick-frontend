@@ -10,7 +10,7 @@
 		2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386BC1D299BE80F00916B5C /* DefaultInput.swift */; };
 		23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BCAE2F299F70D70038C0D7 /* AccountPage.swift */; };
 		23BCAE32299F75A70038C0D7 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BCAE31299F75A70038C0D7 /* Header.swift */; };
-		23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BCAE35299FA4D00038C0D7 /* PalleType.swift */; };
+		23BCAE36299FA4D00038C0D7 /* CargoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BCAE35299FA4D00038C0D7 /* CargoType.swift */; };
 		23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */; };
 		8D12529C29D5AE72000DFE26 /* EmailVerificationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12529B29D5AE72000DFE26 /* EmailVerificationCode.swift */; };
 		8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A2DE129966A42007062CE /* Font+Extension.swift */; };
@@ -55,8 +55,6 @@
 		F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD48E299E4752008A30F5 /* PluckInfo.swift */; };
 		F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD490299E4D8C008A30F5 /* PluckPage.swift */; };
 		F60FFA4329E54DB900DB4879 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = F60FFA4229E54DB900DB4879 /* CodeScanner */; };
-		F60FFA4529E5559800DB4879 /* AddProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60FFA4429E5559800DB4879 /* AddProductDto.swift */; };
-		F619709729C35F0E00927BDB /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709629C35F0E00927BDB /* SettingsPage.swift */; };
 		F619709929C35F1D00927BDB /* DangerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709829C35F1D00927BDB /* DangerButton.swift */; };
 		F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709A29C4981D00927BDB /* JustifiedContainer.swift */; };
 		F640285129CD85B70023AE34 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F640285029CD85B70023AE34 /* VoiceService.swift */; };
@@ -104,7 +102,7 @@
 		2386BC1D299BE80F00916B5C /* DefaultInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInput.swift; sourceTree = "<group>"; };
 		23BCAE2F299F70D70038C0D7 /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
 		23BCAE31299F75A70038C0D7 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
-		23BCAE35299FA4D00038C0D7 /* PalleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PalleType.swift; path = "voice-pick-frontend/feature/pluck/components/PalleType.swift"; sourceTree = SOURCE_ROOT; };
+		23BCAE35299FA4D00038C0D7 /* CargoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CargoType.swift; path = "voice-pick-frontend/feature/pluck/components/CargoType.swift"; sourceTree = SOURCE_ROOT; };
 		23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultButton.swift; path = "voice-pick-frontend/component/DefaultButton.swift"; sourceTree = SOURCE_ROOT; };
 		8D12529B29D5AE72000DFE26 /* EmailVerificationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationCode.swift; sourceTree = "<group>"; };
 		8D1A2DE129966A42007062CE /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
@@ -152,11 +150,6 @@
 		F60AD488299D1329008A30F5 /* Paragraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paragraph.swift; sourceTree = "<group>"; };
 		F60AD48E299E4752008A30F5 /* PluckInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckInfo.swift; sourceTree = "<group>"; };
 		F60AD490299E4D8C008A30F5 /* PluckPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPage.swift; sourceTree = "<group>"; };
-		F60FFA3929E54B8600DB4879 /* AddProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductPage.swift; sourceTree = "<group>"; };
-		F60FFA3C29E54C2F00DB4879 /* PalletInfoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletInfoDto.swift; sourceTree = "<group>"; };
-		F60FFA3F29E54C7900DB4879 /* AddProductField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductField.swift; sourceTree = "<group>"; };
-		F60FFA4429E5559800DB4879 /* AddProductDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductDto.swift; sourceTree = "<group>"; };
-		F619709629C35F0E00927BDB /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		F619709829C35F1D00927BDB /* DangerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerButton.swift; sourceTree = "<group>"; };
 		F619709A29C4981D00927BDB /* JustifiedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedContainer.swift; sourceTree = "<group>"; };
 		F640285029CD85B70023AE34 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceService.swift; sourceTree = "<group>"; };
@@ -474,8 +467,6 @@
 				8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */,
 				F60AD490299E4D8C008A30F5 /* PluckPage.swift */,
 				23BCAE2F299F70D70038C0D7 /* AccountPage.swift */,
-				F60FFA3929E54B8600DB4879 /* AddProductPage.swift */,
-				F619709629C35F0E00927BDB /* SettingsPage.swift */,
 			);
 			path = page;
 			sourceTree = "<group>";
@@ -567,7 +558,7 @@
 		F6E9BE4C2996879500DFD5EF /* components */ = {
 			isa = PBXGroup;
 			children = (
-				23BCAE35299FA4D00038C0D7 /* PalleType.swift */,
+				23BCAE35299FA4D00038C0D7 /* CargoType.swift */,
 				8D921C5A29A673610015800D /* ButtonRandomizer.swift */,
 				F67354A829AF57C700D7E601 /* PluckCard.swift */,
 				8D77C3BB29E6984B00C36D11 /* PluckCardDetail.swift */,
@@ -723,7 +714,7 @@
 				8D77C3BC29E6984B00C36D11 /* PluckCardDetail.swift in Sources */,
 				E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */,
 				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
-				23BCAE36299FA4D00038C0D7 /* PalleType.swift in Sources */,
+				23BCAE36299FA4D00038C0D7 /* CargoType.swift in Sources */,
 				F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */,
 				F69765BE29E6D7E700C697B8 /* WarehouseConfigurationPage.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
@@ -849,7 +840,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEV = true;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -910,7 +900,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEV = true;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -934,15 +923,14 @@
 		E8603B602996584100E09361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "https://devapi.bacehlor.seq.re";
+				API_URL = "https://devapi.bachelor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				DEVELOPMENT_TEAM = 45723U7VDN;
+				DEVELOPMENT_TEAM = VQFNF9YL3F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -972,15 +960,14 @@
 		E8603B612996584100E09361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "https://devapi.bacehlor.seq.re";
+				API_URL = "https://devapi.bachelor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				DEVELOPMENT_TEAM = 45723U7VDN;
+				DEVELOPMENT_TEAM = VQFNF9YL3F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";

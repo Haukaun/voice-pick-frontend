@@ -38,7 +38,7 @@ class PluckService: ObservableObject {
 			// TODO: Check if bluetooth. If yes set category to this:
 			try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth, .allowBluetoothA2DP])
 			// if not, set category to this:
-			// try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
+			//try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
 		} catch let error as NSError {
 			print("Error: \(error.localizedDescription)")
 		}
@@ -100,25 +100,26 @@ class PluckService: ObservableObject {
 		}
 	}
 	
-	/*
+	/**
 	 Error handling for plucklist
 	 */
 	func handleError(errorCode: Int) {
-		switch errorCode {
-		case 204:
-			showAlert = true
-			errorMessage = "No plucklist found at this moment. Please wait for new plucks."
-			break
-		case 422:
-			showAlert = true
-			errorMessage = "Something went wrong, with processing the data."
-			break
-		default:
-			showAlert = true;
-			errorMessage = "Something went wrong, please exit the application and try again, or report a bug."
-			break
+			switch errorCode {
+			case 204:
+				showAlert = true
+				errorMessage = "Ingen plukkliste ble funnet for øyeblikket. Vennligst vent på nye plukk."
+				break
+			case 422:
+				showAlert = true
+				errorMessage = "Noe gikk galt med behandlingen av dataene."
+				break
+			default:
+				showAlert = true;
+				errorMessage = "Noe gikk galt. Vennligst lukk applikasjonen og prøv på nytt, eller rapporter feilen."
+				break
+			}
 		}
-	}
+
 	/**
 	 Initializes a new plucklist
 	 */

@@ -17,7 +17,7 @@ struct AccountPage: View {
 	@State private var errorMessage = ""
 	@State private var showImagePicker = false
 	@State private var selectedImage = "profile-1"
-
+	
 	
 	func deleteAccount() {
 		requestService.delete(
@@ -107,43 +107,49 @@ struct AccountPage: View {
 	
 	
 	var body: some View {
-		VStack(alignment: .leading, spacing: 20) {
-			Header(headerText: "Profil")
-			HStack {
-				Spacer()
-				ZStack {
-					Image(selectedImage)
-						.resizable()
-						.aspectRatio(contentMode: .fill)
-						.frame(width: 110, height: 110)
-						.clipShape(Circle())
-						.onTapGesture {
-							showImagePicker = true
-						}
-					Circle()
-						.fill(Color.traceLightYellow)
-						.frame(width: 35, height: 35)
-						.offset(x: 40, y: 40)
-					Image(systemName: "plus")
-						.foregroundColor(Color.foregroundColor)
-						.offset(x: 40, y: 40)
+		VStack(alignment: .leading, spacing: 0) {
+			Header(
+				headerText: "Header",
+				rightButtons: [
+					Button(action: {logout()}, label: {
+						Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+					})
+				]
+			)
+			ScrollView{
+				HStack {
+					Spacer()
+					ZStack {
+						Image(selectedImage)
+							.resizable()
+							.aspectRatio(contentMode: .fill)
+							.frame(width: 110, height: 110)
+							.clipShape(Circle())
+							.onTapGesture {
+								showImagePicker = true
+							}
+						Circle()
+							.fill(Color.traceLightYellow)
+							.frame(width: 35, height: 35)
+							.offset(x: 40, y: 40)
+						Image(systemName: "plus")
+							.foregroundColor(Color.foregroundColor)
+							.offset(x: 40, y: 40)
+					}
+					Spacer()
 				}
-				Spacer()
-			}
-			HStack{
-				Spacer()
-				VStack {
-					//TODO: Fix HardCoded value
-					Title(authenticationService.userName)
-					Paragraph("Profesjonell plukker")
-						.opacity(0.3)
+				HStack{
+					Spacer()
+					VStack {
+						Title(authenticationService.userName)
+						Paragraph("Profesjonell plukker")
+							.opacity(0.3)
+					}
+					Spacer()
 				}
-				Spacer()
-			}
-			VStack(alignment: .leading, spacing: 30) {
-				VStack {
-					DisclosureGroup(content: {
-						ScrollView {
+				VStack (alignment: .trailing) {
+					VStack {
+						DisclosureGroup(content: {
 							VStack {
 								ForEach(Voice.allCases) { voice in
 									voiceButton(title: voice.name) {
@@ -152,39 +158,39 @@ struct AccountPage: View {
 									.padding(.horizontal, 2)
 								}
 							}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
-						}
-					}, label: {
-						HStack {
-							Text("Valgt stemme: ")
-							Text(ttsService.selectedVoice?.name ?? "Standard")
-								.bold()
-								.foregroundColor(Color.foregroundColor)
-						}
+						}, label: {
+							HStack {
+								Text("Valgt stemme: ")
+								Text(ttsService.selectedVoice?.name ?? "Standard")
+									.bold()
+									.foregroundColor(Color.foregroundColor)
+							}
+						})
+						.accentColor(.mountain)
+					}
+					.padding(15)
+					.background(Color.componentColor)
+					.accentColor(.foregroundColor)
+					.cornerRadius(UIView.standardCornerRadius)
+					.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
+					Divider()
+					DangerButton(label: "Forlat varehus", onPress: {
+						
 					})
-					.accentColor(.mountain)
+					DangerButton(label: "Slett bruker", onPress: {
+						deleteAccount()
+					})
+					
 				}
-				.padding(15)
-				.background(Color.componentColor)
-				.accentColor(.foregroundColor)
-				.cornerRadius(UIView.standardCornerRadius)
-				.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
-				Spacer()
-				DefaultButton("Logg ut") {
-					logout()
-				}
-				Divider()
-				DangerButton(label: "Slett bruker", onPress: {
-					deleteAccount()
-				})
+				.frame(maxHeight: .infinity)
+				.padding(10)
 			}
-			.frame(maxHeight: .infinity)
-			.padding(10)
-		}
-		.padding(0)
-		.background(Color.backgroundColor)
-		.alert("Stemme", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
-		.sheet(isPresented: $showImagePicker){
-			ImagePicker(selectedImage: $selectedImage)
+			.padding(.top)
+			.background(Color.backgroundColor)
+			.alert("Stemme", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
+			.sheet(isPresented: $showImagePicker){
+				ImagePicker(selectedImage: $selectedImage)
+			}
 		}
 	}
 }

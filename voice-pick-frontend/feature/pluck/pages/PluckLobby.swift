@@ -13,7 +13,7 @@ struct PluckLobby: View {
 		"Joakim Edvardsen",
 		"Petter Molnes",
 		"Håkon Sætre",
-		"Mati"
+		"Mateusz Picheta"
 	]
 	
 	@EnvironmentObject private var pluckService: PluckService
@@ -24,12 +24,30 @@ struct PluckLobby: View {
 	var token: String?
 	
 	var body: some View {
-		VStack {
-			Card {
-				ActivePickers(activePickers: activeEmployees)
+		ZStack {
+			VStack {
+				Card {
+					ActivePickers(activePickers: activeEmployees)
+				}
+				
+				DefaultButton("Start plukk") {
+					pluckService.doAction(keyword: "start", fromVoice: false, token: token)
+				}
+				.disabled(pluckService.isLoading)
 			}
-			DefaultButton("Start plukk") {
-				pluckService.doAction(keyword: "start", fromVoice: false, token: token)
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.padding(5)
+			.background(Color.backgroundColor)
+			
+			if pluckService.isLoading {
+				ProgressView()
+					.progressViewStyle(CircularProgressViewStyle())
+					.scaleEffect(2)
+					.frame(width: 100, height: 100)
+					.background(Color.backgroundColor)
+					.cornerRadius(20)
+					.foregroundColor(.foregroundColor)
+					.padding()
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)

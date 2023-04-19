@@ -19,7 +19,7 @@ struct CargoType: View {
 					Text("Valgt palletype:")
 					Text(pluckService.pluckList?.cargoCarrier?.name ?? "Ingen valgt")
 						.bold()
-						.foregroundColor(.traceLightYellow)
+						.foregroundColor(.foregroundColor)
 				}
 			})
 			.accentColor(.mountain)

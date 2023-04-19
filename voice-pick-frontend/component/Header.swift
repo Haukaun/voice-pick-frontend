@@ -7,43 +7,52 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct Header: View {
-	var headerText: String
-	var navigationButton: Button<Image>? = nil
-	var actionButtons: [Button<Image>]? = nil
-	
-	var body: some View {
-		HStack {
-			if let navigationButton = navigationButton {
-				navigationButton
-			}
-			Spacer()
-			Text(headerText)
-				.font(.button)
-			Spacer()
-			if let actionButtons = actionButtons {
-				HStack {
-					ForEach(0..<actionButtons.count, id: \.self) { index in
-						actionButtons[index]
-					}
+		var headerText: String
+		var leftButton: Button<Image>? = nil
+		var rightButtons: [Button<Image>]? = nil
+		
+		var body: some View {
+						let gridSize = [GridItem(.fixed(40)), GridItem(.flexible()), GridItem(.fixed(40))]
+						
+					
+						LazyVGrid(columns: gridSize, alignment: .center, spacing: 0) {
+								if let leftButton = leftButton {
+										leftButton
+								} else {
+										Spacer()
+								}
+								Text(headerText)
+										.font(.button)
+							
+								if let rightButtons = rightButtons {
+										HStack {
+												ForEach(0..<rightButtons.count, id: \.self) { index in
+														rightButtons[index]
+												}
+										}
+								} else {
+										Spacer()
+								}
 				}
-			}
+				.padding()
+				.foregroundColor(.dark)
+				.background(Color.traceLightYellow)
 		}
-		.padding()
-		.foregroundColor(.dark)
-		.background(Color.traceLightYellow)
-	}
 }
+
 
 struct Header_Previews: PreviewProvider {
 	static var previews: some View {
 		VStack {
 			Header(
 				headerText: "Header",
-				navigationButton: Button(action: {}, label: {
+				leftButton: Button(action: {}, label: {
 					Image(systemName: "chevron.left")
 				}),
-				actionButtons: [
+				rightButtons: [
 					Button(action: {}, label: {
 						Image(systemName: "plus")
 					}),
@@ -54,7 +63,7 @@ struct Header_Previews: PreviewProvider {
 			)
 			Header(
 				headerText: "Header",
-				actionButtons: [
+				rightButtons: [
 					Button(action: {}, label: {
 						Image(systemName: "plus")
 					}),
@@ -65,7 +74,7 @@ struct Header_Previews: PreviewProvider {
 			)
 			Header(
 				headerText: "Header",
-				navigationButton: Button(action: {}, label: {
+				leftButton: Button(action: {}, label: {
 					Image(systemName: "chevron.left")
 				})
 			)

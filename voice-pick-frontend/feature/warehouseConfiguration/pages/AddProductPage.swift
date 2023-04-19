@@ -163,7 +163,7 @@ struct AddProductPage: View {
 			VStack(spacing: 0) {
 				Header(
 					headerText: "Legg til produkt",
-					actionButtons: [
+					rightButtons: [
 						Button(action: {isShowingScanner = true}, label: {
 							Image(systemName: "barcode.viewfinder")
 						})

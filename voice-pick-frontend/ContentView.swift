@@ -14,18 +14,20 @@ struct ContentView: View {
 	@StateObject private var ttsService = TTSService()
 	
 	var body: some View {
-		if !authenticationService.accessToken.isEmpty {
-			if authenticationService.emailVerified != false {
-				TabBar()
-					.environmentObject(authenticationService)
-					.environmentObject(ttsService)
-			} else {
-				VerificationPage()
-					.environmentObject(authenticationService)
-					.transition(.backslide)
-			}
-		} else {
+		if authenticationService.accessToken.isEmpty {
 			AuthPage()
+				.environmentObject(authenticationService)
+				.transition(.backslide)
+		} else if !authenticationService.emailVerified {
+			VerificationPage()
+				.environmentObject(authenticationService)
+				.transition(.backslide)
+		} else if authenticationService.warehouseId == nil {
+			SetupWarehouse()
+				.environmentObject(authenticationService)
+				.transition(.backslide)
+		} else {
+			TabBar()
 				.environmentObject(authenticationService)
 				.transition(.backslide)
 		}

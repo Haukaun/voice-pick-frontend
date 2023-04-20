@@ -18,6 +18,8 @@ struct PluckCard: View {
     @State var showDetailPluck: Bool = false
     @State var showPopUp: Bool = false
     
+    @State var amountField = 0
+    
     private var totalWeight: Float {
         return pluck.product.weight * Float(pluck.amount)
     }
@@ -26,7 +28,7 @@ struct PluckCard: View {
      Change color on Progressview widget.
      */
     private func progressColor() -> Color {
-        let progress = Float(pluck.amountPlucked) / Float(pluck.amount)
+        let progress = Float(amountField) / Float(pluck.amount)
         
         switch progress {
         case 0..<0.33:
@@ -134,7 +136,7 @@ struct PluckCard: View {
                             .bold()
                     }
                 }
-                ProgressView(value: Double(pluck.amountPlucked), total: Double(pluck.amount))
+                ProgressView(value: Double(amountField), total: Double(pluck.amount))
                         .tint(progressColor())
                 if (showControlDigits()) {
                     ButtonRandomizer(
@@ -155,10 +157,10 @@ struct PluckCard: View {
             }
         }
         .alert("Oppgi antall plukket", isPresented: $showPopUp, actions: {
-            TextField("Antall", value: $pluck.amountPlucked, format: .number)
+            TextField("Antall", value: $amountField, format: .number)
                 .keyboardType(.numberPad)
             Button("OK", action: {
-                pluckService.doAction(keyword: String(pluck.amountPlucked), fromVoice: false)
+                pluckService.doAction(keyword: String(amountField), fromVoice: false)
             })
         })
         .swipeActions(edge: .trailing, content: {

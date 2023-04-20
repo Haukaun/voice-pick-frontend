@@ -83,6 +83,8 @@ class PluckService: ObservableObject {
 	 - fromVoice: a boolean describing if the action was made via coide. `true` if yes, `false` otherwise
 	 */
 	func doAction(keyword: String, fromVoice: Bool, token: String? = nil) {
+        print(keyword)
+        
 		switch currentStep {
 		case .START:
 			handleStartActions(keyword, fromVoice, token)

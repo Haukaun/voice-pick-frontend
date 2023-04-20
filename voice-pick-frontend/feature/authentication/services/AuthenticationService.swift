@@ -60,6 +60,57 @@ class AuthenticationService: ObservableObject {
 			}
 		}
 	}
+
+	private var storedWarehouseId: Int? {
+		get {
+			return Int(keychain.get("warehouseId") ?? "")
+		}
+		set {
+			if let newValue = newValue {
+				keychain.set("\(newValue)", forKey: "warehouseId")
+				DispatchQueue.main.async {
+					self.objectWillChange.send()
+				}
+			}
+		}
+	}
+	
+	private var storedWarehouseName: String {
+		get {
+			return keychain.get("warehouseName") ?? ""
+		}
+		set {
+			keychain.set(newValue, forKey: "warehouseName")
+		}
+	}
+	
+	private var storedWarehouseAddress: String {
+		get {
+			return keychain.get("warehouseAddress") ?? ""
+		}
+		set {
+			keychain.set(newValue, forKey: "warehouseAddress")
+		}
+	}
+	
+	@Published var warehouseId: Int? = nil {
+		didSet {
+			storedWarehouseId = warehouseId
+		}
+	}
+	
+	@Published var warehouseName: String = "" {
+		didSet {
+			storedWarehouseName = warehouseName
+		}
+	}
+	
+	@Published var warehouseAddress: String = "" {
+		didSet {
+			storedWarehouseName = warehouseName
+		}
+	}
+	
 	
 	private var storedUserName: String {
 		get {
@@ -109,5 +160,8 @@ class AuthenticationService: ObservableObject {
 		self.refreshToken = storedRefreshToken
 		self.emailVerified = storedEmailVerified
 		self.email = storedEmail
+		self.warehouseId = storedWarehouseId
+		self.warehouseName = storedWarehouseName
+		self.warehouseAddress = warehouseAddress
 	}
 }

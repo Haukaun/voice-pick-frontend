@@ -90,6 +90,9 @@ struct AuthForm: View {
 						authenticationService.accessToken = response.accessToken
 						authenticationService.refreshToken = response.refreshToken
 						authenticationService.emailVerified = response.emailVerified
+						authenticationService.warehouseId = response.warehouse?.id
+						authenticationService.warehouseName = response.warehouse?.name ?? ""
+						authenticationService.warehouseAddress = response.warehouse?.address ?? ""
 					}
 					break
 				case .failure(let error as RequestError):

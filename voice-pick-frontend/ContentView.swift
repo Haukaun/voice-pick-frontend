@@ -11,7 +11,6 @@ import KeychainSwift
 struct ContentView: View {
 	
 	@StateObject var authenticationService = AuthenticationService()
-	@StateObject private var ttsService = TTSService()
 	
 	var body: some View {
 		if authenticationService.accessToken.isEmpty {

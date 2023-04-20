@@ -30,7 +30,7 @@ class PluckService: ObservableObject {
 	@Published var errorMessage = "";
 	@Published var isLoading: Bool = false
 	
-	private var ttsService = TTSService()
+	private var ttsService = TTSService.shared
 	
 	let audioSession: AVAudioSession
 	let speechSynthesizer = AVSpeechSynthesizer()
@@ -55,10 +55,11 @@ class PluckService: ObservableObject {
 	func configureAudioSession() {
 		do {
 			if isBluetoothConnected() {
-				try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth, .allowBluetoothA2DP, .mixWithOthers])
+				try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetoothA2DP, .mixWithOthers])
 			} else {
 				try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .mixWithOthers])
 			}
+			try audioSession.setActive(true)
 		} catch {
 			os_log("Error with configuring audio device", type: .error)
 		}

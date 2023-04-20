@@ -7,17 +7,18 @@
 
 import SwiftUI
 import AVFAudio
+import AVFoundation
+
 struct AccountPage: View {
 	
 	let requestService = RequestService()
 	@EnvironmentObject var authenticationService: AuthenticationService
-	@EnvironmentObject var ttsService: TTSService
+	@StateObject var ttsService = TTSService.shared
 	
 	@State private var showAlert = false
 	@State private var errorMessage = ""
 	@State private var showImagePicker = false
 	@State private var selectedImage = "profile-1"
-	
 	
 	func deleteAccount() {
 		requestService.delete(
@@ -66,7 +67,6 @@ struct AccountPage: View {
 			authenticationService.emailVerified = false
 		}
 	}
-	
 	
 	/**
 	 Sets the voice or shows alert with message.

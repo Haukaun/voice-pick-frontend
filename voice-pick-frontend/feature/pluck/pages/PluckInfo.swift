@@ -57,7 +57,7 @@ struct PluckInfo: View {
 						SubTitle("/")
 						SubTitle("DT09")
 					}
-					Grid(pluckService.pluckList!.plucks)
+					Grid(pluckService.pluckList?.plucks ?? [])
 				}
 			}
 			VStack{

@@ -10,12 +10,9 @@ import AVFAudio
 
 
 class TTSService: ObservableObject {
-	private var speechSynthesizer = AVSpeechSynthesizer()
+	static let shared = TTSService()
+	let synthesizer = AVSpeechSynthesizer()
 	@Published var selectedVoice: Voice?
-	
-	init(selectedVoice: Voice? = nil){
-		self.selectedVoice = selectedVoice
-	}
 	
 	/**
 	 Plays a string to the device audio output
@@ -41,7 +38,7 @@ class TTSService: ObservableObject {
 			speechUtterance.volume = 1.0
 			speechUtterance.pitchMultiplier = 1.0
 			
-			speechSynthesizer.speak(speechUtterance)
+			synthesizer.speak(speechUtterance)
 		}
 	}
     
@@ -49,7 +46,7 @@ class TTSService: ObservableObject {
      Stop the speaking midsentence
      */
     func stopSpeak() {
-        speechSynthesizer.stopSpeaking(at: .immediate)
+			synthesizer.stopSpeaking(at: .immediate)
     }
 	
 	/*

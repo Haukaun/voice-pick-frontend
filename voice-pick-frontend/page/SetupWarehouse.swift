@@ -54,7 +54,7 @@ struct SetupWarehouse: View {
 	}
 	
 	func joinWarehouse() {
-		let verificationCodeInfo = EmailVerificationCode(verificationCode: joinCodeValue, email: authenticationService.email)
+		let verificationCodeInfo = VerifyRequestDto(verificationCode: joinCodeValue, email: authenticationService.email)
 		requestService.post(path: "/warehouse/join", token: authenticationService.accessToken, body: verificationCodeInfo, responseType: WarehouseDto.self, completion: { result in
 			switch result {
 			case .success(let warehouse):

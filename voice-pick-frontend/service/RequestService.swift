@@ -143,7 +143,7 @@ class RequestService: ObservableObject {
 	   - responseType: The type of the response you expect to get
 	   - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
 	 */
-	func post<U: Codable, T: Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+	func post<T: Codable, U: Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
 		request(
 			"POST",
 			path,
@@ -154,16 +154,33 @@ class RequestService: ObservableObject {
 		)
 	}
 
-	func delete<U: Codable, T:Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
-		request(
-			"DELETE",
-			path,
-			token,
-			body,
-			responseType,
-			completion
-		)
+    /**
+     Delete request with body
+    */
+	func delete<T:Codable, U: Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+        request(
+            "DELETE",
+            path,
+            token,
+            body,
+            responseType,
+            completion
+        )
 	}
+    
+    /**
+     Delete request without body
+     */
+    func delete<U: Codable>(path: String, token: String? = nil, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+        request(
+            "DELETE",
+            path,
+            token,
+            nil as String?,
+            responseType,
+            completion
+        )
+    }
 	
 	// TODO: Make functions put
 	

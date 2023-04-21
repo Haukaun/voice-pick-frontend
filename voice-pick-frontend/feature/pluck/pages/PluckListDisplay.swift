@@ -35,7 +35,7 @@ struct PluckListDisplay: View {
                 .listRowBackground(Color.clear)
             }
             .scrollContentBackground(.hidden)
-            .padding(.init(top: 0, leading: 5, bottom: 5, trailing: 5))
+            .padding(5)
             .listStyle(PlainListStyle())
             .background(Color.backgroundColor)
         }

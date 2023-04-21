@@ -15,21 +15,37 @@ struct AccountPage: View {
 	@EnvironmentObject var authenticationService: AuthenticationService
 	@StateObject var ttsService = TTSService.shared
 	
-	@State private var showAlert = false
-	@State private var errorMessage = ""
+	@State private var showVoiceAlert = false
+	@State private var voiceErrorMessage = ""
+    
+    @State private var showWarningAlert = false
+    @State private var warningAlertMessage = ""
+    
 	@State private var showImagePicker = false
 	@State private var selectedImage = "profile-1"
 	
-	func deleteAccount() {
-		requestService.delete(
-			path: "/users",
-			token: authenticationService.accessToken,
-			body: TokenRequest(token: authenticationService.accessToken),
-			responseType: String.self,
-			completion: { result in
-				print(result)
-			})
+    /**
+        Handles the event when the "delete user" is pressed
+     */
+	func handleDeleteAccount() {
+        warningAlertMessage = "Er du sikker på at du vil slette brukeren? Dette kan ikke omgjøres!"
+        showWarningAlert = true
 	}
+    
+    /**
+        Deletes the user
+     */
+    func deleteUser() {
+        requestService.delete(path: "/auth/users", token: authenticationService.accessToken, responseType: String.self, completion: { result in
+            switch result {
+            case .success(_):
+                clearAuthTokens()
+            case .failure(let error):
+                print(error)
+
+            }
+        })
+    }
 	
 	/**
 	 Tries to logout a user based on the tokes for the currently logged in user
@@ -75,8 +91,8 @@ struct AccountPage: View {
 		if isVoiceAvailable(voice: voice) {
 			ttsService.setVoice(voice: voice)
 		} else {
-			errorMessage = "Stemmen er ikke installert på denne enheten. Vennligst installer den manuelt på enheten din. \n \n Gå til Innstillinger > Tilgjengelighet > Opplest innhold > Stemmer > Engelsk og last ned Nathan og Evan."
-			showAlert = true
+			voiceErrorMessage = "Stemmen er ikke installert på denne enheten. Vennligst installer den manuelt på enheten din. \n \n Gå til Innstillinger > Tilgjengelighet > Opplest innhold > Stemmer > Engelsk og last ned Nathan og Evan."
+			showVoiceAlert = true
 		}
 	}
 	
@@ -178,7 +194,7 @@ struct AccountPage: View {
 						
 					})
 					DangerButton(label: "Slett bruker", onPress: {
-						deleteAccount()
+                        handleDeleteAccount()
 					})
 					
 				}
@@ -187,7 +203,17 @@ struct AccountPage: View {
 			}
 			.padding(.top)
 			.background(Color.backgroundColor)
-			.alert("Stemme", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
+			.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})
+            .alert(isPresented: $showWarningAlert) {
+                Alert(
+                    title: Text("Slett bruker"),
+                    message: Text(warningAlertMessage),
+                    primaryButton: .destructive(Text("Slett"), action: {
+                        deleteUser()
+                    }),
+                    secondaryButton: .cancel(Text("Avbryt"))
+                )
+            }
 			.sheet(isPresented: $showImagePicker){
 				ImagePicker(selectedImage: $selectedImage)
 			}

@@ -11,7 +11,7 @@ import AVFoundation
 
 struct AccountPage: View {
 	
-	let requestService = RequestService()
+	@ObservedObject var requestService = RequestService()
 	@EnvironmentObject var authenticationService: AuthenticationService
 	@StateObject var ttsService = TTSService.shared
 	
@@ -123,99 +123,112 @@ struct AccountPage: View {
 	
 	
 	var body: some View {
-		VStack(alignment: .leading, spacing: 0) {
-			Header(
-				headerText: "Header",
-				rightButtons: [
-					Button(action: {logout()}, label: {
-						Image(systemName: "rectangle.portrait.and.arrow.right.fill")
-					})
-				]
-			)
-			ScrollView{
-				HStack {
-					Spacer()
-					ZStack {
-						Image(selectedImage)
-							.resizable()
-							.aspectRatio(contentMode: .fill)
-							.frame(width: 110, height: 110)
-							.clipShape(Circle())
-							.onTapGesture {
-								showImagePicker = true
-							}
-						Circle()
-							.fill(Color.traceLightYellow)
-							.frame(width: 35, height: 35)
-							.offset(x: 40, y: 40)
-						Image(systemName: "plus")
-							.foregroundColor(Color.foregroundColor)
-							.offset(x: 40, y: 40)
-					}
-					Spacer()
-				}
-				HStack{
-					Spacer()
-					VStack {
-						Title(authenticationService.userName)
-						Paragraph("Profesjonell plukker")
-							.opacity(0.3)
-					}
-					Spacer()
-				}
-				VStack (alignment: .trailing) {
-					VStack {
-						DisclosureGroup(content: {
-							VStack {
-								ForEach(Voice.allCases) { voice in
-									voiceButton(title: voice.name) {
-										selectVoice(voice: voice)
-									}
-									.padding(.horizontal, 2)
+		ZStack {
+			VStack(alignment: .leading, spacing: 0) {
+				Header(
+					headerText: "Profil",
+					rightButtons: [
+						Button(action: {
+							logout()}, label: {
+								Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+							})
+					]
+				)
+				ScrollView{
+					HStack {
+						Spacer()
+						ZStack {
+							Image(selectedImage)
+								.resizable()
+								.aspectRatio(contentMode: .fill)
+								.frame(width: 110, height: 110)
+								.clipShape(Circle())
+								.onTapGesture {
+									showImagePicker = true
 								}
-							}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
-						}, label: {
-							HStack {
-								Text("Valgt stemme: ")
-								Text(ttsService.selectedVoice?.name ?? "Standard")
-									.bold()
-									.foregroundColor(Color.foregroundColor)
-							}
-						})
-						.accentColor(.mountain)
+							Circle()
+								.fill(Color.traceLightYellow)
+								.frame(width: 35, height: 35)
+								.offset(x: 40, y: 40)
+							Image(systemName: "plus")
+								.foregroundColor(Color.foregroundColor)
+								.offset(x: 40, y: 40)
+						}
+						Spacer()
 					}
-					.padding(15)
-					.background(Color.componentColor)
-					.accentColor(.foregroundColor)
-					.cornerRadius(UIView.standardCornerRadius)
-					.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
-					Divider()
-					DangerButton(label: "Forlat varehus", onPress: {
-						
-					})
-					DangerButton(label: "Slett bruker", onPress: {
-                        handleDeleteAccount()
-					})
-					
+					HStack{
+						Spacer()
+						VStack {
+							Title(authenticationService.userName)
+							Paragraph("Profesjonell plukker")
+								.opacity(0.3)
+						}
+						Spacer()
+					}
+					VStack (alignment: .trailing) {
+						VStack {
+							DisclosureGroup(content: {
+								VStack {
+									ForEach(Voice.allCases) { voice in
+										voiceButton(title: voice.name) {
+											selectVoice(voice: voice)
+										}
+										.padding(.horizontal, 2)
+									}
+								}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
+							}, label: {
+								HStack {
+									Text("Valgt stemme: ")
+									Text(ttsService.selectedVoice?.name ?? "Standard")
+										.bold()
+										.foregroundColor(Color.foregroundColor)
+								}
+							})
+							.accentColor(.mountain)
+						}
+						.padding(15)
+						.background(Color.componentColor)
+						.accentColor(.foregroundColor)
+						.cornerRadius(UIView.standardCornerRadius)
+						.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
+						Divider()
+						DangerButton(label: "Forlat varehus", onPress: {
+							
+						})
+						DangerButton(label: "Slett bruker", onPress: {
+							handleDeleteAccount()
+						})
+
+					}
+					.frame(maxHeight: .infinity)
+					.padding(10)		
 				}
-				.frame(maxHeight: .infinity)
-				.padding(10)
-			}
-			.padding(.top)
-			.background(Color.backgroundColor)
-			.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})
-            .alert(isPresented: $showWarningAlert) {
-                Alert(
+				.padding(.top)
+				.background(Color.backgroundColor)
+				.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})
+            	.alert(isPresented: $showWarningAlert) {
+                	Alert(
                     title: Text("Slett bruker"),
                     message: Text(warningAlertMessage),
                     primaryButton: .destructive(Text("Slett"), action: {
                         deleteUser()
                     }),
                     secondaryButton: .cancel(Text("Avbryt"))
-                )
-            }
-			.sheet(isPresented: $showImagePicker){
-				ImagePicker(selectedImage: $selectedImage)
+                	)
+           		}
+				.sheet(isPresented: $showImagePicker){
+					ImagePicker(selectedImage: $selectedImage)
+				}
+			}
+			if requestService.isLoading {
+				ProgressView()
+					.progressViewStyle(CircularProgressViewStyle())
+					.scaleEffect(2)
+					.frame(width: 100, height: 100)
+					.background(Color.backgroundColor)
+					.cornerRadius(20)
+					.foregroundColor(.foregroundColor)
+					.padding()
 			}
 		}
 	}

@@ -40,10 +40,14 @@ class RequestService: ObservableObject {
 	///     - body: The body of the response. This is optional and is not used in case of a get request
 	///     - responseType: The type of the expected response
 	private func request<T: Codable, U: Codable>(_ method: String, _ path: String, _ token: String? = nil, _ body: T?, _ responseType: U.Type, _ completion: @escaping (Result<U, Error>) -> Void) {
-		self.isLoading = true;
+		DispatchQueue.main.async {
+			self.isLoading = true
+		}
 		
 		guard let url = URL(string: apiBaseUrl + path) else {
-			self.isLoading = false;
+			DispatchQueue.main.async {
+				self.isLoading = false
+			}
 			return
 		}
 		
@@ -57,7 +61,9 @@ class RequestService: ObservableObject {
 				let data = try encoder.encode(body)
 				urlRequest.httpBody = data
 			} catch {
-				self.isLoading = false
+				DispatchQueue.main.async {
+					self.isLoading = false
+				}
 				completion(.failure(RequestError(errorMessage: "Error encoding body, make sure it is in correct format.", errorType: .decodeError)))
 			}
 		}
@@ -73,13 +79,17 @@ class RequestService: ObservableObject {
 		let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
 			// handles errors where the request could not be sent, (ex: api is down)
 			if let error = error {
-				self.isLoading = false
+				DispatchQueue.main.async {
+					self.isLoading = false
+				}
 				completion(.failure(error))
 				return
 			}
 			
 			guard let data = data else {
-				self.isLoading = false
+				DispatchQueue.main.async {
+					self.isLoading = false
+				}
 				completion(.failure(RequestError(errorType: .dataError)))
 				return
 			}
@@ -95,16 +105,22 @@ class RequestService: ObservableObject {
 						result = try? JSONDecoder().decode(responseType, from: data)
 					}
 					guard let result = result else {
-						self.isLoading = false
+						DispatchQueue.main.async {
+							self.isLoading = false
+						}
 						completion(.failure(RequestError(errorType: .decodeError)))
 						return
 					}
-					self.isLoading = false
+					DispatchQueue.main.async {
+						self.isLoading = false
+					}
 					completion(.success(result))
 				} else {
 					// Here we did not have a status code of success.
 					if let errorMsg = String(data: data, encoding: .utf8) {
-						self.isLoading = false
+						DispatchQueue.main.async {
+							self.isLoading = false
+						}
 						completion(.failure(RequestError(errorCode: httpResponse.statusCode, errorMessage: errorMsg, errorType: .responseError)))
 					}
 				}
@@ -117,10 +133,10 @@ class RequestService: ObservableObject {
 	 Returns an object of type U. The object has to conform `Codable` so it can be mapped to from json
 	 
 	 - Parameters:
-	   - path: The raltive path to the endpoint
-	   - token: A jwt token that should be added to the headers
-	   - responseType: The type of the response you expect to get
-	   - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
+	 - path: The raltive path to the endpoint
+	 - token: A jwt token that should be added to the headers
+	 - responseType: The type of the response you expect to get
+	 - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
 	 */
 	func get<U: Codable>(path: String, token: String? = nil, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
 		request(
@@ -137,11 +153,11 @@ class RequestService: ObservableObject {
 	 Returns an object of type U. The object has to conform to `Codable` so it can be mapped to and from JSON
 	 
 	 - Parameters:
-	   - path: The relative path to the endpoint
-	   - token: A jwt token that should be added to the headers
-	   - body: The additional information as type T to attach the requets body
-	   - responseType: The type of the response you expect to get
-	   - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
+	 - path: The relative path to the endpoint
+	 - token: A jwt token that should be added to the headers
+	 - body: The additional information as type T to attach the requets body
+	 - responseType: The type of the response you expect to get
+	 - completion: A function that is called whenever the request is completed. Should handle both success and error conditions
 	 */
 	func post<T: Codable, U: Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
 		request(

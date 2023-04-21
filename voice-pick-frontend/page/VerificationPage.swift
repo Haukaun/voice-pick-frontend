@@ -17,8 +17,7 @@ struct VerificationPage: View {
 	@State var errorMessage = "";
 	
 	@EnvironmentObject var authenticationService: AuthenticationService
-	
-	let requestService = RequestService()
+	@ObservedObject var requestService = RequestService()
 	
 	
 	/*
@@ -34,7 +33,7 @@ struct VerificationPage: View {
 			completion: { result in
 				switch result {
 				case .success(let response):
-			
+					
 					DispatchQueue.main.async {
 						authenticationService.emailVerified = response
 					}
@@ -140,49 +139,61 @@ struct VerificationPage: View {
 	
 	var body: some View {
 		NavigationView {
-			VStack(spacing: 20) {
-				ZStack {
-					Image("Tracefavicon")
-						.resizable()
-						.frame(width: 120, height: 120)
-						.opacity(0.05)
-					VStack () {
-						Text("TRACE").font(.guidelineHeading).foregroundColor(.traceLightYellow)
-						Text("Voicepick").font(.header1).foregroundColor(.foregroundColor)
+			ZStack {
+				VStack(spacing: 20) {
+					ZStack {
+						Image("Tracefavicon")
+							.resizable()
+							.frame(width: 120, height: 120)
+							.opacity(0.05)
+						VStack () {
+							Text("TRACE").font(.guidelineHeading).foregroundColor(.traceLightYellow)
+							Text("Voicepick").font(.header1).foregroundColor(.foregroundColor)
+						}
 					}
+					Spacer()
+					Group {
+						Text("E-post verifikasjonskode sendt til angitt e-post. Vennligst sjekk søppelpost.")
+							.foregroundColor(.foregroundColor)
+							.multilineTextAlignment(.center)
+						VStack(spacing: 20) {
+							DefaultInput(inputLabel: "Verifikasjonskode", text: $verificationCode, valid: true)
+							DefaultButton("Send", onPress: {
+								checkVerificationCode()
+							})
+							DefaultButton(timeRemaining == 0 ? "Send ny e-post" : "\(timeRemaining)", disabled: timeRemaining > 0 , onPress: {
+								if timeRemaining == 0 {
+									sendVerificationCode()
+									starTimer(duration: 20)
+								}
+							})
+							Button("Logg ut", action: {
+								logout()
+							})
+							.buttonStyle(.plain)
+							.underline()
+						}
+					}
+					.padding(10)
+					Spacer()
+					Footer()
 				}
-				Spacer()
-				Group {
-					Text("E-post verifikasjonskode sendt til angitt e-post. Vennligst sjekk søppelpost.")
+				.padding(50)
+				.background(Color.backgroundColor)
+				.onAppear {
+					sendVerificationCode()
+					starTimer(duration: 20)
+				}
+				if requestService.isLoading {
+					ProgressView()
+						.progressViewStyle(CircularProgressViewStyle())
+						.scaleEffect(2)
+						.frame(width: 100, height: 100)
+						.background(Color.backgroundColor)
+						.cornerRadius(20)
 						.foregroundColor(.foregroundColor)
-						.multilineTextAlignment(.center)
-					VStack(spacing: 20) {
-						DefaultInput(inputLabel: "Verifikasjonskode", text: $verificationCode, valid: true)
-						DefaultButton("Send", onPress: {
-							checkVerificationCode()
-						})
-						DefaultButton(timeRemaining == 0 ? "Send ny e-post" : "\(timeRemaining)", disabled: timeRemaining > 0 , onPress: {
-							if timeRemaining == 0 {
-								sendVerificationCode()
-								starTimer(duration: 20)
-							}
-						})
-						Button("Logg ut", action: {
-							logout()
-						})
-						.buttonStyle(.plain)
-						.underline()
-					}
+						.padding()
 				}
-				.padding(10)
-				Spacer()
-				Footer()
-			}
-			.padding(50)
-			.background(Color.backgroundColor)
-			.onAppear {
-				sendVerificationCode()
-				starTimer(duration: 20)
 			}
 		}
 		.alert("Verifisering", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})

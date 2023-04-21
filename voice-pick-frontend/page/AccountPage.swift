@@ -206,16 +206,16 @@ struct AccountPage: View {
 				.padding(.top)
 				.background(Color.backgroundColor)
 				.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})
-            	.alert(isPresented: $showWarningAlert) {
-                	Alert(
-                    title: Text("Slett bruker"),
-                    message: Text(warningAlertMessage),
-                    primaryButton: .destructive(Text("Slett"), action: {
-                        deleteUser()
-                    }),
-                    secondaryButton: .cancel(Text("Avbryt"))
-                	)
-           		}
+				.alert(isPresented: $showWarningAlert) {
+						Alert(
+							title: Text("Slett bruker"),
+							message: Text(warningAlertMessage),
+							primaryButton: .destructive(Text("Slett"), action: {
+									deleteUser()
+							}),
+							secondaryButton: .cancel(Text("Avbryt"))
+						)
+				}
 				.sheet(isPresented: $showImagePicker){
 					ImagePicker(selectedImage: $selectedImage)
 				}

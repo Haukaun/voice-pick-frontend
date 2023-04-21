@@ -42,6 +42,16 @@ struct ContentView: View {
 				updateActiveView()
 			}
 		}
+		.onChange(of: authenticationService.emailVerified) { _ in
+			withAnimation(.easeInOut(duration: 0.5)) {
+				updateActiveView()
+			}
+		}
+		.onChange(of: authenticationService.warehouseId) { _ in
+			withAnimation(.easeInOut(duration: 0.5)) {
+				updateActiveView()
+			}
+		}
 	}
 	
 	private func updateActiveView() {

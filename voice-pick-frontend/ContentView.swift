@@ -8,30 +8,55 @@
 import SwiftUI
 import Speech
 import KeychainSwift
+import SwiftUI
+
 struct ContentView: View {
+	enum ActiveView {
+		case auth, verification, setupWarehouse, tabBar
+	}
 	
 	@StateObject var authenticationService = AuthenticationService()
+	@State private var activeView: ActiveView = .auth
 	
 	var body: some View {
+		VStack {
+			if activeView == .auth {
+				AuthPage()
+					.environmentObject(authenticationService)
+			} else if activeView == .verification {
+				VerificationPage()
+					.environmentObject(authenticationService)
+			} else if activeView == .setupWarehouse {
+				SetupWarehouse()
+					.environmentObject(authenticationService)
+			} else if activeView == .tabBar {
+				TabBar()
+					.environmentObject(authenticationService)
+			}
+		}
+		.onAppear {
+			updateActiveView()
+		}
+		.onChange(of: authenticationService.accessToken) { _ in
+			withAnimation(.easeInOut(duration: 0.5)) {
+				updateActiveView()
+			}
+		}
+	}
+	
+	private func updateActiveView() {
 		if authenticationService.accessToken.isEmpty {
-			AuthPage()
-				.environmentObject(authenticationService)
-				.transition(.backslide)
+			activeView = .auth
 		} else if !authenticationService.emailVerified {
-			VerificationPage()
-				.environmentObject(authenticationService)
-				.transition(.backslide)
+			activeView = .verification
 		} else if authenticationService.warehouseId == nil {
-			SetupWarehouse()
-				.environmentObject(authenticationService)
-				.transition(.backslide)
+			activeView = .setupWarehouse
 		} else {
-			TabBar()
-				.environmentObject(authenticationService)
-				.transition(.backslide)
+			activeView = .tabBar
 		}
 	}
 }
+
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {

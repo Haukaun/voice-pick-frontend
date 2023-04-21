@@ -22,7 +22,7 @@ struct AuthForm: View {
 	
 	@Binding var authMode: AuthMode
 	
-	let requestService = RequestService()
+	@ObservedObject var requestService = RequestService()
 	
 	@EnvironmentObject var authenticationService: AuthenticationService
 	
@@ -155,28 +155,41 @@ struct AuthForm: View {
 	}
 	
 	var body: some View {
-		VStack(spacing: 20) {
-			if authMode == AuthMode.signup {
-				DefaultInput(inputLabel: "Fornavn", text: $firstnameValue, valid: validateFirstname())
-				DefaultInput(inputLabel: "Etternavn", text: $lastnameValue, valid: validateLastname())
-			}
-			DefaultInput(inputLabel: "E-post", text: $emailValue, valid: validateEmail()).onChange(of: emailValue) { _ in
-				if validateForm() {
-					submitted = false
+		ZStack {
+			VStack(spacing: 20) {
+				if authMode == AuthMode.signup {
+					DefaultInput(inputLabel: "Fornavn", text: $firstnameValue, valid: validateFirstname())
+					DefaultInput(inputLabel: "Etternavn", text: $lastnameValue, valid: validateLastname())
 				}
-			}
-			PasswordInput(value: $passwordValue, valid: validatePassword())
-				.onChange(of: passwordValue) { _ in
+				DefaultInput(inputLabel: "E-post", text: $emailValue, valid: validateEmail()).onChange(of: emailValue) { _ in
 					if validateForm() {
 						submitted = false
 					}
 				}
-			authMode == AuthMode.login ?
-			DefaultButton("Logg inn", disabled: !validateForm() && submitted, onPress: signIn)
-			:
-			DefaultButton("Registrer", disabled: !validateForm() && submitted, onPress: register)
+				PasswordInput(value: $passwordValue, valid: validatePassword())
+					.onChange(of: passwordValue) { _ in
+						if validateForm() {
+							submitted = false
+						}
+					}
+				authMode == AuthMode.login ?
+				DefaultButton("Logg inn", disabled: !validateForm() && submitted, onPress: signIn)
+				:
+				DefaultButton("Registrer", disabled: !validateForm() && submitted, onPress: register)
+			}
+			.alert(authMode == AuthMode.signup ? "Registrer" : "Logg inn", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
+			
+			if requestService.isLoading {
+				ProgressView()
+					.progressViewStyle(CircularProgressViewStyle())
+					.scaleEffect(2)
+					.frame(width: 100, height: 100)
+					.background(Color.backgroundColor)
+					.cornerRadius(20)
+					.foregroundColor(.foregroundColor)
+					.padding()
+			}
 		}
-		.alert(authMode == AuthMode.signup ? "Registrer" : "Logg inn", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
 		
 	}
 }

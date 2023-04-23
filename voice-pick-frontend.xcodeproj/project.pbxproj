@@ -60,6 +60,8 @@
 		F619709929C35F1D00927BDB /* DangerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709829C35F1D00927BDB /* DangerButton.swift */; };
 		F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619709A29C4981D00927BDB /* JustifiedContainer.swift */; };
 		F62D1AFC29EEBD95005ED754 /* VerifyRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62D1AFB29EEBD95005ED754 /* VerifyRequestDto.swift */; };
+		F62D377429F42ECB00455B80 /* UpdatePluckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62D377329F42ECB00455B80 /* UpdatePluckRequest.swift */; };
+		F62D377629F43C1C00455B80 /* UpdatePluckListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62D377529F43C1C00455B80 /* UpdatePluckListRequest.swift */; };
 		F640285129CD85B70023AE34 /* VoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F640285029CD85B70023AE34 /* VoiceService.swift */; };
 		F662F78129E1852800C7FAC0 /* TokenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F662F78029E1852800C7FAC0 /* TokenDto.swift */; };
 		F67354A929AF57C700D7E601 /* PluckCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67354A829AF57C700D7E601 /* PluckCard.swift */; };
@@ -158,6 +160,8 @@
 		F619709829C35F1D00927BDB /* DangerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerButton.swift; sourceTree = "<group>"; };
 		F619709A29C4981D00927BDB /* JustifiedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedContainer.swift; sourceTree = "<group>"; };
 		F62D1AFB29EEBD95005ED754 /* VerifyRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyRequestDto.swift; sourceTree = "<group>"; };
+		F62D377329F42ECB00455B80 /* UpdatePluckRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePluckRequest.swift; sourceTree = "<group>"; };
+		F62D377529F43C1C00455B80 /* UpdatePluckListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePluckListRequest.swift; sourceTree = "<group>"; };
 		F640285029CD85B70023AE34 /* VoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceService.swift; sourceTree = "<group>"; };
 		F662F78029E1852800C7FAC0 /* TokenDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDto.swift; sourceTree = "<group>"; };
 		F67354A829AF57C700D7E601 /* PluckCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckCard.swift; sourceTree = "<group>"; };
@@ -397,6 +401,15 @@
 			path = typography;
 			sourceTree = "<group>";
 		};
+		F62D377229F42EB700455B80 /* dtos */ = {
+			isa = PBXGroup;
+			children = (
+				F62D377329F42ECB00455B80 /* UpdatePluckRequest.swift */,
+				F62D377529F43C1C00455B80 /* UpdatePluckListRequest.swift */,
+			);
+			path = dtos;
+			sourceTree = "<group>";
+		};
 		F640285229CD88A80023AE34 /* services */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,6 +565,7 @@
 		F6E9BE482996875E00DFD5EF /* pluck */ = {
 			isa = PBXGroup;
 			children = (
+				F62D377229F42EB700455B80 /* dtos */,
 				8D5AEBF529C46D430030FAF5 /* services */,
 				F67354A729AF504A00D7E601 /* pages */,
 				F6E9BE4C2996879500DFD5EF /* components */,
@@ -746,6 +760,7 @@
 				E845942E29E9698C00DFE048 /* AddWarehouseDto.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
 				F68A5B0A29E955CC004E4E9B /* ProductDetailsPage.swift in Sources */,
+				F62D377629F43C1C00455B80 /* UpdatePluckListRequest.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,
 				8D77C3B829E5386300C36D11 /* Voice.swift in Sources */,
 				F69765B229E59B7100C697B8 /* BannerModifier.swift in Sources */,
@@ -775,6 +790,7 @@
 				E8603B412996584000E09361 /* ContentView.swift in Sources */,
 				E8A2432529C30EC1007D0F60 /* LoginResponse.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
+				F62D377429F42ECB00455B80 /* UpdatePluckRequest.swift in Sources */,
 				8DF87C9F29EC0D71007152C7 /* ImagePicker.swift in Sources */,
 				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
 				E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */,

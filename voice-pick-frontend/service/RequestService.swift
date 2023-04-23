@@ -197,6 +197,17 @@ class RequestService: ObservableObject {
             completion
         )
     }
+    
+    func patch<T:Codable, U: Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+        request(
+            "PATCH",
+            path,
+            token,
+            body,
+            responseType,
+            completion
+        )
+    }
 	
 	// TODO: Make functions put
 	

@@ -29,6 +29,8 @@ class PluckService: ObservableObject {
 	@Published var showAlert = false;
 	@Published var errorMessage = "";
 	@Published var isLoading: Bool = false
+    
+    var token: String? = nil
 	
 	private var ttsService = TTSService.shared
 	
@@ -84,10 +86,13 @@ class PluckService: ObservableObject {
 	 */
 	func doAction(keyword: String, fromVoice: Bool, token: String? = nil) {
         print(keyword)
+        print(currentStep)
+        
+        self.token = token
         
 		switch currentStep {
 		case .START:
-			handleStartActions(keyword, fromVoice, token)
+			handleStartActions(keyword, fromVoice)
 			break
 		case .SELECT_CARGO:
 			handleCargoAction(keyword, fromVoice)
@@ -111,12 +116,12 @@ class PluckService: ObservableObject {
 	 - keyword: the keyword of the action to make
 	 - fromVoice: a boolean describing if the action was made via voice. `true` if yes, `false` otherwise
 	 */
-	private func handleStartActions(_ keyword: String, _ fromVoice: Bool, _ token: String?) {
+	private func handleStartActions(_ keyword: String, _ fromVoice: Bool) {
 		switch keyword {
 		case "start":
 			if let token = token, !token.isEmpty {
 				isLoading = true
-				initializePlucklist(fromVoice, token)
+				initializePlucklist(fromVoice)
 			} else {
 				ttsService.speak("Unauthorized. Try to log back in", fromVoice)
 			}
@@ -136,26 +141,31 @@ class PluckService: ObservableObject {
 	 Error handling for plucklist
 	 */
 	func handleError(errorCode: Int) {
-		switch errorCode {
-		case 204:
-			showAlert = true
-			errorMessage = "Ingen plukkliste funnet for øyeblikket. Vennligst vent på nye plukk."
-			break
-		case 422:
-			showAlert = true
-			errorMessage = "Noe gikk galt med behandlingen av dataene."
-			break
-		default:
-			showAlert = true;
-			errorMessage = "Noe gikk galt, vennligst avslutt applikasjonen og prøv igjen, eller rapporter en feil."
-			break
-		}
+        DispatchQueue.main.async {
+            switch errorCode {
+            case 204:
+                self.showAlert = true
+                self.errorMessage = "Ingen plukkliste funnet for øyeblikket. Vennligst vent på nye plukk."
+                break
+            case 401:
+                self.showAlert = true
+                self.errorMessage = "Uautorisert. Logg ut og logg inn igjen og prøv på nytt."
+            case 422:
+                self.showAlert = true
+                self.errorMessage = "Noe gikk galt med behandlingen av dataene."
+                break
+            default:
+                self.showAlert = true;
+                self.errorMessage = "Noe gikk galt, vennligst avslutt applikasjonen og prøv igjen, eller rapporter en feil."
+                break
+            }
+        }
 	}
 	/**
 	 Initializes a new plucklist
 	 */
-	private func initializePlucklist(_ fromVoice: Bool, _ token: String) {
-		requestService.get(path: "/plucks", token: token, responseType: PluckList.self, completion: { [self] result in
+	private func initializePlucklist(_ fromVoice: Bool) {
+        requestService.get(path: "/pluck-lists", token: self.token, responseType: PluckList.self, completion: { [self] result in
 			DispatchQueue.main.async {
 				self.isLoading = false
 			}
@@ -208,10 +218,6 @@ class PluckService: ObservableObject {
 				// TODO: Send request to api to update cargo carrier for plucklist
 				pluckList?.cargoCarrier = found
 				ttsService.speak("\(found!.name) selected", fromVoice)
-			} else {
-				if (pluckList?.cargoCarrier != nil) {
-					ttsService.speak("Say 'next' to continue", fromVoice)
-				}
 			}
 		}
 	}
@@ -279,14 +285,17 @@ class PluckService: ObservableObject {
 			
 			if let keywordInt = keywordInt {
 				pluckList?.plucks[currentPluckIndex].amountPlucked = keywordInt
-				if pluckList?.plucks[currentPluckIndex].amountPlucked == pluckList?.plucks[currentPluckIndex].amount {
-					self.setCurrentStep(.CONFIRM_PLUCK)
-				}
+                let rightAmountEntered = pluckList?.plucks[currentPluckIndex].amountPlucked == pluckList?.plucks[currentPluckIndex].amount
+				if  rightAmountEntered && fromVoice {
+                    confirmPluck(currentPluckIndex, fromVoice)
+                } else if rightAmountEntered {
+                    self.setCurrentStep(.CONFIRM_PLUCK)
+                }
 			}
 		}
 	}
 	
-	private func handleConfirmPluck(_ keyword: String, _ fromVoice: Bool) {
+    private func handleConfirmPluck(_ keyword: String, _ fromVoice: Bool) {
 		guard let currentPluckIndex = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil }) else {
 			return
 		}
@@ -305,22 +314,7 @@ class PluckService: ObservableObject {
 			if pluckList?.plucks[currentPluckIndex].amountPlucked != pluckList?.plucks[currentPluckIndex].amount {
 				ttsService.speak("Enter correct amount before completing", fromVoice)
 			} else {
-				pluckList?.plucks[currentPluckIndex].pluckedAt = Date()
-				
-				// If all plucks are completed
-				if (pluckList?.plucks.filter{ $0.pluckedAt == nil }.count == 0) {
-					updateActivePage(.COMPLETE)
-					ttsService.speak("All plucks completed", fromVoice)
-					DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-						DispatchQueue.main.async { [self] in
-							self.updateActivePage(.DELIVERY)
-							self.setCurrentStep(.DELIVERY)
-						}
-					}
-					ttsService.speak(pluckList?.location.code ?? "", fromVoice)
-				} else {
-					handleRearangePluck()
-				}
+				confirmPluck(currentPluckIndex, fromVoice)
 			}
 		default:
 			var keywordInt: Int?
@@ -332,12 +326,72 @@ class PluckService: ObservableObject {
 			
 			if let keywordInt = keywordInt {
 				pluckList?.plucks[currentPluckIndex].amountPlucked = keywordInt
-				if pluckList?.plucks[currentPluckIndex].amountPlucked == pluckList?.plucks[currentPluckIndex].amount {
-					self.setCurrentStep(.CONFIRM_PLUCK)
-				}
+                let rightAmountEntered = pluckList?.plucks[currentPluckIndex].amountPlucked == pluckList?.plucks[currentPluckIndex].amount
+                if  rightAmountEntered && fromVoice {
+                    confirmPluck(currentPluckIndex, fromVoice)
+                } else if rightAmountEntered {
+                    self.setCurrentStep(.CONFIRM_PLUCK)
+                }
 			}
 		}
 	}
+    
+    private func confirmPluck(_ pluckIndex: Int, _ fromVoice: Bool) {
+        pluckList?.plucks[pluckIndex].pluckedAt = Date()
+        
+        // Send request to api to update pluck values
+        let pluck = pluckList?.plucks[pluckIndex]
+        guard let pluck = pluck else {
+            return
+        }
+        let pluckId = pluck.id
+        let dateFormatter = ISO8601DateFormatter()
+        
+        let confirmedAt = pluck.confirmedAt != nil ? dateFormatter.string(from: pluck.confirmedAt!) : nil
+        let pluckedAt = pluck.pluckedAt != nil ? dateFormatter.string(from: pluck.pluckedAt!) : nil
+        
+        let requestBody = UpdatePluckRequest(
+            amountPlucked: pluck.amountPlucked,
+            confirmedAt: confirmedAt,
+            pluckedAt: pluckedAt
+        )
+        requestService.patch(
+            path: "/plucks/\(pluckId)",
+            token: self.token,
+            body: requestBody,
+            responseType: String.self,
+            completion: { result in
+                switch result {
+                case .success(_):
+                    print("Pluck successfully updated")
+                    break
+                case .failure(let error as RequestError):
+                    self.handleError(errorCode: error.errorCode)
+                default:
+                    break
+                }
+            }
+        )
+        
+        // If all plucks are completed
+        if (pluckList?.plucks.filter{ $0.pluckedAt == nil }.count == 0) {
+            updateActivePage(.COMPLETE)
+            ttsService.speak("All plucks completed", fromVoice)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DispatchQueue.main.async { [self] in
+                    self.updateActivePage(.DELIVERY)
+                    self.setCurrentStep(.DELIVERY)
+                }
+            }
+            ttsService.speak(pluckList?.location.code ?? "", fromVoice)
+        } else {
+            // Find next pluck and utter the location
+            let nextPluck = pluckList?.plucks.first(where: { $0.pluckedAt == nil })
+            ttsService.speak(nextPluck?.product.location.code ?? "", fromVoice)
+            
+            handleRearangePluck()
+        }
+    }
 	
 	private func handleDeliveryAction(_ keyword: String, _ fromVoice: Bool) {
 		if let keywordInt = isControlDigits(keyword) {
@@ -345,7 +399,13 @@ class PluckService: ObservableObject {
 				withAnimation {
 					pluckList?.confirmedAt = Date()
 				}
-				ttsService.speak("Say 'complete' to finish pluck", fromVoice)
+                ttsService.speak("Pluck completed", fromVoice)
+                if fromVoice {
+                    registerCompletPluckList()
+                    setCurrentStep(.START)
+                    updateActivePage(.LOBBY)
+                    ttsService.speak("Say 'start' to start a new pluck order", fromVoice)
+                }
 			} else {
 				ttsService.speak("Wrong control digits. Try again", fromVoice)
 			}
@@ -362,6 +422,7 @@ class PluckService: ObservableObject {
 					ttsService.speak("Need to confirm with control digits first...", fromVoice)
 				} else {
 					pluckList?.finishedAt = Date()
+                    registerCompletPluckList()
 					
 					setCurrentStep(.START)
 					updateActivePage(.LOBBY)
@@ -372,21 +433,50 @@ class PluckService: ObservableObject {
 			}
 		}
 	}
+    
+    func registerCompletPluckList() {
+        guard let pluckList = self.pluckList else {
+            return
+        }
+        
+        let id = pluckList.id
+        let dateFormatter = ISO8601DateFormatter()
+
+        let confirmedAt = pluckList.confirmedAt != nil ? dateFormatter.string(from: pluckList.confirmedAt!) : nil
+        let finishedAt = pluckList.finishedAt != nil ? dateFormatter.string(from: pluckList.finishedAt!) : nil
+        let body = UpdatePluckListRequest(confirmedAt: confirmedAt, finishedAt: finishedAt)
+            
+        requestService.patch(
+            path: "/pluck-lists/\(id)",
+            token: self.token,
+            body: body,
+            responseType: String.self,
+            completion: { result in
+                switch result {
+                case .success(_):
+                    print("Plucklist successfully updated")
+                    break
+                case .failure(let error as RequestError):
+                    self.handleError(errorCode: error.errorCode)
+                default:
+                    break
+                }
+            }
+        )
+    }
 	
 	/**
 	 Updates to correct step when items in the pluck list are rearrenged
 	 */
-	func handleRearangePluck() {
+    func handleRearangePluck() {
 		let nextPluck = pluckList?.plucks.first(where: { $0.pluckedAt == nil })
-		
+            
 		// Check state of next pluck
 		if nextPluck?.confirmedAt == nil {
 			self.setCurrentStep(.SELECT_CONTROL_DIGITS)
 		} else {
 			self.setCurrentStep(.CONFIRM_PLUCK)
 		}
-		
-		print(self.currentStep)
 	}
 	
 	/**

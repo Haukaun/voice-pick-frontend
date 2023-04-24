@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		236309DE29F3D4D700F09BF9 /* AddLocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */; };
+		236309E029F3D4FE00F09BF9 /* LocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236309DF29F3D4FE00F09BF9 /* LocationPage.swift */; };
+		236309E229F3D61F00F09BF9 /* LocationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236309E129F3D61F00F09BF9 /* LocationType.swift */; };
 		2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386BC1D299BE80F00916B5C /* DefaultInput.swift */; };
 		23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BCAE2F299F70D70038C0D7 /* AccountPage.swift */; };
 		23BCAE32299F75A70038C0D7 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BCAE31299F75A70038C0D7 /* Header.swift */; };
@@ -104,6 +107,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationPage.swift; sourceTree = "<group>"; };
+		236309DF29F3D4FE00F09BF9 /* LocationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPage.swift; sourceTree = "<group>"; };
+		236309E129F3D61F00F09BF9 /* LocationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationType.swift; sourceTree = "<group>"; };
 		2386BC1D299BE80F00916B5C /* DefaultInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInput.swift; sourceTree = "<group>"; };
 		23BCAE2F299F70D70038C0D7 /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
 		23BCAE31299F75A70038C0D7 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -436,6 +442,7 @@
 			children = (
 				F68A5B0C29E976EB004E4E9B /* AddProductField.swift */,
 				F68A5B1529E977FB004E4E9B /* EditableLabelInput.swift */,
+				236309E129F3D61F00F09BF9 /* LocationType.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -467,6 +474,8 @@
 				F69765C029E6E97800C697B8 /* ProductPage.swift */,
 				F68A5B0729E6FD97004E4E9B /* AddProductPage.swift */,
 				F68A5B0929E955CC004E4E9B /* ProductDetailsPage.swift */,
+				236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */,
+				236309DF29F3D4FE00F09BF9 /* LocationPage.swift */,
 			);
 			path = pages;
 			sourceTree = "<group>";
@@ -750,6 +759,7 @@
 				F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */,
 				F69765BE29E6D7E700C697B8 /* WarehouseConfigurationPage.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
+				236309E229F3D61F00F09BF9 /* LocationType.swift in Sources */,
 				F68A5B0829E6FD97004E4E9B /* AddProductPage.swift in Sources */,
 				8DBAB8FB29CB01DC0073B134 /* PluckListLocation.swift in Sources */,
 				E8A2432B29C35B54007D0F60 /* PasswordInput.swift in Sources */,
@@ -775,6 +785,7 @@
 				E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */,
 				8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */,
 				F62D1AFC29EEBD95005ED754 /* VerifyRequestDto.swift in Sources */,
+				236309DE29F3D4D700F09BF9 /* AddLocationPage.swift in Sources */,
 				F69765C129E6E97800C697B8 /* ProductPage.swift in Sources */,
 				8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */,
 				F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */,
@@ -787,6 +798,7 @@
 				F6F2E78129D1970E00E56A11 /* TokenRequest.swift in Sources */,
 				F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */,
 				E845942B29E94B9A00DFE048 /* SetupWarehouse.swift in Sources */,
+				236309E029F3D4FE00F09BF9 /* LocationPage.swift in Sources */,
 				E8603B412996584000E09361 /* ContentView.swift in Sources */,
 				E8A2432529C30EC1007D0F60 /* LoginResponse.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,

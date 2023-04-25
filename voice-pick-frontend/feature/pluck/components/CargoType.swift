@@ -22,7 +22,7 @@ struct CargoType: View {
 						.foregroundColor(.foregroundColor)
 				}
 			})
-			.accentColor(.mountain)
+			.accentColor(.foregroundColor)
 			.padding(15)
 		}
 		.background(Color.componentColor)

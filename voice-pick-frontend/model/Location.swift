@@ -6,7 +6,7 @@
 //
 
 struct Location: Codable, Hashable {
-	let code: String
+	var code: String
 	let controlDigits: Int
 	let locationType: String
 }

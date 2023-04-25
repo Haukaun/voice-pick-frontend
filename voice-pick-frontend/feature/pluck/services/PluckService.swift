@@ -154,6 +154,9 @@ class PluckService: ObservableObject {
                 self.showAlert = true
                 self.errorMessage = "Noe gikk galt med behandlingen av dataene."
                 break
+						case 404:
+							self.showAlert = true
+							self.errorMessage = "Ikke nok lokasjoner eller produkt til å generere plukk liste."
             default:
                 self.showAlert = true;
                 self.errorMessage = "Noe gikk galt, vennligst avslutt applikasjonen og prøv igjen, eller rapporter en feil."

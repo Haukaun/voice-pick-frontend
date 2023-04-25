@@ -5,14 +5,15 @@
 //  Created by Joakim Edvardsen on 17/02/2023.
 //
 
-enum ProductType: String, Codable {
+enum ProductType: String, Codable, CaseIterable {
     case D_PACK = "D_PAK"
     case F_PACK = "F_PAK"
 }
 
-enum ProductStatus: String, Codable {
+enum ProductStatus: String, Codable, CaseIterable {
     case READY = "READY"
     case EMPTY = "EMPTY"
+	  case WITHOUT_LOCATION = "WITHOUT_LOCATION"
 }
 
 struct Product: Hashable, Codable {
@@ -25,7 +26,7 @@ struct Product: Hashable, Codable {
     let status: ProductStatus
 		let location: Location
     
-    func has(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
     

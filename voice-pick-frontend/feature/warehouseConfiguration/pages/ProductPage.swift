@@ -7,40 +7,33 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct ProductPage: View {
 	
-	let products: [Product] = [
-		.init(
-			id: 1,
-			name: "Coca Cola",
-			weight: 1.5,
-			volume: 1.5,
-			quantity: 10,
-			type: ProductType.D_PACK,
-			status: ProductStatus.READY,
-			location: .init(
-				code: "H209",
-				controlDigits: 476,
-                locationType: "PRODUCT"
-            )),
-		.init(
-			id: 1,
-			name: "Pepsi max",
-			weight: 1.5,
-			volume: 1.5,
-			quantity: 10,
-			type: ProductType.D_PACK,
-			status: ProductStatus.READY,
-			location: .init(
-				code: "H215",
-				controlDigits: 479,
-                locationType: "PRODUCT"
-            ))]
+	@EnvironmentObject var authenticationService: AuthenticationService
+	@ObservedObject var requestService = RequestService()
+	@State private var products: [ProductDto] = []
 	
 	@State var searchField: String = ""
 	
-	@State var selectedProduct: Product?
+	@State var selectedProduct: ProductDto?
 	@State var isSheetPresent = false
+	
+	func fetchProducts() {
+		requestService.get(path: "/products", token: authenticationService.accessToken, responseType: [ProductDto].self) { result in
+			switch result {
+			case .success(let fetchedProducts):
+				self.products = fetchedProducts
+			case .failure(let error as RequestError):
+				print(error)
+				// Handle the error here
+				print("Error: \(error.localizedDescription)")
+			default:
+				break
+			}
+		}
+	}
 	
 	var body: some View {
 		NavigationView {
@@ -64,6 +57,9 @@ struct ProductPage: View {
 			}
 			.padding(5)
 		}
+		.onAppear{
+			fetchProducts()
+		}
 		.toolbar {
 			ToolbarItem(placement: .principal) {
 				Text("Produkter")
@@ -78,23 +74,15 @@ struct ProductPage: View {
 		.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
 		.toolbarBackground(.visible, for: .navigationBar)
 		.sheet(isPresented: $isSheetPresent) {
-			if (selectedProduct != nil) {
-				ProductDetailsPage(
-					id: selectedProduct!.id,
-					name: selectedProduct!.name,
-					weight: selectedProduct!.weight,
-					volume: selectedProduct!.volume,
-					quantity: selectedProduct!.quantity,
-					type: selectedProduct!.type,
-					status: selectedProduct!.status,
-					location: selectedProduct!.location.code
-				)
+			if let selectedProduct = selectedProduct {
+				UpdateProductPage(product: selectedProduct)
 			} else {
 				Text("Error")
 			}
 		}
 	}
 }
+
 
 struct ProductPage_Previews: PreviewProvider {
 	static var previews: some View {

@@ -11,12 +11,13 @@ import CodeScanner
 struct AddProductPage: View {
 	@State private var isShowingScanner = false
 	
-	@State private var productName: String = "N/A"
-	@State private var weight: String = "N/A"
-	@State private var volume: String = "N/A"
-	@State private var quantity: String = "N/A"
-	@State private var type: String = "N/A"
-	@State private var location: String = "N/A"
+	@State private var productName: String = ""
+	@State private var weight: String = ""
+	@State private var volume: String = ""
+	@State private var quantity: String = ""
+	@State private var type: String = ""
+	@State private var location: String = ""
+	@State private var status: String = ""
 	
 	@State private var productNameErrorMsg: String?
 	@State private var weightErrorMsg: String?
@@ -24,6 +25,7 @@ struct AddProductPage: View {
 	@State private var quantityErrorMsg: String?
 	@State private var typeErrorMsg: String?
 	@State private var locationErrorMsg: String?
+	@State private var statusErrorMsg: String?
 	
 	@State var showAlert = false
 	@State var errorMessage = ""
@@ -62,7 +64,7 @@ struct AddProductPage: View {
 	func fetchProductInfo(_ gtin: String) {
 		resetErrorMessages()
 		
-		requestService.get(path: "/products/\(gtin)", responseType: PalletInfoDto.self, completion: { result in
+		requestService.get(path: "/products/\(gtin)", token: authService.accessToken, responseType: PalletInfoDto.self, completion: { result in
 			switch result {
 			case .success(let productInfo):
 				self.productName = productInfo.productName
@@ -81,6 +83,7 @@ struct AddProductPage: View {
 	 Handles the event
 	 */
 	func handleSubmit() {
+		
 		var validForm = true
 		resetErrorMessages()
 		
@@ -121,13 +124,14 @@ struct AddProductPage: View {
 			requestService.post(
 				path: "/products",
 				token: authService.accessToken,
-				body: AddProductDto(
+				body: SaveProductDto(
 					name: productName,
-					location: location,
 					weight: weightNum,
 					volume: volumeNum,
 					quantity: quantityInt,
-					type: ProductType(rawValue: type) ?? ProductType.D_PACK),
+					type: ProductType(rawValue: type) ?? ProductType.D_PACK,
+					status: nil,
+					locationCode: location),
 				responseType: String.self,
 				completion: { result in
 					switch result {
@@ -161,42 +165,61 @@ struct AddProductPage: View {
 	var body: some View {
 		NavigationView {
 			VStack(spacing: 0) {
-				Header(
-					headerText: "Legg til produkt",
-					rightButtons: [
-						Button(action: {isShowingScanner = true}, label: {
-							Image(systemName: "barcode.viewfinder")
-						})
-					]
-				)
 				VStack(alignment: .leading, spacing: 20) {
-					AddProductField(
+					ProductField(
 						label: "Produktnavn",
 						value: $productName,
 						errorMsg: $productNameErrorMsg)
-					AddProductField(
+					ProductField(
 						label: "Vekt",
 						value: $weight,
 						errorMsg: $weightErrorMsg,
 						type: .asciiCapableNumberPad)
-					AddProductField(
+					ProductField(
 						label: "Volum",
 						value: $volume,
 						errorMsg: $volumeErrorMsg,
 						type: .decimalPad)
-					AddProductField(
+					ProductField(
 						label: "Antall",
 						value: $quantity,
 						errorMsg: $quantityErrorMsg,
 						type: .decimalPad)
-					AddProductField(
-						label: "Type",
-						value: $type,
-						errorMsg: $typeErrorMsg)
-					AddProductField(
+					ProductField(
 						label: "Plassering",
 						value: $location,
 						errorMsg: $locationErrorMsg)
+					DisclosureGroup(content: {
+						ScrollView {
+							VStack {
+								ForEach(ProductType.allCases, id: \.self) { productType in
+									Button(action: {
+										type = productType.rawValue
+									}) {
+										Spacer()
+										Text(productType.rawValue)
+											.padding(15)
+											.fontWeight(.bold)
+											.font(.button)
+											.foregroundColor(.snow)
+										Spacer()
+									}
+									.background(Color.night)
+									.cornerRadius(UIView.standardCornerRadius)
+								}
+							}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
+						}
+					}, label: {
+						VStack (alignment: .leading) {
+							Text("Valgt type:")
+							Text(type)
+								.bold()
+								.foregroundColor(.foregroundColor)
+						}
+					})
+					.accentColor(.foregroundColor)
+					.background(Color.backgroundColor)
+					.cornerRadius(5)
 					Spacer()
 					DefaultButton("Legg til produkt", disabled: false, onPress: {
 						handleSubmit()
@@ -208,24 +231,24 @@ struct AddProductPage: View {
 				.padding(10)
 				.background(Color.backgroundColor)
 			}
-			.toolbar {
-				ToolbarItem(placement: .principal) {
-					Text("Produkter")
-				}
-				ToolbarItem(placement: .navigationBarTrailing) {
-					Button(action: { isShowingScanner = true }) {
-						Image(systemName: "barcode.viewfinder")
-					}
-				}
-			}
-			.navigationBarTitleDisplayMode(.inline)
-			.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
-			.toolbarBackground(.visible, for: .navigationBar)
-			.sheet(isPresented: $isShowingScanner) {
-				CodeScannerView(codeTypes: [.upce, .ean8, .ean13], showViewfinder: true, simulatedData: "7021110120818", completion: handleScan)
-			}
-			.alert("Feil", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) })
 		}
+		.toolbar {
+			ToolbarItem(placement: .principal) {
+				Text("Legg til produkt")
+			}
+			ToolbarItem(placement: .navigationBarTrailing) {
+				Button(action: { isShowingScanner = true }) {
+					Image(systemName: "barcode.viewfinder")
+				}
+			}
+		}
+		.navigationBarTitleDisplayMode(.inline)
+		.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
+		.toolbarBackground(.visible, for: .navigationBar)
+		.sheet(isPresented: $isShowingScanner) {
+			CodeScannerView(codeTypes: [.upce, .ean8, .ean13], showViewfinder: true, simulatedData: "7021110120818", completion: handleScan)
+		}
+		.alert("Feil", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) })
 	}
 }
 	

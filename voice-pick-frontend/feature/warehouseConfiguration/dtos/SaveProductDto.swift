@@ -7,11 +7,13 @@
 
 import Foundation
 
-struct AddProductDto: Codable {
+//Dto for add and update
+struct SaveProductDto: Codable, Hashable {
 	let name: String
-	let location: String
 	let weight: Double
 	let volume: Double
 	let quantity: Int
 	let type: ProductType
+	let status: ProductStatus?
+	let locationCode: String?
 }

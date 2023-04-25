@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddProductField: View {
+struct ProductField: View {
 	let label: String
 	@Binding var value: String
 	@Binding var errorMsg: String?
@@ -52,7 +52,7 @@ struct AddProductField: View {
 struct AddProductField_Previews: PreviewProvider {
 	static var previews: some View {
 		VStack {
-			AddProductField(
+			ProductField(
 				label: "Produkt navn",
 				value: .constant("Coca Cola"),
 				errorMsg: .constant(nil)

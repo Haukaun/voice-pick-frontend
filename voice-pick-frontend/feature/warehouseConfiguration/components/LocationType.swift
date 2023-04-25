@@ -25,16 +25,17 @@ struct LocationType: View {
                 }
             }, label: {
                 HStack {
-                    Text("Type:")
+                    Text("Valgt type:")
                     Text(selectedLocationType)
                         .bold()
-                        .foregroundColor(.foregroundColor)
+                        
                 }
+								.foregroundColor(.foregroundColor)
             })
             .accentColor(.mountain)
             .padding(15)
         }
-        .background(Color.componentColor)
+        .background(Color.backgroundColor)
         .cornerRadius(5)
         
     }

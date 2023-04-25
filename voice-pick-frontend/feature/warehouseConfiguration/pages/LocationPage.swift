@@ -20,7 +20,8 @@ struct LocationPage: View {
     @State var isSheetPresent = false
     @State private var indexSetToDelete: IndexSet?
     @State private var showingAlert = false
-    @State var errorMessage = "";
+    @State var errorMessage = ""
+    @State var locationDeletedFromDb = false
     
     var filteredLocations: [Location] {
         if searchField.isEmpty {
@@ -51,6 +52,7 @@ struct LocationPage: View {
                                 Button {
                                     showingAlert = true
                                     indexSetToDelete = IndexSet(arrayLiteral: locations.firstIndex(of: location)!)
+                                    selectedLocation = location
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }.tint(.red)
@@ -76,8 +78,11 @@ struct LocationPage: View {
                 }
                 Button(role: .destructive){
                     if let indexSetToDelete = indexSetToDelete {
-                        locations.remove(atOffsets: indexSetToDelete)
-                        // Make API call to delete location from server
+                        deleteLocation(locationId: selectedLocation?.code ?? "no location selected")
+                        if locationDeletedFromDb {
+                            locations.remove(atOffsets: indexSetToDelete)
+                        }
+                        locationDeletedFromDb = false
                     }
                 } label: {
                     Text("Slett")
@@ -117,26 +122,26 @@ struct LocationPage: View {
         })
     }
     
-//    func deleteLocation(locationId: String) {
-//        requestService.delete(path: "/locations/" + (locationId), token: authService.accessToken, completion: { result in
-//            switch result {
-//            case .success(_):
-//
-//                break
-//            case .failure(let error as RequestError):
-//                handleError(errorCode: error.errorCode)
-//                break
-//            default:
-//                break
-//            }
-//        })
-//    }
+    func deleteLocation(locationId: String) {
+        requestService.delete(path: "/locations/" + locationId, token: authService.accessToken, responseType: String.self, completion: { result in
+            switch result {
+            case .success(_):
+                locationDeletedFromDb = true
+                break
+            case .failure(let error as RequestError):
+                locationDeletedFromDb = false
+                handleError(errorCode: error.errorCode)
+                break
+            default:
+                break
+            }
+        })
+    }
     
     /**
      Error handling
      */
     func handleError(errorCode: Int) {
-        print(errorCode)
         switch errorCode {
         case 401:
             showingAlert = true

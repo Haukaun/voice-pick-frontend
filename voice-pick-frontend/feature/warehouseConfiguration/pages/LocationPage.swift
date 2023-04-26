@@ -57,10 +57,6 @@ struct LocationPage: View {
                                     Label("Delete", systemImage: "trash")
                                 }.tint(.red)
                             }
-                            .onTapGesture {
-                                selectedLocation = location
-                                isSheetPresent.toggle()
-                            }
                     }
                 }
                 .listStyle(PlainListStyle())

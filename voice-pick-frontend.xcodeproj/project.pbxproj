@@ -88,6 +88,8 @@
 		F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70929B090EC004AC10B /* RequestService.swift */; };
 		F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE70B29B0AA47004AC10B /* Location.swift */; };
 		F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACE71929B1FFCF004AC10B /* PluckPages.swift */; };
+		F6BD930929F9A51300D04542 /* ChangePasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BD930829F9A51300D04542 /* ChangePasswordPage.swift */; };
+		F6BD930B29F9B93000D04542 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BD930A29F9B93000D04542 /* ChangePasswordRequest.swift */; };
 		F6F2E78129D1970E00E56A11 /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E78029D1970E00E56A11 /* TokenRequest.swift */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +195,8 @@
 		F6ACE70929B090EC004AC10B /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		F6ACE70B29B0AA47004AC10B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F6ACE71929B1FFCF004AC10B /* PluckPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckPages.swift; sourceTree = "<group>"; };
+		F6BD930829F9A51300D04542 /* ChangePasswordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordPage.swift; sourceTree = "<group>"; };
+		F6BD930A29F9B93000D04542 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
 		F6E9BE382996860E00DFD5EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F6F2E78029D1970E00E56A11 /* TokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -291,6 +295,7 @@
 				E83C9BC729B220BA000063E9 /* UserInfo.swift */,
 				F662F78029E1852800C7FAC0 /* TokenDto.swift */,
 				F62D1AFB29EEBD95005ED754 /* VerifyRequestDto.swift */,
+				F6BD930A29F9B93000D04542 /* ChangePasswordRequest.swift */,
 			);
 			path = dto;
 			sourceTree = "<group>";
@@ -511,6 +516,7 @@
 				F60AD490299E4D8C008A30F5 /* PluckPage.swift */,
 				23BCAE2F299F70D70038C0D7 /* AccountPage.swift */,
 				E845942A29E94B9A00DFE048 /* SetupWarehouse.swift */,
+				F6BD930829F9A51300D04542 /* ChangePasswordPage.swift */,
 			);
 			path = page;
 			sourceTree = "<group>";
@@ -770,6 +776,7 @@
 				8DF8900229F9429800A8096D /* CustomDisclosureGroup.swift in Sources */,
 				8DBAB8FB29CB01DC0073B134 /* PluckListLocation.swift in Sources */,
 				8DFBEB9029F7EDBA00D8E2D1 /* ProductDto.swift in Sources */,
+				F6BD930B29F9B93000D04542 /* ChangePasswordRequest.swift in Sources */,
 				E8A2432B29C35B54007D0F60 /* PasswordInput.swift in Sources */,
 				8D203A3629A39DE300D768BA /* PluckFinish.swift in Sources */,
 				F67354A929AF57C700D7E601 /* PluckCard.swift in Sources */,
@@ -824,6 +831,7 @@
 				E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */,
 				F68A5B0D29E976EB004E4E9B /* ProductField.swift in Sources */,
 				F68A5B1629E977FB004E4E9B /* EditableLabelInput.swift in Sources */,
+				F6BD930929F9A51300D04542 /* ChangePasswordPage.swift in Sources */,
 				E8A2432929C32CCF007D0F60 /* AuthenticationService.swift in Sources */,
 				F68A5B1429E97751004E4E9B /* SaveProductDto.swift in Sources */,
 			);
@@ -979,7 +987,7 @@
 		E8603B602996584100E09361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "https://devapi.bachelor.seq.re";
+				API_URL = "http://localhost:8080";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1016,7 +1024,7 @@
 		E8603B612996584100E09361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "https://devapi.bachelor.seq.re";
+				API_URL = "http://localhost:8080";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";

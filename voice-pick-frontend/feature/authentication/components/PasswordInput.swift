@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PasswordInput: View {
 	
+    var placeholder: String = "Passord"
 	@State var showPassword = false
 	@Binding var value: String
 	var valid: Bool
@@ -16,8 +17,8 @@ struct PasswordInput: View {
 	var body: some View {
 		HStack {
 			showPassword
-				? AnyView(TextField("Passord", text: $value))
-				: AnyView(SecureField("Passord", text: $value))
+				? AnyView(TextField(placeholder, text: $value))
+				: AnyView(SecureField(placeholder, text: $value))
 			Button(action: {
 				showPassword = !showPassword
 			}) {

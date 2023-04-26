@@ -163,14 +163,14 @@ struct UpdateProductPage: View {
 						errorMsg: $locationErrorMsg)
 					CustomDisclosureGroup(
 							title: "Valgt status:",
-							value: status,
+							selectedValue: status,
 							list: ProductStatus.allCases.map { $0.rawValue }
 					) { selectedStatus in
 							status = selectedStatus
 					}
 					CustomDisclosureGroup(
 							title: "Valgt type:",
-							value: type,
+                            selectedValue: type,
 							list: ProductType.allCases.map { $0.rawValue }
 					) { selectedType in
 							type = selectedType

@@ -7,7 +7,7 @@ struct CargoType: View {
 	var body: some View {
 			CustomDisclosureGroup(
 				title: "Valgt palletype:",
-				value: pluckService.pluckList?.cargoCarrier?.name ?? "Ingen valgt",
+				selectedValue: pluckService.pluckList?.cargoCarrier?.name ?? "Ingen valgt",
 				list: cargoCarriers.map { $0.name }
 			) { selectedCargoCarrierName in
 				if let selectedCargoCarrier = cargoCarriers.first(where: { $0.name == selectedCargoCarrierName }) {

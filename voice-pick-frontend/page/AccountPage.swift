@@ -169,7 +169,7 @@ struct AccountPage: View {
 						VStack {
 							CustomDisclosureGroup(
 								title: "Valgt stemme:",
-								value: ttsService.selectedVoice?.name ?? "Standard",
+                                selectedValue: ttsService.selectedVoice?.name ?? "Standard",
 								list: Voice.allCases.map { $0.name }
 							) { selectedVoiceName in
 								if let selectedVoice = Voice.allCases.first(where: { $0.name == selectedVoiceName }) {

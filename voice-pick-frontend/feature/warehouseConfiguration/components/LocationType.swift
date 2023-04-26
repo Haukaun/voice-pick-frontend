@@ -17,7 +17,7 @@ struct LocationType: View {
 		VStack {
 			CustomDisclosureGroup(
 				title: "Valgt type:",
-				value: selectedLocationType,
+				selectedValue: selectedLocationType,
 				list: locationTypes
 			) { selectedLocationType in
 				self.selectedLocationType = selectedLocationType

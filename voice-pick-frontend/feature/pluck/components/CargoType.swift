@@ -5,29 +5,15 @@ struct CargoType: View {
 	@EnvironmentObject private var pluckService: PluckService
 	
 	var body: some View {
-		VStack {
-			DisclosureGroup(content: {
-				ScrollView {
-					VStack {
-						ForEach(cargoCarriers, id: \.id) { cargoCarrier in
-							cargoButton(title: cargoCarrier.name, action: { onSelectedString(cargoCarrier) })
-						}
-					}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
+			CustomDisclosureGroup(
+				title: "Valgt palletype:",
+				value: pluckService.pluckList?.cargoCarrier?.name ?? "Ingen valgt",
+				list: cargoCarriers.map { $0.name }
+			) { selectedCargoCarrierName in
+				if let selectedCargoCarrier = cargoCarriers.first(where: { $0.name == selectedCargoCarrierName }) {
+					onSelectedString(selectedCargoCarrier)
 				}
-			}, label: {
-				HStack {
-					Text("Valgt palletype:")
-					Text(pluckService.pluckList?.cargoCarrier?.name ?? "Ingen valgt")
-						.bold()
-						.foregroundColor(.foregroundColor)
-				}
-			})
-			.accentColor(.foregroundColor)
-			.padding(15)
-		}
-		.background(Color.componentColor)
-		.cornerRadius(5)
-		
+			}
 	}
 	
 	/**
@@ -35,23 +21,6 @@ struct CargoType: View {
 	 */
 	private func onSelectedString(_ cargoCarrier: CargoCarrier){
 		pluckService.doAction(keyword: cargoCarrier.phoneticIdentifier, fromVoice: false)
-	}
-	
-	/**
-	 Button for displaying the cargo
-	 */
-	func cargoButton(title: String, action: @escaping () -> Void) -> some View {
-		Button(action: action) {
-			Spacer()
-			Text(title)
-				.padding(15)
-				.fontWeight(.bold)
-				.font(.button)
-				.foregroundColor(.snow)
-			Spacer()
-		}
-		.background(Color.night)
-		.cornerRadius(UIView.standardCornerRadius)
 	}
 }
 

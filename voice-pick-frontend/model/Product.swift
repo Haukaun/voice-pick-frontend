@@ -13,8 +13,8 @@ enum ProductType: String, Codable, CaseIterable {
 enum ProductStatus: String, Codable, CaseIterable {
     case READY = "READY"
     case EMPTY = "EMPTY"
-	  case WITHOUT_LOCATION = "WITHOUT_LOCATION"
-		case INACTIVE = "INACTIVE"
+    case WITHOUT_LOCATION = "WITHOUT_LOCATION"
+    
 }
 
 struct Product: Hashable, Codable {

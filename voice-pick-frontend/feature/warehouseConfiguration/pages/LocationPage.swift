@@ -46,7 +46,9 @@ struct LocationPage: View {
                         }.contentShape(Rectangle())
                             .onTapGesture {
                                 selectedLocation = location
+                                print(location)
                                 isSheetPresent.toggle()
+                                    
                             }
                             .swipeActions(edge: .trailing) {
                                 Button {
@@ -56,10 +58,6 @@ struct LocationPage: View {
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }.tint(.red)
-                            }
-                            .onTapGesture {
-                                selectedLocation = location
-                                isSheetPresent.toggle()
                             }
                     }
                 }
@@ -105,6 +103,16 @@ struct LocationPage: View {
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .sheet(isPresented: $isSheetPresent) {
+
+            if (selectedLocation != nil) {
+                LocationDetailsPage(
+                    code: selectedLocation!.code,
+                    controlDigits: selectedLocation!.controlDigits,
+                    locationType: selectedLocation!.locationType
+                )
+            } else {
+                Text("Error")
+            }
         }
     }
     
@@ -114,6 +122,22 @@ struct LocationPage: View {
             case .success(let locations):
                 self.locations = locations
             case .failure(let error as RequestError):
+                 handleError(errorCode: error.errorCode)
+                break
+            default:
+                break
+            }
+        })
+    }
+    
+    func getLocationEntities(code: String) {
+        requestService.get(path: "/locations/" + code, token: authService.accessToken, responseType: [Location].self, completion: { result in
+            switch result {
+            case .success(let locations):
+                print(result)
+                self.locations = locations
+            case .failure(let error as RequestError):
+                print(result)
                  handleError(errorCode: error.errorCode)
                 break
             default:

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2347837229F7FF230066EDF8 /* LocationDetailsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2347837129F7FF230066EDF8 /* LocationDetailsPage.swift */; };
 		236309DE29F3D4D700F09BF9 /* AddLocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */; };
 		236309E029F3D4FE00F09BF9 /* LocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236309DF29F3D4FE00F09BF9 /* LocationPage.swift */; };
 		236309E229F3D61F00F09BF9 /* LocationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236309E129F3D61F00F09BF9 /* LocationType.swift */; };
@@ -107,6 +108,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2347837129F7FF230066EDF8 /* LocationDetailsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsPage.swift; sourceTree = "<group>"; };
 		236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationPage.swift; sourceTree = "<group>"; };
 		236309DF29F3D4FE00F09BF9 /* LocationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPage.swift; sourceTree = "<group>"; };
 		236309E129F3D61F00F09BF9 /* LocationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationType.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				F68A5B0929E955CC004E4E9B /* ProductDetailsPage.swift */,
 				236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */,
 				236309DF29F3D4FE00F09BF9 /* LocationPage.swift */,
+				2347837129F7FF230066EDF8 /* LocationDetailsPage.swift */,
 			);
 			path = pages;
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
 				E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */,
 				F640285129CD85B70023AE34 /* VoiceService.swift in Sources */,
+				2347837229F7FF230066EDF8 /* LocationDetailsPage.swift in Sources */,
 				8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */,
 				2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */,
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,

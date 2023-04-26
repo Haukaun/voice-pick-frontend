@@ -16,11 +16,27 @@ struct PluckPage: View {
 	@ObservedObject private var pluckService = PluckService()
 	@ObservedObject private var voiceService = VoiceService()
 	
-	
+    func toggleMute() {
+        if pluckService.isMuted {
+            pluckService.doAction(keyword: "listen", fromVoice: false)
+        } else {
+            pluckService.doAction(keyword: "mute", fromVoice: false)
+        }
+    }
+    
 	var body: some View {
 		VStack(spacing: 0) {
 			if pluckService.activePage != .COMPLETE {
-				Header(headerText: "Plukkliste")
+                Header(
+                    headerText: "Plukkliste",
+                    rightButtons: [
+                        Button(action: {
+                            toggleMute()
+                        }, label: {
+                            Image(systemName: pluckService.isMuted ? "mic.slash.fill" : "mic.fill")
+                        }),
+                    ]
+                )
 			}
 			switch pluckService.activePage {
 			case .LOBBY:

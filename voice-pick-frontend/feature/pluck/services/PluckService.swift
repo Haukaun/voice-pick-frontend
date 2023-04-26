@@ -30,6 +30,8 @@ class PluckService: ObservableObject {
 	@Published var errorMessage = "";
 	@Published var isLoading: Bool = false
     
+    @Published var isMuted = false
+    
     var token: String? = nil
 	
 	private var ttsService = TTSService.shared
@@ -90,23 +92,36 @@ class PluckService: ObservableObject {
         
         self.token = token
         
-		switch currentStep {
-		case .START:
-			handleStartActions(keyword, fromVoice)
-			break
-		case .SELECT_CARGO:
-			handleCargoAction(keyword, fromVoice)
-			break
-		case .SELECT_CONTROL_DIGITS:
-			handleControlDigits(keyword, fromVoice)
-			break
-		case .CONFIRM_PLUCK:
-			handleConfirmPluck(keyword, fromVoice)
-			break
-		case .DELIVERY:
-			handleDeliveryAction(keyword, fromVoice)
-			break
-		}
+        // If voice is muted, only listen for the keyword "listen"
+        if (self.isMuted && fromVoice) {
+            if keyword == "listen" {
+                self.isMuted = false
+            }
+        } else {
+            if keyword == "mute" {
+                self.isMuted = true
+            } else if keyword == "listen" {
+                self.isMuted = false
+            } else {
+                switch currentStep {
+                case .START:
+                    handleStartActions(keyword, fromVoice)
+                    break
+                case .SELECT_CARGO:
+                    handleCargoAction(keyword, fromVoice)
+                    break
+                case .SELECT_CONTROL_DIGITS:
+                    handleControlDigits(keyword, fromVoice)
+                    break
+                case .CONFIRM_PLUCK:
+                    handleConfirmPluck(keyword, fromVoice)
+                    break
+                case .DELIVERY:
+                    handleDeliveryAction(keyword, fromVoice)
+                    break
+                }
+            }
+        }
 	}
 	
 	/**

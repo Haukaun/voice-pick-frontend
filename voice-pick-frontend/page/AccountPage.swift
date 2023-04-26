@@ -17,35 +17,35 @@ struct AccountPage: View {
 	
 	@State private var showVoiceAlert = false
 	@State private var voiceErrorMessage = ""
-    
-    @State private var showWarningAlert = false
-    @State private var warningAlertMessage = ""
-    
+	
+	@State private var showWarningAlert = false
+	@State private var warningAlertMessage = ""
+	
 	@State private var showImagePicker = false
 	@State private var selectedImage = "profile-1"
 	
-    /**
-        Handles the event when the "delete user" is pressed
-     */
+	/**
+	 Handles the event when the "delete user" is pressed
+	 */
 	func handleDeleteAccount() {
-        warningAlertMessage = "Er du sikker på at du vil slette brukeren? Dette kan ikke omgjøres!"
-        showWarningAlert = true
+		warningAlertMessage = "Er du sikker på at du vil slette brukeren? Dette kan ikke omgjøres!"
+		showWarningAlert = true
 	}
-    
-    /**
-        Deletes the user
-     */
-    func deleteUser() {
-        requestService.delete(path: "/auth/users", token: authenticationService.accessToken, responseType: String.self, completion: { result in
-            switch result {
-            case .success(_):
-                clearAuthTokens()
-            case .failure(let error):
-                print(error)
-
-            }
-        })
-    }
+	
+	/**
+	 Deletes the user
+	 */
+	func deleteUser() {
+		requestService.delete(path: "/auth/users", token: authenticationService.accessToken, responseType: String.self, completion: { result in
+			switch result {
+			case .success(_):
+				clearAuthTokens()
+			case .failure(let error):
+				print(error)
+				
+			}
+		})
+	}
 	
 	/**
 	 Tries to logout a user based on the tokes for the currently logged in user
@@ -167,30 +167,16 @@ struct AccountPage: View {
 					}
 					VStack (alignment: .trailing) {
 						VStack {
-							DisclosureGroup(content: {
-								VStack {
-									ForEach(Voice.allCases) { voice in
-										voiceButton(title: voice.name) {
-											selectVoice(voice: voice)
-										}
-										.padding(.horizontal, 2)
-									}
-								}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
-							}, label: {
-								HStack {
-									Text("Valgt stemme: ")
-									Text(ttsService.selectedVoice?.name ?? "Standard")
-										.bold()
-										.foregroundColor(Color.foregroundColor)
+							CustomDisclosureGroup(
+								title: "Valgt stemme:",
+								value: ttsService.selectedVoice?.name ?? "Standard",
+								list: Voice.allCases.map { $0.name }
+							) { selectedVoiceName in
+								if let selectedVoice = Voice.allCases.first(where: { $0.name == selectedVoiceName }) {
+									selectVoice(voice: selectedVoice)
 								}
-							})
-							.accentColor(.foregroundColor)
+							}
 						}
-						.padding(15)
-						.background(Color.componentColor)
-						.accentColor(.foregroundColor)
-						.cornerRadius(UIView.standardCornerRadius)
-						.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
 						Divider()
 						DangerButton(label: "Forlat varehus", onPress: {
 							
@@ -198,23 +184,23 @@ struct AccountPage: View {
 						DangerButton(label: "Slett bruker", onPress: {
 							handleDeleteAccount()
 						})
-
+						
 					}
 					.frame(maxHeight: .infinity)
-					.padding(10)		
+					.padding(10)
 				}
 				.padding(.top)
 				.background(Color.backgroundColor)
 				.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})
 				.alert(isPresented: $showWarningAlert) {
-						Alert(
-							title: Text("Slett bruker"),
-							message: Text(warningAlertMessage),
-							primaryButton: .destructive(Text("Slett"), action: {
-									deleteUser()
-							}),
-							secondaryButton: .cancel(Text("Avbryt"))
-						)
+					Alert(
+						title: Text("Slett bruker"),
+						message: Text(warningAlertMessage),
+						primaryButton: .destructive(Text("Slett"), action: {
+							deleteUser()
+						}),
+						secondaryButton: .cancel(Text("Avbryt"))
+					)
 				}
 				.sheet(isPresented: $showImagePicker){
 					ImagePicker(selectedImage: $selectedImage)

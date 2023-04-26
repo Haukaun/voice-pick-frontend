@@ -189,37 +189,13 @@ struct AddProductPage: View {
 						label: "Plassering",
 						value: $location,
 						errorMsg: $locationErrorMsg)
-					DisclosureGroup(content: {
-						ScrollView {
-							VStack {
-								ForEach(ProductType.allCases, id: \.self) { productType in
-									Button(action: {
-										type = productType.rawValue
-									}) {
-										Spacer()
-										Text(productType.rawValue)
-											.padding(15)
-											.fontWeight(.bold)
-											.font(.button)
-											.foregroundColor(.snow)
-										Spacer()
-									}
-									.background(Color.night)
-									.cornerRadius(UIView.standardCornerRadius)
-								}
-							}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
-						}
-					}, label: {
-						VStack (alignment: .leading) {
-							Text("Valgt type:")
-							Text(type)
-								.bold()
-								.foregroundColor(.foregroundColor)
-						}
-					})
-					.accentColor(.foregroundColor)
-					.background(Color.backgroundColor)
-					.cornerRadius(5)
+					CustomDisclosureGroup(
+							title: "Valgt type:",
+							value: type,
+							list: ProductType.allCases.map { $0.rawValue }
+					) { selectedType in
+							type = selectedType
+					}
 					Spacer()
 					DefaultButton("Legg til produkt", disabled: false, onPress: {
 						handleSubmit()

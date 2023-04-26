@@ -29,7 +29,7 @@ struct UpdateProductPage: View {
 	@State private var typeErrorMsg: String?
 	@State private var locationErrorMsg: String?
 	@State private var statusErrorMsg: String?
-
+	
 	
 	@State var showAlert = false
 	@State var errorMessage = ""
@@ -138,92 +138,42 @@ struct UpdateProductPage: View {
 		NavigationView {
 			VStack(spacing: 0) {
 				VStack(alignment: .leading, spacing: 20) {
-					ScrollView {
-						ProductField(
-							label: "Produktnavn",
-							value: $productName,
-							errorMsg: $productNameErrorMsg)
-						ProductField(
-							label: "Vekt",
-							value: $weight,
-							errorMsg: $weightErrorMsg,
-							type: .asciiCapableNumberPad)
-						ProductField(
-							label: "Volum",
-							value: $volume,
-							errorMsg: $volumeErrorMsg,
-							type: .decimalPad)
-						ProductField(
-							label: "Antall",
-							value: $quantity,
-							errorMsg: $quantityErrorMsg,
-							type: .decimalPad)
-						ProductField(
-							label: "Plassering",
-							value: $location,
-							errorMsg: $locationErrorMsg)
-						DisclosureGroup(content: {
-							ScrollView {
-								VStack {
-									ForEach(ProductStatus.allCases, id: \.self) { productStatus in
-										Button(action: {
-											status = productStatus.rawValue
-										}) {
-											Spacer()
-											Text(productStatus.rawValue)
-												.padding(15)
-												.fontWeight(.bold)
-												.font(.button)
-												.foregroundColor(.snow)
-											Spacer()
-										}
-										.background(Color.night)
-										.cornerRadius(UIView.standardCornerRadius)
-									}
-								}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
-							}
-						}, label: {
-							VStack (alignment: .leading) {
-								Text("Valgt type:")
-								Text(status)
-									.bold()
-									.foregroundColor(.foregroundColor)
-							}
-						})
-						.accentColor(.foregroundColor)
-						.background(Color.backgroundColor)
-						.cornerRadius(5)
-						DisclosureGroup(content: {
-							ScrollView {
-								VStack {
-									ForEach(ProductType.allCases, id: \.self) { productType in
-										Button(action: {
-											type = productType.rawValue
-										}) {
-											Spacer()
-											Text(productType.rawValue)
-												.padding(15)
-												.fontWeight(.bold)
-												.font(.button)
-												.foregroundColor(.snow)
-											Spacer()
-										}
-										.background(Color.night)
-										.cornerRadius(UIView.standardCornerRadius)
-									}
-								}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
-							}
-						}, label: {
-							VStack (alignment: .leading) {
-								Text("Valgt type:")
-								Text(type)
-									.bold()
-									.foregroundColor(.foregroundColor)
-							}
-						})
-						.accentColor(.foregroundColor)
-						.background(Color.backgroundColor)
-						.cornerRadius(5)
+					ProductField(
+						label: "Produktnavn",
+						value: $productName,
+						errorMsg: $productNameErrorMsg)
+					ProductField(
+						label: "Vekt",
+						value: $weight,
+						errorMsg: $weightErrorMsg,
+						type: .asciiCapableNumberPad)
+					ProductField(
+						label: "Volum",
+						value: $volume,
+						errorMsg: $volumeErrorMsg,
+						type: .decimalPad)
+					ProductField(
+						label: "Antall",
+						value: $quantity,
+						errorMsg: $quantityErrorMsg,
+						type: .decimalPad)
+					ProductField(
+						label: "Plassering",
+						value: $location,
+						errorMsg: $locationErrorMsg)
+					CustomDisclosureGroup(
+							title: "Valgt status:",
+							value: status,
+							list: ProductStatus.allCases.map { $0.rawValue }
+					) { selectedStatus in
+							status = selectedStatus
+					}
+					CustomDisclosureGroup(
+							title: "Valgt type:",
+							value: type,
+							list: ProductType.allCases.map { $0.rawValue }
+					) { selectedType in
+							type = selectedType
 					}
 					Spacer()
 					DefaultButton("Oppdater produkt", disabled: false, onPress: {

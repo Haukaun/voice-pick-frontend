@@ -191,7 +191,7 @@ struct AddProductPage: View {
 						errorMsg: $locationErrorMsg)
 					CustomDisclosureGroup(
 							title: "Valgt type:",
-							value: type,
+							selectedValue: type,
 							list: ProductType.allCases.map { $0.rawValue }
 					) { selectedType in
 							type = selectedType

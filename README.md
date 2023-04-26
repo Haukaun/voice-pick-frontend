@@ -36,9 +36,9 @@ features:
                 SignUpForm
         services:
             AuthService
-        models:
-            User # This could maybe be a global model
-            AuthRequestDto
+        dtos:
+            LoginRequest
+            LoginResponse
 ```
 
 - The layout directory consists of layout components that are used throughout the application like; bottom navigation bar, top header, menu drawers, etc...
@@ -47,4 +47,13 @@ _Link to video explaining the structure: [Youtube Video](https://www.youtube.com
 
 ## 2. Getting started
 
-TODO: ...
+### Prerequisites
+
+- XCode
+
+### Installing
+
+- Clone the repository
+- Change into the directory
+- Select device to run the application on (drop down next to play icon)
+- Run application via XCode using the play icon (top right)

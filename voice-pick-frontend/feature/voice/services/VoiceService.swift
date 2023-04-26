@@ -99,7 +99,7 @@ class VoiceService: ObservableObject {
                     self.transcription = String(number)
                 }
             } else {
-                let allowedKeywords: Set<String> = ["start" , "repeat", "next", "help", "cancel", "complete", "back", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+                let allowedKeywords: Set<String> = ["start" , "repeat", "next", "help", "cancel", "complete", "back", "mute", "listen", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
                 let filteredWords = words.components(separatedBy: " ").filter { allowedKeywords.contains($0) }
                 
                 DispatchQueue.main.async {

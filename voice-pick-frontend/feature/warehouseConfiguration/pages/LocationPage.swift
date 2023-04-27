@@ -37,6 +37,7 @@ struct LocationPage: View {
         NavigationView {
             VStack {
                 DefaultInput(inputLabel: "Søk...", text: $searchField, valid: true)
+								.padding(5)
                 List {
                     ForEach(filteredLocations, id: \.self) { location in
                         HStack {
@@ -67,14 +68,14 @@ struct LocationPage: View {
                     getLocations()
                 }
             }
-            .padding(5)
+						
             .alert("Fjern lokasjon", isPresented: $showingAlert, actions: {
                 Button(role: .cancel) {} label: {
                     Text("Avbryt")
                 }
                 Button(role: .destructive){
                     if let indexSetToDelete = indexSetToDelete {
-                        deleteLocation(locationId: selectedLocation?.code ?? "no location selected")
+											deleteLocation(locationId: selectedLocation?.code ?? "Not selected")
                         if locationDeletedFromDb {
                             locations.remove(atOffsets: indexSetToDelete)
                         }
@@ -100,8 +101,9 @@ struct LocationPage: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .sheet(isPresented: $isSheetPresent) {
-        }
+				.sheet(item: $selectedLocation, content: { location in
+					UpdateLocationPage(location: location)
+				})
     }
     
     func getLocations() {
@@ -159,5 +161,6 @@ struct LocationPage: View {
 struct LocationPage_Previews: PreviewProvider {
     static var previews: some View {
         LocationPage()
-    }
+				.environmentObject(AuthenticationService())
+		}
 }

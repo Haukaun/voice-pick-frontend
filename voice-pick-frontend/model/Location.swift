@@ -4,9 +4,15 @@
 //
 //  Created by Joakim Edvardsen on 02/03/2023.
 //
+import Foundation
 
-struct Location: Codable, Hashable {
+struct Location: Codable, Hashable, Identifiable {
+	var id = UUID()
 	var code: String
 	let controlDigits: Int
 	let locationType: String
+	
+	private enum CodingKeys: String, CodingKey {
+		case code, controlDigits, locationType
+	}
 }

@@ -13,11 +13,11 @@ struct ProductPage: View {
     
     @EnvironmentObject var authenticationService: AuthenticationService
     @ObservedObject var requestService = RequestService()
-    @State private var products: [ProductDto] = []
+    @State private var products: [Product] = []
     
     @State var searchField: String = ""
     
-    @State var selectedProduct: ProductDto?
+    @State var selectedProduct: Product?
     @State var isSheetPresent = false
     @State private var showingAlert = false
     @State var errorMessage = ""
@@ -26,7 +26,7 @@ struct ProductPage: View {
 
     
     func fetchProducts() {
-        requestService.get(path: "/products", token: authenticationService.accessToken, responseType: [ProductDto].self) { result in
+        requestService.get(path: "/products", token: authenticationService.accessToken, responseType: [Product].self) { result in
             switch result {
             case .success(let fetchedProducts):
                 self.products = fetchedProducts
@@ -76,7 +76,7 @@ struct ProductPage: View {
         }
     }
     
-    var filteredProducts: [ProductDto] {
+    var filteredProducts: [Product] {
         if searchField.isEmpty {
             return products
         } else {
@@ -153,13 +153,9 @@ struct ProductPage: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .sheet(isPresented: $isSheetPresent) {
-            if let selectedProduct = selectedProduct {
-                UpdateProductPage(product: selectedProduct)
-            } else {
-                Text("Error")
-            }
-        }
+				.sheet(item: $selectedProduct, content: { product in
+					UpdateProductPage(product: product)
+				})
     }
 }
 

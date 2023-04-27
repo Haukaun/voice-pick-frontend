@@ -227,7 +227,7 @@ class PluckService: ObservableObject {
 				setCurrentStep(.SELECT_CONTROL_DIGITS)
 				updateActivePage(.LIST_VIEW)
 				if let index = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil }) {
-					ttsService.speak("\(pluckList?.plucks[index].product.location.code ?? "")", fromVoice)
+					ttsService.speak("\(pluckList?.plucks[index].product.location?.code ?? "")", fromVoice)
 				}
 			}
 		default:
@@ -248,7 +248,7 @@ class PluckService: ObservableObject {
 		// Check if keyword entered is a control digit
 		if let keywordInt = isControlDigits(keyword) {
 			// Check if the control digits entered are correct
-			if (keywordInt == pluckList?.plucks[currentPluckIndex].product.location.controlDigits) {
+			if (keywordInt == pluckList?.plucks[currentPluckIndex].product.location?.controlDigits) {
 				withAnimation {
 					self.pluckList?.plucks[currentPluckIndex].confirmedAt = Date()
 				}
@@ -265,7 +265,7 @@ class PluckService: ObservableObject {
 			case "help":
 				ttsService.speak("Select correct control digits", fromVoice)
 			case "repeat":
-				ttsService.speak(pluckList?.plucks[currentPluckIndex].product.location.code ?? "", fromVoice)
+				ttsService.speak(pluckList?.plucks[currentPluckIndex].product.location?.code ?? "", fromVoice)
 			case "complete":
 				ttsService.speak("Select control digits and amount before continuing", fromVoice)
 			case "cancel":
@@ -405,7 +405,7 @@ class PluckService: ObservableObject {
         } else {
             // Find next pluck and utter the location
             let nextPluck = pluckList?.plucks.first(where: { $0.pluckedAt == nil })
-            ttsService.speak(nextPluck?.product.location.code ?? "", fromVoice)
+					ttsService.speak(nextPluck?.product.location?.code ?? "", fromVoice)
             
             handleRearangePluck()
         }

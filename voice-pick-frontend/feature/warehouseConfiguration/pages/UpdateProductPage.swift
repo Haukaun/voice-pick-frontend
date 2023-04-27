@@ -9,10 +9,9 @@ import SwiftUI
 
 struct UpdateProductPage: View {
 	
-	var product: ProductDto
+	let productId: Int
 	
 	@State private var isShowingScanner = false
-	
 	
 	@State private var productName: String
 	@State private var weight: String
@@ -41,15 +40,15 @@ struct UpdateProductPage: View {
 	
 	private let requestService = RequestService()
 	
-	init(product: ProductDto) {
-		self.product = product
-		productName = product.name
-		weight = String(product.weight)
-		volume = String(product.volume)
-		quantity = String(product.quantity)
-		type = product.type.rawValue
-		status = product.status.rawValue
-		location = product.location?.code ?? ""
+	init(product: Product) {
+		self.productId = product.id
+		self.productName = product.name
+		self.weight = String(product.weight)
+		self.volume = String(product.volume)
+		self.quantity = String(product.quantity)
+		self.type = product.type.rawValue
+		self.status = product.status.rawValue
+		self.location = product.location?.code ?? ""
 	}
 	
 	/**
@@ -93,7 +92,7 @@ struct UpdateProductPage: View {
 		
 		if (validForm) {
 			requestService.patch(
-				path: "/products/\(product.id)",
+				path: "/products/\(productId)",
 				token: authService.accessToken,
 				body: SaveProductDto(
 					name: productName,
@@ -161,13 +160,7 @@ struct UpdateProductPage: View {
 						label: "Plassering",
 						value: $location,
 						errorMsg: $locationErrorMsg)
-					CustomDisclosureGroup(
-							title: "Valgt status:",
-							selectedValue: status,
-							list: ProductStatus.allCases.map { $0.rawValue }
-					) { selectedStatus in
-							status = selectedStatus
-					}
+					.padding(.bottom)
 					CustomDisclosureGroup(
 							title: "Valgt type:",
                             selectedValue: type,
@@ -175,6 +168,7 @@ struct UpdateProductPage: View {
 					) { selectedType in
 							type = selectedType
 					}
+					.padding(-10)
 					Spacer()
 					DefaultButton("Oppdater produkt", disabled: false, onPress: {
 						handleSubmit()
@@ -209,7 +203,7 @@ struct ProductDetailsPage_Previews: PreviewProvider {
 			Text("yo")
 		}
 		.sheet(isPresented: .constant(true)) {
-			UpdateProductPage(product: ProductDto(id: 1, name: "Ankakra", weight: 34, volume: 34, quantity: 34, type: ProductType.D_PACK, status: ProductStatus.READY, location: Location(code: "123", controlDigits: 123, locationType: "M456")))
+			UpdateProductPage(product: Product(id: 1, name: "Ankakra", weight: 34, volume: 34, quantity: 34, type: ProductType.D_PACK, status: ProductStatus.READY, location: Location(code: "123", controlDigits: 123, locationType: "M456")))
 		}
 	}
 }

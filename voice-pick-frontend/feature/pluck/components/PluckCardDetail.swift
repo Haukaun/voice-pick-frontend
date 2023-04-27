@@ -36,7 +36,7 @@ struct PluckCardDetail: View {
 					}
 					VStack(alignment: .leading) {
 						Paragraph("Lokasjon:")
-						Text(pluck.product.location.code)
+						Text(pluck.product.location?.code ?? "")
 							.font(.header2)
 					}
 					VStack(alignment: .leading) {

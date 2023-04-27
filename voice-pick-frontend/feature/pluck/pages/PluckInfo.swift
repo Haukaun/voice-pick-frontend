@@ -108,7 +108,7 @@ struct Grid: View {
 				}
 				
 				ForEach(plucks) { pluck in
-					Paragraph(pluck.product.location.code)
+					Paragraph(pluck.product.location?.code ?? "")
 					Paragraph(pluck.product.name)
 						.lineLimit(1)
 						.truncationMode(.tail)

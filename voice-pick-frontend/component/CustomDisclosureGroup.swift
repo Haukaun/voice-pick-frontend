@@ -44,9 +44,26 @@ struct CustomDisclosureGroup: View {
 					.foregroundColor(.foregroundColor)
 			}
 		})
-		.padding(5)
+		.padding(EdgeInsets(.init(top: 5, leading: 15, bottom: 5, trailing: 15)))
 		.accentColor(.foregroundColor)
 		.background(Color.componentColor)
 		.cornerRadius(5)
+		.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
+	}
+}
+
+struct CustomDisclosureGroup_preview: PreviewProvider {
+	static var previews: some View {
+		VStack{
+			CustomDisclosureGroup(
+				title: "Valgt type:",
+				selectedValue: "ANkara",
+				list: ProductType.allCases.map { $0.rawValue }
+			) { selectedType in
+				print("Ankarar")
+			}
+		}
+		.frame(maxHeight: .infinity)
+		.background(Color.backgroundColor)
 	}
 }

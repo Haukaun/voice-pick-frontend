@@ -94,7 +94,7 @@ struct PluckCard: View {
                         Paragraph("Lokasjon")
                             .lineLimit(1)
                             .truncationMode(.tail)
-                        Paragraph("\(pluck.product.location.code)")
+                        Paragraph("\(pluck.product.location?.code ?? "")")
                             .lineLimit(1)
                             .truncationMode(.tail)
                             .bold()
@@ -140,7 +140,7 @@ struct PluckCard: View {
                         .tint(progressColor())
                 if (showControlDigits()) {
                     ButtonRandomizer(
-                        correctAnswer: pluck.product.location.controlDigits,
+                        correctAnswer: pluck.product.location?.controlDigits ?? 0,
                         onCorrectAnswerSelected: { number in
                             pluckService.doAction(keyword: "\(number)", fromVoice: false)
                         },

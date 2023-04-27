@@ -14,10 +14,9 @@ enum ProductStatus: String, Codable, CaseIterable {
     case READY = "READY"
     case EMPTY = "EMPTY"
     case WITHOUT_LOCATION = "WITHOUT_LOCATION"
-    
 }
 
-struct Product: Hashable, Codable {
+struct Product: Hashable, Codable, Identifiable {
     let id: Int
     let name: String
     let weight: Float // weight of one product
@@ -25,7 +24,7 @@ struct Product: Hashable, Codable {
     let quantity: Int // numbers of product in stock
     let type: ProductType
     let status: ProductStatus
-		let location: Location
+		let location: Location?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

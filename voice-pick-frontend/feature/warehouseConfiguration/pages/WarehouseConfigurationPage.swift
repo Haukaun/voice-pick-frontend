@@ -20,7 +20,7 @@ struct WarehouseConfigurationPage: View {
                     NavigationLink(destination: ProductPage()) {
                         gridButton(label: "Produkter", icon: "shippingbox.fill")
                     }
-                    NavigationLink(destination: LocationPage()) {
+									NavigationLink(destination: LocationPage()) {
                         gridButton(label: "Lokasjoner", icon: "map.fill")
                     }
                     NavigationLink(destination: Text("User page")) {

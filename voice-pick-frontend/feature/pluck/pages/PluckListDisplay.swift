@@ -10,6 +10,8 @@ import SwiftUI
 struct PluckListDisplay: View {
     @EnvironmentObject private var pluckService: PluckService
     
+    var index = 0
+    
     /// Moves an item in the list of products
     ///
     /// - Parameters:
@@ -23,19 +25,19 @@ struct PluckListDisplay: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(pluckService.pluckList?.plucks ?? [], id: \.id) { pluck in
+                ForEach(Array(pluckService.pluckList?.plucks.enumerated() ?? [].enumerated()), id: \.element.id) { index, pluck in
                     if (pluck.pluckedAt == nil) {
                         PluckCard(pluck: pluck)
+                            .background(index % 2 == 0 ? Color.backgroundColor : Color.componentColorVariation)
                     }
                 }
                 .onMove(perform: onMove)
                 .frame(maxWidth: .infinity)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                .listRowInsets(EdgeInsets())
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.clear)
             }
             .scrollContentBackground(.hidden)
-            .padding(5)
             .listStyle(PlainListStyle())
             .background(Color.backgroundColor)
         }

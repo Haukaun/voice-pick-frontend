@@ -60,6 +60,18 @@ class AuthenticationService: ObservableObject {
 			}
 		}
 	}
+    
+    private var storedUuid: String {
+        get {
+            return keychain.get("uuid") ?? ""
+        }
+        set {
+            keychain.set(newValue, forKey: "uuid")
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
+    }
 
 	private var storedWarehouseId: Int? {
 		get {
@@ -153,8 +165,15 @@ class AuthenticationService: ObservableObject {
 			storedEmail = email
 		}
 	}
+    
+    @Published var uuid: String = "" {
+        didSet {
+            storedUuid = uuid
+        }
+    }
 	
 	init() {
+        self.uuid = uuid
 		self.userName = storedUserName
 		self.accessToken = storedAccessToken
 		self.refreshToken = storedRefreshToken
@@ -164,4 +183,18 @@ class AuthenticationService: ObservableObject {
 		self.warehouseName = storedWarehouseName
 		self.warehouseAddress = warehouseAddress
 	}
+    
+    func clear() {
+        DispatchQueue.main.async {
+            self.uuid = ""
+            self.userName = ""
+            self.accessToken = ""
+            self.refreshToken = ""
+            self.emailVerified = false
+            self.email = ""
+            self.warehouseId = nil
+            self.warehouseName = ""
+            self.warehouseAddress = ""
+        }
+    }
 }

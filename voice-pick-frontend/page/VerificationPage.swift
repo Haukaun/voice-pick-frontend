@@ -114,27 +114,15 @@ struct VerificationPage: View {
 				case .failure(let error as RequestError):
 					// TODO: Handle error correctly
 					if (error.errorCode == 401) {
-						clearAuthTokens()
+                        authenticationService.clear()
 					}
 					print(error)
 				case .success(_):
-					clearAuthTokens()
+                    authenticationService.clear()
 				case .failure(let error):
 					print(error)
 				}
 			})
-	}
-	
-	/**
-	 Clears all stored tokens
-	 */
-	func clearAuthTokens() {
-		DispatchQueue.main.async {
-			authenticationService.accessToken = ""
-			authenticationService.refreshToken = ""
-			authenticationService.email = ""
-			authenticationService.emailVerified = false
-		}
 	}
 	
 	var body: some View {

@@ -27,6 +27,8 @@ struct AddProductPage: View {
 	@State private var locationErrorMsg: String?
 	@State private var statusErrorMsg: String?
 	
+	@State private var isColorEnabled: Bool = false
+	
 	@State var showAlert = false
 	@State var errorMessage = ""
 	
@@ -190,12 +192,14 @@ struct AddProductPage: View {
 						value: $location,
 						errorMsg: $locationErrorMsg)
 					CustomDisclosureGroup(
-							title: "Valgt type:",
-							selectedValue: type,
-							list: ProductType.allCases.map { $0.rawValue }
-					) { selectedType in
+						title: "Valgt Type:",
+						selectedValue: type,
+						list: ProductType.allCases.map { $0.rawValue },
+						action: { selectedType in
 							type = selectedType
-					}
+						},
+						isColorEnabled: $isColorEnabled
+					)
 					Spacer()
 					DefaultButton("Legg til produkt", disabled: false, onPress: {
 						handleSubmit()

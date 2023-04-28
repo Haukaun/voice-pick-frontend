@@ -162,5 +162,6 @@ struct ProductPage: View {
 struct ProductPage_Previews: PreviewProvider {
 	static var previews: some View {
 		ProductPage()
+			.environmentObject(AuthenticationService())
 	}
 }

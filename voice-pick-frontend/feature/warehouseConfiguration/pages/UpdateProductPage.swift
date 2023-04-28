@@ -29,9 +29,7 @@ struct UpdateProductPage: View {
 	@State private var locationErrorMsg: String?
 	@State private var statusErrorMsg: String?
 	
-	
-	@State var showAlert = false
-	@State var errorMessage = ""
+	@State private var isColorEnabled: Bool = false
 	
 	@State var showBanner = false
 	@State var bannerData = BannerModifier.BannerData(title: "Suksess", detail: "Produktet ble oppdatert", type: .Success)
@@ -55,8 +53,6 @@ struct UpdateProductPage: View {
 	 Handles the event
 	 */
 	func handleSubmit() {
-		
-		print(location)
 		
 		var validForm = true
 		resetErrorMessages()
@@ -100,7 +96,7 @@ struct UpdateProductPage: View {
 					volume: volumeNum,
 					quantity: quantityInt,
 					type: ProductType(rawValue: type) ?? ProductType.D_PACK,
-					status: ProductStatus(rawValue: status) ?? ProductStatus.READY,
+					status: ProductStatus(rawValue: status) ?? ProductStatus.EMPTY,
 					locationCode: location),
 				responseType: String.self,
 				completion: { result in
@@ -110,11 +106,13 @@ struct UpdateProductPage: View {
 						bannerData.detail = "Produktet ble oppdatert"
 						bannerData.type = .Success
 						showBanner = true
-					case .failure(let error):
+					case .failure(let error as RequestError):
 						bannerData.title = "Feil"
 						bannerData.detail = error.localizedDescription
 						bannerData.type = .Error
 						showBanner = true
+					default:
+						break
 					}
 				}
 			)
@@ -162,13 +160,20 @@ struct UpdateProductPage: View {
 						errorMsg: $locationErrorMsg)
 					.padding(.bottom)
 					CustomDisclosureGroup(
-							title: "Valgt type:",
-                            selectedValue: type,
-							list: ProductType.allCases.map { $0.rawValue }
-					) { selectedType in
+						title: "Valgt type:",
+						selectedValue: type,
+						list: ProductType.allCases.map { $0.rawValue },
+						action: { selectedType in
 							type = selectedType
+						},
+						isColorEnabled: $isColorEnabled
+					)
+					.padding(-15)
+					VStack(alignment: .leading) {
+						Text("Status")
+						Text(status)
+							.bold()
 					}
-					.padding(-10)
 					Spacer()
 					DefaultButton("Oppdater produkt", disabled: false, onPress: {
 						handleSubmit()
@@ -176,7 +181,7 @@ struct UpdateProductPage: View {
 				}
 				.banner(data: $bannerData, show: $showBanner)
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
-				.padding(10)
+				.padding(15)
 				.background(Color.backgroundColor)
 			}
 			.toolbar {
@@ -192,7 +197,6 @@ struct UpdateProductPage: View {
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
 			.toolbarBackground(.visible, for: .navigationBar)
-			.alert("Feil", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) })
 		}
 	}
 }

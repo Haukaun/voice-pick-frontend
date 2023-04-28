@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LocationType: View {
+struct LocationTypetest: View {
 	var locationTypes = ["PRODUCT", "PLUCK_LIST"]
 	
 	@EnvironmentObject private var pluckService: PluckService

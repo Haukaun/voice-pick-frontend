@@ -6,6 +6,11 @@
 //
 import Foundation
 
+enum LocationType: String, Codable, CaseIterable {
+		case PRODUCT = "PRODUCT"
+		case PLUCK_LIST = "PLUCK_LIST"
+}
+
 struct Location: Codable, Hashable, Identifiable {
 	var id = UUID()
 	var code: String

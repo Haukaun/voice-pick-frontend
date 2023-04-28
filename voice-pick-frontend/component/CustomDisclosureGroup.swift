@@ -15,6 +15,8 @@ struct CustomDisclosureGroup: View {
 	let list: [String]
 	let action: (String) -> Void
 	
+	@Binding var isColorEnabled: Bool
+	
 	var body: some View {
 		DisclosureGroup(content: {
 			ScrollView {
@@ -46,24 +48,29 @@ struct CustomDisclosureGroup: View {
 		})
 		.padding(EdgeInsets(.init(top: 5, leading: 15, bottom: 5, trailing: 15)))
 		.accentColor(.foregroundColor)
-		.background(Color.componentColor)
+		.background(isColorEnabled ? Color.componentColor : Color.backgroundColor)
 		.cornerRadius(5)
-		.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
+		.shadow(color: isColorEnabled ? Color.black.opacity(0.2) : Color.clear, radius: isColorEnabled ? 5 : 0, y: isColorEnabled ? 5 : 0)
 	}
 }
 
 struct CustomDisclosureGroup_preview: PreviewProvider {
+	@State static var isEnabled: Bool = false
+	
 	static var previews: some View {
 		VStack{
 			CustomDisclosureGroup(
 				title: "Valgt type:",
 				selectedValue: "ANkara",
-				list: ProductType.allCases.map { $0.rawValue }
-			) { selectedType in
-				print("Ankarar")
-			}
+				list: ProductType.allCases.map { $0.rawValue },
+				action: { selectedType in
+					print("Ankara")
+				},
+				isColorEnabled: $isEnabled
+			)
 		}
 		.frame(maxHeight: .infinity)
 		.background(Color.backgroundColor)
 	}
 }
+

@@ -17,19 +17,59 @@ enum VoiceAuthorization {
     case NOT_AUTHORIZED
 }
 
-class VoiceService: ObservableObject {
-    
-    @Published var isVoiceActive = false
+class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
+        
     @Published var isVoiceAuthorized = VoiceAuthorization.NOT_AUTHORIZED
-    @Published var transcription = ""
     
-    let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
-    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    var recognitionTask: SFSpeechRecognitionTask?
-    let audioEngine = AVAudioEngine()
+    var onRecognizedTextChange: ((String) -> Void)?
+    
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private let audioEngine = AVAudioEngine()
+    private let audioSession = AVAudioSession.sharedInstance()
+    private let speechSynthesizer = AVSpeechSynthesizer()
+    private var recognitionTimer: Timer?
+    
+    let keywords = Set(["start" , "repeat", "next", "help", "cancel", "complete", "back", "mute", "listen", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"])
+    
+    override init() {
+        super.init()
+        speechRecognizer?.delegate = self
+        configureAudioSession()
+    }
     
     /**
-     Requests authorization for speech recognition and handles the different possible authorization statuses.
+     Configures the audio session
+     */
+    private func configureAudioSession() {
+        do {
+            if isBluetoothConnected() {
+                try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetoothA2DP, .mixWithOthers])
+            } else {
+                try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .mixWithOthers])
+            }
+            try audioSession.setActive(true)
+        } catch {
+            os_log("Error with confiuring the audio device", type: .error)
+        }
+    }
+    
+    /**
+     Checks if any bluetooth devices are connected
+     */
+    private func isBluetoothConnected() -> Bool {
+        let routes = audioSession.currentRoute
+        for output in routes.outputs {
+            if output.portType == .bluetoothA2DP || output.portType == .bluetoothLE || output.portType == .bluetoothHFP {
+                return true
+            }
+        }
+        return false
+    }
+    
+    /**
+     Request the user to allow the application to use the devices microphone and speaker
      */
     func requestSpeechAuthorization() {
         SFSpeechRecognizer.requestAuthorization { status in
@@ -56,71 +96,100 @@ class VoiceService: ObservableObject {
     }
     
     /**
-     Starts listing to user inputs
+     Starts recording voice input
      */
     func startRecording() {
-        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        
-        //On-device recognition, check if device supports it.
-        if #available(iOS 13, *) {
-            if speechRecognizer.supportsOnDeviceRecognition {
-                recognitionRequest?.requiresOnDeviceRecognition = true
-            }
-        }
-        
-        guard let recognitionRequest = recognitionRequest else { return }
-        
-        let inputNode = audioEngine.inputNode
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
-            recognitionRequest.append(buffer)
-        }
-        
-        audioEngine.prepare()
-        do {
-            try audioEngine.start()
-            isVoiceActive = true
-        } catch {
-            os_log("Error with starting audio engine", type: .error)
-            return
-        }
-        
-        speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+        if audioEngine.isRunning {
+            stopRecording()
+        } else {
             
-            guard let result = result, error == nil else {
-                os_log("Error recognizing speech", type: .error)
-                return
-            }
+            recognitionRequest?.endAudio()
+            recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+            guard let recognitionRequest = recognitionRequest else { return }
             
-            let words = result.bestTranscription.formattedString.lowercased()
-            
-            if let number = Int(words) {
-                DispatchQueue.main.async {
-                    self.transcription = String(number)
-                }
-            } else {
-                let allowedKeywords: Set<String> = ["start" , "repeat", "next", "help", "cancel", "complete", "back", "mute", "listen", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-                let filteredWords = words.components(separatedBy: " ").filter { allowedKeywords.contains($0) }
-                
-                DispatchQueue.main.async {
-                    self.transcription = filteredWords.last ?? ""
+            if #available(iOS 13, *) {
+                if speechRecognizer!.supportsOnDeviceRecognition {
+                    recognitionRequest.requiresOnDeviceRecognition = true
                 }
             }
             
-            // TODO: Look into if it's possible to clear the result
+            let inputNode = audioEngine.inputNode
+            recognitionTask?.cancel()
+            recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { result, error in
+                if let result = result {
+                    DispatchQueue.main.async {
+                        self.processRecognitionResult(result.bestTranscription.formattedString)
+                    }
+                }
+            }
+            
+            let recordingFormat = inputNode.outputFormat(forBus: 0)
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, _) in
+                recognitionRequest.append(buffer)
+            }
+            
+            audioEngine.prepare()
+            do {
+                try audioEngine.start()
+            } catch {
+                os_log("Error with starting autio engine", type: .error)
+            }
         }
     }
     
     /**
-     Stops recording and ends recognition task.
+     Stops recoring
      */
     func stopRecording() {
-        recognitionTask?.finish()
-        recognitionTask = nil
-        recognitionRequest?.endAudio()
-        recognitionRequest = nil
         audioEngine.stop()
         audioEngine.inputNode.removeTap(onBus: 0)
-        isVoiceActive = false
+        recognitionRequest?.endAudio()
+        recognitionTask?.cancel()
+        recognitionRequest = nil
+        recognitionTask = nil
+    }
+    
+    /**
+     Processes the result gotten from the recognizer
+     
+     - Parameters:
+     - result: a string to be processed
+     */
+    func processRecognitionResult(_ result: String) {
+        recognitionTimer?.invalidate()
+        recognitionTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+            guard let self = self else { return }
+            // Refresh the value stored in the published value
+            let result = self.filterKeywordsAndNumbers(from: result)
+            self.onRecognizedTextChange?(result)
+            // Reset the recognition task so it will start from empty state
+            self.stopRecording()
+            self.startRecording()
+        }
+    }
+    
+    /**
+     Returns a filtered string based on the keywords definined and numbers
+     
+     - Parameters:
+     - text: the string to be filtered
+     
+     - Returns: A filtered string
+     */
+    func filterKeywordsAndNumbers(from text: String) -> String {
+        let words = text.lowercased().split(separator: " ").map(String.init)
+        return words.filter { keywords.contains($0) || isNumber(word: $0) }.joined(separator: " ")
+    }
+    
+    /**
+     Checks is a string is a number
+     
+     - Parameters:
+     - word: the string to check
+     
+     - Returns: `true` if the string is a number, `false` otherwise
+     */
+    func isNumber(word: String) -> Bool {
+        return Int(word) != nil
     }
 }

@@ -82,6 +82,9 @@
 		F68A5B1229E9773A004E4E9B /* PalletInfoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1129E9773A004E4E9B /* PalletInfoDto.swift */; };
 		F68A5B1429E97751004E4E9B /* SaveProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1329E97751004E4E9B /* SaveProductDto.swift */; };
 		F68A5B1629E977FB004E4E9B /* EditableLabelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1529E977FB004E4E9B /* EditableLabelInput.swift */; };
+		F68E429D29FD644B008E277E /* VoiceChatPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E429C29FD644B008E277E /* VoiceChatPage.swift */; };
+		F68E42A329FD9421008E277E /* VoiceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E42A229FD9421008E277E /* VoiceLog.swift */; };
+		F68E42A529FD9458008E277E /* LogMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E42A429FD9458008E277E /* LogMessage.swift */; };
 		F69765B229E59B7100C697B8 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69765B129E59B7100C697B8 /* BannerModifier.swift */; };
 		F69765BE29E6D7E700C697B8 /* WarehouseConfigurationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69765BD29E6D7E700C697B8 /* WarehouseConfigurationPage.swift */; };
 		F69765C129E6E97800C697B8 /* ProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69765C029E6E97800C697B8 /* ProductPage.swift */; };
@@ -189,6 +192,9 @@
 		F68A5B1129E9773A004E4E9B /* PalletInfoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletInfoDto.swift; sourceTree = "<group>"; };
 		F68A5B1329E97751004E4E9B /* SaveProductDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveProductDto.swift; sourceTree = "<group>"; };
 		F68A5B1529E977FB004E4E9B /* EditableLabelInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableLabelInput.swift; sourceTree = "<group>"; };
+		F68E429C29FD644B008E277E /* VoiceChatPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChatPage.swift; sourceTree = "<group>"; };
+		F68E42A229FD9421008E277E /* VoiceLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceLog.swift; sourceTree = "<group>"; };
+		F68E42A429FD9458008E277E /* LogMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogMessage.swift; path = "voice-pick-frontend/feature/voice/services/LogMessage.swift"; sourceTree = SOURCE_ROOT; };
 		F69765B129E59B7100C697B8 /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		F69765BD29E6D7E700C697B8 /* WarehouseConfigurationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseConfigurationPage.swift; sourceTree = "<group>"; };
 		F69765C029E6E97800C697B8 /* ProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPage.swift; sourceTree = "<group>"; };
@@ -259,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				8D77C3B729E5386300C36D11 /* Voice.swift */,
+				F68E42A429FD9458008E277E /* LogMessage.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -430,6 +437,7 @@
 			children = (
 				F640285029CD85B70023AE34 /* VoiceService.swift */,
 				8D77C3B929E5390000C36D11 /* TTSService.swift */,
+				F68E42A229FD9421008E277E /* VoiceLog.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -517,6 +525,7 @@
 				23BCAE2F299F70D70038C0D7 /* AccountPage.swift */,
 				E845942A29E94B9A00DFE048 /* SetupWarehouse.swift */,
 				F6BD930829F9A51300D04542 /* ChangePasswordPage.swift */,
+				F68E429C29FD644B008E277E /* VoiceChatPage.swift */,
 			);
 			path = page;
 			sourceTree = "<group>";
@@ -778,6 +787,7 @@
 				F6BD930B29F9B93000D04542 /* ChangePasswordRequest.swift in Sources */,
 				E8A2432B29C35B54007D0F60 /* PasswordInput.swift in Sources */,
 				8D203A3629A39DE300D768BA /* PluckFinish.swift in Sources */,
+				F68E42A529FD9458008E277E /* LogMessage.swift in Sources */,
 				F67354A929AF57C700D7E601 /* PluckCard.swift in Sources */,
 				E8880CA629C4E7EC00FE91C8 /* PluckService.swift in Sources */,
 				F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */,
@@ -801,6 +811,7 @@
 				236309DE29F3D4D700F09BF9 /* AddLocationPage.swift in Sources */,
 				F69765C129E6E97800C697B8 /* ProductPage.swift in Sources */,
 				8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */,
+				F68E429D29FD644B008E277E /* VoiceChatPage.swift in Sources */,
 				F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */,
 				F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */,
 				F6754BF8299FABF3007CEDB5 /* Pluck.swift in Sources */,
@@ -816,6 +827,7 @@
 				E8603B412996584000E09361 /* ContentView.swift in Sources */,
 				E8A2432529C30EC1007D0F60 /* LoginResponse.swift in Sources */,
 				E8603B3F2996584000E09361 /* voice_pick_frontendApp.swift in Sources */,
+				F68E42A329FD9421008E277E /* VoiceLog.swift in Sources */,
 				F62D377429F42ECB00455B80 /* UpdatePluckRequest.swift in Sources */,
 				8DF87C9F29EC0D71007152C7 /* ImagePicker.swift in Sources */,
 				F6ACE70A29B090EC004AC10B /* RequestService.swift in Sources */,
@@ -987,7 +999,7 @@
 		E8603B602996584100E09361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "http://localhost:8080";
+				API_URL = "https://devapi.bachelor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1012,7 +1024,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend-jkm";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend-jkm00";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1024,7 +1036,7 @@
 		E8603B612996584100E09361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "http://localhost:8080";
+				API_URL = "https://devapi.bachelor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1049,7 +1061,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend-jkm";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend-jkm00";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

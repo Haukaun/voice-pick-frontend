@@ -10,12 +10,13 @@
 import SwiftUI
 
 struct PluckPage: View {
-	
-	@EnvironmentObject var authenticationService: AuthenticationService
-	
-	@ObservedObject private var pluckService = PluckService()
-	@ObservedObject private var voiceService = VoiceService()
-	
+    
+    @EnvironmentObject var authenticationService: AuthenticationService
+    @EnvironmentObject var voiceService: VoiceService
+    @EnvironmentObject var pluckService: PluckService
+    
+    private let voiceLog = VoiceLog.shared
+        
     func toggleMute() {
         if pluckService.isMuted {
             pluckService.doAction(keyword: "listen", fromVoice: false)
@@ -24,9 +25,9 @@ struct PluckPage: View {
         }
     }
     
-	var body: some View {
-		VStack(spacing: 0) {
-			if pluckService.activePage != .COMPLETE {
+    var body: some View {
+        VStack(spacing: 0) {
+            if pluckService.activePage != .COMPLETE {
                 Header(
                     headerText: "Plukkliste",
                     rightButtons: [
@@ -37,47 +38,50 @@ struct PluckPage: View {
                         }),
                     ]
                 )
-			}
-			switch pluckService.activePage {
-			case .LOBBY:
-				PluckLobby(token: authenticationService.accessToken)
-					.transition(.backslide)
-			case .INFO:
-				PluckInfo()
-					.transition(.backslide)
-			case .LIST_VIEW:
-				PluckListDisplay()
-					.transition(.backslide)
-			case .COMPLETE:
-				PluckComplete()
-					.transition(.backslide)
-			case .DELIVERY:
-				PluckFinish()
-					.transition(.backslide)
-			}
-		}
-		.onAppear {
-			voiceService.requestSpeechAuthorization()
-			voiceService.startRecording()
-		}
-		.onDisappear {
-			voiceService.stopRecording()
-		}
-		.onChange(of: voiceService.transcription) { newValue in
-			pluckService.doAction(
-				keyword: newValue,
-				fromVoice: true,
-				token: authenticationService.accessToken
-			)
-		}
-		.environmentObject(pluckService)
-		.background(Color.backgroundColor)
-	}
+            }
+            switch pluckService.activePage {
+            case .LOBBY:
+                PluckLobby(token: authenticationService.accessToken)
+                    .transition(.backslide)
+            case .INFO:
+                PluckInfo()
+                    .transition(.backslide)
+            case .LIST_VIEW:
+                PluckListDisplay()
+                    .transition(.backslide)
+            case .COMPLETE:
+                PluckComplete()
+                    .transition(.backslide)
+            case .DELIVERY:
+                PluckFinish()
+                    .transition(.backslide)
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                voiceService.startRecording()
+                
+                voiceService.onRecognizedTextChange = { result in
+                    pluckService.doAction(
+                        keyword: result,
+                        fromVoice: true,
+                        token: authenticationService.accessToken
+                    )
+                    voiceLog.addMessage(LogMessage(message: result, type: LogMessageType.INPUT))
+                }
+            }
+        }
+        .onDisappear {
+            voiceService.stopRecording()
+            voiceService.onRecognizedTextChange = nil
+        }
+        .background(Color.backgroundColor)
+    }
 }
 
 struct PluckPage_Previews: PreviewProvider {
-	static var previews: some View {
-		PluckPage()
-			.environmentObject(AuthenticationService())
-	}
+    static var previews: some View {
+        PluckPage()
+            .environmentObject(AuthenticationService())
+    }
 }

@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct TabBar: View {
-	
-	@EnvironmentObject var authenticationService: AuthenticationService
-	@EnvironmentObject var ttsService: TTSService
+        
 	var body: some View {
 		TabView {
 			PluckPage()
 				.tabItem {
 					Label("Meny", systemImage: "house")
 				}
-				.environmentObject(authenticationService)
+            VoiceChatPage()
+                .tabItem {
+                    Label("Log", systemImage: "clock.fill")
+                }
 			WarehouseConfigurationPage()
 				.tabItem {
 					Label("Konfigurer varehus", systemImage: "slider.horizontal.3")
@@ -34,7 +35,5 @@ struct TabBar: View {
 struct TabBar_Previews: PreviewProvider {
 	static var previews: some View {
 		TabBar()
-			.environmentObject(AuthenticationService())
-			.environmentObject(TTSService())
 	}
 }

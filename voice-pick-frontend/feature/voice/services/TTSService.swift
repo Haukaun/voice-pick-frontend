@@ -10,10 +10,16 @@ import AVFAudio
 
 
 class TTSService: ObservableObject {
+    
+    // Singleton
 	static let shared = TTSService()
-	let synthesizer = AVSpeechSynthesizer()
+    
+    private let voiceLog = VoiceLog.shared
+    
+	private let synthesizer = AVSpeechSynthesizer()
+    
 	@Published var selectedVoice: Voice?
-	
+    	
 	/**
 	 Plays a string to the device audio output
 	 
@@ -38,7 +44,10 @@ class TTSService: ObservableObject {
 			speechUtterance.volume = 1.0
 			speechUtterance.pitchMultiplier = 1.0
 			
-			synthesizer.speak(speechUtterance)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.voiceLog.addMessage(LogMessage(message: utterance, type: LogMessageType.OUTPUT))
+            }
+            synthesizer.speak(speechUtterance)
 		}
 	}
     

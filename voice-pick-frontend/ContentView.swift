@@ -15,23 +15,20 @@ struct ContentView: View {
 		case auth, verification, setupWarehouse, tabBar
 	}
 	
-	@StateObject var authenticationService = AuthenticationService()
+    @EnvironmentObject var authenticationService: AuthenticationService
+    
 	@State private var activeView: ActiveView = .auth
 	
 	var body: some View {
 		VStack {
 			if activeView == .auth {
 				AuthPage()
-					.environmentObject(authenticationService)
 			} else if activeView == .verification {
 				VerificationPage()
-					.environmentObject(authenticationService)
 			} else if activeView == .setupWarehouse {
 				SetupWarehouse()
-					.environmentObject(authenticationService)
 			} else if activeView == .tabBar {
 				TabBar()
-					.environmentObject(authenticationService)
 			}
 		}
 		.onAppear {

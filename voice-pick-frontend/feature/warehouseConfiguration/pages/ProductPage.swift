@@ -23,6 +23,7 @@ struct ProductPage: View {
     @State var errorMessage = ""
     @State private var indexSetToDelete: IndexSet?
     @State var productDeletedFromDb = false
+    @Environment(\.dismiss) private var dismiss
 
     
     func fetchProducts() {
@@ -32,8 +33,7 @@ struct ProductPage: View {
                 self.products = fetchedProducts
             case .failure(let error as RequestError):
                 print(error)
-                // Handle the error here
-                print("Error: \(error.localizedDescription)")
+                handleError(errorCode: error.errorCode)
             default:
                 break
             }
@@ -61,9 +61,12 @@ struct ProductPage: View {
      */
     func handleError(errorCode: Int) {
         switch errorCode {
+        case 401:
+            showingAlert = true
+            errorMessage = "Bruker er uautorisert. Logg inn på nytt og pass på at du har riktig rettigheter."
         case 405:
             showingAlert = true
-            errorMessage = "Produktet fins ikke!"
+            errorMessage = "Produktet finnes ikke!"
             break
         case 500:
             showingAlert = true
@@ -90,6 +93,7 @@ struct ProductPage: View {
         NavigationView {
             VStack {
                 DefaultInput(inputLabel: "Søk...", text: $searchField, valid: true)
+                    .padding(5)
                 List {
                     ForEach(filteredProducts, id: \.self) { product in
                         HStack {
@@ -111,8 +115,10 @@ struct ProductPage: View {
                                 }.tint(.red)
                             }
                     }
+                    .listRowBackground(Color.backgroundColor)
                 }
                 .listStyle(PlainListStyle())
+                .scrollContentBackground(.hidden)
                 .refreshable {
                     fetchProducts()
                 }
@@ -120,7 +126,8 @@ struct ProductPage: View {
                     fetchProducts()
                 }
             }
-            .padding(5)
+            .background(Color.backgroundColor)
+            .foregroundColor(Color.foregroundColor)
             .alert("Fjern produkt", isPresented: $showingAlert, actions: {
                 Button(role: .cancel) {} label: {
                     Text("Avbryt")
@@ -144,18 +151,25 @@ struct ProductPage: View {
             ToolbarItem(placement: .principal) {
                 Text("Produkter")
             }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {dismiss()}) {
+                    Label("Return", systemImage: "chevron.backward")
+                }
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(destination: AddProductPage()) {
                     Image(systemName: "plus")
                 }
             }
         }
+        .foregroundColor(Color.black)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-				.sheet(item: $selectedProduct, content: { product in
-					UpdateProductPage(product: product)
-				})
+        .navigationBarBackButtonHidden(true)
+        .sheet(item: $selectedProduct, content: { product in
+            UpdateProductPage(product: product)
+        })
     }
 }
 

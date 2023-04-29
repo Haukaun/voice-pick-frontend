@@ -22,7 +22,8 @@ struct LocationPage: View {
     @State private var showingAlert = false
     @State var errorMessage = ""
     @State var locationDeletedFromDb = false
-    
+    @Environment(\.dismiss) private var dismiss
+
     var filteredLocations: [Location] {
         if searchField.isEmpty {
             return locations
@@ -37,7 +38,7 @@ struct LocationPage: View {
         NavigationView {
             VStack {
                 DefaultInput(inputLabel: "Søk...", text: $searchField, valid: true)
-								.padding(5)
+                    .padding(5)
                 List {
                     ForEach(filteredLocations, id: \.self) { location in
                         HStack {
@@ -59,8 +60,10 @@ struct LocationPage: View {
                                 }.tint(.red)
                             }
                     }
+                    .listRowBackground(Color.backgroundColor)
                 }
                 .listStyle(PlainListStyle())
+                .scrollContentBackground(.hidden)
                 .refreshable {
                     getLocations()
                 }
@@ -68,7 +71,7 @@ struct LocationPage: View {
                     getLocations()
                 }
             }
-						
+            .background(Color.backgroundColor)
             .alert("Fjern lokasjon", isPresented: $showingAlert, actions: {
                 Button(role: .cancel) {} label: {
                     Text("Avbryt")
@@ -88,9 +91,15 @@ struct LocationPage: View {
                 Text("Er du sikker på at du vil fjerne denne lokasjonen fra varehuset ditt?")
             })
         }
+        .foregroundColor(Color.foregroundColor)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text("Lokasjoner")
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {dismiss()}) {
+                    Label("Return", systemImage: "chevron.backward")
+                }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(destination: AddLocationPage()) {
@@ -98,12 +107,14 @@ struct LocationPage: View {
                 }
             }
         }
+        .foregroundColor(Color.black)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-				.sheet(item: $selectedLocation, content: { location in
-					UpdateLocationPage(location: location)
-				})
+        .navigationBarBackButtonHidden(true)
+        .sheet(item: $selectedLocation, content: { location in
+            UpdateLocationPage(location: location)
+        })
     }
     
     func getLocations() {

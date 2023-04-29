@@ -19,7 +19,8 @@ struct ChangePasswordPage: View {
     
     @State var showAlert = false
     @State var alertMsg = ""
-    
+    @Environment(\.dismiss) private var dismiss
+
     @ObservedObject var requestService = RequestService()
     let validator = Validator.shared
     
@@ -95,7 +96,8 @@ struct ChangePasswordPage: View {
             .frame(maxHeight: .infinity)
             .padding(5)
             .background(Color.backgroundColor)
-            
+            .foregroundColor(Color.foregroundColor)
+
             if requestService.isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
@@ -113,10 +115,18 @@ struct ChangePasswordPage: View {
             ToolbarItem(placement: .principal) {
                 Text("Endre password")
             }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {dismiss()}) {
+                    Label("Return", systemImage: "chevron.backward")
+                }
+            }
         }
+        .foregroundColor(Color.black)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
+        .navigationBarBackButtonHidden(true)
+
     }
 }
 

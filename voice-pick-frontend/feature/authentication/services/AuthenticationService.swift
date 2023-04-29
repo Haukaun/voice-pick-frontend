@@ -12,6 +12,8 @@ class AuthenticationService: ObservableObject {
 	let keychain = KeychainSwift()
 	let encoder = JSONEncoder()
 	let decoder = JSONDecoder()
+    
+    private let voiceLog = VoiceLog.shared
 	
 	private var storedAccessToken: String {
 		get {
@@ -195,6 +197,7 @@ class AuthenticationService: ObservableObject {
             self.warehouseId = nil
             self.warehouseName = ""
             self.warehouseAddress = ""
+            self.voiceLog.clearMessages()
         }
     }
 }

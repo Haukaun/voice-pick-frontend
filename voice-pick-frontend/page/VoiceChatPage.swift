@@ -22,12 +22,17 @@ struct VoiceChatPage: View {
                     ScrollView {
                         ForEach(voiceLog.logMessages, id: \.id) { logMessage in
                             HStack {
+                                if logMessage.type == LogMessageType.INPUT {
+                                    Spacer()
+                                }
                                 Text(logMessage.message)
                                     .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
                                     .background(logMessage.type == LogMessageType.INPUT ? Color.traceLightYellow : Color.componentColor)
                                     .foregroundColor(logMessage.type == LogMessageType.INPUT ? Color.night : Color.foregroundColor)
                                     .clipShape(RoundedRectangle(cornerRadius: 16.0, style: .continuous))
-                                Spacer()
+                                if logMessage.type == LogMessageType.OUTPUT {
+                                    Spacer()
+                                }
                             }
                             .id(logMessage.id)
                             .frame(maxWidth: .infinity)

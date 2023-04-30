@@ -115,7 +115,7 @@ struct AccountPage: View {
 	var body: some View {
 		NavigationView {
 			ZStack {
-				VStack(alignment: .leading, spacing: 0) {
+				VStack(spacing: 0) {
 					Header(
 						headerText: "Profil",
 						rightButtons: [
@@ -125,7 +125,7 @@ struct AccountPage: View {
 								})
 						]
 					)
-					ScrollView{
+					ScrollView {
 						HStack {
 							Spacer()
 							ZStack {
@@ -147,17 +147,47 @@ struct AccountPage: View {
 							}
 							Spacer()
 						}
-						HStack{
-							Spacer()
-							VStack {
-								Title(authenticationService.userName)
-								Paragraph("Profesjonell plukker")
-									.opacity(0.3)
-							}
-							Spacer()
+						.padding(.top)
+						Spacer()
+						VStack {
+							Title(authenticationService.userName)
+							Paragraph("Profesjonell plukker")
+								.opacity(0.3)
 						}
-						VStack (alignment: .trailing) {
-							VStack {
+						.padding(.bottom)
+						VStack (alignment: .leading, spacing: 20) {
+							VStack (alignment: .leading) {
+								Text("Stemme innstillinger:")
+									.padding(.bottom)
+									.font(.bodyBold)
+								Card {
+									HStack {
+										Text("Lyd")
+											.font(Font.customBody)
+										Spacer()
+										Text("\(Int(ttsService.volume * 100))%")
+											.font(Font.bodyBold)
+											.foregroundColor(.gray)
+									}
+									Slider(value: $ttsService.volume, in: 0...1, step: 0.1, onEditingChanged: { _ in
+										ttsService.setVolume(volume: ttsService.volume)
+									})
+									.accentColor(.traceLightYellow)
+									HStack {
+										Text("Hastighet")
+											.font(Font.customBody)
+										Spacer()
+										Text("\(Int(ttsService.rate * 100))%")
+											.font(.bodyBold)
+											.foregroundColor(.gray)
+									}
+									Slider(value: $ttsService.rate, in: 0...1, step: 0.1, onEditingChanged: { _ in
+										ttsService.setRate(rate: ttsService.rate)
+									})
+									.accentColor(.traceLightYellow)
+								}
+							}
+							VStack (alignment: .leading ,spacing: 20) {
 								CustomDisclosureGroup(
 									title: "Valgt stemme",
 									selectedValue: ttsService.selectedVoice?.name ?? "Standard",
@@ -169,34 +199,42 @@ struct AccountPage: View {
 									},
 									isColorEnabled: $isColorEnabled
 								)
+								.padding(.bottom)
+								Divider()
+								Text("Bruker innstillinger:")
+									.font(.bodyBold)
 								NavigationLink(destination: ChangePasswordPage()) {
 									HStack {
 										Image(systemName: "key.fill")
 										Text("Endre passord")
-											.foregroundColor(Color.foregroundColor)
 										Spacer()
 										Image(systemName: "chevron.right")
 									}
+									.foregroundColor(.foregroundColor)
 									.frame(maxWidth: .infinity)
 									.padding()
 									.background(Color.componentColor)
 									.cornerRadius(5)
 									.shadow(color: Color.black.opacity(0.2), radius: 5, y: 5)
 								}
+								.padding(.bottom)
+								Divider()
 							}
-							Divider()
+							HStack {
+								Text("Farlig sone")
+									.font(.bodyBold)
+								Image(systemName: "exclamationmark.triangle.fill")
+							}
+							.foregroundColor(.red)
 							DangerButton(label: "Forlat varehus", onPress: {
 								
 							})
 							DangerButton(label: "Slett bruker", onPress: {
 								handleDeleteAccount()
 							})
-							
 						}
-						.frame(maxHeight: .infinity)
-						.padding(10)
+						.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
 					}
-					.padding(.top)
 					.background(Color.backgroundColor)
 					.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})
 					.alert(isPresented: $showWarningAlert) {

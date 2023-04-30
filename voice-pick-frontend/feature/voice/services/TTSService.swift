@@ -19,7 +19,9 @@ class TTSService: ObservableObject {
 	private let synthesizer = AVSpeechSynthesizer()
     
 	@Published var selectedVoice: Voice?
-    	
+	@Published var volume: Float = 0.5
+	@Published var rate: Float = 0.5
+
 	/**
 	 Plays a string to the device audio output
 	 
@@ -32,7 +34,7 @@ class TTSService: ObservableObject {
 	func speak(_ utterance: String, _ fromVoice: Bool) {
 		if (fromVoice) {
 			let speechUtterance = AVSpeechUtterance(string: utterance)
-			speechUtterance.rate = AVSpeechUtteranceMaximumSpeechRate / 2
+			speechUtterance.rate = self.rate
 			
 			
 			if (selectedVoice == nil) {
@@ -41,7 +43,7 @@ class TTSService: ObservableObject {
 				speechUtterance.voice = AVSpeechSynthesisVoice(identifier: selectedVoice!.rawValue)
 			}
 			
-			speechUtterance.volume = 1.0
+			speechUtterance.volume = self.volume
 			speechUtterance.pitchMultiplier = 1.0
 			
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -50,13 +52,44 @@ class TTSService: ObservableObject {
             synthesizer.speak(speechUtterance)
 		}
 	}
-    
-    /*
-     Stop the speaking midsentence
-     */
-    func stopSpeak() {
-			synthesizer.stopSpeaking(at: .immediate)
-    }
+	
+	/*
+	 Stop the speaking midsentence
+	 */
+	func stopSpeak() {
+		synthesizer.stopSpeaking(at: .immediate)
+	}
+	
+	
+	/**
+	 Set volume
+	 */
+	func setVolume(volume: Float) {
+		self.volume = volume
+	}
+	
+	/**
+	 Get volume
+	 */
+	func getVolume() -> Float {
+		return self.volume
+	}
+	
+	/**
+	 Set speed of voice
+	 */
+	func setRate(rate: Float) {
+		self.rate = rate
+	}
+	
+	/**
+	 Get speed of voice
+	 */
+	func getRate() -> Float {
+		return self.rate
+	}
+	
+	
 	
 	/*
 	 Set Voice

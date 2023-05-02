@@ -92,7 +92,9 @@ struct AuthPage: View {
             AuthForm(emailValue: $emailValue, authMode: $authMode)
             Button("Glemt passord?") {
                 sendResetPasswordMail()
-            }.font(.label).frame(maxWidth: .infinity, alignment: .trailing).foregroundColor(.black)
+            }
+						.font(.label).frame(maxWidth: .infinity, alignment: .trailing)
+						.foregroundColor(.foregroundColor)
 			HStack {
 				Text("Har du ikke en konto?")
 				Button(authMode == AuthMode.signup ? "Logg inn her" : "Registrer deg her", action: switchAuthMode)

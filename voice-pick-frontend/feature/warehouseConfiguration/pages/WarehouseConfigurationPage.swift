@@ -23,7 +23,7 @@ struct WarehouseConfigurationPage: View {
 									NavigationLink(destination: LocationPage()) {
                         gridButton(label: "Lokasjoner", icon: "map.fill")
                     }
-                    NavigationLink(destination: Text("User page")) {
+                    NavigationLink(destination: EmployeesPage()) {
                         gridButton(label: "Brukere", icon: "person.fill")
                     }
                 }

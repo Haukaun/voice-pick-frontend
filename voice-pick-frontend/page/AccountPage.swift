@@ -41,37 +41,12 @@ struct AccountPage: View {
 		requestService.delete(path: "/auth/users", token: authenticationService.accessToken, responseType: String.self, completion: { result in
 			switch result {
 			case .success(_):
-				authenticationService.clear()
+				authenticationService.logout()
 			case .failure(let error):
 				print(error)
 				
 			}
 		})
-	}
-	
-	/**
-	 Tries to logout a user based on the tokes for the currently logged in user
-	 */
-	func logout() {
-		requestService.post(
-			path: "/auth/signout",
-			token: authenticationService.accessToken,
-			body: TokenDto(token: authenticationService.refreshToken),
-			responseType: String.self,
-			completion: { result in
-				switch result {
-				case .failure(let error as RequestError):
-					// TODO: Handle error correctly
-					if (error.errorCode == 401) {
-						authenticationService.clear()
-					}
-					print(error)
-				case .success(_):
-					authenticationService.clear()
-				case .failure(let error):
-					print(error)
-				}
-			})
 	}
 	
 	/**
@@ -120,7 +95,8 @@ struct AccountPage: View {
 						headerText: "Profil",
 						rightButtons: [
 							Button(action: {
-								logout()}, label: {
+                                authenticationService.logout()
+                            }, label: {
 									Image(systemName: "rectangle.portrait.and.arrow.right.fill")
 								})
 						]

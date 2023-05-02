@@ -85,32 +85,38 @@ struct SetupWarehouse: View {
 			VStack {
 				Title("Sett opp varehus")
 				Spacer()
-				VStack(alignment: .leading) {
-					SubTitle("Bli med i varehus")
-					DefaultInput(inputLabel: "PIN kode", text: $joinCodeValue, valid: true)
-						.padding(.init(.bottom))
-					DefaultButton("Bli med", onPress: joinWarehouse)
-					HStack {
-						VStack {
-							Divider()
-								.background(Color.foregroundColor)
-						}
-						Paragraph("eller")
-						VStack {
-							Divider()
-								.background(Color.foregroundColor)
-						}
-					}
-					.padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
-					SubTitle("Opprett varehus")
-					DefaultInput(inputLabel: "Varehus navn", text: $warehouseName, valid: true)
-						.padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))
-					DefaultInput(inputLabel: "Varehus addresse", text: $warehouseAddress, valid: true)
-						.padding(.bottom)
-					DefaultButton("Opprett", onPress: createWareHouse)
-				}
-				Spacer()
-				
+                VStack(alignment: .leading) {
+                    SubTitle("Bli med i varehus")
+                    DefaultInput(inputLabel: "PIN kode", text: $joinCodeValue, valid: true)
+                        .padding(.init(.bottom))
+                    DefaultButton("Bli med", onPress: joinWarehouse)
+                    HStack {
+                        VStack {
+                            Divider()
+                                .background(Color.foregroundColor)
+                        }
+                        Paragraph("eller")
+                        VStack {
+                            Divider()
+                                .background(Color.foregroundColor)
+                        }
+                    }
+                    .padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
+                    SubTitle("Opprett varehus")
+                    DefaultInput(inputLabel: "Varehus navn", text: $warehouseName, valid: true)
+                        .padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))
+                    DefaultInput(inputLabel: "Varehus addresse", text: $warehouseAddress, valid: true)
+                        .padding(.bottom)
+                    DefaultButton("Opprett", onPress: createWareHouse)
+                    Button("Logg ut", action: {
+                        authenticationService.logout()
+                    })
+                    .frame(maxWidth: .infinity)
+                    .buttonStyle(.plain)
+                    .underline()
+                    .padding()
+                }
+                Spacer()
 			}
 			.padding(10)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

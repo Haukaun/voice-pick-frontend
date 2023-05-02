@@ -20,7 +20,7 @@ struct TabBar: View {
                 .environmentObject(voiceService)
             VoiceChatPage()
                 .tabItem {
-                    Label("Log", systemImage: "clock.fill")
+                    Label("Logg", systemImage: "clock.fill")
                 }
                 .environmentObject(voiceService)
 			WarehouseConfigurationPage()

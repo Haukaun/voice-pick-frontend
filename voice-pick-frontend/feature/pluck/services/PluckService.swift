@@ -115,7 +115,7 @@ class PluckService: ObservableObject {
         case "repeat":
             ttsService.speak("Say 'start' to start a new pluck order", fromVoice)
         case "help":
-            ttsService.speak("You only have one option: 'start' to start a new pluck order", fromVoice)
+            ttsService.speak("You only have one option: say 'start' to start a new pluck order", fromVoice)
         case "cancel":
             ttsService.stopSpeak()
         default:
@@ -171,7 +171,7 @@ class PluckService: ObservableObject {
                 setPluckList(pluckList)
                 setCurrentStep(.SELECT_CARGO)
                 updateActivePage(.INFO)
-                ttsService.speak("Select cargo carrier before continuing", fromVoice)
+                ttsService.speak("Select cargo carrier to continuing", fromVoice)
             case .failure(let error as RequestError):
                 handleError(error.errorCode, fromVoice)
             default:
@@ -193,7 +193,7 @@ class PluckService: ObservableObject {
             for cargoCarrier in cargoCarriers {
                 ttsService.speak("Say \(cargoCarrier.phoneticIdentifier) for \(cargoCarrier.name)", fromVoice )
             }
-            ttsService.speak("Say 'next' after selecting cargo carrier to continue", fromVoice)
+            ttsService.speak("Select cargo, then 'next' to continue.", fromVoice)
             break
         case "repeat":
             ttsService.speak("Select a cargo carrier to continue.", fromVoice)
@@ -201,7 +201,7 @@ class PluckService: ObservableObject {
             ttsService.stopSpeak()
         case "next":
             if (pluckList?.cargoCarrier == nil) {
-                ttsService.speak("Need to select a cargo carrier", fromVoice)
+                ttsService.speak("Select a cargo carrier before continuing.", fromVoice)
             } else {
                 setCurrentStep(.SELECT_CONTROL_DIGITS)
                 updateActivePage(.LIST_VIEW)
@@ -215,6 +215,8 @@ class PluckService: ObservableObject {
                 // TODO: Send request to api to update cargo carrier for plucklist
                 pluckList?.cargoCarrier = found
                 ttsService.speak("\(found!.name) selected", fromVoice)
+            } else {
+                ttsService.speak("\(keyword) is not an available options.", fromVoice)
             }
         }
     }
@@ -237,16 +239,16 @@ class PluckService: ObservableObject {
                 }
                 self.setCurrentStep(.CONFIRM_PLUCK)
             } else {
-                ttsService.speak("Wrong control digits. Try again", fromVoice)
+                ttsService.speak("Wrong control digits. Try again.", fromVoice)
             }
         } else {
             switch keyword {
             case "help":
-                ttsService.speak("Select correct control digits", fromVoice)
+                ttsService.speak("Select correct control digits.", fromVoice)
             case "repeat":
                 ttsService.speak(pluckList?.plucks[currentPluckIndex].product.location?.code ?? "", fromVoice)
             case "complete":
-                ttsService.speak("Select control digits and amount before continuing", fromVoice)
+                ttsService.speak("Select control digits and amount before continuing.", fromVoice)
             case "cancel":
                 ttsService.stopSpeak()
             default:
@@ -262,7 +264,7 @@ class PluckService: ObservableObject {
         
         switch keyword {
         case "help":
-            ttsService.speak("Enter the correct amount", fromVoice)
+            ttsService.speak("Enter the correct amount.", fromVoice)
         case "repeat":
             let amountInt = pluckList?.plucks[currentPluckIndex].amount
             if let amount = amountInt {
@@ -396,7 +398,7 @@ class PluckService: ObservableObject {
                 withAnimation {
                     pluckList?.confirmedAt = Date()
                 }
-                ttsService.speak("Pluck completed", fromVoice)
+                ttsService.speak("Pluck completed.", fromVoice)
                 if fromVoice {
                     registerCompletPluckList(fromVoice)
                     setCurrentStep(.START)
@@ -404,19 +406,19 @@ class PluckService: ObservableObject {
                     ttsService.speak("Say 'start' to start a new pluck order", fromVoice)
                 }
             } else {
-                ttsService.speak("Wrong control digits. Try again", fromVoice)
+                ttsService.speak("Wrong control digits. Try again.", fromVoice)
             }
         } else {
             switch keyword {
             case "repeat":
                 ttsService.speak(pluckList?.location.code ?? "", fromVoice)
             case "help":
-                ttsService.speak("Confirm control digit, then say 'complete' to finish the pluck", fromVoice)
+                ttsService.speak("Confirm control digits, then say 'complete' to finish the pluck", fromVoice)
             case "cancel":
                 ttsService.stopSpeak()
             case "complete":
                 if (pluckList?.confirmedAt == nil) {
-                    ttsService.speak("Need to confirm with control digits first...", fromVoice)
+                    ttsService.speak("Select correct control didits before completing", fromVoice)
                 } else {
                     pluckList?.finishedAt = Date()
                     registerCompletPluckList(fromVoice)

@@ -9,15 +9,15 @@ import SwiftUI
 
 @main
 struct voice_pick_frontendApp: App {
-    
-    @StateObject private var authService = AuthenticationService()
-    @StateObject private var pluckService = PluckService()
-    
+	
+	@StateObject private var authService = AuthenticationService()
+	@StateObject private var pluckService = PluckService()
+	
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
-                .environmentObject(authService)
-                .environmentObject(pluckService)
+				.environmentObject(authService)
+				.environmentObject(pluckService)
 		}
 	}
 }

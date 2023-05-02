@@ -24,7 +24,6 @@
 		8D77C3BA29E5390000C36D11 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3B929E5390000C36D11 /* TTSService.swift */; };
 		8D77C3BC29E6984B00C36D11 /* PluckCardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3BB29E6984B00C36D11 /* PluckCardDetail.swift */; };
 		8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5A29A673610015800D /* ButtonRandomizer.swift */; };
-		8D9FB4DF29FA6AFE0016EB97 /* UpdateLocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9FB4DE29FA6AFD0016EB97 /* UpdateLocationPage.swift */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
 		8DB45FF729D6D32D0057BCDB /* VerificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */; };
 		8DB727AC29CDA78F009CA150 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB727AB29CDA78F009CA150 /* User.swift */; };
@@ -33,10 +32,15 @@
 		8DF8900229F9429800A8096D /* CustomDisclosureGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8900129F9429800A8096D /* CustomDisclosureGroup.swift */; };
 		8DFBEB9029F7EDBA00D8E2D1 /* ProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBEB8F29F7EDBA00D8E2D1 /* ProductDto.swift */; };
 		8DFBEB9129F7F81000D8E2D1 /* UpdatePluckListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62D377529F43C1C00455B80 /* UpdatePluckListRequest.swift */; };
+		E8236EA629FA4B6300447F34 /* EmployeesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA529FA4B6300447F34 /* EmployeesPage.swift */; };
+		E8236EA829FA4B7D00447F34 /* AddEmployeePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA729FA4B7D00447F34 /* AddEmployeePage.swift */; };
+		E8236EAA29FA5A7100447F34 /* DetailedEmployeePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */; };
 		E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B0AC429A0221400A5F1E2 /* Validator.swift */; };
+		E83BD8862A0124D30044FAE2 /* VoiceChatPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E429C29FD644B008E277E /* VoiceChatPage.swift */; };
 		E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BC729B220BA000063E9 /* UserInfo.swift */; };
 		E83C9BCF29B2267E000063E9 /* AuthMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BCE29B2267E000063E9 /* AuthMode.swift */; };
 		E83C9BD329B22716000063E9 /* AuthForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BD229B22716000063E9 /* AuthForm.swift */; };
+		E83E008B2A012340009ACC46 /* UpdateLocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83E008A2A012340009ACC46 /* UpdateLocationPage.swift */; };
 		E845942B29E94B9A00DFE048 /* SetupWarehouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E845942A29E94B9A00DFE048 /* SetupWarehouse.swift */; };
 		E845942E29E9698C00DFE048 /* AddWarehouseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E845942D29E9698C00DFE048 /* AddWarehouseDto.swift */; };
 		E85FF604299D125A000CB6A4 /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = E85FF603299D125A000CB6A4 /* Roboto */; };
@@ -82,7 +86,6 @@
 		F68A5B1229E9773A004E4E9B /* PalletInfoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1129E9773A004E4E9B /* PalletInfoDto.swift */; };
 		F68A5B1429E97751004E4E9B /* SaveProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1329E97751004E4E9B /* SaveProductDto.swift */; };
 		F68A5B1629E977FB004E4E9B /* EditableLabelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68A5B1529E977FB004E4E9B /* EditableLabelInput.swift */; };
-		F68E429D29FD644B008E277E /* VoiceChatPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E429C29FD644B008E277E /* VoiceChatPage.swift */; };
 		F68E42A329FD9421008E277E /* VoiceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E42A229FD9421008E277E /* VoiceLog.swift */; };
 		F68E42A529FD9458008E277E /* LogMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E42A429FD9458008E277E /* LogMessage.swift */; };
 		F69765B229E59B7100C697B8 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69765B129E59B7100C697B8 /* BannerModifier.swift */; };
@@ -141,10 +144,14 @@
 		8DF87C9E29EC0D71007152C7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8DF8900129F9429800A8096D /* CustomDisclosureGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDisclosureGroup.swift; sourceTree = "<group>"; };
 		8DFBEB8F29F7EDBA00D8E2D1 /* ProductDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDto.swift; sourceTree = "<group>"; };
+		E8236EA529FA4B6300447F34 /* EmployeesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesPage.swift; sourceTree = "<group>"; };
+		E8236EA729FA4B7D00447F34 /* AddEmployeePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeePage.swift; sourceTree = "<group>"; };
+		E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEmployeePage.swift; sourceTree = "<group>"; };
 		E82B0AC429A0221400A5F1E2 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E83C9BC729B220BA000063E9 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		E83C9BCE29B2267E000063E9 /* AuthMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMode.swift; sourceTree = "<group>"; };
 		E83C9BD229B22716000063E9 /* AuthForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthForm.swift; sourceTree = "<group>"; };
+		E83E008A2A012340009ACC46 /* UpdateLocationPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateLocationPage.swift; path = "voice-pick-frontend/feature/warehouseConfiguration/pages/UpdateLocationPage.swift"; sourceTree = SOURCE_ROOT; };
 		E845942A29E94B9A00DFE048 /* SetupWarehouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupWarehouse.swift; sourceTree = "<group>"; };
 		E845942D29E9698C00DFE048 /* AddWarehouseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWarehouseDto.swift; sourceTree = "<group>"; };
 		E85FF603299D125A000CB6A4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
@@ -324,6 +331,14 @@
 			path = components;
 			sourceTree = "<group>";
 		};
+		E83E00892A01227C009ACC46 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				8D9FB4DE29FA6AFD0016EB97 /* UpdateLocationPage.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		E845942C29E9696A00DFE048 /* dto */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +365,7 @@
 				E8603B582996584100E09361 /* voice-pick-frontendUITests */,
 				E8603B3C2996584000E09361 /* Products */,
 				C4E9B80636C892C8A45C72F2 /* Pods */,
+				E83E00892A01227C009ACC46 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -492,8 +508,11 @@
 				F68A5B0729E6FD97004E4E9B /* AddProductPage.swift */,
 				F68A5B0929E955CC004E4E9B /* UpdateProductPage.swift */,
 				236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */,
+				E83E008A2A012340009ACC46 /* UpdateLocationPage.swift */,
 				236309DF29F3D4FE00F09BF9 /* LocationPage.swift */,
-				8D9FB4DE29FA6AFD0016EB97 /* UpdateLocationPage.swift */,
+				E8236EA529FA4B6300447F34 /* EmployeesPage.swift */,
+				E8236EA729FA4B7D00447F34 /* AddEmployeePage.swift */,
+				E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */,
 			);
 			path = pages;
 			sourceTree = "<group>";
@@ -519,10 +538,10 @@
 		F6E9BE3F299686CA00DFD5EF /* page */ = {
 			isa = PBXGroup;
 			children = (
+				23BCAE2F299F70D70038C0D7 /* AccountPage.swift */,
 				E89E3C8D299D09C0007D77AD /* AuthPage.swift */,
 				8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */,
 				F60AD490299E4D8C008A30F5 /* PluckPage.swift */,
-				23BCAE2F299F70D70038C0D7 /* AccountPage.swift */,
 				E845942A29E94B9A00DFE048 /* SetupWarehouse.swift */,
 				F6BD930829F9A51300D04542 /* ChangePasswordPage.swift */,
 				F68E429C29FD644B008E277E /* VoiceChatPage.swift */,
@@ -774,11 +793,13 @@
 				E88A321829EFF8C60083B353 /* WarehouseDto.swift in Sources */,
 				F60AD485299D0AD1008A30F5 /* Title.swift in Sources */,
 				8D77C3BC29E6984B00C36D11 /* PluckCardDetail.swift in Sources */,
+				E8236EA629FA4B6300447F34 /* EmployeesPage.swift in Sources */,
 				E89E3C8E299D09C0007D77AD /* AuthPage.swift in Sources */,
 				8D203A2A299E2E9C00D768BA /* PluckListDisplay.swift in Sources */,
 				23BCAE36299FA4D00038C0D7 /* CargoType.swift in Sources */,
 				F6ACE71A29B1FFCF004AC10B /* PluckPages.swift in Sources */,
 				F69765BE29E6D7E700C697B8 /* WarehouseConfigurationPage.swift in Sources */,
+				E83E008B2A012340009ACC46 /* UpdateLocationPage.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F68A5B0829E6FD97004E4E9B /* AddProductPage.swift in Sources */,
 				8DF8900229F9429800A8096D /* CustomDisclosureGroup.swift in Sources */,
@@ -807,12 +828,14 @@
 				8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */,
 				E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */,
 				8D67F8EC299E240A001DB87C /* TabBar.swift in Sources */,
+				E83BD8862A0124D30044FAE2 /* VoiceChatPage.swift in Sources */,
 				F62D1AFC29EEBD95005ED754 /* VerifyRequestDto.swift in Sources */,
 				236309DE29F3D4D700F09BF9 /* AddLocationPage.swift in Sources */,
 				F69765C129E6E97800C697B8 /* ProductPage.swift in Sources */,
 				8D1A2DE229966A42007062CE /* Font+Extension.swift in Sources */,
-				F68E429D29FD644B008E277E /* VoiceChatPage.swift in Sources */,
+				E8236EAA29FA5A7100447F34 /* DetailedEmployeePage.swift in Sources */,
 				F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */,
+				E8236EA829FA4B7D00447F34 /* AddEmployeePage.swift in Sources */,
 				F6ACE70C29B0AA47004AC10B /* Location.swift in Sources */,
 				F6754BF8299FABF3007CEDB5 /* Pluck.swift in Sources */,
 				8D46B25E29C340A000F3E9EB /* CargoCarrier.swift in Sources */,
@@ -838,7 +861,6 @@
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,
 				E83C9BCF29B2267E000063E9 /* AuthMode.swift in Sources */,
 				F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */,
-				8D9FB4DF29FA6AFE0016EB97 /* UpdateLocationPage.swift in Sources */,
 				E83C9BD329B22716000063E9 /* AuthForm.swift in Sources */,
 				E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */,
 				F68A5B0D29E976EB004E4E9B /* ProductField.swift in Sources */,
@@ -999,14 +1021,14 @@
 		E8603B602996584100E09361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "https://devapi.bachelor.seq.re";
+				API_URL = "http://localhost:8080";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = 45723U7VDN;
+				DEVELOPMENT_TEAM = 3SR89T93YC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -1024,7 +1046,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend-jkm00";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1036,14 +1058,14 @@
 		E8603B612996584100E09361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "https://devapi.bachelor.seq.re";
+				API_URL = "http://localhost:8080";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = 45723U7VDN;
+				DEVELOPMENT_TEAM = 3SR89T93YC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -1061,7 +1083,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.edvardsen.voice-pick-frontend-jkm00";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

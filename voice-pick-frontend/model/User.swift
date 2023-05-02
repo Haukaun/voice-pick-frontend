@@ -8,7 +8,8 @@
 import Foundation
 
 
-struct User : Codable {
+struct User : Codable, Hashable, Identifiable {
+	var id: String { uuid }
 	let uuid: String
 	let firstName: String
 	let lastName: String

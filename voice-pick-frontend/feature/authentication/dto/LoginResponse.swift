@@ -13,7 +13,7 @@ struct LoginResponse: Codable {
 	let expiresIn: String
 	let refreshExpiresIn: String
 	let tokenType: String
-    let uuid: String
+	let uuid: String
 	let username: String
 	let email: String
 	let emailVerified: Bool

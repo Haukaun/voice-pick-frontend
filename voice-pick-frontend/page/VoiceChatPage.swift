@@ -16,50 +16,54 @@ struct VoiceChatPage: View {
     @ObservedObject var voiceLog = VoiceLog.shared
     
     var body: some View {
-        VStack {
-            if voiceLog.logMessages.count > 0 {
-                ScrollViewReader { value in
-                    ScrollView {
-                        ForEach(voiceLog.logMessages, id: \.id) { logMessage in
-                            HStack {
-                                if logMessage.type == LogMessageType.INPUT {
-                                    Spacer()
+        VStack(spacing: 0) {
+            Header(headerText: "Logg")
+            VStack {
+                if voiceLog.logMessages.count > 0 {
+                    ScrollViewReader { value in
+                        ScrollView {
+                            ForEach(voiceLog.logMessages, id: \.id) { logMessage in
+                                HStack {
+                                    if logMessage.type == LogMessageType.INPUT {
+                                        Spacer()
+                                    }
+                                    Text(logMessage.message)
+                                        .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
+                                        .background(logMessage.type == LogMessageType.INPUT ? Color.traceLightYellow : Color.componentColor)
+                                        .foregroundColor(logMessage.type == LogMessageType.INPUT ? Color.night : Color.foregroundColor)
+                                        .clipShape(RoundedRectangle(cornerRadius: 16.0, style: .continuous))
+                                    if logMessage.type == LogMessageType.OUTPUT {
+                                        Spacer()
+                                    }
                                 }
-                                Text(logMessage.message)
-                                    .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
-                                    .background(logMessage.type == LogMessageType.INPUT ? Color.traceLightYellow : Color.componentColor)
-                                    .foregroundColor(logMessage.type == LogMessageType.INPUT ? Color.night : Color.foregroundColor)
-                                    .clipShape(RoundedRectangle(cornerRadius: 16.0, style: .continuous))
-                                if logMessage.type == LogMessageType.OUTPUT {
-                                    Spacer()
-                                }
+                                .id(logMessage.id)
+                                .frame(maxWidth: .infinity)
                             }
-                            .id(logMessage.id)
-                            .frame(maxWidth: .infinity)
+                        }
+                        .onAppear {
+                            value.scrollTo(voiceLog.logMessages.last?.id)
+                        }
+                        .onChange(of: voiceLog.logMessages.count) { _ in
+                            value.scrollTo(voiceLog.logMessages.last?.id)
                         }
                     }
-                    .onAppear {
-                        value.scrollTo(voiceLog.logMessages.last?.id)
+                } else {
+                    VStack {
+                        Text("Ingen historikk å vise")
                     }
-                    .onChange(of: voiceLog.logMessages.count) { _ in
-                        value.scrollTo(voiceLog.logMessages.last?.id)
+                    .frame(maxHeight: .infinity)
+                }
+                Spacer()
+                Button(action: {
+                    self.voiceLog.clearMessages()
+                }) {
+                    HStack {
+                        Image(systemName: "trash.fill")
+                        Text("Slett samtale")
                     }
-                }
-            } else {
-                VStack {
-                    Text("Ingen historikk å vise")
-                }
-                .frame(maxHeight: .infinity)
-            }
-            Spacer()
-            Button(action: {
-                self.voiceLog.clearMessages()
-            }) {
-                HStack {
-                    Image(systemName: "trash.fill")
-                    Text("Slett samtale")
                 }
             }
+            .padding()
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -79,8 +83,6 @@ struct VoiceChatPage: View {
             voiceService.stopRecording()
             voiceService.onRecognizedTextChange = nil
         }
-        .frame(maxWidth: .infinity)
-        .padding()
         .background(Color.backgroundColor)
     }
 }

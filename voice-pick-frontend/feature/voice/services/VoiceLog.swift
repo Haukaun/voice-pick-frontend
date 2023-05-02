@@ -24,6 +24,9 @@ class VoiceLog: ObservableObject {
         guard logMessage.message.count > 0 else { return }
         
         DispatchQueue.main.async {
+            if self.logMessages.count > 100 {
+                self.logMessages.removeFirst()
+            }
             self.logMessages.append(logMessage)
         }
     }

@@ -17,7 +17,7 @@ struct TabBar: View {
 				}
             VoiceChatPage()
                 .tabItem {
-                    Label("Log", systemImage: "clock.fill")
+                    Label("Logg", systemImage: "clock.fill")
                 }
 			WarehouseConfigurationPage()
 				.tabItem {

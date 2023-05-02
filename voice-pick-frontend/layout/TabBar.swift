@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TabBar: View {
+    
+    @StateObject private var voiceService = VoiceService()
         
 	var body: some View {
 		TabView {
@@ -15,10 +17,12 @@ struct TabBar: View {
 				.tabItem {
 					Label("Meny", systemImage: "house")
 				}
+                .environmentObject(voiceService)
             VoiceChatPage()
                 .tabItem {
                     Label("Log", systemImage: "clock.fill")
                 }
+                .environmentObject(voiceService)
 			WarehouseConfigurationPage()
 				.tabItem {
 					Label("Konfigurer varehus", systemImage: "slider.horizontal.3")

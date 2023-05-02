@@ -35,8 +35,11 @@ class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
     
     override init() {
         super.init()
-        speechRecognizer?.delegate = self
-        configureAudioSession()
+        requestSpeechAuthorization()
+        if (isVoiceAuthorized == VoiceAuthorization.AUTHORIZED) {
+            speechRecognizer?.delegate = self
+            configureAudioSession()
+        }
     }
     
     /**

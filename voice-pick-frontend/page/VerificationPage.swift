@@ -100,31 +100,6 @@ struct VerificationPage: View {
 		}
 	}
 	
-	/**
-	 Logs out the user from the application
-	 */
-	func logout() {
-		requestService.post(
-			path: "/auth/signout",
-			token: authenticationService.accessToken,
-			body: TokenDto(token: authenticationService.refreshToken),
-			responseType: String.self,
-			completion: { result in
-				switch result {
-				case .failure(let error as RequestError):
-					// TODO: Handle error correctly
-					if (error.errorCode == 401) {
-                        authenticationService.clear()
-					}
-					print(error)
-				case .success(_):
-                    authenticationService.clear()
-				case .failure(let error):
-					print(error)
-				}
-			})
-	}
-	
 	var body: some View {
 		NavigationView {
 			ZStack {
@@ -156,7 +131,7 @@ struct VerificationPage: View {
 								}
 							})
 							Button("Logg ut", action: {
-								logout()
+                                authenticationService.logout()
 							})
 							.buttonStyle(.plain)
 							.underline()

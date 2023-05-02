@@ -157,7 +157,7 @@ struct AccountPage: View {
 											.font(.bodyBold)
 											.foregroundColor(.gray)
 									}
-									Slider(value: $ttsService.rate, in: 0...1, step: 0.1, onEditingChanged: { _ in
+									Slider(value: $ttsService.rate, in: 0...1, step: 0.05, onEditingChanged: { _ in
 										ttsService.setRate(rate: ttsService.rate)
 									})
 									.accentColor(.traceLightYellow)

@@ -158,7 +158,7 @@
 		E845942D29E9698C00DFE048 /* AddWarehouseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWarehouseDto.swift; sourceTree = "<group>"; };
 		E85FF603299D125A000CB6A4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
 		E85FF605299D134A000CB6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E8603B3B2996584000E09361 /* voice-pick-frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voice-pick-frontend.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8603B3B2996584000E09361 /* Trace VP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trace VP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voice_pick_frontendApp.swift; sourceTree = "<group>"; };
 		E8603B402996584000E09361 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E8603B422996584100E09361 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 		E8603B3C2996584000E09361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8603B3B2996584000E09361 /* voice-pick-frontend.app */,
+				E8603B3B2996584000E09361 /* Trace VP.app */,
 				E8603B4B2996584100E09361 /* voice-pick-frontendTests.xctest */,
 				E8603B552996584100E09361 /* voice-pick-frontendUITests.xctest */,
 			);
@@ -670,7 +670,7 @@
 				F60FFA4229E54DB900DB4879 /* CodeScanner */,
 			);
 			productName = "voice-pick-frontend";
-			productReference = E8603B3B2996584000E09361 /* voice-pick-frontend.app */;
+			productReference = E8603B3B2996584000E09361 /* Trace VP.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E8603B4A2996584100E09361 /* voice-pick-frontendTests */ = {
@@ -1052,7 +1052,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend-jkm";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Trace VP";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1090,7 +1090,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend-jkm";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Trace VP";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

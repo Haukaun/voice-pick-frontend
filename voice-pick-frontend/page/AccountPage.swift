@@ -19,7 +19,10 @@ struct AccountPage: View {
 	@State private var voiceErrorMessage = ""
 	
 	@State private var showWarningAlert = false
+    @State private var warningTitle = ""
 	@State private var warningAlertMessage = ""
+    @State private var warningActionLabel = ""
+    @State private var warningAction: (() -> Void)?
 	
 	@State private var showImagePicker = false
 	@State private var selectedImage = "profile-1"
@@ -30,7 +33,10 @@ struct AccountPage: View {
 	 Handles the event when the "delete user" is pressed
 	 */
 	func handleDeleteAccount() {
+        warningTitle = "Slett bruker"
 		warningAlertMessage = "Er du sikker på at du vil slette brukeren? Dette kan ikke omgjøres!"
+        warningActionLabel = "Slett"
+        warningAction = deleteUser
 		showWarningAlert = true
 	}
 	
@@ -48,6 +54,29 @@ struct AccountPage: View {
 			}
 		})
 	}
+    
+    /**
+     Handles the event when "leave warehouse" is pressed
+     */
+    func handleLeaveWarehouse() {
+        warningTitle = "Forlat varehus"
+        warningAlertMessage = "Er du sikker på at du vil forlate varehuset? Du vil ikke lengre ha tilgang med mindre du blir invitert på nytt"
+        warningActionLabel = "Forlat"
+        warningAction = leaveWarehouse
+        showWarningAlert = true
+    }
+    
+    func leaveWarehouse() {
+        requestService.delete(path: "/warehouse/leave", token: authenticationService.accessToken, responseType: String.self, completion: { result in
+            switch result {
+            case .success(_):
+                authenticationService.clearWarehouse()
+            case .failure(let error):
+                print(error)
+                
+            }
+        })
+    }
 	
 	/**
 	 Sets the voice or shows alert with message.
@@ -203,7 +232,7 @@ struct AccountPage: View {
 							}
 							.foregroundColor(.red)
 							DangerButton(label: "Forlat varehus", onPress: {
-								
+								handleLeaveWarehouse()
 							})
 							DangerButton(label: "Slett bruker", onPress: {
 								handleDeleteAccount()
@@ -215,10 +244,10 @@ struct AccountPage: View {
 					.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})
 					.alert(isPresented: $showWarningAlert) {
 						Alert(
-							title: Text("Slett bruker"),
+							title: Text(warningTitle),
 							message: Text(warningAlertMessage),
-							primaryButton: .destructive(Text("Slett"), action: {
-								deleteUser()
+							primaryButton: .destructive(Text(warningActionLabel), action: {
+                                warningAction!()
 							}),
 							secondaryButton: .cancel(Text("Avbryt"))
 						)

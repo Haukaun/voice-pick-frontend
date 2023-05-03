@@ -20,6 +20,7 @@ struct ProductPage: View {
     @State var selectedProduct: Product?
     @State var isSheetPresent = false
     @State private var showingAlert = false
+		@State private var showAlertDelete = false
     @State var errorMessage = ""
     @State private var indexSetToDelete: IndexSet?
     @State var productDeletedFromDb = false
@@ -47,6 +48,7 @@ struct ProductPage: View {
                 productDeletedFromDb = true
                 break
             case .failure(let error as RequestError):
+								showAlertDelete = true
                 productDeletedFromDb = false
                 handleError(errorCode: error.errorCode)
                 break
@@ -107,7 +109,7 @@ struct ProductPage: View {
                             }
                             .swipeActions(edge: .trailing) {
                                 Button {
-                                    showingAlert = true
+                                    showAlertDelete = true
                                     indexSetToDelete = IndexSet(arrayLiteral: products.firstIndex(of: product)!)
                                     selectedProduct = product
                                 } label: {
@@ -128,7 +130,7 @@ struct ProductPage: View {
             }
             .background(Color.backgroundColor)
             .foregroundColor(Color.foregroundColor)
-            .alert("Fjern produkt", isPresented: $showingAlert, actions: {
+            .alert("Fjern produkt", isPresented: $showAlertDelete, actions: {
                 Button(role: .cancel) {} label: {
                     Text("Avbryt")
                 }

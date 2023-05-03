@@ -17,6 +17,25 @@ class AuthenticationService: ObservableObject {
 	
 	private let voiceLog = VoiceLog.shared
 	
+	private var storedRoles: [RoleDto]? {
+		get {
+			guard let data = keychain.getData("roles"), let roles = try? JSONDecoder().decode([RoleDto].self, from: data) else {
+				return []
+			}
+			return roles
+		}
+		set {
+			if let data = try? JSONEncoder().encode(newValue) {
+				keychain.set(data, forKey: "roles")
+			} else {
+				keychain.delete("roles")
+			}
+			DispatchQueue.main.async {
+				self.objectWillChange.send()
+			}
+		}
+	}
+	
 	private var storedAccessToken: String {
 		get {
 			return keychain.get("accessToken") ?? ""
@@ -109,6 +128,12 @@ class AuthenticationService: ObservableObject {
 		}
 	}
 	
+	@Published var roles: [RoleDto]? = nil {
+		didSet {
+			storedRoles = roles
+		}
+	}
+	
 	@Published var warehouseId: Int? = nil {
 		didSet {
 			storedWarehouseId = warehouseId
@@ -177,6 +202,7 @@ class AuthenticationService: ObservableObject {
 	}
 	
 	init() {
+		self.roles = storedRoles
 		self.uuid = storedUuid
 		self.userName = storedUserName
 		self.accessToken = storedAccessToken
@@ -223,6 +249,7 @@ class AuthenticationService: ObservableObject {
 			self.warehouseName = ""
 			self.warehouseAddress = ""
 			self.voiceLog.clearMessages()
+			self.roles = nil
 		}
 	}
 }

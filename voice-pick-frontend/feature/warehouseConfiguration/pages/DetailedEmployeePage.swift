@@ -15,12 +15,15 @@ struct DetailedEmployeePage: View {
 		VStack {
 			Text("\(employee.firstName)")
 			Text("\(employee.lastName)")
+			ForEach(employee.roles) { role in
+				Text("\(role.type.rawValue)")
+			}
 		}
 	}
 }
 
 struct DetailedEmployeePage_Previews: PreviewProvider {
 	static var previews: some View {
-		DetailedEmployeePage(employee: User(uuid: "123", firstName: "Ola", lastName: "Nordmann", email: "ola.nordmann@123.no"))
+		DetailedEmployeePage(employee: User(uuid: "123", firstName: "Ola", lastName: "Nordmann", email: "ola.nordmann@123.no", roles: []))
 	}
 }

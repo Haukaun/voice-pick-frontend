@@ -85,6 +85,7 @@ struct AuthForm: View {
 				switch result {
 				case .success(let response):
 					DispatchQueue.main.async {
+						authenticationService.roles = response.roles
 						authenticationService.uuid = response.uuid
 						authenticationService.userName = response.username
 						authenticationService.email = response.email

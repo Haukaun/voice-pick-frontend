@@ -103,11 +103,6 @@ class RequestService: ObservableObject {
 						result = String(data: data, encoding: .utf8) as! U?
 					} else {
 						result = try? JSONDecoder().decode(responseType, from: data)
-						do {
-							try JSONDecoder().decode(responseType, from: data)
-						} catch let error {
-							print(error)
-						}
 					}
 					guard let result = result else {
 						DispatchQueue.main.async {

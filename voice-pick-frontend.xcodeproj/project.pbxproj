@@ -37,6 +37,7 @@
 		E8236EAA29FA5A7100447F34 /* DetailedEmployeePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */; };
 		E82B0AC529A0221400A5F1E2 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82B0AC429A0221400A5F1E2 /* Validator.swift */; };
 		E83BD8862A0124D30044FAE2 /* VoiceChatPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E429C29FD644B008E277E /* VoiceChatPage.swift */; };
+		E83BD8882A01383F0044FAE2 /* RoleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83BD8872A01383F0044FAE2 /* RoleDto.swift */; };
 		E83C9BC829B220BA000063E9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BC729B220BA000063E9 /* UserInfo.swift */; };
 		E83C9BCF29B2267E000063E9 /* AuthMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BCE29B2267E000063E9 /* AuthMode.swift */; };
 		E83C9BD329B22716000063E9 /* AuthForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83C9BD229B22716000063E9 /* AuthForm.swift */; };
@@ -148,6 +149,7 @@
 		E8236EA729FA4B7D00447F34 /* AddEmployeePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeePage.swift; sourceTree = "<group>"; };
 		E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEmployeePage.swift; sourceTree = "<group>"; };
 		E82B0AC429A0221400A5F1E2 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		E83BD8872A01383F0044FAE2 /* RoleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleDto.swift; sourceTree = "<group>"; };
 		E83C9BC729B220BA000063E9 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		E83C9BCE29B2267E000063E9 /* AuthMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMode.swift; sourceTree = "<group>"; };
 		E83C9BD229B22716000063E9 /* AuthForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthForm.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				F662F78029E1852800C7FAC0 /* TokenDto.swift */,
 				F62D1AFB29EEBD95005ED754 /* VerifyRequestDto.swift */,
 				F6BD930A29F9B93000D04542 /* ChangePasswordRequest.swift */,
+				E83BD8872A01383F0044FAE2 /* RoleDto.swift */,
 			);
 			path = dto;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				F6754BF6299FAA91007CEDB5 /* AnyTransition.swift in Sources */,
 				8DFBEB9129F7F81000D8E2D1 /* UpdatePluckListRequest.swift in Sources */,
 				F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */,
+				E83BD8882A01383F0044FAE2 /* RoleDto.swift in Sources */,
 				F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */,
 				F6F2E78129D1970E00E56A11 /* TokenRequest.swift in Sources */,
 				F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */,

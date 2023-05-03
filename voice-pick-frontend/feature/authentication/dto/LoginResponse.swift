@@ -17,5 +17,6 @@ struct LoginResponse: Codable {
 	let username: String
 	let email: String
 	let emailVerified: Bool
+	let roles: [RoleDto]
 	let warehouse: WarehouseDto?
 }

@@ -182,6 +182,7 @@ struct UpdateProductPage: View {
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				.padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 15))
 				.background(Color.backgroundColor)
+                .foregroundColor(Color.foregroundColor)
 			}
 			.toolbar {
 				ToolbarItem(placement: .principal) {
@@ -194,6 +195,7 @@ struct UpdateProductPage: View {
 					}
 				}
 			}
+            .foregroundColor(Color.black)
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
 			.toolbarBackground(.visible, for: .navigationBar)

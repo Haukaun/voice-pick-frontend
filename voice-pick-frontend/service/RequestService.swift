@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 struct RequestError: Error {
 	enum RequestErrorType {
@@ -208,7 +209,19 @@ class RequestService: ObservableObject {
             completion
         )
     }
-	
-	// TODO: Make functions put
-	
+    
+    func introspectAuthentication(authService: AuthenticationService) {
+            post(
+                path: "/auth/introspect",
+                body: TokenRequest(token: authService.accessToken),
+                responseType: String.self,
+                completion: { result in
+                    switch result {
+                    case .success(_):
+                        os_log("Valid token")
+                    case .failure(_):
+                        authService.logout()
+                    }
+                })
+        }
 }

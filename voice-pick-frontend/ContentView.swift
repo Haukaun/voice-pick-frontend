@@ -9,6 +9,7 @@ import SwiftUI
 import Speech
 import KeychainSwift
 import SwiftUI
+import OSLog
 
 struct ContentView: View {
 	enum ActiveView {
@@ -31,9 +32,9 @@ struct ContentView: View {
 				TabBar()
 			}
 		}
-		.onAppear {
-			updateActiveView()
-		}
+        .onAppear {
+            updateActiveView()
+        }
 		.onChange(of: authenticationService.accessToken) { _ in
 			withAnimation(.easeInOut(duration: 0.5)) {
 				updateActiveView()

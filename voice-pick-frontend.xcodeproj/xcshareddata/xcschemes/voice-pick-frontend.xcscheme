@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E8603B3A2996584000E09361"
-               BuildableName = "voice-pick-frontend.app"
+               BuildableName = "Trace VP.app"
                BlueprintName = "voice-pick-frontend"
                ReferencedContainer = "container:voice-pick-frontend.xcodeproj">
             </BuildableReference>
@@ -67,7 +67,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E8603B3A2996584000E09361"
-            BuildableName = "voice-pick-frontend.app"
+            BuildableName = "Trace VP.app"
             BlueprintName = "voice-pick-frontend"
             ReferencedContainer = "container:voice-pick-frontend.xcodeproj">
          </BuildableReference>
@@ -84,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E8603B3A2996584000E09361"
-            BuildableName = "voice-pick-frontend.app"
+            BuildableName = "Trace VP.app"
             BlueprintName = "voice-pick-frontend"
             ReferencedContainer = "container:voice-pick-frontend.xcodeproj">
          </BuildableReference>

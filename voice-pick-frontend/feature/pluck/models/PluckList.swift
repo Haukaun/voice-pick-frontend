@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct PluckList: Codable, Equatable {
+struct PluckList: Hashable, Codable, Equatable {
 	let id: Int
 	let route: String
 	let destination: String
@@ -16,8 +16,12 @@ struct PluckList: Codable, Equatable {
 	var plucks: [Pluck]
 	var cargoCarrier: CargoCarrier?
 	let location: PluckListLocation
-	
-	static func == (lhs: PluckList, rhs: PluckList) -> Bool {
-		return lhs.id == rhs.id && lhs.route == rhs.route && lhs.destination == rhs.destination && lhs.confirmedAt == rhs.confirmedAt && lhs.finishedAt == rhs.finishedAt
-	}
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: PluckList, rhs: PluckList) -> Bool {
+        return lhs.id == rhs.id && lhs.destination == rhs.destination && lhs.route == rhs.route && lhs.confirmedAt == rhs.confirmedAt && lhs.finishedAt == rhs.finishedAt
+    }
 }

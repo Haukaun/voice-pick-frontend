@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		234783742A013EAB0066EDF8 /* LocationPluckListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234783732A013EAB0066EDF8 /* LocationPluckListResponse.swift */; };
 		236309DE29F3D4D700F09BF9 /* AddLocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */; };
 		236309E029F3D4FE00F09BF9 /* LocationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236309DF29F3D4FE00F09BF9 /* LocationPage.swift */; };
 		2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386BC1D299BE80F00916B5C /* DefaultInput.swift */; };
@@ -118,6 +119,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		234783732A013EAB0066EDF8 /* LocationPluckListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPluckListResponse.swift; sourceTree = "<group>"; };
 		236309DD29F3D4D700F09BF9 /* AddLocationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationPage.swift; sourceTree = "<group>"; };
 		236309DF29F3D4FE00F09BF9 /* LocationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPage.swift; sourceTree = "<group>"; };
 		2386BC1D299BE80F00916B5C /* DefaultInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInput.swift; sourceTree = "<group>"; };
@@ -396,10 +398,10 @@
 				F6E9BE41299686D500DFD5EF /* service */,
 				F6E9BE3F299686CA00DFD5EF /* page */,
 				F6E9BE3C299686B200DFD5EF /* feature */,
-				8D1A2DE029966A1F007062CE /* Extensions */,
 				E8603B3E2996584000E09361 /* voice_pick_frontendApp.swift */,
 				E8603B402996584000E09361 /* ContentView.swift */,
 				E8603B422996584100E09361 /* Assets.xcassets */,
+				8D1A2DE029966A1F007062CE /* Extensions */,
 				E8603B442996584100E09361 /* Preview Content */,
 			);
 			path = "voice-pick-frontend";
@@ -446,6 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				F62D377329F42ECB00455B80 /* UpdatePluckRequest.swift */,
+				234783732A013EAB0066EDF8 /* LocationPluckListResponse.swift */,
 				F62D377529F43C1C00455B80 /* UpdatePluckListRequest.swift */,
 			);
 			path = dtos;
@@ -864,6 +867,7 @@
 				2386BC1E299BE80F00916B5C /* DefaultInput.swift in Sources */,
 				23BCAE30299F70D70038C0D7 /* AccountPage.swift in Sources */,
 				E83C9BCF29B2267E000063E9 /* AuthMode.swift in Sources */,
+				234783742A013EAB0066EDF8 /* LocationPluckListResponse.swift in Sources */,
 				F6754C02299FCDF1007CEDB5 /* DefaultLabel.swift in Sources */,
 				E83C9BD329B22716000063E9 /* AuthForm.swift in Sources */,
 				E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */,

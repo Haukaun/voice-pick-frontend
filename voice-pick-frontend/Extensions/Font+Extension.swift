@@ -16,6 +16,7 @@ extension Font {
 		static let button = Font.custom("Roboto-Medium", size: 16)
 		static let bodyMedium = Font.custom("Roboto-Medium", size: 16)
 		static let bodyBold = Font.custom("Roboto-Bold", size: 16)
+		static let bannerLabel = Font.custom("Roboto-Regular", size: 14)
 		static let label = Font.custom("Roboto-Regular", size: 11)
 		static let watchButton = Font.custom("Roboto-Medium", size: 11)
 		static let infoButton = Font.custom("Roboto-Medium", size: 25)

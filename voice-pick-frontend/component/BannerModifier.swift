@@ -41,16 +41,24 @@ struct BannerModifier: ViewModifier {
 					VStack {
 						HStack {
 							// Banner content
-							VStack(alignment: .leading, spacing: 2) {
-								Text(data.title)
-									.bold()
-								Text(data.detail)
+							VStack() {
+								VStack(spacing: 5) {
+									Text(data.title)
+										.font(.title3)
+										.bold()
+									Text(data.detail)
+										.font(.bannerLabel)
+								}
+								.padding(EdgeInsets(top: 15, leading: 15, bottom: 5, trailing: 15))
+								Rectangle()
+									.fill(data.type.tintColor)
+									.frame(maxWidth: .infinity, maxHeight: 10)
+									.background(data.type.tintColor)
 							}
-							Spacer()
+							
 						}
-						.foregroundColor(Color.white)
-						.padding(12)
-						.background(data.type.tintColor)
+						.foregroundColor(Color.backgroundColor)
+						.background(Color.foregroundColor)
 						.cornerRadius(UIView.standardCornerRadius)
 						Spacer()
 					}

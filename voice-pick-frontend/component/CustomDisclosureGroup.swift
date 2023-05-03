@@ -30,10 +30,10 @@ struct CustomDisclosureGroup: View {
 								.padding(15)
 								.fontWeight(.bold)
 								.font(.button)
-								.foregroundColor(.snow)
+								.foregroundColor(Color.backgroundColor)
 							Spacer()
 						}
-						.background(Color.night)
+						.background(Color.foregroundColor)
 						.cornerRadius(UIView.standardCornerRadius)
 					}
 				}.padding(EdgeInsets(top: 20, leading: 0, bottom: 5, trailing: 0))
@@ -46,7 +46,7 @@ struct CustomDisclosureGroup: View {
 					.foregroundColor(.foregroundColor)
 			}
 		})
-		.padding(EdgeInsets(.init(top: 5, leading: 15, bottom: 5, trailing: 15)))
+		.padding(EdgeInsets(.init(top: 5, leading: isColorEnabled ? 15 : 0, bottom: 5, trailing: isColorEnabled ? 15 : 0)))
 		.accentColor(.foregroundColor)
 		.background(isColorEnabled ? Color.componentColor : Color.backgroundColor)
 		.cornerRadius(5)
@@ -56,6 +56,7 @@ struct CustomDisclosureGroup: View {
 
 struct CustomDisclosureGroup_preview: PreviewProvider {
 	@State static var isEnabled: Bool = false
+	@State static var isForegroundEnabled: Bool = false
 	
 	static var previews: some View {
 		VStack{

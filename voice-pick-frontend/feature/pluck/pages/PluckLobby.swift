@@ -51,7 +51,7 @@ struct PluckLobby: View {
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.padding(5)
+		.padding(UIView.defaultPadding)
 		.background(Color.backgroundColor)
         .alert("Error", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) } )
         .onReceive(pluckService.$showAlert) { showAlert in
@@ -89,5 +89,6 @@ struct ActivePickers: View {
 struct PluckLobby_Previews: PreviewProvider {
 	static var previews: some View {
 		PluckLobby(token: "foo")
+			.environmentObject(PluckService())
 	}
 }

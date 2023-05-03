@@ -94,7 +94,7 @@ struct ChangePasswordPage: View {
                 }
             }
             .frame(maxHeight: .infinity)
-            .padding(5)
+            .padding(15)
             .background(Color.backgroundColor)
             .foregroundColor(Color.foregroundColor)
 

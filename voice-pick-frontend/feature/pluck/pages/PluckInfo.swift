@@ -68,7 +68,7 @@ struct PluckInfo: View {
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.padding(5)
+		.padding(UIView.defaultPadding)
 		.background(Color.backgroundColor)
 		.onAppear{
 			requestService.get(path: "/cargo-carriers", responseType: [CargoCarrier].self, completion: {result in

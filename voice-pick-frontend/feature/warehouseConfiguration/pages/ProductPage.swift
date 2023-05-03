@@ -48,7 +48,6 @@ struct ProductPage: View {
                 productDeletedFromDb = true
                 break
             case .failure(let error as RequestError):
-								showAlertDelete = true
                 productDeletedFromDb = false
                 handleError(errorCode: error.errorCode)
                 break

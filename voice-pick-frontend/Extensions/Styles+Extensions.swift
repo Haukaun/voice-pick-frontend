@@ -15,6 +15,7 @@ extension UIView {
 	static let shadowX: CGFloat = 0
 	static let shadowY: CGFloat = 5
 	static let shadowColorOpacity: Double = 0.2
+	static let defaultPadding: Double = 5
 }
 
 

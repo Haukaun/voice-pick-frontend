@@ -63,7 +63,7 @@ struct AddEmployeePage: View {
 					.disabled(requestService.isLoading)
 				Spacer()
 			}
-			.padding(5)
+			.padding(15)
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
 					Button(action: {dismiss()}) {

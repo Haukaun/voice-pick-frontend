@@ -27,7 +27,7 @@ struct WarehouseConfigurationPage: View {
                         gridButton(label: "Brukere", icon: "person.fill")
                     }
                 }
-                .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+                .padding(UIView.defaultPadding)
                 Spacer()
             }
             .background(Color.backgroundColor)

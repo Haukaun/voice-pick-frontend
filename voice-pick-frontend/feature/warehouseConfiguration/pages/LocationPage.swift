@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-let requestService = RequestService()
 
 struct LocationPage: View {
     @EnvironmentObject var authService: AuthenticationService
-    
+    @ObservedObject var requestService = RequestService()
     @State var locations: [Location] = []
     
     @State var searchField: String = ""
@@ -19,6 +18,7 @@ struct LocationPage: View {
     @State var selectedLocation: Location?
     @State var isSheetPresent = false
     @State private var indexSetToDelete: IndexSet?
+		@State private var showDeleteAlert = false
     @State private var showingAlert = false
     @State var errorMessage = ""
     @State var locationDeletedFromDb = false
@@ -72,7 +72,7 @@ struct LocationPage: View {
                 }
             }
             .background(Color.backgroundColor)
-            .alert("Fjern lokasjon", isPresented: $showingAlert, actions: {
+            .alert("Fjern lokasjon", isPresented: $showDeleteAlert, actions: {
                 Button(role: .cancel) {} label: {
                     Text("Avbryt")
                 }

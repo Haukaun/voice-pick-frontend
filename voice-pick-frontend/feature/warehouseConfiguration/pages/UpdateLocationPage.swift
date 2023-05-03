@@ -116,12 +116,13 @@ struct UpdateLocationPage: View {
 				}
 				.banner(data: $bannerData, show: $showBanner)
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
-				.padding(15)
+				.padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 15))
 				.background(Color.backgroundColor)
 			}
 			.toolbar {
 				ToolbarItem(placement: .principal) {
 					Text("Oppdater lokasjon")
+						.foregroundColor(.black)
 				}
 			}
 			.navigationBarTitleDisplayMode(.inline)

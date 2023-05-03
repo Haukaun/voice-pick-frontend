@@ -144,10 +144,10 @@ struct AccountPage: View {
 									}
 								Circle()
 									.fill(Color.traceLightYellow)
-									.frame(width: 35, height: 35)
+									.frame(width: 30, height: 30)
 									.offset(x: 40, y: 40)
 								Image(systemName: "plus")
-									.foregroundColor(Color.foregroundColor)
+									.foregroundColor(Color.black)
 									.offset(x: 40, y: 40)
 							}
 							Spacer()
@@ -238,7 +238,7 @@ struct AccountPage: View {
 								handleDeleteAccount()
 							})
 						}
-						.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+						.padding(UIView.defaultPadding)
 					}
 					.background(Color.backgroundColor)
 					.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})

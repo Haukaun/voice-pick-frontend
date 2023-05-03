@@ -118,7 +118,7 @@ struct SetupWarehouse: View {
                 }
                 Spacer()
 			}
-			.padding(10)
+			.padding(15)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.background(Color.backgroundColor)
 			.alert("Error", isPresented: $showAlert, actions: {}, message: { Text("\(errorMessage)") })

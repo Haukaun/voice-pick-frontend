@@ -47,13 +47,11 @@ struct ButtonRandomizer: View {
 							.padding(15)
 							.fontWeight(.bold)
 							.font(.button)
-                            .foregroundColor(isWrongAnswer(number) ? Color.snow : Color.backgroundColor)
+							.foregroundColor(isWrongAnswer(number) ? Color.snow : Color.backgroundColor)
 						Spacer()
 					}
 					.background(
-						isWrongAnswer(number)
-						? Color.error
-                        : Color.foregroundColor
+						isWrongAnswer(number) ? Color.error: Color.foregroundColor
 					)
 					.cornerRadius(UIView.standardCornerRadius)
 					.disabled(disableButtons)

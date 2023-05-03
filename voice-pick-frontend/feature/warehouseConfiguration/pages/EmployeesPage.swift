@@ -133,6 +133,7 @@ struct EmployeesPage: View {
 			}
 			.background(Color.backgroundColor)
 		}
+		.foregroundColor(.foregroundColor)
 		.banner(data: $bannerData, show: $showBanner)
 		.toolbar {
 			ToolbarItem(placement: .principal) {
@@ -150,7 +151,7 @@ struct EmployeesPage: View {
 			}
 		}
 		.navigationBarBackButtonHidden(true)
-		.foregroundColor(Color.black)
+		.foregroundColor(Color.night)
 		.navigationBarTitleDisplayMode(.inline)
 		.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
 		.toolbarBackground(.visible, for: .navigationBar)
@@ -163,8 +164,8 @@ struct EmployeesPage: View {
 struct EmployeesView_Previews: PreviewProvider {
 	static var previews: some View {
 		EmployeesPage(employees: [
-			User(uuid: "1", firstName: "Ola", lastName: "Nordmann", email: "ola@nordmann.no"),
-			User(uuid: "2", firstName: "Henrik", lastName: "Ibsen", email: "henrik@ibsen.no")
+			User(uuid: "1", firstName: "Ola", lastName: "Nordmann", email: "ola@nordmann.no", roles: []),
+			User(uuid: "2", firstName: "Henrik", lastName: "Ibsen", email: "henrik@ibsen.no", roles: [])
 		])
 		.environmentObject(AuthenticationService())
 	}

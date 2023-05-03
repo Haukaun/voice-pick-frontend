@@ -160,7 +160,7 @@ struct PluckInfo_Previews: PreviewProvider {
 			id: 0,
 			route: "234",
 			destination: "Kiwi Nedre Strandgate 2",
-			user: User(uuid: "1", firstName: "Ola", lastName: "Nordmann", email: "olanordmann@icloud.com"),
+			user: User(uuid: "1", firstName: "Ola", lastName: "Nordmann", email: "olanordmann@icloud.com", roles: []),
 			plucks: [],
 			location: .init(
 				code: "P345",

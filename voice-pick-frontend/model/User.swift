@@ -14,4 +14,5 @@ struct User : Codable, Hashable, Identifiable {
 	let firstName: String
 	let lastName: String
 	let email: String
+	var roles: [RoleDto]
 }

@@ -127,7 +127,6 @@ struct PluckLobby: View {
                 .disabled(pluckService.isLoading)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(5)
             .background(Color.backgroundColor)
             if pluckService.isLoading {
                 CustomProgressView()

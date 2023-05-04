@@ -112,9 +112,9 @@ struct LocationPage: View {
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .navigationBarBackButtonHidden(true)
-        .sheet(item: $selectedLocation, content: { location in
-            UpdateLocationPage(location: location)
-        })
+				.sheet(item: $selectedLocation, onDismiss: getLocations) { location in
+					UpdateLocationPage(location: location, locationCode: location.code)
+        }
     }
     
     func getLocations() {

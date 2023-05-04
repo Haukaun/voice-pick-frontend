@@ -133,10 +133,6 @@ class PluckService: ObservableObject {
 		
 		DispatchQueue.main.async {
 			switch errorCode {
-			case 204:
-				self.errorMessage = "Ingen plukkliste funnet for øyeblikket. Vennligst vent på nye plukk."
-				speechErrorMessage = "No pluck list found at the moment. Please wait for a new pluck."
-				break
 			case 401:
 				self.errorMessage = "Uautorisert. Logg ut og logg inn igjen og prøv på nytt."
 				speechErrorMessage = "Unauthorized. Try to log out and back in again before trying again."
@@ -205,6 +201,7 @@ class PluckService: ObservableObject {
 			if (pluckList?.cargoCarrier == nil) {
 				ttsService.speak("Need to select a cargo carrier", fromVoice)
 			} else {
+                sendUpdateCargoCarrierRequest()
 				setCurrentStep(.SELECT_CONTROL_DIGITS)
 				updateActivePage(.LIST_VIEW)
 				if let index = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil }) {
@@ -220,6 +217,26 @@ class PluckService: ObservableObject {
 			}
 		}
 	}
+    
+    /**
+     Sends a request to the backend for updating the cargo carrier for the pluck
+     */
+    private func sendUpdateCargoCarrierRequest() {
+        let pluckId = String(pluckList?.id ?? 0)
+        let cargoCarrierId = String(pluckList?.cargoCarrier?.identifier ?? 0)
+        
+        requestService.patch(
+            path: "/pluck-lists/\(pluckId)/cargo-carriers/\(cargoCarrierId)",
+            responseType: String.self,
+            completion: { result in
+                switch result {
+                case .success(_):
+                    break
+                case .failure(let error):
+                    os_log("Failed to update cargo carrier for plucklist \(pluckId): \(error.localizedDescription)")
+                }
+            })
+    }
 	
 	private func handleControlDigits(_ keyword: String, _ fromVoice: Bool) {
 		guard let currentPluckIndex = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil }) else {

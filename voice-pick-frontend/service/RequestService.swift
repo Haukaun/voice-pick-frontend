@@ -170,6 +170,20 @@ class RequestService: ObservableObject {
 			completion
 		)
 	}
+	
+	/**
+		Post without body
+	 */
+	func post<U: Codable>(path: String, token: String? = nil, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+		request(
+			"POST",
+			path,
+			token,
+			nil as String?,
+			responseType,
+			completion
+		)
+	}
 
     /**
      Delete request with body

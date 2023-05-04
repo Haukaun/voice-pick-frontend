@@ -130,14 +130,7 @@ struct PluckLobby: View {
             .padding(5)
             .background(Color.backgroundColor)
             if pluckService.isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .scaleEffect(2)
-                    .frame(width: 100, height: 100)
-                    .background(Color.backgroundColor)
-                    .cornerRadius(20)
-                    .foregroundColor(.foregroundColor)
-                    .padding()
+                CustomProgressView()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

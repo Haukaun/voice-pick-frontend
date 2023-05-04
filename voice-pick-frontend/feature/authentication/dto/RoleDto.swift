@@ -12,7 +12,7 @@ struct RoleDto : Codable, Hashable, Identifiable {
 	let type: RoleType
 }
 
-enum RoleType: String, Codable {
+enum RoleType: String, Codable, CaseIterable {
 	case USER
 	case LEADER
 }

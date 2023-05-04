@@ -34,6 +34,8 @@
 		8DF8900229F9429800A8096D /* CustomDisclosureGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8900129F9429800A8096D /* CustomDisclosureGroup.swift */; };
 		8DFBEB9029F7EDBA00D8E2D1 /* ProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBEB8F29F7EDBA00D8E2D1 /* ProductDto.swift */; };
 		8DFBEB9129F7F81000D8E2D1 /* UpdatePluckListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62D377529F43C1C00455B80 /* UpdatePluckListRequest.swift */; };
+		E80E99652A039BBF00F2D8CD /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E99642A039BBF00F2D8CD /* CustomProgressView.swift */; };
+		E80E99672A03CE4C00F2D8CD /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E99662A03CE4C00F2D8CD /* ProfilePictureView.swift */; };
 		E8236EA629FA4B6300447F34 /* EmployeesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA529FA4B6300447F34 /* EmployeesPage.swift */; };
 		E8236EA829FA4B7D00447F34 /* AddEmployeePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA729FA4B7D00447F34 /* AddEmployeePage.swift */; };
 		E8236EAA29FA5A7100447F34 /* DetailedEmployeePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */; };
@@ -148,6 +150,8 @@
 		8DF87C9E29EC0D71007152C7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8DF8900129F9429800A8096D /* CustomDisclosureGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDisclosureGroup.swift; sourceTree = "<group>"; };
 		8DFBEB8F29F7EDBA00D8E2D1 /* ProductDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDto.swift; sourceTree = "<group>"; };
+		E80E99642A039BBF00F2D8CD /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		E80E99662A03CE4C00F2D8CD /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
 		E8236EA529FA4B6300447F34 /* EmployeesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesPage.swift; sourceTree = "<group>"; };
 		E8236EA729FA4B7D00447F34 /* AddEmployeePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeePage.swift; sourceTree = "<group>"; };
 		E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEmployeePage.swift; sourceTree = "<group>"; };
@@ -621,6 +625,11 @@
 				F68E42A62A03C3B2008E277E /* buttons */,
 				F60AD483299D0ABD008A30F5 /* typography */,
 				F619709A29C4981D00927BDB /* JustifiedContainer.swift */,
+				F69765B129E59B7100C697B8 /* BannerModifier.swift */,
+				8DF87C9E29EC0D71007152C7 /* ImagePicker.swift */,
+				8DF8900129F9429800A8096D /* CustomDisclosureGroup.swift */,
+				E80E99642A039BBF00F2D8CD /* CustomProgressView.swift */,
+				E80E99662A03CE4C00F2D8CD /* ProfilePictureView.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -856,6 +865,7 @@
 				F6754BFE299FBD08007CEDB5 /* PluckList.swift in Sources */,
 				E845942E29E9698C00DFE048 /* AddWarehouseDto.swift in Sources */,
 				F60AD482299CF70B008A30F5 /* Card.swift in Sources */,
+				E80E99672A03CE4C00F2D8CD /* ProfilePictureView.swift in Sources */,
 				F68A5B0A29E955CC004E4E9B /* UpdateProductPage.swift in Sources */,
 				F60AD487299D0BDA008A30F5 /* SubTitle.swift in Sources */,
 				8D77C3B829E5386300C36D11 /* Voice.swift in Sources */,
@@ -885,6 +895,7 @@
 				8DFBEB9129F7F81000D8E2D1 /* UpdatePluckListRequest.swift in Sources */,
 				F619709B29C4981D00927BDB /* JustifiedContainer.swift in Sources */,
 				E83BD8882A01383F0044FAE2 /* RoleDto.swift in Sources */,
+				E80E99652A039BBF00F2D8CD /* CustomProgressView.swift in Sources */,
 				F6754BFC299FBC0E007CEDB5 /* Product.swift in Sources */,
 				F6F2E78129D1970E00E56A11 /* TokenRequest.swift in Sources */,
 				F60AD491299E4D8C008A30F5 /* PluckPage.swift in Sources */,
@@ -1072,7 +1083,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = 45723U7VDN;
+				DEVELOPMENT_TEAM = 3SR89T93YC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -1091,6 +1102,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend-jkm";
 				PRODUCT_NAME = "Trace VP";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1110,7 +1123,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"voice-pick-frontend/Preview Content\"";
-				DEVELOPMENT_TEAM = 45723U7VDN;
+				DEVELOPMENT_TEAM = 3SR89T93YC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "voice-pick-frontend/Info.plist";
@@ -1129,6 +1142,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.molnes.voice-pick-frontend-jkm";
 				PRODUCT_NAME = "Trace VP";
 				PROVISIONING_PROFILE_SPECIFIER = "";

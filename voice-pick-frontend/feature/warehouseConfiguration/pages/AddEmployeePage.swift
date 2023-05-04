@@ -82,14 +82,7 @@ struct AddEmployeePage: View {
 			.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
 			.toolbarBackground(.visible, for: .navigationBar)
 			if requestService.isLoading {
-				ProgressView()
-					.progressViewStyle(CircularProgressViewStyle())
-					.scaleEffect(2)
-					.frame(width: 100, height: 100)
-					.background(Color.backgroundColor)
-					.cornerRadius(20)
-					.foregroundColor(.foregroundColor)
-					.padding()
+				CustomProgressView()
 			}
 		}
 		.banner(data: $bannerData, show: $showBanner)

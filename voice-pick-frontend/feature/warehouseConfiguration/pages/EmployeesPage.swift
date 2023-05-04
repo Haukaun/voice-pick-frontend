@@ -34,10 +34,7 @@ struct EmployeesPage: View {
 			}
 		} else {
 			return employees.filter { employee in
-				(
-					employee.firstName.localizedCaseInsensitiveContains(searchValue)
-					|| employee.lastName.localizedCaseInsensitiveContains(searchValue)
-				)
+				String("\(employee.firstName) \(employee.lastName)").localizedCaseInsensitiveContains(searchValue)
 				&&
 				employee.uuid != authenticationService.uuid
 			}
@@ -84,6 +81,33 @@ struct EmployeesPage: View {
 		})
 	}
 	
+	func handleRemoveEmployee(_ employee: User) {
+		showAlert = true
+		indexSet = IndexSet(arrayLiteral: employees.firstIndex(of: employee)!)
+		selectedEmployee = employee
+	}
+	
+	struct EmployeeListRow: View {
+		
+		let firstName: String
+		let lastName: String
+		
+		init(_ firstName: String, _ lastName: String) {
+			self.firstName = firstName
+			self.lastName = lastName
+		}
+		
+		var body: some View {
+			HStack {
+				Text(firstName)
+				Text(lastName)
+				Spacer()
+				Image(systemName: "chevron.right")
+			}
+			.contentShape(Rectangle())
+		}
+	}
+	
 	var body: some View {
 		NavigationView {
 			VStack {
@@ -91,20 +115,13 @@ struct EmployeesPage: View {
 					.padding(5)
 				List {
 					ForEach(filteredEmployees, id: \.uuid) { employee in
-						HStack {
-							Text(employee.firstName)
-							Text(employee.lastName)
-							Spacer()
-							Image(systemName: "chevron.right")
-						}
+						EmployeeListRow(employee.firstName, employee.lastName)
 						.onTapGesture {
 							selectedEmployee = employee
 						}
 						.swipeActions(edge: .trailing) {
 							Button {
-								showAlert = true
-								indexSet = IndexSet(arrayLiteral: employees.firstIndex(of: employee)!)
-								selectedEmployee = employee
+								handleRemoveEmployee(employee)
 							} label: {
 								Label("Fjern", systemImage: "trash")
 							}
@@ -113,19 +130,22 @@ struct EmployeesPage: View {
 					}
 					.listRowBackground(Color.backgroundColor)
 				}
+				.onAppear {
+					getEmployees()
+				}
+				.refreshable {
+					getEmployees()
+				}
 				.listStyle(.plain)
 				.scrollContentBackground(.hidden)
-				.onAppear(perform: getEmployees)
 				.alert("Fjern ansatt", isPresented: $showAlert, actions: {
-					Button(role: .cancel) {} label: {
-						Text("Avbryt")
+					Button("Avbryt", role: .cancel) {
+						// do nothing
 					}
-					Button(role: .destructive) {
+					Button("OK", role: .destructive) {
 						if let employee = selectedEmployee {
 							delete(employee.uuid)
 						}
-					} label: {
-						Text("OK")
 					}
 				}, message: {
 					Text("Er du sikker på at du vil fjerne denne brukeren fra varehuset ditt?")
@@ -155,9 +175,9 @@ struct EmployeesPage: View {
 		.navigationBarTitleDisplayMode(.inline)
 		.toolbarBackground(Color.traceLightYellow, for: .navigationBar)
 		.toolbarBackground(.visible, for: .navigationBar)
-		.sheet(item: $selectedEmployee, content: { employee in
+		.sheet(item: $selectedEmployee, onDismiss: getEmployees) { employee in
 			DetailedEmployeePage(employee: employee)
-		})
+		}
 	}
 }
 
@@ -165,7 +185,7 @@ struct EmployeesView_Previews: PreviewProvider {
 	static var previews: some View {
 		EmployeesPage(employees: [
 			User(uuid: "1", firstName: "Ola", lastName: "Nordmann", email: "ola@nordmann.no", roles: []),
-			User(uuid: "2", firstName: "Henrik", lastName: "Ibsen", email: "henrik@ibsen.no", roles: [])
+			User(uuid: "2", firstName: "Henrik", lastName: "Ibsen", email: "henrik@ibsen.no", roles: [], profilePictureName: "profile-1")
 		])
 		.environmentObject(AuthenticationService())
 	}

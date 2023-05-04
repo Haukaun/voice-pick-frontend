@@ -98,10 +98,11 @@ struct UpdateProductPage: View {
 					type: ProductType(rawValue: type) ?? ProductType.D_PACK,
 					status: ProductStatus(rawValue: status) ?? ProductStatus.EMPTY,
 					locationCode: location),
-				responseType: String.self,
+				responseType: ProductDto.self,
 				completion: { result in
 					switch result {
-					case .success(_):
+					case .success(let product):
+                        self.status = (product.status).rawValue
 						bannerData.title = "Suksess"
 						bannerData.detail = "Produktet ble oppdatert"
 						bannerData.type = .Success
@@ -188,11 +189,6 @@ struct UpdateProductPage: View {
 				ToolbarItem(placement: .principal) {
 					Text("Oppdater produkt")
 						.foregroundColor(.black)
-				}
-				ToolbarItem(placement: .navigationBarTrailing) {
-					Button(action: { isShowingScanner = true }) {
-						Image(systemName: "barcode.viewfinder")
-					}
 				}
 			}
             .foregroundColor(Color.black)

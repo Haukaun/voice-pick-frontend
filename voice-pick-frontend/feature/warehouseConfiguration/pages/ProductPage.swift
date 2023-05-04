@@ -168,9 +168,9 @@ struct ProductPage: View {
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .navigationBarBackButtonHidden(true)
-        .sheet(item: $selectedProduct, content: { product in
+        .sheet(item: $selectedProduct, onDismiss: fetchProducts) { product in
             UpdateProductPage(product: product)
-        })
+        }
     }
 }
 

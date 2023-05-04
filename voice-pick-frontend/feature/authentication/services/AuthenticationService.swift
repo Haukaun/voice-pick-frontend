@@ -36,36 +36,24 @@ class AuthenticationService: ObservableObject {
         }
     }
     
-    private var storedAccessToken: String {
+    private var storedUuid: String {
         get {
-            return keychain.get("accessToken") ?? ""
+            return keychain.get("uuid") ?? ""
         }
         set {
-            keychain.set(newValue, forKey: "accessToken")
+            keychain.set(newValue, forKey: "uuid")
             DispatchQueue.main.async {
                 self.objectWillChange.send()
             }
         }
     }
     
-    private var storedRefreshToken: String {
+    private var storedUserName: String {
         get {
-            return keychain.get("refreshToken") ?? ""
+            return keychain.get("name") ?? ""
         }
         set {
-            keychain.set(newValue, forKey: "refreshToken")
-            DispatchQueue.main.async {
-                self.objectWillChange.send()
-            }
-        }
-    }
-    
-    private var storedEmailVerified: Bool {
-        get {
-            return keychain.getBool("emailVerified") ?? false
-        }
-        set {
-            keychain.set(newValue, forKey: "emailVerified")
+            keychain.set(newValue, forKey: "name")
             DispatchQueue.main.async {
                 self.objectWillChange.send()
             }
@@ -84,12 +72,36 @@ class AuthenticationService: ObservableObject {
         }
     }
     
-    private var storedUuid: String {
+    private var storedEmailVerified: Bool {
         get {
-            return keychain.get("uuid") ?? ""
+            return keychain.getBool("emailVerified") ?? false
         }
         set {
-            keychain.set(newValue, forKey: "uuid")
+            keychain.set(newValue, forKey: "emailVerified")
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
+    }
+    
+    private var storedAccessToken: String {
+        get {
+            return keychain.get("accessToken") ?? ""
+        }
+        set {
+            keychain.set(newValue, forKey: "accessToken")
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
+    }
+    
+    private var storedRefreshToken: String {
+        get {
+            return keychain.get("refreshToken") ?? ""
+        }
+        set {
+            keychain.set(newValue, forKey: "refreshToken")
             DispatchQueue.main.async {
                 self.objectWillChange.send()
             }
@@ -134,40 +146,27 @@ class AuthenticationService: ObservableObject {
         }
     }
     
-    @Published var warehouseId: Int? = nil {
+    @Published var uuid: String = "" {
         didSet {
-            storedWarehouseId = warehouseId
-        }
-    }
-    
-    @Published var warehouseName: String = "" {
-        didSet {
-            storedWarehouseName = warehouseName
-        }
-    }
-    
-    @Published var warehouseAddress: String = "" {
-        didSet {
-            storedWarehouseName = warehouseName
-        }
-    }
-    
-    
-    private var storedUserName: String {
-        get {
-            return keychain.get("name") ?? ""
-        }
-        set {
-            keychain.set(newValue, forKey: "name")
-            DispatchQueue.main.async {
-                self.objectWillChange.send()
-            }
+            storedUuid = uuid
         }
     }
     
     @Published var userName: String = "" {
         didSet {
             storedUserName = userName
+        }
+    }
+    
+    @Published var email: String = "" {
+        didSet {
+            storedEmail = email
+        }
+    }
+    
+    @Published var emailVerified: Bool = false {
+        didSet {
+            storedEmailVerified = emailVerified
         }
     }
     
@@ -183,21 +182,21 @@ class AuthenticationService: ObservableObject {
         }
     }
     
-    @Published var emailVerified: Bool = false {
+    @Published var warehouseId: Int? = nil {
         didSet {
-            storedEmailVerified = emailVerified
+            storedWarehouseId = warehouseId
         }
     }
     
-    @Published var email: String = "" {
+    @Published var warehouseName: String = "" {
         didSet {
-            storedEmail = email
+            storedWarehouseName = warehouseName
         }
     }
     
-    @Published var uuid: String = "" {
+    @Published var warehouseAddress: String = "" {
         didSet {
-            storedUuid = uuid
+            storedWarehouseAddress = warehouseAddress
         }
     }
     
@@ -205,13 +204,15 @@ class AuthenticationService: ObservableObject {
         self.roles = storedRoles
         self.uuid = storedUuid
         self.userName = storedUserName
+        self.email = storedEmail
+        self.emailVerified = storedEmailVerified
+        
         self.accessToken = storedAccessToken
         self.refreshToken = storedRefreshToken
-        self.emailVerified = storedEmailVerified
-        self.email = storedEmail
+        
         self.warehouseId = storedWarehouseId
         self.warehouseName = storedWarehouseName
-        self.warehouseAddress = warehouseAddress
+        self.warehouseAddress = storedWarehouseAddress
     }
     
     /**
@@ -247,17 +248,20 @@ class AuthenticationService: ObservableObject {
     
     private func clear() {
         DispatchQueue.main.async {
+            self.roles = nil
             self.uuid = ""
             self.userName = ""
+            self.email = ""
+            self.emailVerified = false
+            
             self.accessToken = ""
             self.refreshToken = ""
-            self.emailVerified = false
-            self.email = ""
+            
             self.warehouseId = nil
             self.warehouseName = ""
             self.warehouseAddress = ""
+            
             self.voiceLog.clearMessages()
-            self.roles = nil
         }
     }
 }

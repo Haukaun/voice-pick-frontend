@@ -127,7 +127,7 @@
 		23BCAE2F299F70D70038C0D7 /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
 		23BCAE31299F75A70038C0D7 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		23BCAE35299FA4D00038C0D7 /* CargoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CargoType.swift; path = "voice-pick-frontend/feature/pluck/components/CargoType.swift"; sourceTree = SOURCE_ROOT; };
-		23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultButton.swift; path = "voice-pick-frontend/component/DefaultButton.swift"; sourceTree = SOURCE_ROOT; };
+		23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultButton.swift; path = "voice-pick-frontend/component/buttons/DefaultButton.swift"; sourceTree = SOURCE_ROOT; };
 		8D1A2DE129966A42007062CE /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		8D203A29299E2E9C00D768BA /* PluckListDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckListDisplay.swift; sourceTree = "<group>"; };
 		8D203A3529A39DE300D768BA /* PluckFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckFinish.swift; sourceTree = "<group>"; };
@@ -269,7 +269,9 @@
 		8D67F8EA299E23D0001DB87C /* layout */ = {
 			isa = PBXGroup;
 			children = (
+				8D4A8154299D18B300B9A715 /* Footer.swift */,
 				8D67F8EB299E240A001DB87C /* TabBar.swift */,
+				23BCAE31299F75A70038C0D7 /* Header.swift */,
 			);
 			path = layout;
 			sourceTree = "<group>";
@@ -497,6 +499,41 @@
 			path = dtos;
 			sourceTree = "<group>";
 		};
+		F68E42A62A03C3B2008E277E /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				F619709829C35F1D00927BDB /* DangerButton.swift */,
+				23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */,
+			);
+			path = buttons;
+			sourceTree = "<group>";
+		};
+		F68E42A72A03C3C5008E277E /* inputs */ = {
+			isa = PBXGroup;
+			children = (
+				2386BC1D299BE80F00916B5C /* DefaultInput.swift */,
+				8DF8900129F9429800A8096D /* CustomDisclosureGroup.swift */,
+				8DF87C9E29EC0D71007152C7 /* ImagePicker.swift */,
+			);
+			path = inputs;
+			sourceTree = "<group>";
+		};
+		F68E42A82A03C3E8008E277E /* containers */ = {
+			isa = PBXGroup;
+			children = (
+				F60AD481299CF70A008A30F5 /* Card.swift */,
+			);
+			path = containers;
+			sourceTree = "<group>";
+		};
+		F68E42A92A03C3F1008E277E /* popups */ = {
+			isa = PBXGroup;
+			children = (
+				F69765B129E59B7100C697B8 /* BannerModifier.swift */,
+			);
+			path = popups;
+			sourceTree = "<group>";
+		};
 		F69765BB29E6D7D000C697B8 /* warehouseConfiguration */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,17 +615,12 @@
 		F6E9BE42299686E500DFD5EF /* component */ = {
 			isa = PBXGroup;
 			children = (
+				F68E42A92A03C3F1008E277E /* popups */,
+				F68E42A82A03C3E8008E277E /* containers */,
+				F68E42A72A03C3C5008E277E /* inputs */,
+				F68E42A62A03C3B2008E277E /* buttons */,
 				F60AD483299D0ABD008A30F5 /* typography */,
-				23D9B9E8299A7C9600AA46EC /* DefaultButton.swift */,
-				2386BC1D299BE80F00916B5C /* DefaultInput.swift */,
-				F60AD481299CF70A008A30F5 /* Card.swift */,
-				8D4A8154299D18B300B9A715 /* Footer.swift */,
-				23BCAE31299F75A70038C0D7 /* Header.swift */,
-				F619709829C35F1D00927BDB /* DangerButton.swift */,
 				F619709A29C4981D00927BDB /* JustifiedContainer.swift */,
-				F69765B129E59B7100C697B8 /* BannerModifier.swift */,
-				8DF87C9E29EC0D71007152C7 /* ImagePicker.swift */,
-				8DF8900129F9429800A8096D /* CustomDisclosureGroup.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -1033,7 +1065,7 @@
 		E8603B602996584100E09361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "http://localhost:8080";
+				API_URL = "https://devapi.bachelor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1071,7 +1103,7 @@
 		E8603B612996584100E09361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "http://localhost:8080";
+				API_URL = "https://devapi.bachelor.seq.re";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";

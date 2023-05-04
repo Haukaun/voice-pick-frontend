@@ -199,12 +199,29 @@ class RequestService: ObservableObject {
         )
     }
     
+    /**
+     Update request with body
+     */
     func patch<T:Codable, U: Codable>(path: String, token: String? = nil, body: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
         request(
             "PATCH",
             path,
             token,
             body,
+            responseType,
+            completion
+        )
+    }
+    
+    /**
+     Update request without body
+     */
+    func patch<U: Codable>(path: String, token: String? = nil, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
+        request(
+            "PATCH",
+            path,
+            token,
+            nil as String?,
             responseType,
             completion
         )

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TabBar: View {
     
-    @StateObject private var voiceService = VoiceService()
+	@StateObject private var voiceService = VoiceService()
+	@EnvironmentObject var authenticationService: AuthenticationService
         
 	var body: some View {
 		TabView {
@@ -23,11 +24,13 @@ struct TabBar: View {
                     Label("Logg", systemImage: "clock.fill")
                 }
                 .environmentObject(voiceService)
-			WarehouseConfigurationPage()
-				.tabItem {
-					Label("Konfigurer varehus", systemImage: "slider.horizontal.3")
-					Label("Legg til produkt", systemImage: "plus.app.fill")
-				}
+			if authenticationService.userHasRole(RoleType.LEADER) {
+				WarehouseConfigurationPage()
+					.tabItem {
+						Label("Konfigurer varehus", systemImage: "slider.horizontal.3")
+						Label("Legg til produkt", systemImage: "plus.app.fill")
+					}
+			}
 			AccountPage()
 				.tabItem {
 					Label("Profil", systemImage: "person")

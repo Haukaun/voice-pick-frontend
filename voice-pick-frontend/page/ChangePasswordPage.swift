@@ -99,14 +99,7 @@ struct ChangePasswordPage: View {
             .foregroundColor(Color.foregroundColor)
 
             if requestService.isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .scaleEffect(2)
-                    .frame(width: 100, height: 100)
-                    .background(Color.componentColor)
-                    .cornerRadius(20)
-                    .foregroundColor(.foregroundColor)
-                    .padding()
+							ChangePasswordPage()
             }
         }
         .alert("Noe gikk galt", isPresented: $showAlert, actions: {}, message: { Text(alertMsg)}

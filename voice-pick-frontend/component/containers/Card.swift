@@ -11,36 +11,38 @@
 import SwiftUI
 
 struct Card<Content: View>: View {
-    var content: Content
-    
-    var body: some View {
-        VStack {
-            content
-        }
-        .padding(20)
-        .background(Color.componentColor)
-        .cornerRadius(UIView.standardCornerRadius)
-        .shadow(
-            color: Color.shadowColor,
-            radius: UIView.shadowRadius,
-            x: UIView.shadowX,
-            y: UIView.shadowY
-        )
-    }
-    
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
+	var content: Content
+	var padding: Double
+	
+	var body: some View {
+		VStack {
+			content
+		}
+		.padding(padding)
+		.background(Color.componentColor)
+		.cornerRadius(UIView.standardCornerRadius)
+		.shadow(
+			color: Color.shadowColor,
+			radius: UIView.shadowRadius,
+			x: UIView.shadowX,
+			y: UIView.shadowY
+		)
+	}
+	
+	init(padding: Double = 20, @ViewBuilder content: () -> Content) {
+		self.padding = padding
+		self.content = content()
+	}
 }
 
 struct Card_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Card {
-                Text("hello there")
-                Text("Another text")
-            }
-        }
-        .padding(20)
-    }
+	static var previews: some View {
+		VStack {
+			Card {
+				Text("hello there")
+				Text("Another text")
+			}
+		}
+		.padding(20)
+	}
 }

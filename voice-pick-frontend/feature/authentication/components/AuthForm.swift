@@ -73,6 +73,20 @@ struct AuthForm: View {
 		return Validator.shared.isValidLastname(lastnameValue) || !submitted
 	}
 	
+	func setUserInfo(_ userInfo: LoginResponse) {
+		DispatchQueue.main.async {
+			authenticationService.roles = userInfo.roles
+			authenticationService.uuid = userInfo.uuid
+			authenticationService.userName = userInfo.username
+			authenticationService.email = userInfo.email
+			authenticationService.accessToken = userInfo.accessToken
+			authenticationService.refreshToken = userInfo.refreshToken
+			authenticationService.emailVerified = userInfo.emailVerified
+			authenticationService.warehouseId = userInfo.warehouse?.id
+			authenticationService.warehouseName = userInfo.warehouse?.name ?? ""
+			authenticationService.warehouseAddress = userInfo.warehouse?.address ?? ""
+		}
+	}
 	
 	/**
 	 Sign the user in to the system.
@@ -84,18 +98,7 @@ struct AuthForm: View {
 			requestService.post(path: "/auth/login", body: userInfo, responseType: LoginResponse.self, completion: { result in
 				switch result {
 				case .success(let response):
-					DispatchQueue.main.async {
-						authenticationService.roles = response.roles
-						authenticationService.uuid = response.uuid
-						authenticationService.userName = response.username
-						authenticationService.email = response.email
-						authenticationService.accessToken = response.accessToken
-						authenticationService.refreshToken = response.refreshToken
-						authenticationService.emailVerified = response.emailVerified
-						authenticationService.warehouseId = response.warehouse?.id
-						authenticationService.warehouseName = response.warehouse?.name ?? ""
-						authenticationService.warehouseAddress = response.warehouse?.address ?? ""
-					}
+					setUserInfo(response)
 					break
 				case .failure(let error as RequestError):
 					handleError(errorCode: error.errorCode)
@@ -182,14 +185,7 @@ struct AuthForm: View {
 			.alert(authMode == AuthMode.signup ? "Registrer" : "Logg inn", isPresented: $showAlert, actions: {}, message: { Text(errorMessage)})
 			
 			if requestService.isLoading {
-				ProgressView()
-					.progressViewStyle(CircularProgressViewStyle())
-					.scaleEffect(2)
-					.frame(width: 100, height: 100)
-					.background(Color.backgroundColor)
-					.cornerRadius(20)
-					.foregroundColor(.foregroundColor)
-					.padding()
+				CustomProgressView()
 			}
 		}
 		

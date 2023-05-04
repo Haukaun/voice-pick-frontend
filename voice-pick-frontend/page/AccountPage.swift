@@ -19,10 +19,10 @@ struct AccountPage: View {
 	@State private var voiceErrorMessage = ""
 	
 	@State private var showWarningAlert = false
-    @State private var warningTitle = ""
+	@State private var warningTitle = ""
 	@State private var warningAlertMessage = ""
-    @State private var warningActionLabel = ""
-    @State private var warningAction: (() -> Void)?
+	@State private var warningActionLabel = ""
+	@State private var warningAction: (() -> Void)?
 	
 	@State private var showImagePicker = false
 	@State private var selectedImage = "profile-1"
@@ -33,10 +33,10 @@ struct AccountPage: View {
 	 Handles the event when the "delete user" is pressed
 	 */
 	func handleDeleteAccount() {
-        warningTitle = "Slett bruker"
+		warningTitle = "Slett bruker"
 		warningAlertMessage = "Er du sikker på at du vil slette brukeren? Dette kan ikke omgjøres!"
-        warningActionLabel = "Slett"
-        warningAction = deleteUser
+		warningActionLabel = "Slett"
+		warningAction = deleteUser
 		showWarningAlert = true
 	}
 	
@@ -54,29 +54,29 @@ struct AccountPage: View {
 			}
 		})
 	}
-    
-    /**
-     Handles the event when "leave warehouse" is pressed
-     */
-    func handleLeaveWarehouse() {
-        warningTitle = "Forlat varehus"
-        warningAlertMessage = "Er du sikker på at du vil forlate varehuset? Du vil ikke lengre ha tilgang med mindre du blir invitert på nytt"
-        warningActionLabel = "Forlat"
-        warningAction = leaveWarehouse
-        showWarningAlert = true
-    }
-    
-    func leaveWarehouse() {
-        requestService.delete(path: "/warehouse/leave", token: authenticationService.accessToken, responseType: String.self, completion: { result in
-            switch result {
-            case .success(_):
-                authenticationService.clearWarehouse()
-            case .failure(let error):
-                print(error)
-                
-            }
-        })
-    }
+	
+	/**
+	 Handles the event when "leave warehouse" is pressed
+	 */
+	func handleLeaveWarehouse() {
+		warningTitle = "Forlat varehus"
+		warningAlertMessage = "Er du sikker på at du vil forlate varehuset? Du vil ikke lengre ha tilgang med mindre du blir invitert på nytt"
+		warningActionLabel = "Forlat"
+		warningAction = leaveWarehouse
+		showWarningAlert = true
+	}
+	
+	func leaveWarehouse() {
+		requestService.delete(path: "/warehouse/leave", token: authenticationService.accessToken, responseType: String.self, completion: { result in
+			switch result {
+			case .success(_):
+				authenticationService.clearWarehouse()
+			case .failure(let error):
+				print(error)
+				
+			}
+		})
+	}
 	
 	/**
 	 Sets the voice or shows alert with message.
@@ -124,21 +124,17 @@ struct AccountPage: View {
 						headerText: "Profil",
 						rightButtons: [
 							Button(action: {
-                                authenticationService.logout()
-                            }, label: {
-									Image(systemName: "rectangle.portrait.and.arrow.right.fill")
-								})
+								authenticationService.logout()
+							}, label: {
+								Image(systemName: "rectangle.portrait.and.arrow.right.fill")
+							})
 						]
 					)
 					ScrollView {
 						HStack {
 							Spacer()
 							ZStack {
-								Image(selectedImage)
-									.resizable()
-									.aspectRatio(contentMode: .fill)
-									.frame(width: 110, height: 110)
-									.clipShape(Circle())
+								ProfilePictureView(imageName: $selectedImage)
 									.onTapGesture {
 										showImagePicker = true
 									}
@@ -247,7 +243,7 @@ struct AccountPage: View {
 							title: Text(warningTitle),
 							message: Text(warningAlertMessage),
 							primaryButton: .destructive(Text(warningActionLabel), action: {
-                                warningAction!()
+								warningAction!()
 							}),
 							secondaryButton: .cancel(Text("Avbryt"))
 						)

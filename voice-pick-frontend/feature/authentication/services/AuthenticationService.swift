@@ -245,6 +245,10 @@ class AuthenticationService: ObservableObject {
             self.warehouseAddress = ""
         }
     }
+	
+	func userHasRole(_ type: RoleType) -> Bool {
+		return self.roles?.first(where: { $0.type == type }) != nil
+	}
     
     private func clear() {
         DispatchQueue.main.async {

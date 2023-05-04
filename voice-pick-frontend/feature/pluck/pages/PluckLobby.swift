@@ -7,29 +7,118 @@
 
 import SwiftUI
 import Foundation
+import SwiftClockUI
 
 struct PluckLobby: View {
-	@State var activeEmployees = [
-		"Joakim Edvardsen",
-		"Petter Molnes",
-		"Håkon Sætre",
-		"Mateusz Picheta"
-	]
 	
+	@State private var date = Date()
+	
+	@EnvironmentObject var authenticationService: AuthenticationService
 	@EnvironmentObject private var pluckService: PluckService
-    
-    @State var showAlert = false
+	
+	@State var showAlert = false
 	@State var errorMessage = ""
-    
+	
 	var token: String?
+	
+	/**
+	 timeformat to utc time.
+	 */
+	var timeFormat: DateFormatter {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "HH:mm:ss"
+		return formatter
+	}
+	
+	/**
+	 format date string
+	 */
+	func timeString(date: Date) -> String {
+		let time = timeFormat.string(from: date)
+		return time
+	}
+	
+	/**
+	 Updates the timer to work realtime
+	 */
+	var updateTimer: Timer {
+		Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+			self.date = Date()
+		})
+	}
+	
+	/**
+	 Greets based on date time
+	 */
+	func greeting() -> String {
+		var greet = ""
+		
+		let midNight0 = Calendar.current.date(bySettingHour: 0, minute: 00, second: 00, of: date)!
+		let nightEnd = Calendar.current.date(bySettingHour: 3, minute: 59, second: 59, of: date)!
+		let morningStart = Calendar.current.date(bySettingHour: 4, minute: 00, second: 0, of: date)!
+		let morningEnd = Calendar.current.date(bySettingHour: 11, minute: 59, second: 59, of: date)!
+		let noonStart = Calendar.current.date(bySettingHour: 12, minute: 00, second: 00, of: date)!
+		let noonEnd = Calendar.current.date(bySettingHour: 16, minute: 59, second: 59, of: date)!
+		let eveStart = Calendar.current.date(bySettingHour: 17, minute: 00, second: 00, of: date)!
+		let eveEnd = Calendar.current.date(bySettingHour: 20, minute: 59, second: 59, of: date)!
+		let nightStart = Calendar.current.date(bySettingHour: 21, minute: 00, second: 00, of: date)!
+		let midNight24 = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date)!
+		
+		if ((date >= midNight0) && (nightEnd >= date)) {
+			greet = "God Natt"
+		} else if ((date >= morningStart) && (morningEnd >= date)) {
+			greet = "God Morgen"
+		} else if ((date >= noonStart) && (noonEnd >= date)) {
+			greet = "God Ettermiddag"
+		} else if ((date >= eveStart) && (eveEnd >= date)) {
+			greet = "God Kveld"
+		} else if ((date >= nightStart) && (midNight24 >= date)) {
+			greet = "God Natt"
+		}
+		
+		return greet
+	}
 	
 	var body: some View {
 		ZStack {
 			VStack {
 				Card {
-					ActivePickers(activePickers: activeEmployees)
+					HStack(alignment: .center) {
+						Spacer()
+						VStack (spacing: 10){
+							Text("Velkommen!")
+								.font(.largeTitle)
+							Text(authenticationService.userName)
+								.font(.infoButton)
+								.padding(.bottom)
+							VStack(spacing: 10) {
+								Text(authenticationService.warehouseName)
+									.font(.infoButton)
+								Text(authenticationService.warehouseAddress)
+									.font(.body)
+							}
+							Spacer()
+							ClockView()
+								.environment(\.clockDate, $date)
+								.environment(\.clockStyle, .classic)
+								.environment(\.clockIndicatorsColor, .foregroundColor)
+								.environment(\.clockBorderColor, .traceLightYellow)
+								.frame(height: 150)
+							Divider()
+								.background(Color.foregroundColor)
+								.frame(height: 30)
+							
+							Text("\(timeString(date: date))")
+								.onAppear(perform: {let _ = self.updateTimer})
+								.font(.header1)
+							Text(greeting())
+								.font(.header2)
+						}
+						.foregroundColor(.foregroundColor)
+						Spacer()
+					}
+					Spacer()
 				}
-				
 				DefaultButton("Start plukk") {
 					pluckService.doAction(keyword: "start", fromVoice: false, token: token)
 				}
@@ -38,7 +127,6 @@ struct PluckLobby: View {
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.padding(5)
 			.background(Color.backgroundColor)
-			
 			if pluckService.isLoading {
 				ProgressView()
 					.progressViewStyle(CircularProgressViewStyle())
@@ -53,13 +141,13 @@ struct PluckLobby: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.padding(UIView.defaultPadding)
 		.background(Color.backgroundColor)
-        .alert("Error", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) } )
-        .onReceive(pluckService.$showAlert) { showAlert in
-            self.showAlert = showAlert
-        }
-        .onReceive(pluckService.$errorMessage) { errorMsg in
-            self.errorMessage = errorMsg
-        }
+		.alert("Error", isPresented: $showAlert, actions: {}, message: { Text(errorMessage) } )
+		.onReceive(pluckService.$showAlert) { showAlert in
+			self.showAlert = showAlert
+		}
+		.onReceive(pluckService.$errorMessage) { errorMsg in
+			self.errorMessage = errorMsg
+		}
 	}
 }
 
@@ -89,6 +177,7 @@ struct ActivePickers: View {
 struct PluckLobby_Previews: PreviewProvider {
 	static var previews: some View {
 		PluckLobby(token: "foo")
+			.environmentObject(AuthenticationService())
 			.environmentObject(PluckService())
 	}
 }

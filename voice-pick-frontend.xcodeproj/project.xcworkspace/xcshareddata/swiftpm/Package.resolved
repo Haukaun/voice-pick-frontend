@@ -17,6 +17,24 @@
         "branch" : "master",
         "revision" : "c1fde55798b164cad44b5e23cfa2f0f1ebcd76af"
       }
+    },
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
+      "state" : {
+        "revision" : "cef5b3f6f11781dd4591bdd1dd0a3d22bd609334",
+        "version" : "1.11.0"
+      }
+    },
+    {
+      "identity" : "swiftclockui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/renaudjenny/SwiftClockUI",
+      "state" : {
+        "revision" : "b4977887fcfd42201a709357076e3f111ff23c97",
+        "version" : "2.0.0"
+      }
     }
   ],
   "version" : 2

@@ -25,6 +25,7 @@
 		8D77C3BA29E5390000C36D11 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3B929E5390000C36D11 /* TTSService.swift */; };
 		8D77C3BC29E6984B00C36D11 /* PluckCardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77C3BB29E6984B00C36D11 /* PluckCardDetail.swift */; };
 		8D921C5B29A673610015800D /* ButtonRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D921C5A29A673610015800D /* ButtonRandomizer.swift */; };
+		8DA673742A0301D10040FDEF /* SwiftClockUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8DA673732A0301D10040FDEF /* SwiftClockUI */; };
 		8DAB093429968296005A61C0 /* Styles+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAB093329968296005A61C0 /* Styles+Extensions.swift */; };
 		8DB45FF729D6D32D0057BCDB /* VerificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB45FF629D6D32D0057BCDB /* VerificationPage.swift */; };
 		8DB727AC29CDA78F009CA150 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB727AB29CDA78F009CA150 /* User.swift */; };
@@ -224,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F60FFA4329E54DB900DB4879 /* CodeScanner in Frameworks */,
+				8DA673742A0301D10040FDEF /* SwiftClockUI in Frameworks */,
 				E8F8886729C30C8D007B77E4 /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,6 +673,7 @@
 			packageProductDependencies = (
 				E8F8886629C30C8D007B77E4 /* KeychainSwift */,
 				F60FFA4229E54DB900DB4879 /* CodeScanner */,
+				8DA673732A0301D10040FDEF /* SwiftClockUI */,
 			);
 			productName = "voice-pick-frontend";
 			productReference = E8603B3B2996584000E09361 /* Trace VP.app */;
@@ -747,6 +750,7 @@
 			packageReferences = (
 				E8F8886529C30C8D007B77E4 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				F60FFA4129E54DB900DB4879 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				8DA673722A0301D10040FDEF /* XCRemoteSwiftPackageReference "SwiftClockUI" */,
 			);
 			productRefGroup = E8603B3C2996584000E09361 /* Products */;
 			projectDirPath = "";
@@ -1224,6 +1228,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8DA673722A0301D10040FDEF /* XCRemoteSwiftPackageReference "SwiftClockUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/renaudjenny/SwiftClockUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		E8F8886529C30C8D007B77E4 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
@@ -1243,6 +1255,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8DA673732A0301D10040FDEF /* SwiftClockUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DA673722A0301D10040FDEF /* XCRemoteSwiftPackageReference "SwiftClockUI" */;
+			productName = SwiftClockUI;
+		};
 		E8F8886629C30C8D007B77E4 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E8F8886529C30C8D007B77E4 /* XCRemoteSwiftPackageReference "keychain-swift" */;

@@ -15,6 +15,8 @@ struct AccountPage: View {
 	@EnvironmentObject var authenticationService: AuthenticationService
 	@StateObject var ttsService = TTSService.shared
 	
+	@State private var numberOfPlucks: Int = 0
+	
 	@State private var showVoiceAlert = false
 	@State private var voiceErrorMessage = ""
 	
@@ -115,7 +117,25 @@ struct AccountPage: View {
 		.cornerRadius(UIView.standardCornerRadius)
 	}
 	
-	
+	private var pluckerRank: String {
+			switch numberOfPlucks {
+			case 0..<1000:
+					return "Nybegynner plukker"
+			case 1000..<2000:
+					return "Mid plukker"
+			case 2000..<5000:
+					return "Erfaren plukker"
+			case 5000..<10000:
+					return "Ekspert plukker"
+			case 10000..<30000:
+					return "Profesjonell plukker"
+			case 30000...:
+				return "Wall-E"
+			default:
+				return "Standard plukker"
+			}
+	}
+
 	var body: some View {
 		NavigationView {
 			ZStack {
@@ -152,7 +172,7 @@ struct AccountPage: View {
 						Spacer()
 						VStack {
 							Title(authenticationService.userName)
-							Paragraph("Profesjonell plukker")
+							Paragraph(pluckerRank)
 								.opacity(0.3)
 						}
 						.padding(.bottom)
@@ -250,6 +270,19 @@ struct AccountPage: View {
 					}
 					.sheet(isPresented: $showImagePicker){
 						ImagePicker(selectedImage: $selectedImage)
+					}
+					.onAppear {
+						requestService.get(path: "/pluck-lists/users/\(authenticationService.uuid)",token: authenticationService.accessToken, responseType: Int.self, completion: { result in
+							switch result {
+							case .success(let pluckCount):
+								numberOfPlucks = pluckCount
+								break
+							case .failure(let error as RequestError):
+								print(error.errorCode)
+							default:
+								break
+							}
+						})
 					}
 				}
 				if requestService.isLoading {

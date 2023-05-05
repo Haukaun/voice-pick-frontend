@@ -12,6 +12,7 @@ import SwiftUI
 struct PluckCard: View {
 	
 	@EnvironmentObject var pluckService: PluckService
+    @EnvironmentObject var authService: AuthenticationService
 	
 	@State var pluck: Pluck
 	
@@ -171,7 +172,7 @@ struct PluckCard: View {
 		.swipeActions(edge: .trailing, content: {
 			if allowSwipe() {
 				Button(role: .destructive) {
-					pluckService.doAction(keyword: "complete", fromVoice: false)
+                    pluckService.doAction(keyword: "complete", fromVoice: false, token: authService.accessToken)
 				} label: {
 					Label("Svipe venstre for å fullføre" , systemImage: "checkmark.circle.fill")
 				}.tint(.success)

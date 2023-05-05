@@ -227,6 +227,7 @@ class PluckService: ObservableObject {
         
         requestService.patch(
             path: "/pluck-lists/\(pluckId)/cargo-carriers/\(cargoCarrierId)",
+            token: self.token,
             responseType: String.self,
             completion: { result in
                 switch result {
@@ -380,7 +381,7 @@ class PluckService: ObservableObject {
 				}
 				ttsService.speak("Pluck completed", fromVoice)
 				if fromVoice {
-					registerCompletPluckList(fromVoice)
+					registerCompletePluckList(fromVoice)
 					setCurrentStep(.START)
 					updateActivePage(.LOBBY)
 					ttsService.speak("Say 'start' to start a new pluck order", fromVoice)
@@ -400,8 +401,7 @@ class PluckService: ObservableObject {
 				if (pluckList?.confirmedAt == nil) {
 					ttsService.speak("Need to confirm with control digits first...", fromVoice)
 				} else {
-					pluckList?.finishedAt = Date()
-					registerCompletPluckList(fromVoice)
+					registerCompletePluckList(fromVoice)
 					
 					setCurrentStep(.START)
 					updateActivePage(.LOBBY)
@@ -413,7 +413,9 @@ class PluckService: ObservableObject {
 		}
 	}
 	
-	func registerCompletPluckList(_ fromVoice: Bool) {
+	func registerCompletePluckList(_ fromVoice: Bool) {
+        pluckList?.finishedAt = Date()
+        
 		guard let pluckList = self.pluckList else {
 			return
 		}

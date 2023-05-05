@@ -27,12 +27,27 @@ struct SetupWarehouse: View {
 	 - Parameters:
 			- warehouse: warehouse information to add to users keychain.
 	 */
-	func setUserWarehouse(_ warehouse: WarehouseDto) {
+	func setWarehouseDetails(_ warehouse: WarehouseDto) {
 		DispatchQueue.main.async {
 			authenticationService.warehouseId = warehouse.id
 			authenticationService.warehouseName = warehouse.name
 			authenticationService.warehouseAddress = warehouse.address
+			
+			// Set roles
+			authenticationService.roles?.append(RoleDto(id: 2, type: RoleType.LEADER))
 		}
+	}
+	
+	func refreshToken() {
+		requestService.post(path: "/auth/refresh", body: TokenDto(token: authenticationService.refreshToken), responseType: RefreshTokenResponse.self, completion: { result in
+			switch result {
+			case .success(let newTokens):
+				authenticationService.setTokens(newTokens)
+			case .failure(_):
+				showAlert = true
+				errorMessage = "Noe gikk galt, logg ut og inn."
+			}
+		})
 	}
 	
 	func createWareHouse() {
@@ -40,7 +55,9 @@ struct SetupWarehouse: View {
 		requestService.post(path: "/warehouse", token: authenticationService.accessToken, body: warehouse, responseType: WarehouseDto.self, completion: { result in
 			switch result {
 			case .success(let warehouse):
-				setUserWarehouse(warehouse)
+				setWarehouseDetails(warehouse)
+				print("Warehouse registered")
+				refreshToken()
 			case .failure(let error as RequestError):
 				if error.errorCode == 404 {
 					showAlert = true
@@ -58,7 +75,7 @@ struct SetupWarehouse: View {
 		requestService.post(path: "/warehouse/join", token: authenticationService.accessToken, body: verificationCodeInfo, responseType: WarehouseDto.self, completion: { result in
 			switch result {
 			case .success(let warehouse):
-				setUserWarehouse(warehouse)
+				setWarehouseDetails(warehouse)
 			case .failure(let error as RequestError):
 				handleJoinError(error.errorCode)
 			default:

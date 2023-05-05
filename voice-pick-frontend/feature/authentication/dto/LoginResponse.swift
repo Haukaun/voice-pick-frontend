@@ -8,15 +8,16 @@
 import Foundation
 
 struct LoginResponse: Codable {
-	let accessToken: String
-	let refreshToken: String
-	let expiresIn: String
-	let refreshExpiresIn: String
-	let tokenType: String
-	let uuid: String
-	let username: String
-	let email: String
-	let emailVerified: Bool
-	let roles: [RoleDto]
-	let warehouse: WarehouseDto?
+	var accessToken: String
+	var refreshToken: String
+	var expiresIn: String
+	var refreshExpiresIn: String
+	var tokenType: String
+	var uuid: String
+	var username: String
+	var email: String
+	var emailVerified: Bool
+	var roles: [RoleDto]
+	var warehouse: WarehouseDto?
+	var profilePictureName: String?
 }

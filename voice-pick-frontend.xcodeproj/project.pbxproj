@@ -37,6 +37,7 @@
 		E80E996B2A03DDEF00F2D8CD /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E996A2A03DDEF00F2D8CD /* BannerModifier.swift */; };
 		E80E996E2A03DE0700F2D8CD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E996C2A03DE0700F2D8CD /* ImagePicker.swift */; };
 		E80E996F2A03DE0700F2D8CD /* CustomDisclosureGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E996D2A03DE0700F2D8CD /* CustomDisclosureGroup.swift */; };
+		E80E99712A03E5E600F2D8CD /* ProfilePictureDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E99702A03E5E600F2D8CD /* ProfilePictureDto.swift */; };
 		E8236EA629FA4B6300447F34 /* EmployeesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA529FA4B6300447F34 /* EmployeesPage.swift */; };
 		E8236EA829FA4B7D00447F34 /* AddEmployeePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA729FA4B7D00447F34 /* AddEmployeePage.swift */; };
 		E8236EAA29FA5A7100447F34 /* DetailedEmployeePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */; };
@@ -64,6 +65,7 @@
 		E8A2432929C32CCF007D0F60 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A2432829C32CCF007D0F60 /* AuthenticationService.swift */; };
 		E8A2432B29C35B54007D0F60 /* PasswordInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A2432A29C35B54007D0F60 /* PasswordInput.swift */; };
 		E8B8179829967D8400962940 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8179729967D8400962940 /* Color+Extensions.swift */; };
+		E8D9DCE62A0421D0000B65FD /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9DCE52A0421D0000B65FD /* RefreshTokenResponse.swift */; };
 		E8F8886729C30C8D007B77E4 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8F8886629C30C8D007B77E4 /* KeychainSwift */; };
 		F60AD480299CF683008A30F5 /* PluckLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD47F299CF683008A30F5 /* PluckLobby.swift */; };
 		F60AD482299CF70B008A30F5 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60AD481299CF70A008A30F5 /* Card.swift */; };
@@ -153,6 +155,7 @@
 		E80E996A2A03DDEF00F2D8CD /* BannerModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		E80E996C2A03DE0700F2D8CD /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E80E996D2A03DE0700F2D8CD /* CustomDisclosureGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDisclosureGroup.swift; sourceTree = "<group>"; };
+		E80E99702A03E5E600F2D8CD /* ProfilePictureDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureDto.swift; sourceTree = "<group>"; };
 		E8236EA529FA4B6300447F34 /* EmployeesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesPage.swift; sourceTree = "<group>"; };
 		E8236EA729FA4B7D00447F34 /* AddEmployeePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeePage.swift; sourceTree = "<group>"; };
 		E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEmployeePage.swift; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 		E8A2432829C32CCF007D0F60 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		E8A2432A29C35B54007D0F60 /* PasswordInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInput.swift; sourceTree = "<group>"; };
 		E8B8179729967D8400962940 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		E8D9DCE52A0421D0000B65FD /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
 		F60AD47F299CF683008A30F5 /* PluckLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluckLobby.swift; sourceTree = "<group>"; };
 		F60AD481299CF70A008A30F5 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F60AD484299D0AD1008A30F5 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 				F62D1AFB29EEBD95005ED754 /* VerifyRequestDto.swift */,
 				F6BD930A29F9B93000D04542 /* ChangePasswordRequest.swift */,
 				E83BD8872A01383F0044FAE2 /* RoleDto.swift */,
+				E8D9DCE52A0421D0000B65FD /* RefreshTokenResponse.swift */,
 			);
 			path = dto;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 			children = (
 				E845942D29E9698C00DFE048 /* AddWarehouseDto.swift */,
 				E88A321729EFF8C60083B353 /* WarehouseDto.swift */,
+				E80E99702A03E5E600F2D8CD /* ProfilePictureDto.swift */,
 			);
 			path = dto;
 			sourceTree = "<group>";
@@ -869,6 +875,7 @@
 				8DB45FF729D6D32D0057BCDB /* VerificationPage.swift in Sources */,
 				8D4A8155299D18B300B9A715 /* Footer.swift in Sources */,
 				E80E996B2A03DDEF00F2D8CD /* BannerModifier.swift in Sources */,
+				E8D9DCE62A0421D0000B65FD /* RefreshTokenResponse.swift in Sources */,
 				F619709929C35F1D00927BDB /* DangerButton.swift in Sources */,
 				23D9B9E9299A7C9600AA46EC /* DefaultButton.swift in Sources */,
 				F60AD48F299E4752008A30F5 /* PluckInfo.swift in Sources */,
@@ -919,6 +926,7 @@
 				F68A5B1629E977FB004E4E9B /* EditableLabelInput.swift in Sources */,
 				F6BD930929F9A51300D04542 /* ChangePasswordPage.swift in Sources */,
 				E8A2432929C32CCF007D0F60 /* AuthenticationService.swift in Sources */,
+				E80E99712A03E5E600F2D8CD /* ProfilePictureDto.swift in Sources */,
 				F68A5B1429E97751004E4E9B /* SaveProductDto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1073,7 +1081,7 @@
 		E8603B602996584100E09361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "https://devapi.bachelor.seq.re";
+				API_URL = "http://localhost:8080";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1111,7 +1119,7 @@
 		E8603B612996584100E09361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_URL = "https://devapi.bachelor.seq.re";
+				API_URL = "http://localhost:8080";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";

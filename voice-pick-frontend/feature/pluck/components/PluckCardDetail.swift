@@ -11,6 +11,14 @@ struct PluckCardDetail: View {
 	
 	@State var pluck: Pluck
 	
+	@EnvironmentObject var pluckService: PluckService
+	
+	
+	private func amountPlucked() -> Int {
+		return pluckService.pluckList?.plucks.first(where: { $0.id == self.pluck.id } )?.amountPlucked ?? 0
+	}
+	
+	
 	var body: some View {
 		ZStack {
 			Image("Pallet")
@@ -26,7 +34,7 @@ struct PluckCardDetail: View {
 					}
 					VStack (alignment: .leading) {
 						Paragraph("Antall plukket:")
-						Text("\(pluck.amountPlucked)")
+						Text("\(amountPlucked())")
 							.font(.header2)
 					}
 					VStack (alignment: .leading) {
@@ -88,5 +96,6 @@ struct PluckCardDetail_Previews: PreviewProvider {
 	
 	static var previews: some View {
 		PluckCardDetail(pluck: pluck1)
+			.environmentObject(PluckService())
 	}
 }

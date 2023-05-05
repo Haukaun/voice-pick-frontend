@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabBar: View {
     
-	@StateObject private var voiceService = VoiceService()
+	@StateObject private var voiceService = VoiceService.shared
 	@EnvironmentObject var authenticationService: AuthenticationService
         
 	var body: some View {

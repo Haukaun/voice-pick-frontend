@@ -103,7 +103,7 @@ struct PluckLobby: View {
                                     .environment(\.clockIndicatorsColor, .foregroundColor)
                                     .environment(\.clockBorderColor, .traceLightYellow)
                                     .frame(height: 150)
-                                Text("Relex")
+                                Text("Rølex")
                                     .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
                             }
                             Divider()

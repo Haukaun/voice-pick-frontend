@@ -65,7 +65,7 @@ struct PluckCard: View {
 	}
 	
 	private func amountPlucked() -> Int {
-		return pluckService.pluckList?.plucks.first(where: { $0.id == self.pluck.id } )?.amountPlucked ?? 0
+			return pluckService.pluckList?.plucks.first(where: { $0.id == self.pluck.id } )?.amountPlucked ?? 0
 	}
 	
 	var body: some View {
@@ -108,7 +108,7 @@ struct PluckCard: View {
 						Paragraph("Antall")
 							.lineLimit(1)
 							.truncationMode(.tail)
-						Paragraph("\(pluck.amount)")
+						Paragraph("\(amountPlucked())/\(pluck.amount)")
 							.lineLimit(1)
 							.truncationMode(.tail)
 							.bold()

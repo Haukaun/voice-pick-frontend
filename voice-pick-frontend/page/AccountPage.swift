@@ -121,18 +121,18 @@ struct AccountPage: View {
 			switch numberOfPlucks {
 			case 0..<1000:
 					return "Nybegynner plukker"
-			case 1000..<2000:
-					return "Mid plukker"
-			case 2000..<5000:
+			case 1000..<3000:
+					return "Middels plukker"
+			case 3000..<5000:
 					return "Erfaren plukker"
 			case 5000..<10000:
 					return "Ekspert plukker"
-			case 10000..<30000:
-					return "Profesjonell plukker"
-			case 30000...:
+			case 10000..<20000:
+					return "Mester plukker"
+			case 20000...:
 				return "Wall-E"
 			default:
-				return "Standard plukker"
+				return "Profesjonell plukker"
 			}
 	}
 

@@ -10,9 +10,10 @@ import SwiftUI
 struct PluckFinish: View {
 	
 	@EnvironmentObject var pluckService: PluckService
+    @EnvironmentObject var authService: AuthenticationService
 	
 	private func completePluck() {
-		pluckService.doAction(keyword: "complete", fromVoice: false)
+        pluckService.doAction(keyword: "complete", fromVoice: false, token: authService.accessToken)
 	}
 	
 	var body: some View {

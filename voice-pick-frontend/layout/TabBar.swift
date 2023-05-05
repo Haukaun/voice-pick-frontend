@@ -24,7 +24,7 @@ struct TabBar: View {
                     Label("Logg", systemImage: "clock.fill")
                 }
                 .environmentObject(voiceService)
-			if authenticationService.userHasRole(RoleType.LEADER) {
+            if authenticationService.userHasRole(RoleType.LEADER) {
 				WarehouseConfigurationPage()
 					.tabItem {
 						Label("Konfigurer varehus", systemImage: "slider.horizontal.3")

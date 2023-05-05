@@ -32,7 +32,7 @@ class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
 	private var recognitionTimer: Timer?
 	
 	let keywords = Set(["start" , "repeat", "next", "help", "cancel", "complete", "back", "mute", "listen", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"])
-	
+    
 	override init() {
 		super.init()
 		speechRecognizer?.delegate = self

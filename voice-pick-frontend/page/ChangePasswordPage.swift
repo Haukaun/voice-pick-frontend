@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChangePasswordPage: View {
     
-    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var authService: AuthenticationService
     
     @State var currentPasswordField = ""
@@ -52,7 +51,7 @@ struct ChangePasswordPage: View {
                     DispatchQueue.main.async {
                         authService.accessToken = loginResponse.accessToken
                         authService.refreshToken = authService.refreshToken
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     }
                 case .failure(let error as RequestError):
                     if error.errorCode == 403 {

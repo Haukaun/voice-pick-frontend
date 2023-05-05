@@ -134,7 +134,7 @@ struct AccountPage: View {
 						HStack {
 							Spacer()
 							ZStack {
-								ProfilePictureView(imageName: $selectedImage)
+								ProfilePictureView(imageName: $authenticationService.profilePictureName)
 									.onTapGesture {
 										showImagePicker = true
 									}
@@ -238,29 +238,18 @@ struct AccountPage: View {
 					}
 					.background(Color.backgroundColor)
 					.alert("Stemme", isPresented: $showVoiceAlert, actions: {}, message: { Text(voiceErrorMessage)})
-					.alert(isPresented: $showWarningAlert) {
-						Alert(
-							title: Text(warningTitle),
-							message: Text(warningAlertMessage),
-							primaryButton: .destructive(Text(warningActionLabel), action: {
-								warningAction!()
-							}),
-							secondaryButton: .cancel(Text("Avbryt"))
-						)
-					}
+					.alert(warningTitle, isPresented: $showWarningAlert, actions: {
+						Button("Avbryt", role: .cancel) {}
+						Button(warningActionLabel, role: .destructive) {
+							warningAction!()
+						}
+					}, message: { Text(warningAlertMessage) })
 					.sheet(isPresented: $showImagePicker){
-						ImagePicker(selectedImage: $selectedImage)
+						ImagePicker()
 					}
 				}
 				if requestService.isLoading {
-					ProgressView()
-						.progressViewStyle(CircularProgressViewStyle())
-						.scaleEffect(2)
-						.frame(width: 100, height: 100)
-						.background(Color.backgroundColor)
-						.cornerRadius(20)
-						.foregroundColor(.foregroundColor)
-						.padding()
+					CustomProgressView()
 				}
 			}
 		}

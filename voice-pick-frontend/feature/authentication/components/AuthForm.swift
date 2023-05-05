@@ -75,16 +75,17 @@ struct AuthForm: View {
 	
 	func setUserInfo(_ userInfo: LoginResponse) {
 		DispatchQueue.main.async {
-			authenticationService.roles = userInfo.roles
 			authenticationService.uuid = userInfo.uuid
-			authenticationService.userName = userInfo.username
-			authenticationService.email = userInfo.email
 			authenticationService.accessToken = userInfo.accessToken
 			authenticationService.refreshToken = userInfo.refreshToken
+			authenticationService.email = userInfo.email
 			authenticationService.emailVerified = userInfo.emailVerified
 			authenticationService.warehouseId = userInfo.warehouse?.id
 			authenticationService.warehouseName = userInfo.warehouse?.name ?? ""
 			authenticationService.warehouseAddress = userInfo.warehouse?.address ?? ""
+			authenticationService.profilePictureName = userInfo.profilePictureName ?? ""
+			authenticationService.userName = userInfo.username
+			authenticationService.roles = userInfo.roles
 		}
 	}
 	

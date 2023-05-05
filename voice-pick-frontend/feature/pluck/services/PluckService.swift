@@ -201,7 +201,7 @@ class PluckService: ObservableObject {
 			if (pluckList?.cargoCarrier == nil) {
 				ttsService.speak("Need to select a cargo carrier", fromVoice)
 			} else {
-                sendUpdateCargoCarrierRequest()
+				sendUpdateCargoCarrierRequest()
 				setCurrentStep(.SELECT_CONTROL_DIGITS)
 				updateActivePage(.LIST_VIEW)
 				if let index = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil }) {
@@ -211,7 +211,6 @@ class PluckService: ObservableObject {
 		default:
 			let found = cargoCarriers.first(where: {$0.phoneticIdentifier == keyword})
 			if (found != nil) {
-				// TODO: Send request to api to update cargo carrier for plucklist
 				pluckList?.cargoCarrier = found
 				ttsService.speak("\(found!.name) selected", fromVoice)
 			}

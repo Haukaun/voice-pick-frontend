@@ -9,19 +9,26 @@ import Foundation
 import AVFAudio
 
 
-class TTSService: ObservableObject {
-    
-    // Singleton
+class TTSService: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
+	
+	// Singleton
 	static let shared = TTSService()
-    
-    private let voiceLog = VoiceLog.shared
-    
+	
+	private let voiceLog = VoiceLog.shared
+	
+	private let voiceService = VoiceService.shared
+	
 	private let synthesizer = AVSpeechSynthesizer()
-    
+	
 	@Published var selectedVoice: Voice?
 	@Published var volume: Float = 0.5
 	@Published var rate: Float = 0.5
-
+	
+	override init() {
+		super.init()
+		synthesizer.delegate = self
+	}
+	
 	/**
 	 Plays a string to the device audio output
 	 
@@ -33,6 +40,7 @@ class TTSService: ObservableObject {
 	 */
 	func speak(_ utterance: String, _ fromVoice: Bool) {
 		if (fromVoice) {
+			voiceService.muted = true
 			let speechUtterance = AVSpeechUtterance(string: utterance)
 			speechUtterance.rate = self.rate
 			
@@ -46,11 +54,19 @@ class TTSService: ObservableObject {
 			speechUtterance.volume = self.volume
 			speechUtterance.pitchMultiplier = 1.0
 			
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.voiceLog.addMessage(LogMessage(message: utterance, type: LogMessageType.OUTPUT))
-            }
-            synthesizer.speak(speechUtterance)
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+				self.voiceLog.addMessage(LogMessage(message: utterance, type: LogMessageType.OUTPUT))
+			}
+			synthesizer.speak(speechUtterance)
 		}
+	}
+	
+	func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
+		voiceService.muted = true
+	}
+	
+	func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+		voiceService.muted = false
 	}
 	
 	/*
@@ -58,6 +74,7 @@ class TTSService: ObservableObject {
 	 */
 	func stopSpeak() {
 		synthesizer.stopSpeaking(at: .immediate)
+		voiceService.muted = false
 	}
 	
 	

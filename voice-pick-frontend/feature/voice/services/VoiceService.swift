@@ -23,6 +23,8 @@ class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
 	
 	var onRecognizedTextChange: ((String) -> Void)?
 	
+	static let shared = VoiceService()
+	
 	private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
 	private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
 	private var recognitionTask: SFSpeechRecognitionTask?
@@ -31,8 +33,11 @@ class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
 	private let speechSynthesizer = AVSpeechSynthesizer()
 	private var recognitionTimer: Timer?
 	
+	var muted = false
+	
 	let keywords = Set(["start" , "repeat", "next", "help", "cancel", "complete", "back", "mute", "listen", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"])
-    
+	let mutedKeywords = Set(["cancel"])
+	
 	override init() {
 		super.init()
 		speechRecognizer?.delegate = self
@@ -157,7 +162,8 @@ class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
 	 */
 	func processRecognitionResult(_ result: String) {
 		recognitionTimer?.invalidate()
-		recognitionTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+		// debounces recognition X seconds
+		recognitionTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { [weak self] _ in
 			guard let self = self else { return }
 			// Refresh the value stored in the published value
 			let result = self.filterKeywordsAndNumbers(from: result)
@@ -178,6 +184,9 @@ class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
 	 */
 	func filterKeywordsAndNumbers(from text: String) -> String {
 		let words = text.lowercased().split(separator: " ").map(String.init)
+		if self.muted {
+			return words.filter { mutedKeywords.contains($0) }.joined(separator: " ").lowercased()
+		}
 		return words.filter { keywords.contains($0) || isNumber(word: $0) }.joined(separator: " ").lowercased()
 	}
 	

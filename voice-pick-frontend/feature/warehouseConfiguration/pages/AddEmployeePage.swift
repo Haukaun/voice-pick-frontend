@@ -59,7 +59,7 @@ struct AddEmployeePage: View {
 			VStack(alignment: .leading) {
 				Spacer()
 				DefaultInput(inputLabel: "Email", text: $userToInvite, valid: true)
-				DefaultButton("Invite", onPress: inviteUser)
+				DefaultButton("Inviter", onPress: inviteUser)
 					.disabled(requestService.isLoading)
 				Spacer()
 			}

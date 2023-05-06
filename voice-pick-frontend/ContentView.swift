@@ -16,8 +16,8 @@ struct ContentView: View {
 		case auth, verification, setupWarehouse, tabBar
 	}
 	
-    @EnvironmentObject var authenticationService: AuthenticationService
-    
+	@EnvironmentObject var authenticationService: AuthenticationService
+	
 	@State private var activeView: ActiveView = .auth
 	
 	var body: some View {
@@ -32,9 +32,9 @@ struct ContentView: View {
 				TabBar()
 			}
 		}
-        .onAppear {
-            updateActiveView()
-        }
+		.onAppear {
+			updateActiveView()
+		}
 		.onChange(of: authenticationService.accessToken) { _ in
 			withAnimation(.easeInOut(duration: 0.5)) {
 				updateActiveView()

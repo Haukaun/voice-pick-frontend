@@ -216,27 +216,27 @@ class PluckService: ObservableObject {
 			}
 		}
 	}
-    
-    /**
-     Sends a request to the backend for updating the cargo carrier for the pluck
-     */
-    private func sendUpdateCargoCarrierRequest() {
-        let pluckId = String(pluckList?.id ?? 0)
-        let cargoCarrierId = String(pluckList?.cargoCarrier?.identifier ?? 0)
-        
-        requestService.patch(
-            path: "/pluck-lists/\(pluckId)/cargo-carriers/\(cargoCarrierId)",
-            token: self.token,
-            responseType: String.self,
-            completion: { result in
-                switch result {
-                case .success(_):
-                    break
-                case .failure(let error):
-                    os_log("Failed to update cargo carrier for plucklist \(pluckId): \(error.localizedDescription)")
-                }
-            })
-    }
+	
+	/**
+	 Sends a request to the backend for updating the cargo carrier for the pluck
+	 */
+	private func sendUpdateCargoCarrierRequest() {
+		let pluckId = String(pluckList?.id ?? 0)
+		let cargoCarrierId = String(pluckList?.cargoCarrier?.identifier ?? 0)
+		
+		requestService.patch(
+			path: "/pluck-lists/\(pluckId)/cargo-carriers/\(cargoCarrierId)",
+			token: self.token,
+			responseType: String.self,
+			completion: { result in
+				switch result {
+				case .success(_):
+					break
+				case .failure(let error):
+					os_log("Failed to update cargo carrier for plucklist \(pluckId): \(error.localizedDescription)")
+				}
+			})
+	}
 	
 	private func handleControlDigits(_ keyword: String, _ fromVoice: Bool) {
 		guard let currentPluckIndex = pluckList?.plucks.firstIndex(where: { $0.pluckedAt == nil }) else {
@@ -413,8 +413,8 @@ class PluckService: ObservableObject {
 	}
 	
 	func registerCompletePluckList(_ fromVoice: Bool) {
-        pluckList?.finishedAt = Date()
-        
+		pluckList?.finishedAt = Date()
+		
 		guard let pluckList = self.pluckList else {
 			return
 		}

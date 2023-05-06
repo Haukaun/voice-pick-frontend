@@ -76,7 +76,7 @@ struct DetailedEmployeePage: View {
 					}) {
 						Card(padding: 10) {
 							HStack {
-								Text("LEADER")
+								Text("Leder")
 								Image(systemName: "xmark")
 							}
 							.foregroundColor(.foregroundColor)
@@ -84,7 +84,7 @@ struct DetailedEmployeePage: View {
 					}
 				}
 				Spacer()
-				DefaultButton("Promote to Leader", disabled: userIsLeader(), onPress: promoteUser)
+				DefaultButton("Forfrem til Leder", disabled: userIsLeader(), onPress: promoteUser)
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.padding(10)

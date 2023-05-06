@@ -61,6 +61,9 @@ class TTSService: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
 		}
 	}
 	
+	/**
+		Mutes the voice recognition everytime the utterance is speaking.
+	 */
 	func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
 		voiceService.muted = true
 	}

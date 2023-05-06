@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct TabBar: View {
-    
+	
 	@StateObject private var voiceService = VoiceService.shared
 	@EnvironmentObject var authenticationService: AuthenticationService
-        
+	
 	var body: some View {
 		TabView {
 			PluckPage()
 				.tabItem {
 					Label("Meny", systemImage: "house")
 				}
-                .environmentObject(voiceService)
-            VoiceChatPage()
-                .tabItem {
-                    Label("Logg", systemImage: "clock.fill")
-                }
-                .environmentObject(voiceService)
-            if authenticationService.userHasRole(RoleType.LEADER) {
+				.environmentObject(voiceService)
+			VoiceChatPage()
+				.tabItem {
+					Label("Logg", systemImage: "clock.fill")
+				}
+				.environmentObject(voiceService)
+			if authenticationService.userHasRole(RoleType.LEADER) {
 				WarehouseConfigurationPage()
 					.tabItem {
 						Label("Konfigurer varehus", systemImage: "slider.horizontal.3")

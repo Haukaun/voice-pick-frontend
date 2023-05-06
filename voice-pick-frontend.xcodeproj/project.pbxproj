@@ -551,7 +551,6 @@
 			children = (
 				F68A5B0E29E97718004E4E9B /* dtos */,
 				F68A5B0B29E976CD004E4E9B /* components */,
-				F69765BF29E6DAFD00C697B8 /* models */,
 				F69765BC29E6D7D800C697B8 /* pages */,
 			);
 			path = warehouseConfiguration;
@@ -572,13 +571,6 @@
 				E8236EA929FA5A7100447F34 /* DetailedEmployeePage.swift */,
 			);
 			path = pages;
-			sourceTree = "<group>";
-		};
-		F69765BF29E6DAFD00C697B8 /* models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 		F6E9BE3C299686B200DFD5EF /* feature */ = {

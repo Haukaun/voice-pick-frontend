@@ -96,16 +96,12 @@ struct PluckLobby: View {
                                 DefaultLabel(authenticationService.warehouseAddress)
                             }
                             Spacer()
-                            ZStack {
-                                ClockView()
-                                    .environment(\.clockDate, $date)
-                                    .environment(\.clockStyle, .classic)
-                                    .environment(\.clockIndicatorsColor, .foregroundColor)
-                                    .environment(\.clockBorderColor, .traceLightYellow)
-                                    .frame(height: 150)
-                                Text("Rølex")
-                                    .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
-                            }
+                            ClockView()
+                                .environment(\.clockDate, $date)
+                                .environment(\.clockStyle, .classic)
+                                .environment(\.clockIndicatorsColor, .foregroundColor)
+                                .environment(\.clockBorderColor, .traceLightYellow)
+                                .frame(height: 150)
                             Divider()
                                 .background(Color.foregroundColor)
                                 .frame(height: 30)

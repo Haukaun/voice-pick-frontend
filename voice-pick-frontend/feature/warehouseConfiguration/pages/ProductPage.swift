@@ -17,15 +17,14 @@ struct ProductPage: View {
     
     @State var searchField: String = ""
     
-    @State var selectedProduct: Product?
-    @State var isSheetPresent = false
+    @State var selectedProduct: Product? = nil
     @State private var showingAlert = false
-		@State private var showAlertDelete = false
+    @State private var showAlertDelete = false
     @State var errorMessage = ""
     @State private var indexSetToDelete: IndexSet?
-    @State var productDeletedFromDb = false
+    
     @Environment(\.dismiss) private var dismiss
-
+    
     
     func fetchProducts() {
         requestService.get(path: "/products", token: authenticationService.accessToken, responseType: [Product].self) { result in
@@ -45,10 +44,10 @@ struct ProductPage: View {
         requestService.delete(path: "/products/\(productId)", token: authenticationService.accessToken, responseType: String.self, completion: { result in
             switch result {
             case .success(_):
-                productDeletedFromDb = true
+                selectedProduct = nil
+                fetchProducts()
                 break
             case .failure(let error as RequestError):
-                productDeletedFromDb = false
                 handleError(errorCode: error.errorCode)
                 break
             default:
@@ -90,6 +89,11 @@ struct ProductPage: View {
         }
     }
     
+    func hideSheet() {
+        selectedProduct = nil
+        fetchProducts()
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -104,7 +108,6 @@ struct ProductPage: View {
                         }.contentShape(Rectangle())
                             .onTapGesture {
                                 selectedProduct = product
-                                isSheetPresent.toggle()
                             }
                             .swipeActions(edge: .trailing) {
                                 Button {
@@ -134,13 +137,7 @@ struct ProductPage: View {
                     Text("Avbryt")
                 }
                 Button(role: .destructive){
-                    if let indexSetToDelete = indexSetToDelete {
-                        deleteProduct(productId: selectedProduct?.id ?? 0)
-                        if productDeletedFromDb {
-                            products.remove(atOffsets: indexSetToDelete)
-                        }
-                        productDeletedFromDb = false
-                    }
+                    deleteProduct(productId: selectedProduct?.id ?? 0)
                 } label: {
                     Text("Slett")
                 }
@@ -168,15 +165,15 @@ struct ProductPage: View {
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .navigationBarBackButtonHidden(true)
-        .sheet(item: $selectedProduct, onDismiss: fetchProducts) { product in
+        .sheet(item: $selectedProduct, onDismiss: hideSheet) { product in
             UpdateProductPage(product: product)
         }
     }
 }
 
 struct ProductPage_Previews: PreviewProvider {
-	static var previews: some View {
-		ProductPage()
-			.environmentObject(AuthenticationService())
-	}
+    static var previews: some View {
+        ProductPage()
+            .environmentObject(AuthenticationService())
+    }
 }

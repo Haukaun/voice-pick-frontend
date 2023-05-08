@@ -15,15 +15,14 @@ struct LocationPage: View {
     
     @State var searchField: String = ""
     
-    @State var selectedLocation: Location?
-    @State var isSheetPresent = false
+    @State private var selectedLocation: Location? = nil
     @State private var indexSetToDelete: IndexSet?
-		@State private var showDeleteAlert = false
+    @State private var showDeleteAlert = false
     @State private var showingAlert = false
     @State var errorMessage = ""
-    @State var locationDeletedFromDb = false
+    
     @Environment(\.dismiss) private var dismiss
-
+    
     var filteredLocations: [Location] {
         if searchField.isEmpty {
             return locations
@@ -48,11 +47,10 @@ struct LocationPage: View {
                         }.contentShape(Rectangle())
                             .onTapGesture {
                                 selectedLocation = location
-                                isSheetPresent.toggle()
                             }
                             .swipeActions(edge: .trailing) {
                                 Button {
-                                    showingAlert = true
+                                    showDeleteAlert = true
                                     indexSetToDelete = IndexSet(arrayLiteral: locations.firstIndex(of: location)!)
                                     selectedLocation = location
                                 } label: {
@@ -77,13 +75,9 @@ struct LocationPage: View {
                     Text("Avbryt")
                 }
                 Button(role: .destructive){
-                    if let indexSetToDelete = indexSetToDelete {
-											deleteLocation(locationId: selectedLocation?.code ?? "Not selected")
-                        if locationDeletedFromDb {
-                            locations.remove(atOffsets: indexSetToDelete)
-                        }
-                        locationDeletedFromDb = false
-                    }
+                    
+                    deleteLocation(locationId: selectedLocation?.code ?? "Not selected")
+                    
                 } label: {
                     Text("Slett")
                 }
@@ -112,9 +106,14 @@ struct LocationPage: View {
         .toolbarBackground(Color.traceLightYellow, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .navigationBarBackButtonHidden(true)
-				.sheet(item: $selectedLocation, onDismiss: getLocations) { location in
-					UpdateLocationPage(location: location, locationCode: location.code)
+        .sheet(item: $selectedLocation, onDismiss: hideSheet) { location in
+            UpdateLocationPage(location: location, locationCode: location.code)
         }
+    }
+    
+    func hideSheet() {
+        selectedLocation = nil
+        getLocations()
     }
     
     func getLocations() {
@@ -123,7 +122,7 @@ struct LocationPage: View {
             case .success(let locations):
                 self.locations = locations
             case .failure(let error as RequestError):
-                 handleError(errorCode: error.errorCode)
+                handleError(errorCode: error.errorCode)
                 break
             default:
                 break
@@ -135,10 +134,10 @@ struct LocationPage: View {
         requestService.delete(path: "/locations/" + locationId, token: authService.accessToken, responseType: String.self, completion: { result in
             switch result {
             case .success(_):
-                locationDeletedFromDb = true
+                selectedLocation = nil
+                getLocations()
                 break
             case .failure(let error as RequestError):
-                locationDeletedFromDb = false
                 handleError(errorCode: error.errorCode)
                 break
             default:
@@ -172,6 +171,6 @@ struct LocationPage: View {
 struct LocationPage_Previews: PreviewProvider {
     static var previews: some View {
         LocationPage()
-				.environmentObject(AuthenticationService())
-		}
+            .environmentObject(AuthenticationService())
+    }
 }

@@ -72,14 +72,14 @@ struct ChangePasswordPage: View {
     
     var body: some View {
         ZStack {
-            VStack {
+					VStack {
                 VStack {
                     Text("Tips: Hvis du har fått en kode gjennom 'glemt passord' kan du bruke den koden her til å velge nytt passord")
                         .opacity(0.6)
                         .multilineTextAlignment(.center)
                 }
-                .frame(maxHeight: .infinity)
-                VStack(alignment: .leading) {
+								.frame(maxHeight: .infinity)
+						VStack(alignment: .leading, spacing: 20) {
                     PasswordInput(placeholder: "Nåværende passord", value: $currentPasswordField, valid: validCurrentPassword)
                     PasswordInput(placeholder: "Nytt passord", value: $newPasswordField, valid: validNewPassword)
                     if !validNewPassword {
@@ -125,5 +125,7 @@ struct ChangePasswordPage: View {
 struct ChangePasswordPage_Previews: PreviewProvider {
     static var previews: some View {
         ChangePasswordPage()
+				.environmentObject(AuthenticationService())
+				.environmentObject(RequestService())
     }
 }

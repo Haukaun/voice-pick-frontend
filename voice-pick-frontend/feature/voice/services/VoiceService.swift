@@ -18,6 +18,8 @@ enum VoiceAuthorization {
 }
 
 class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
+    
+    private let RECOGNIZTION_DEBOUNCE_TIMER = 0.5
 	
 	@Published var isVoiceAuthorized = VoiceAuthorization.NOT_AUTHORIZED
 	
@@ -163,7 +165,7 @@ class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
 	func processRecognitionResult(_ result: String) {
 		recognitionTimer?.invalidate()
 		// debounces recognition X seconds
-		recognitionTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+		recognitionTimer = Timer.scheduledTimer(withTimeInterval: RECOGNIZTION_DEBOUNCE_TIMER, repeats: false) { [weak self] _ in
 			guard let self = self else { return }
 			// Refresh the value stored in the published value
 			let result = self.filterKeywordsAndNumbers(from: result)

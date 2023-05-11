@@ -68,6 +68,9 @@ struct EmployeesPage: View {
 		})
 	}
 	
+    /**
+        Fetch all employees in the warehouse
+     */
 	func getEmployees() {
 		requestService.get(path: "/warehouse/users", token: authenticationService.accessToken, responseType: [User].self, completion: { result in
 			switch result {

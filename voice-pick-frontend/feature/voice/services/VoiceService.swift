@@ -52,7 +52,7 @@ class VoiceService: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
 	private func configureAudioSession() {
 		do {
 			if isBluetoothConnected() {
-				try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetoothA2DP, .mixWithOthers])
+				try audioSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetoothA2DP, .allowBluetooth, .mixWithOthers])
 			} else {
 				try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .mixWithOthers])
 			}

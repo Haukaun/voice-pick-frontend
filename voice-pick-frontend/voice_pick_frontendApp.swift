@@ -15,7 +15,7 @@ struct voice_pick_frontendApp: App {
 	@StateObject private var requestService = RequestService()
 	
 	init() {
-		requestService.introspectAuthentication(authService: authService)
+//		requestService.introspectAuthentication(authService: authService)
 	}
 	
 	var body: some Scene {

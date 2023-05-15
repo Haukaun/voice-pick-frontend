@@ -20,7 +20,7 @@ struct VerificationPage: View {
 	@ObservedObject var requestService = RequestService()
 	
 	
-	/*
+	/**
 	 Check if the given Verification code exists in backend
 	 */
 	func checkVerificationCode() {
@@ -47,10 +47,9 @@ struct VerificationPage: View {
 			})
 	}
 	
-	/*
+	/**
 	 Start timer for button
 	 */
-	
 	func starTimer(duration: Int){
 		timeRemaining = duration
 		Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
@@ -62,10 +61,9 @@ struct VerificationPage: View {
 		}
 	}
 	
-	/*
+	/**
 	 Send Email with verificaiton code
 	 */
-	
 	func sendVerificationCode(){
 		requestService.post(path: "/auth/verify-email", body: authenticationService.email, responseType: String.self, completion: { result in
 			switch result {
@@ -131,7 +129,7 @@ struct VerificationPage: View {
 								}
 							})
 							Button("Logg ut", action: {
-                                authenticationService.logout()
+								authenticationService.logout()
 							})
 							.buttonStyle(.plain)
 							.underline()

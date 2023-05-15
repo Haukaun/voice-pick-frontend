@@ -25,7 +25,7 @@ struct SetupWarehouse: View {
 	/**
 	 Sets the users warehouse information in the keychain.
 	 - Parameters:
-			- warehouse: warehouse information to add to users keychain.
+	 - warehouse: warehouse information to add to users keychain.
 	 */
 	func setWarehouseDetails(_ warehouse: WarehouseDto) {
 		DispatchQueue.main.async {
@@ -38,6 +38,9 @@ struct SetupWarehouse: View {
 		}
 	}
 	
+	/**
+	 Sets the refresh token of a user in keychain.
+	 */
 	func refreshToken() {
 		requestService.post(path: "/auth/refresh", body: TokenDto(token: authenticationService.refreshToken), responseType: RefreshTokenResponse.self, completion: { result in
 			switch result {
@@ -70,6 +73,9 @@ struct SetupWarehouse: View {
 		})
 	}
 	
+	/**
+	 Request warehouse join with verification code.
+	 */
 	func joinWarehouse() {
 		let verificationCodeInfo = VerifyRequestDto(verificationCode: joinCodeValue, email: authenticationService.email)
 		requestService.post(path: "/warehouse/join", token: authenticationService.accessToken, body: verificationCodeInfo, responseType: WarehouseDto.self, completion: { result in
@@ -85,6 +91,10 @@ struct SetupWarehouse: View {
 		})
 	}
 	
+	/**
+	 Error handlign for Join request.
+	 - Parameters: errorcode
+	 */
 	func handleJoinError(_ errorCode: Int) {
 		switch errorCode {
 		case 404:
@@ -102,38 +112,38 @@ struct SetupWarehouse: View {
 			VStack {
 				Title("Sett opp varehus")
 				Spacer()
-                VStack(alignment: .leading) {
-                    SubTitle("Bli med i varehus")
-                    DefaultInput(inputLabel: "PIN kode", text: $joinCodeValue, valid: true)
-                        .padding(.init(.bottom))
-                    DefaultButton("Bli med", onPress: joinWarehouse)
-                    HStack {
-                        VStack {
-                            Divider()
-                                .background(Color.foregroundColor)
-                        }
-                        Paragraph("eller")
-                        VStack {
-                            Divider()
-                                .background(Color.foregroundColor)
-                        }
-                    }
-                    .padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
-                    SubTitle("Opprett varehus")
-                    DefaultInput(inputLabel: "Varehus navn", text: $warehouseName, valid: true)
-                        .padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))
-                    DefaultInput(inputLabel: "Varehus addresse", text: $warehouseAddress, valid: true)
-                        .padding(.bottom)
-                    DefaultButton("Opprett", onPress: createWareHouse)
-                    Button("Logg ut", action: {
-                        authenticationService.logout()
-                    })
-                    .frame(maxWidth: .infinity)
-                    .buttonStyle(.plain)
-                    .underline()
-                    .padding()
-                }
-                Spacer()
+				VStack(alignment: .leading) {
+					SubTitle("Bli med i varehus")
+					DefaultInput(inputLabel: "PIN kode", text: $joinCodeValue, valid: true)
+						.padding(.init(.bottom))
+					DefaultButton("Bli med", onPress: joinWarehouse)
+					HStack {
+						VStack {
+							Divider()
+								.background(Color.foregroundColor)
+						}
+						Paragraph("eller")
+						VStack {
+							Divider()
+								.background(Color.foregroundColor)
+						}
+					}
+					.padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
+					SubTitle("Opprett varehus")
+					DefaultInput(inputLabel: "Varehus navn", text: $warehouseName, valid: true)
+						.padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))
+					DefaultInput(inputLabel: "Varehus addresse", text: $warehouseAddress, valid: true)
+						.padding(.bottom)
+					DefaultButton("Opprett", onPress: createWareHouse)
+					Button("Logg ut", action: {
+						authenticationService.logout()
+					})
+					.frame(maxWidth: .infinity)
+					.buttonStyle(.plain)
+					.underline()
+					.padding()
+				}
+				Spacer()
 			}
 			.padding(15)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

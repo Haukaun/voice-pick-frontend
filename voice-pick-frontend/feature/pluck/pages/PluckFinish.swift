@@ -10,10 +10,10 @@ import SwiftUI
 struct PluckFinish: View {
 	
 	@EnvironmentObject var pluckService: PluckService
-    @EnvironmentObject var authService: AuthenticationService
+	@EnvironmentObject var authService: AuthenticationService
 	
 	private func completePluck() {
-        pluckService.doAction(keyword: "complete", fromVoice: false, token: authService.accessToken)
+		pluckService.doAction(keyword: "complete", fromVoice: false, token: authService.accessToken)
 	}
 	
 	var body: some View {
@@ -40,7 +40,7 @@ struct PluckFinish: View {
 							correctAnswer: pluckService.pluckList?.location.controlDigits ?? 0,
 							onCorrectAnswerSelected: { number in
 								pluckService.doAction(keyword: String(number), fromVoice: false)
-						},
+							},
 							disableButtons: false)
 					}
 				}
@@ -65,6 +65,6 @@ struct PluckFinish: View {
 struct PluckFinish_Previews: PreviewProvider {
 	static var previews: some View {
 		PluckFinish()
-		.environmentObject(PluckService())
+			.environmentObject(PluckService())
 	}
 }

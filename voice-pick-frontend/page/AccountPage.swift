@@ -68,6 +68,9 @@ struct AccountPage: View {
 		showWarningAlert = true
 	}
 	
+	/**
+	 Request for leaving the warehouse
+	 */
 	func leaveWarehouse() {
 		requestService.delete(path: "/warehouse/leave", token: authenticationService.accessToken, responseType: String.self, completion: { result in
 			switch result {
@@ -117,25 +120,29 @@ struct AccountPage: View {
 		.cornerRadius(UIView.standardCornerRadius)
 	}
 	
+	
+	/**
+	 Sets rank depending on pluck amount user.
+	 */
 	private var pluckerRank: String {
-			switch numberOfPlucks {
-			case 0..<1000:
-					return "Nybegynner plukker"
-			case 1000..<3000:
-					return "Middels plukker"
-			case 3000..<5000:
-					return "Erfaren plukker"
-			case 5000..<10000:
-					return "Ekspert plukker"
-			case 10000..<20000:
-					return "Mester plukker"
-			case 20000...:
-				return "Wall-E"
-			default:
-				return "Profesjonell plukker"
-			}
+		switch numberOfPlucks {
+		case 0..<1000:
+			return "Nybegynner plukker"
+		case 1000..<3000:
+			return "Middels plukker"
+		case 3000..<5000:
+			return "Erfaren plukker"
+		case 5000..<10000:
+			return "Ekspert plukker"
+		case 10000..<20000:
+			return "Mester plukker"
+		case 20000...:
+			return "Wall-E"
+		default:
+			return "Profesjonell plukker"
+		}
 	}
-
+	
 	var body: some View {
 		NavigationView {
 			ZStack {

@@ -14,7 +14,7 @@ struct PluckInfo: View {
 	@State var errorMessage = "";
 	
 	@EnvironmentObject var pluckService: PluckService
-    @EnvironmentObject var authService: AuthenticationService
+	@EnvironmentObject var authService: AuthenticationService
 	
 	/*
 	 Error handling for cargo carriers
@@ -64,7 +64,7 @@ struct PluckInfo: View {
 			VStack{
 				CargoType(cargoCarriers: pluckService.cargoCarriers)
 				DefaultButton("Fortsett") {
-                    pluckService.doAction(keyword: "next", fromVoice: false, token: authService.accessToken)
+					pluckService.doAction(keyword: "next", fromVoice: false, token: authService.accessToken)
 				}
 			}
 		}

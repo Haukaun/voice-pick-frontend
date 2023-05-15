@@ -23,6 +23,10 @@ struct ChangePasswordPage: View {
     @ObservedObject var requestService = RequestService()
     let validator = Validator.shared
     
+	
+		/**
+		 Request for handling the change of user password.
+		 */
     func handleChangePassword() {
         validCurrentPassword = true
         validNewPassword = true

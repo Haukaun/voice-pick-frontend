@@ -4,10 +4,24 @@ Frontend repository containing the source code of the iOS mobile application voi
 
 ## Table of Contents
 
-1. Project Structure
-2. Getting Started
+1. Getting Started
+2. Project Structure
 
-## 1. Project Structure
+## 1. Getting started
+
+### Prerequisites
+
+- XCode
+
+### Installing
+
+1. Clone the repository
+2. Change into the directory
+3. Go to `Build Settings`, under `user defined` enter the URL of the API the applicaiton should connect to
+4. Select device to run the application on (drop down next to play icon)
+5. Run application via XCode using the play icon (top right)
+
+## 2. Project Structure
 
 The application is written in Swift using SwiftUI. The source code is located in the `voice-pick-frontend`.
 
@@ -44,16 +58,3 @@ features:
 - The layout directory consists of layout components that are used throughout the application like; bottom navigation bar, top header, menu drawers, etc...
 
 _Link to video explaining the structure: [Youtube Video](https://www.youtube.com/watch?v=UUga4-z7b6s&t=581s&ab_channel=WebDevSimplified)_
-
-## 2. Getting started
-
-### Prerequisites
-
-- XCode
-
-### Installing
-
-- Clone the repository
-- Change into the directory
-- Select device to run the application on (drop down next to play icon)
-- Run application via XCode using the play icon (top right)

@@ -17,7 +17,7 @@ Frontend repository containing the source code of the iOS mobile application voi
 
 1. Clone the repository
 2. Change into the directory
-3. Go to `Build Settings`, under `user defined` enter the URL of the API the applicaiton should connect to
+3. Go to `Build Settings`, under `user defined > API_URL` enter the URL of the API the applicaiton should connect to
 4. Select device to run the application on (drop down next to play icon)
 5. Run application via XCode using the play icon (top right)
 
